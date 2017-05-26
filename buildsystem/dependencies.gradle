@@ -1,0 +1,68 @@
+allprojects {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
+
+ext {
+  //Android libraries
+  appCompat_version = '25.2.0'
+
+  //Third party libraries
+  dagger_version = '2.9'
+  rxJava_version = '2.0.2'
+  rxAndroid_version = '2.0.1'
+  javaxAnnotations_version = '1.0'
+  javaxInject_version = '1'
+  retrofit_version = '2.1.0'
+  retrofit_adapter_version = '1.0.0'
+
+  //Unit Testing
+  robolectric_version = '3.2.2'
+  junit_version = '4.12'
+  mockitoKotlin_version = '1.1.0'
+  kluent_version = '1.14'
+
+  //Acceptance Testing
+  runner_version = '0.5'
+  espresso_version = '2.2.2'
+
+  //Development
+  leakCanaryVersion = '1.5'
+
+  mainApplication = [
+      kotlin:             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+      appCompat:          "com.android.support:appcompat-v7:$appCompat_version",
+      androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+      daggerCompiler:     "com.google.dagger:dagger-compiler:$dagger_version",
+      dagger:             "com.google.dagger:dagger:$dagger_version",
+      javaxAnnotation:    "javax.annotation:jsr250-api:$javaxAnnotations_version",
+      javaxInject:        "javax.inject:javax.inject:$javaxInject_version",
+      rxJava:             "io.reactivex.rxjava2:rxjava:$rxJava_version",
+      rxAndroid:          "io.reactivex.rxjava2:rxandroid:$rxAndroid_version",
+      retrofit:           "com.squareup.retrofit2:converter-gson:$retrofit_version",
+      retrofitAdapter:    "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_adapter_version",
+  ]
+
+  unitTesting = [
+      kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+      robolectric:        "org.robolectric:robolectric:$robolectric_version",
+      junit:              "junit:junit:$junit_version",
+      mockitoKotlin:      "com.nhaarman:mockito-kotlin:$mockitoKotlin_version",
+      kluent:             "org.amshove.kluent:kluent:$kluent_version",
+  ]
+
+  acceptanceTesting = [
+      testRunner:         "com.android.support.test:runner:$runner_version",
+      testRules:          "com.android.support.test:rules:$runner_version",
+      espressoCore:       "com.android.support.test.espresso:espresso-core:$espresso_version",
+      espressoIntents:    "com.android.support.test.espresso:espresso-intents:$espresso_version",
+      androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+  ]
+
+  development = [
+      leakCanary:         "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+      leakCanaryNoop:     "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
+  ]
+}
