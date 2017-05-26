@@ -18,7 +18,10 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         </intent-filter>
     </activity>
 
-    <activity android:name=".features.MainActivity">
+    <activity android:name=".features.login.LoginActivity">
+    </activity>
+
+    <activity android:name=".features.users.UsersActivity">
     </activity>
 
 </application>
