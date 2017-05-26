@@ -1,18 +1,28 @@
 package com.fernandocejas.sample
 
 import android.content.Context
+import com.fernandocejas.sample.features.login.Authenticator
+import com.fernandocejas.sample.features.users.LoginActivity
 import com.fernandocejas.sample.features.users.UsersActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Navigator @Inject constructor() {
+class Navigator @Inject constructor(private val authenticator: Authenticator) {
 
     fun showMainScreen(context: Context) {
-        //You could check whether the user is logged in or not at this point
-        //and decide where to go from here.
-        //In this sample, a main screen is showed
+        when (authenticator.userLoggedIn()) {
+            true -> handleLoggedInUser(context)
+            false -> showLoginScreen(context)
+        }
+    }
+
+    private fun handleLoggedInUser(context: Context) {
         context.startActivity(UsersActivity.callingIntent(context))
+    }
+
+    private fun showLoginScreen(context: Context) {
+        context.startActivity(LoginActivity.callingIntent(context))
     }
 }
 
