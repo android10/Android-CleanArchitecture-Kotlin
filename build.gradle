@@ -2,7 +2,7 @@ apply from: 'buildsystem/ci.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
-  ext.kotlin_version = '1.0.6'
+  ext.kotlin_version = '1.0.7'
   ext.gradle_tools = '2.2.3'
   ext.build_tools = '25.0.2'
 
