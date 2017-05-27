@@ -86,10 +86,11 @@ dependencies {
   compile applicationDependencies.retrofitAdapter
 
   //Unit/Integration tests dependencies
+  testCompile unitTestDependencies.kotlin
   testCompile unitTestDependencies.kotlinTest
   testCompile unitTestDependencies.robolectric
   testCompile unitTestDependencies.junit
-  testCompile unitTestDependencies.mockitoKotlin
+  testCompile unitTestDependencies.mockito
   testCompile unitTestDependencies.kluent
 
   //Acceptance tests dependencies
