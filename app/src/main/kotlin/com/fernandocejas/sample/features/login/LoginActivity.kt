@@ -1,4 +1,4 @@
-package com.fernandocejas.sample.features.users
+package com.fernandocejas.sample.features.movies
 
 import android.content.Context
 import android.content.Intent

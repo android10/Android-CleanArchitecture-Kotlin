@@ -2,8 +2,8 @@ package com.fernandocejas.sample
 
 import android.content.Context
 import com.fernandocejas.sample.features.login.Authenticator
-import com.fernandocejas.sample.features.users.LoginActivity
-import com.fernandocejas.sample.features.users.UsersActivity
+import com.fernandocejas.sample.features.movies.LoginActivity
+import com.fernandocejas.sample.features.movies.MoviesActivity
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,7 +18,7 @@ class Navigator @Inject constructor(private val authenticator: Authenticator) {
     }
 
     private fun handleLoggedInUser(context: Context) {
-        context.startActivity(UsersActivity.callingIntent(context))
+        context.startActivity(MoviesActivity.callingIntent(context))
     }
 
     private fun showLoginScreen(context: Context) {

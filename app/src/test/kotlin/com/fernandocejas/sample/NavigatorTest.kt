@@ -1,8 +1,8 @@
 package com.fernandocejas.sample
 
 import com.fernandocejas.sample.features.login.Authenticator
-import com.fernandocejas.sample.features.users.LoginActivity
-import com.fernandocejas.sample.features.users.UsersActivity
+import com.fernandocejas.sample.features.movies.LoginActivity
+import com.fernandocejas.sample.features.movies.MoviesActivity
 import com.fernandocejas.sample.framework.AndroidTest
 import com.fernandocejas.sample.framework.shouldNavigateTo
 import com.nhaarman.mockito_kotlin.whenever
@@ -33,12 +33,12 @@ class NavigatorTest : AndroidTest() {
     }
 
     @Test
-    fun forwardUserToUsersScreen() {
+    fun forwardUserToMoviesScreen() {
         whenever(authenticator.userLoggedIn()).thenReturn(true)
 
         navigator.showMainScreen(context())
 
         verify(authenticator).userLoggedIn()
-        RouteActivity::class shouldNavigateTo UsersActivity::class
+        RouteActivity::class shouldNavigateTo MoviesActivity::class
     }
 }
