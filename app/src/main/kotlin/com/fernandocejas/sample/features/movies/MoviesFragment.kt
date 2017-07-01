@@ -5,6 +5,6 @@ import com.fernandocejas.sample.R
 
 class MoviesFragment : BaseFragment() {
     override fun layoutId(): Int {
-        return R.layout.fragment_users
+        return R.layout.fragment_movies
     }
 }
