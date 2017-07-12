@@ -6,6 +6,6 @@ import dagger.Provides
 
 
 @Module
-class ActivityModule (private val activity: BaseActivity) {
+class ActivityModule(private val activity: BaseActivity) {
     @Provides @ForActivity fun provideActivity(): BaseActivity = activity
 }
