@@ -1,4 +1,4 @@
-package com.fernandocejas.sample
+package com.fernandocejas.sample.navigation
 
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.movies.LoginActivity

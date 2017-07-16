@@ -11,7 +11,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
-    <activity android:name=".RouteActivity" android:noHistory="true" android:theme="@style/AppTheme.NoActionBar">
+    <activity android:name=".navigation.RouteActivity" android:noHistory="true" android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

@@ -1,4 +1,4 @@
-package com.fernandocejas.sample
+package com.fernandocejas.sample.navigation
 
 import android.content.Context
 import com.fernandocejas.sample.features.login.Authenticator

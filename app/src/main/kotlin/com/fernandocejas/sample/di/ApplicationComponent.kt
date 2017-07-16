@@ -1,7 +1,7 @@
 package com.fernandocejas.sample.di
 
 import com.fernandocejas.sample.AndroidApplication
-import com.fernandocejas.sample.RouteActivity
+import com.fernandocejas.sample.navigation.RouteActivity
 import dagger.Component
 import javax.inject.Provider
 import javax.inject.Singleton

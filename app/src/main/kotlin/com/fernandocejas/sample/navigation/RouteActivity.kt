@@ -1,7 +1,8 @@
-package com.fernandocejas.sample
+package com.fernandocejas.sample.navigation
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.di.ApplicationComponent
 import javax.inject.Inject
 
