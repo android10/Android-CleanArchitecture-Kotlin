@@ -11,17 +11,25 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
-    <activity android:name=".navigation.RouteActivity" android:noHistory="true" android:theme="@style/AppTheme.NoActionBar">
+  <!--Activities-->
+    <activity
+        android:name=".navigation.RouteActivity"
+        android:noHistory="true"
+        android:theme="@style/AppTheme.NoActionBar">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
 
-    <activity android:name=".features.login.LoginActivity">
+    <activity
+        android:name=".features.login.LoginActivity"
+        android:label="@string/login_screen_title">
     </activity>
 
-    <activity android:name=".features.movies.MoviesActivity">
+    <activity
+        android:name=".features.movies.MoviesActivity"
+        android:label="@string/movies_screen_title">
     </activity>
 
 </application>
