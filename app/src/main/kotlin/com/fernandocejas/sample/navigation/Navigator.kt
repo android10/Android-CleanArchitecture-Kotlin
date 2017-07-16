@@ -2,7 +2,7 @@ package com.fernandocejas.sample.navigation
 
 import android.content.Context
 import com.fernandocejas.sample.features.login.Authenticator
-import com.fernandocejas.sample.features.movies.LoginActivity
+import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MoviesActivity
 import javax.inject.Inject
 import javax.inject.Singleton

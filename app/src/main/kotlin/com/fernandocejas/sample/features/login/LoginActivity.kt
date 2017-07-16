@@ -1,10 +1,9 @@
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.login
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.fernandocejas.sample.BaseActivity
-import com.fernandocejas.sample.features.login.LoginFragment
 
 class LoginActivity : BaseActivity() {
 

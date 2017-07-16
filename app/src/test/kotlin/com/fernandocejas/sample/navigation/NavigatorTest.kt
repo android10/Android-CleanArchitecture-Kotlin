@@ -1,7 +1,7 @@
 package com.fernandocejas.sample.navigation
 
 import com.fernandocejas.sample.features.login.Authenticator
-import com.fernandocejas.sample.features.movies.LoginActivity
+import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MoviesActivity
 import com.fernandocejas.sample.framework.AndroidTest
 import com.fernandocejas.sample.framework.shouldNavigateTo
