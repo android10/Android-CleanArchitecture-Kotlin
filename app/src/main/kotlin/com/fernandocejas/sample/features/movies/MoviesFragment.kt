@@ -11,19 +11,11 @@ import javax.inject.Inject
 
 class MoviesFragment : BaseFragment(), MoviesView {
 
-    interface MoviesListener {
-        fun onMovieClicked(movie: MovieViewModel)
-    }
-
     @Inject lateinit var presenter: MoviesPresenter
     @Inject lateinit var adapter: MoviesAdapter
 
     override fun layoutId(): Int {
         return R.layout.fragment_movies
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,13 +46,28 @@ class MoviesFragment : BaseFragment(), MoviesView {
         super.onDestroy()
     }
 
-    override fun onDetach() {
-        super.onDetach()
-    }
-
     override fun renderList(movies: List<MovieViewModel>) {
     }
 
     override fun displayDetails(movie: MovieViewModel) {
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
+    override fun showError(message: String) {
+    }
+
+    override fun showRetry() {
+    }
+
+    override fun hideRetry() {
+    }
+
+    override fun context(): Context {
+        throw UnsupportedOperationException("not implemented")
     }
 }
