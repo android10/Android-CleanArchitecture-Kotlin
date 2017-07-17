@@ -20,6 +20,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,6 +29,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.view(this)
     }
 
     override fun onResume() {
@@ -44,6 +46,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun onDestroy() {
         super.onDestroy()
+        presenter.destroy()
     }
 
     override fun renderList(movies: List<MovieViewModel>) {
