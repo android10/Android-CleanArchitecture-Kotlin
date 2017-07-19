@@ -78,6 +78,7 @@ dependencies {
   //Application dependencies
   compile applicationDependencies.kotlin
   compile applicationDependencies.appCompat
+  compile applicationDependencies.recyclerView
   compile applicationDependencies.androidAnnotations
   compile applicationDependencies.dagger
   compile applicationDependencies.rxJava

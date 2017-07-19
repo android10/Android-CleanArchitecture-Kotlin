@@ -2,12 +2,15 @@ allprojects {
   repositories {
     jcenter()
     mavenCentral()
+    maven {
+      url "https://maven.google.com"
+    }
   }
 }
 
 ext {
   //Android libraries
-  appCompat_version = '25.2.0'
+  appCompat_version = '25.4.0'
 
   //Third party libraries
   dagger_version = '2.9'
@@ -34,6 +37,7 @@ ext {
   mainApplication = [
       kotlin:             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
       appCompat:          "com.android.support:appcompat-v7:$appCompat_version",
+      recyclerView:       "com.android.support:recyclerview-v7:$appCompat_version",
       androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
       daggerCompiler:     "com.google.dagger:dagger-compiler:$dagger_version",
       dagger:             "com.google.dagger:dagger:$dagger_version",
