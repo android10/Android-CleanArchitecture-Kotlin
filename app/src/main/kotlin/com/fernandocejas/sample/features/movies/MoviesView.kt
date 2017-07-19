@@ -14,7 +14,4 @@ interface MoviesView {
     fun showError(message: String)
     fun showRetry()
     fun hideRetry()
-
-    //Context: TODO -> extract this for reuse ability
-    fun context(): Context
 }

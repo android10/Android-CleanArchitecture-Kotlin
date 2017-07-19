@@ -1,12 +1,12 @@
 package com.fernandocejas.sample.features.movies
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment(), MoviesView {
@@ -29,15 +29,8 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initializeAdapter()
         presenter.view(this)
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     override fun onDestroyView() {
@@ -70,7 +63,8 @@ class MoviesFragment : BaseFragment(), MoviesView {
     override fun hideRetry() {
     }
 
-    override fun context(): Context {
-        throw UnsupportedOperationException("not implemented")
+    private fun initializeAdapter() {
+        rv_movies.layoutManager = MoviesLayoutManager(this.activity.application)
+        rv_movies.adapter = adapter
     }
 }
