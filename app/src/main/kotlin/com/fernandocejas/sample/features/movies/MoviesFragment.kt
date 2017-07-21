@@ -1,6 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
@@ -53,7 +54,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     private fun initializeView() {
-        rv_movies.layoutManager = MoviesLayoutManager(this.activity.application)
+        rv_movies.layoutManager = LinearLayoutManager(this.activity.application)
         rv_movies.adapter = adapter
         presenter.view(this)
     }
