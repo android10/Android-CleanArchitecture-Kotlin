@@ -33,24 +33,11 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun renderList(movies: List<MovieViewModel>) {
+        adapter.movies = movies
     }
 
     override fun displayDetails(movie: MovieViewModel) {
-    }
-
-    override fun showLoading() {
-    }
-
-    override fun hideLoading() {
-    }
-
-    override fun showError(message: String) {
-    }
-
-    override fun showRetry() {
-    }
-
-    override fun hideRetry() {
+        throw NotImplementedError("not implemented")
     }
 
     private fun initializeView() {
