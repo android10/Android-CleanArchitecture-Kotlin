@@ -1,9 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -23,18 +21,9 @@ class MoviesFragment : BaseFragment(), MoviesView {
         appComponent.inject(this)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeAdapter()
-        presenter.view(this)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
+        initializeView()
     }
 
     override fun onDestroy() {
@@ -63,8 +52,9 @@ class MoviesFragment : BaseFragment(), MoviesView {
     override fun hideRetry() {
     }
 
-    private fun initializeAdapter() {
+    private fun initializeView() {
         rv_movies.layoutManager = MoviesLayoutManager(this.activity.application)
         rv_movies.adapter = adapter
+        presenter.view(this)
     }
 }

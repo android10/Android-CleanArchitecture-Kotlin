@@ -2,10 +2,13 @@ package com.fernandocejas.sample.features.movies
 
 import android.graphics.Color
 
-class MovieViewModel(val movie: Movie) {
-    fun id() = movie.id()
-    fun title() = movie.title()
-    fun year() = movie.year()
-    fun poster() = movie.poster()
-    fun color() = Color.parseColor(movie.color())
+class MovieViewModel(movie: Movie) {
+    val id = movie.id()
+    val title = movie.title()
+    val year = movie.year()
+    val poster = movie.poster()
+    val color = Color.parseColor(movie.color())
 }
+
+
+
