@@ -7,4 +7,4 @@ import android.view.ViewGroup
 import android.widget.ImageView
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
-fun ImageView.loadFromUrl(url: String): Unit = throw NotImplementedError("not implemented")
+fun ImageView.loadFromUrl(url: String): Unit = TODO()

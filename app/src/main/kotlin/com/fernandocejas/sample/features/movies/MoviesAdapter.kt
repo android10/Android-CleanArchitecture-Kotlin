@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 
 class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
-    var movies: List<MovieViewModel> = emptyList()
+
+    internal var movies: List<MovieViewModel> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.row_movie))
 

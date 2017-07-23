@@ -25,6 +25,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
+        savedInstanceState ?: loadMovies()
     }
 
     override fun onDestroy() {
@@ -41,16 +42,20 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun showLoading() {
-        //TODO
+        //TODO: implement method
     }
 
     override fun hideLoading() {
-        //TODO
+        //TODO: implement method
     }
 
     private fun initializeView() {
         rv_movies.layoutManager = LinearLayoutManager(this.activity.application)
         rv_movies.adapter = moviesAdapter
         moviesPresenter.moviesView = this
+    }
+
+    private fun loadMovies() {
+        moviesPresenter.loadMovies()
     }
 }
