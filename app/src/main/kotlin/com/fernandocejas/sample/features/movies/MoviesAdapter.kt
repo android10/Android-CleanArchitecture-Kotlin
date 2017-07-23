@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.fernandocejas.sample.R
-import com.fernandocejas.sample.extension.inflate
+import com.fernandocejas.sample.framework.extension.inflate
 import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 

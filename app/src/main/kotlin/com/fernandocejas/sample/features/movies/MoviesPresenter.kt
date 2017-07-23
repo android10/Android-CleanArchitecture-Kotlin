@@ -4,11 +4,7 @@ import javax.inject.Inject
 
 class MoviesPresenter @Inject constructor() {
 
-    private lateinit var view: MoviesView
-
-    fun view(moviesView: MoviesView) {
-        view = moviesView
-    }
+    var moviesView: MoviesView? = null
 
     fun destroy() {
         //TODO: better approach for handling lifecycle

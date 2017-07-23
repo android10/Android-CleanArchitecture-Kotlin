@@ -1,4 +1,4 @@
-package com.fernandocejas.sample.extension
+package com.fernandocejas.sample.framework.extension
 
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
