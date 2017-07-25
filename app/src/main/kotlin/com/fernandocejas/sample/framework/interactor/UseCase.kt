@@ -2,12 +2,11 @@ package com.fernandocejas.sample.framework.interactor
 
 import io.reactivex.Observable
 
-abstract class UseCase<T, in P> {
+abstract class UseCase<T, in Params> {
 
-    abstract fun buildObservable(params: P?): Observable<T>
+    abstract fun buildObservable(params: Params): Observable<T>
 
-    //TODO: P should be empty rather than @Nullable
-    fun execute(observer: UseCaseObserver<T>, params: P?) {
+    fun execute(observer: UseCaseObserver<T>, params: Params = null!!) {
         buildObservable(params).subscribeWith(observer)
     }
 }

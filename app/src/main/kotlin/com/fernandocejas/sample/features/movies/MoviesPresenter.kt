@@ -14,8 +14,7 @@ class MoviesPresenter @Inject constructor(val getMovies: GetMovies) {
     fun loadMovies() {
         moviesView?.let {
             it.showLoading()
-            //TODO: avoid passing null: refactor
-            getMovies.execute(MoviesObserver(), null)
+            getMovies.execute(MoviesObserver())
         }
     }
 

@@ -20,7 +20,9 @@ class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.V
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movieViewModel: MovieViewModel?) {
-            itemView.title.text = movieViewModel?.title
+            with(itemView) {
+                title.text = movieViewModel?.title
+            }
         }
     }
 }
