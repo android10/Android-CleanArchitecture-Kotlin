@@ -3,28 +3,27 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.framework.interactor.UseCaseObserver
 import javax.inject.Inject
 
-class MoviesPresenter @Inject constructor(val getMovies: GetMovies) {
+class MoviesPresenter @Inject constructor(private val getMovies: GetMovies) {
 
-    internal var moviesView: MoviesView? = null
+    internal lateinit var moviesView: MoviesView
 
     fun destroy() {
-        //TODO: better approach for handling lifecycle
+        getMovies.dispose()
+        moviesView.dispose()
     }
 
     fun loadMovies() {
-        moviesView?.let {
-            it.showLoading()
-            getMovies.execute(MoviesObserver())
-        }
+        moviesView.showLoading()
+        getMovies.execute(MoviesObserver())
     }
 
     private inner class MoviesObserver : UseCaseObserver<List<Movie>>() {
         override fun onComplete() {
-            moviesView?.hideLoading()
+            moviesView.hideLoading()
         }
 
         override fun onNext(value: List<Movie>) {
-            moviesView?.renderList(value.map(::MovieViewModel))
+            moviesView.renderList(value.map(::MovieViewModel))
         }
 
         override fun onError(e: Throwable?) {

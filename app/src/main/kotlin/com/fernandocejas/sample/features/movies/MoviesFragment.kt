@@ -9,10 +9,9 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment(), MoviesView {
-
     @Inject lateinit var moviesPresenter: MoviesPresenter
-    @Inject lateinit var moviesAdapter: MoviesAdapter
 
+    @Inject lateinit var moviesAdapter: MoviesAdapter
     override fun layoutId(): Int {
         return R.layout.fragment_movies
     }
@@ -47,6 +46,10 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun hideLoading() {
         //TODO: implement method
+    }
+
+    override fun dispose() {
+        //TODO: dispose view resources
     }
 
     private fun initializeView() {
