@@ -4,7 +4,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Authenticator @Inject constructor(){
+class Authenticator
+@Inject constructor(){
 
     fun userLoggedIn(): Boolean {
         //Learning purpose: We assume the user is always logged in

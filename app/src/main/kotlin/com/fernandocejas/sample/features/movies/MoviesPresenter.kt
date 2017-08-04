@@ -3,7 +3,8 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.framework.interactor.UseCaseObserver
 import javax.inject.Inject
 
-class MoviesPresenter @Inject constructor(private val getMovies: GetMovies) {
+class MoviesPresenter
+@Inject constructor(private val getMovies: GetMovies) {
 
     internal lateinit var moviesView: MoviesView
 

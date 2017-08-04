@@ -6,7 +6,8 @@ import javax.inject.Inject
 interface MoviesRepository {
     fun movies(): Observable<List<Movie>>
 
-    class Source @Inject constructor() : MoviesRepository {
+    class Source
+    @Inject constructor() : MoviesRepository {
 
         override fun movies(): Observable<List<Movie>> {
             val movieOne = Movie.create { title = "Iron Man 3" }

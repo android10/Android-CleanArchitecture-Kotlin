@@ -7,9 +7,9 @@ abstract class UseCase<T, in Params> {
 
     private val disposables = CompositeDisposable()
 
-    abstract fun buildObservable(params: Params): Observable<T>
+    abstract fun buildObservable(params: Params?): Observable<T>
 
-    fun execute(observer: UseCaseObserver<T>, params: Params = null!!) {
+    fun execute(observer: UseCaseObserver<T>, params: Params? = null) {
         buildObservable(params).subscribeWith(observer)
     }
 

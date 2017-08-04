@@ -8,7 +8,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Navigator @Inject constructor(private val authenticator: Authenticator) {
+class Navigator
+@Inject constructor(private val authenticator: Authenticator) {
 
     fun showMainScreen(context: Context) {
         when (authenticator.userLoggedIn()) {

@@ -8,7 +8,8 @@ import com.fernandocejas.sample.framework.extension.inflate
 import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 
-class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter
+@Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     internal var movies: List<MovieViewModel> = emptyList()
 

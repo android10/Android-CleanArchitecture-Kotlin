@@ -2,11 +2,12 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.framework.extension.empty
 
-class Movie private constructor(val id: Int,
-                                val title: String,
-                                val year: Int,
-                                val poster: String,
-                                val color: String) {
+class Movie
+private constructor(val id: Int,
+                    val title: String,
+                    val year: Int,
+                    val poster: String,
+                    val color: String) {
 
     private constructor(builder: Builder) :
             this(builder.id, builder.title, builder.year, builder.poster, builder.color)
