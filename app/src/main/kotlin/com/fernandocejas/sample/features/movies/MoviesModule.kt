@@ -1,5 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
+import com.fernandocejas.sample.framework.executor.ExecutionScheduler
+import com.fernandocejas.sample.framework.executor.ThreadScheduler
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

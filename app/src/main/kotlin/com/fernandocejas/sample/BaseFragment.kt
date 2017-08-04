@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.fernandocejas.sample.di.ApplicationComponent
 
 abstract class BaseFragment : Fragment() {
-
     init {
         retainInstance = true
     }
