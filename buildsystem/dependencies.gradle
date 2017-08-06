@@ -18,7 +18,7 @@ ext {
   rxAndroid_version = '2.0.1'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
-  retrofit_version = '2.1.0'
+  retrofit_version = '2.3.0'
   retrofit_adapter_version = '1.0.0'
 
   //Unit Testing

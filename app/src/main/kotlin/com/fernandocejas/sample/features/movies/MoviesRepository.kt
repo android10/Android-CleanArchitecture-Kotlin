@@ -8,6 +8,6 @@ interface MoviesRepository {
 
     class Source
     @Inject constructor(private val dataStoreFactory: MoviesDataStore.Factory) : MoviesRepository {
-        override fun movies(): Observable<List<Movie>> = dataStoreFactory.create().movies()
+        override fun movies(): Observable<List<Movie>> = dataStoreFactory.network().movies()
     }
 }

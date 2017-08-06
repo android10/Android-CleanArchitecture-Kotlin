@@ -1,25 +1,30 @@
 package com.fernandocejas.sample.features.movies
 
+import com.fernandocejas.sample.framework.network.RestApi
 import io.reactivex.Observable
 import javax.inject.Inject
 
 interface MoviesDataStore {
     fun movies(): Observable<List<Movie>>
 
-    class Factory @Inject constructor() {
-        fun create() : MoviesDataStore = Network()
+    class Factory //TODO: constructor collaborators should be lazy
+    @Inject constructor(val network: Network, val disk: Disk) {
+        fun network() = network
     }
 
-    private class Network : MoviesDataStore {
+    class Network
+    @Inject constructor(private val restApi: RestApi) : MoviesDataStore {
         override fun movies(): Observable<List<Movie>> {
-            val movieOne = Movie.create { title = "Iron Man 3" }
-            val movieTwo = Movie.create { title = "Superman" }
+            return restApi.movies().map { movieEntities -> convert(movieEntities) }
+        }
 
-            return Observable.just(listOf(movieOne, movieTwo))
+        private fun convert (moviesEntities: List<MovieEntity>) : List<Movie> {
+            TODO()
         }
     }
 
-    private class Disk : MoviesDataStore {
+    class Disk
+    @Inject constructor() : MoviesDataStore {
         override fun movies(): Observable<List<Movie>> {
             TODO()
         }
