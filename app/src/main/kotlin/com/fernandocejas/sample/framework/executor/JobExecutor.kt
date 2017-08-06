@@ -18,6 +18,6 @@ internal class JobExecutor(numberOfThreads: Int, threadIdentifier: String) : Exe
         private val counter = AtomicInteger()
 
         override fun newThread(runnable: Runnable?) =
-                Thread(runnable, "thread_${threadIdentifier}_${counter.incrementAndGet()}")
+                Thread(runnable, "thread:$threadIdentifier:${counter.incrementAndGet()}")
     }
 }

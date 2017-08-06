@@ -9,7 +9,20 @@ import javax.inject.Singleton
 
 @Singleton class ThreadScheduler
 @Inject constructor() : ExecutionScheduler {
+    companion object {
+        internal const val HIGH_PRIORITY_THREADS = 6
+        internal const val LOW_PRIORITY_THREADS = 2
+
+        internal val highPriorityScheduler: Scheduler
+        internal val lowPriorityScheduler: Scheduler
+        
+        init {
+            highPriorityScheduler = Schedulers.from(JobExecutor(HIGH_PRIORITY_THREADS, "High-Priority-Pool"))
+            lowPriorityScheduler = Schedulers.from(JobExecutor(LOW_PRIORITY_THREADS, "Low-Priority-Pool"))
+        }
+    }
+
     override fun ui(): Scheduler = AndroidSchedulers.mainThread()
-    override fun highPriority(): Scheduler = Schedulers.newThread() //TODO: use thread pool
-    override fun lowPriority(): Scheduler = Schedulers.newThread()  //TODO: use thread pool
+    override fun highPriority(): Scheduler = highPriorityScheduler
+    override fun lowPriority(): Scheduler = lowPriorityScheduler
 }
