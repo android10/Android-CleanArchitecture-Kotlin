@@ -11,9 +11,9 @@ import javax.inject.Singleton
 @Singleton
 class RestApi
 @Inject constructor(retrofit: Retrofit) : MoviesApi {
-    private val moviesApi = retrofit.create(MoviesApi::class.java)
+    private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
 
-    //TODO: fix this
+    //TODO: fix these schedulers, should not be here
     override fun movies(): Observable<List<MovieEntity>> =
             moviesApi.movies()
                     .observeOn(AndroidSchedulers.mainThread())

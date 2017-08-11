@@ -2,9 +2,7 @@ package com.fernandocejas.sample.framework.interactor
 
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) {
 
@@ -15,8 +13,8 @@ abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) 
     fun execute(observer: UseCaseObserver<T>, params: Params? = null) {
         val observable = buildObservable(params)
         with(observable) {
-            subscribeOn(Schedulers.newThread())
-            observeOn(AndroidSchedulers.mainThread())
+            subscribeOn(scheduler.highPriority())
+            observeOn(scheduler.ui())
             disposables.add(subscribeWith(observer))
         }
     }
