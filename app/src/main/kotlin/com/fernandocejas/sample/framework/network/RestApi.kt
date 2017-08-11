@@ -2,6 +2,7 @@ package com.fernandocejas.sample.framework.network
 
 import com.fernandocejas.sample.features.movies.MovieEntity
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -12,5 +13,9 @@ class RestApi
 @Inject constructor(retrofit: Retrofit) : MoviesApi {
     private val moviesApi = retrofit.create(MoviesApi::class.java)
 
-    override fun movies(): Observable<List<MovieEntity>> = moviesApi.movies().subscribeOn(Schedulers.io())
+    //TODO: fix this
+    override fun movies(): Observable<List<MovieEntity>> =
+            moviesApi.movies()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
 }
