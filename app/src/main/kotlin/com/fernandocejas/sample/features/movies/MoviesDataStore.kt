@@ -1,16 +1,17 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.framework.network.RestApi
+import dagger.Lazy
 import io.reactivex.Observable
 import javax.inject.Inject
 
 interface MoviesDataStore {
     fun movies(): Observable<List<Movie>>
 
-    class Factory //TODO: constructor collaborators should be lazy
-    @Inject constructor(val network: Network, val disk: Disk) {
-        fun network() = network
-        fun disk() = disk
+    class Factory
+    @Inject constructor(val network: Lazy<Network>, val disk: Lazy<Disk>) {
+        fun network(): Network = network.get()
+        fun disk(): Disk = disk.get()
     }
 
     class Network
