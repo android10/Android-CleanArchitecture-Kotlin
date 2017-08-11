@@ -10,16 +10,22 @@ interface MoviesDataStore {
     class Factory //TODO: constructor collaborators should be lazy
     @Inject constructor(val network: Network, val disk: Disk) {
         fun network() = network
+        fun disk() = disk
     }
 
     class Network
     @Inject constructor(private val restApi: RestApi) : MoviesDataStore {
-        override fun movies(): Observable<List<Movie>> {
-            return restApi.movies().map { movieEntities -> convert(movieEntities) }
-        }
+        override fun movies(): Observable<List<Movie>> = restApi.movies().map { convert(it) }
 
-        private fun convert (moviesEntities: List<MovieEntity>) : List<Movie> {
-            TODO()
+        //TODO: a bit ugly: fix this
+        private fun convert(movieEntities: List<MovieEntity>): List<Movie> {
+            val list: MutableList<Movie> = mutableListOf()
+
+            movieEntities.forEach {
+                list.add(it.convert())
+            }
+
+            return list
         }
     }
 

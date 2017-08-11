@@ -34,7 +34,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun renderList(movies: List<MovieViewModel>) {
-        moviesAdapter.movies = movies
+        moviesAdapter.collection = movies
     }
 
     override fun displayDetails(movie: MovieViewModel) {
