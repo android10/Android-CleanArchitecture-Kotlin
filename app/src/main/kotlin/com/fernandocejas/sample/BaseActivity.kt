@@ -11,11 +11,10 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun addFragment(savedInstanceState: Bundle?, fragment: BaseFragment) {
-        if (savedInstanceState == null) {
-            supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragmentContainer, fragment)
-                    .commit()
-        }
+        savedInstanceState ?:
+                supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.fragmentContainer, fragment)
+                        .commit()
     }
 }

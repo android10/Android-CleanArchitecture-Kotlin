@@ -25,18 +25,18 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides @Singleton fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Endpoints.BASE)
-                .client(createClient().build())
+                .client(createClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
 
-    private fun createClient(): OkHttpClient.Builder {
+    private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
         }
-        return okHttpClientBuilder
+        return okHttpClientBuilder.build()
     }
 }
