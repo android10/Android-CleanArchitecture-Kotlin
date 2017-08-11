@@ -13,7 +13,7 @@ class MoviesAdapter
 @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     internal var collection: List<MovieViewModel> by Delegates.observable(emptyList()) {
-        property, old, new -> notifyDataSetChanged()
+        _, _, _ -> notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.row_movie))
