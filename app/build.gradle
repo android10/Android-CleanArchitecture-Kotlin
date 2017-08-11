@@ -85,6 +85,7 @@ dependencies {
   compile applicationDependencies.rxAndroid
   compile applicationDependencies.retrofit
   compile applicationDependencies.retrofitAdapter
+  compile applicationDependencies.okhttpLoggingInterceptor
 
   //Unit/Integration tests dependencies
   testCompile unitTestDependencies.kotlin

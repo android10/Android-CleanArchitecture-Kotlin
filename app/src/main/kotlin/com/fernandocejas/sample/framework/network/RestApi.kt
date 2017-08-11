@@ -12,5 +12,5 @@ class RestApi
 @Inject constructor(retrofit: Retrofit) : MoviesApi {
     private val moviesApi = retrofit.create(MoviesApi::class.java)
 
-    override fun movies(): Observable<List<MovieEntity>> = moviesApi.movies().subscribeOn(Schedulers.newThread())
+    override fun movies(): Observable<List<MovieEntity>> = moviesApi.movies().subscribeOn(Schedulers.io())
 }
