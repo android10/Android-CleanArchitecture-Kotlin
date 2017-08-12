@@ -16,24 +16,12 @@ interface MoviesDataStore {
 
     class Network
     @Inject constructor(private val restApi: RestApi) : MoviesDataStore {
-        override fun movies(): Observable<List<Movie>> = restApi.movies().map { convert(it) }
-
-        //TODO: a bit ugly: fix this
-        private fun convert(movieEntities: List<MovieEntity>): List<Movie> {
-            val list: MutableList<Movie> = mutableListOf()
-
-            movieEntities.forEach {
-                list.add(it.convert())
-            }
-
-            return list
-        }
+        override fun movies(): Observable<List<Movie>> =
+                restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
     }
 
     class Disk
     @Inject constructor() : MoviesDataStore {
-        override fun movies(): Observable<List<Movie>> {
-            TODO()
-        }
+        override fun movies(): Observable<List<Movie>> = TODO()
     }
 }

@@ -11,7 +11,7 @@ open class UseCaseObserver<T> : DisposableObserver<T>() {
         //no op by default
     }
 
-    override fun onError(e: Throwable?) {
+    override fun onError(e: Throwable) {
         //TODO: default error handling
     }
 }

@@ -6,7 +6,7 @@ data class MovieEntity(private val id: Int,
                        private val poster: String,
                        private val color: String) {
 
-    fun convert(): Movie {
+    fun toMovie(): Movie {
         return Movie.create {
             this@MovieEntity.let {
                 id = it.id
