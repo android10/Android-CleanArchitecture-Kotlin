@@ -14,7 +14,7 @@ ext {
 
   //Third party libraries
   dagger_version = '2.9'
-  rxJava_version = '2.0.2'
+  rxJava_version = '2.1.2'
   rxAndroid_version = '2.0.1'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
