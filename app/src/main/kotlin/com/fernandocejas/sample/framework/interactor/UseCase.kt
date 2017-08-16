@@ -19,4 +19,6 @@ abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) 
     //TODO: check style and reuse code since these methods are similar
     internal fun <T> highPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.highPriority()).observeOn(scheduler.ui()) }
     internal fun <T> lowPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.lowPriority()).observeOn(scheduler.ui()) }
+
+    class EmptyParams
 }
