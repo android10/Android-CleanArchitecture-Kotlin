@@ -2,10 +2,9 @@ package com.fernandocejas.sample.framework.interactor
 
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import io.reactivex.Observable
-import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class UseCase<T, in Params>(internal val scheduler: ExecutionScheduler) {
+abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) {
 
     private val disposables = CompositeDisposable()
 
@@ -17,23 +16,7 @@ abstract class UseCase<T, in Params>(internal val scheduler: ExecutionScheduler)
 
     fun dispose() = disposables.dispose()
 
-    fun <T> highPriorityScheduling(): ObservableTransformer<T, T> {
-         return ObservableTransformer { observable ->
-             with(observable) {
-                subscribeOn(scheduler.highPriority())
-                observeOn(scheduler.ui())
-             }
-         }
-    }
-
-    private fun <T> lowPriorityScheduling(): ObservableTransformer<T, T> {
-        return ObservableTransformer { observable ->
-            with(observable) {
-                subscribeOn(scheduler.lowPriority())
-                observeOn(scheduler.ui())
-            }
-        }
-    }
-
-
+    //TODO: check style and reuse code since these methods are similar
+    internal fun <T> highPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.highPriority()).observeOn(scheduler.ui()) }
+    internal fun <T> lowPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.lowPriority()).observeOn(scheduler.ui()) }
 }
