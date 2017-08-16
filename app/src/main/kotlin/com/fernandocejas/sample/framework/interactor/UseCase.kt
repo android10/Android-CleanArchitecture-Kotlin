@@ -3,10 +3,13 @@ package com.fernandocejas.sample.framework.interactor
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) {
+abstract class UseCase<T, in Params> {
 
     private val disposables = CompositeDisposable()
+
+    @Inject internal lateinit var scheduler: ExecutionScheduler
 
     abstract fun buildObservable(params: Params?): Observable<T>
 
@@ -16,9 +19,8 @@ abstract class UseCase<T, in Params>(private val scheduler: ExecutionScheduler) 
 
     fun dispose() = disposables.dispose()
 
-    //TODO: check style and reuse code since these methods are similar
-    internal fun <T> highPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.highPriority()).observeOn(scheduler.ui()) }
-    internal fun <T> lowPriorityScheduler() = { upstream: Observable<T> -> upstream.subscribeOn(scheduler.lowPriority()).observeOn(scheduler.ui()) }
+    internal fun <T> highPriorityScheduler() = scheduler.applyHighPriorityScheduler<T>()
+    internal fun <T> lowPriorityScheduler() = scheduler.applyLowPriorityScheduler<T>()
 
     class EmptyParams
 }
