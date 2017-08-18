@@ -13,8 +13,8 @@ import javax.inject.Singleton
     companion object {
         internal const val HIGH_PRIORITY_THREADS = 6
         internal const val LOW_PRIORITY_THREADS = 2
-        internal val highPriorityScheduler: Scheduler
 
+        internal val highPriorityScheduler: Scheduler
         internal val lowPriorityScheduler: Scheduler
         init {
             highPriorityScheduler = Schedulers.from(JobExecutor(HIGH_PRIORITY_THREADS, "High-Priority-Pool"))

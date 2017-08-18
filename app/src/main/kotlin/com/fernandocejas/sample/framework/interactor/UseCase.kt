@@ -9,8 +9,6 @@ abstract class UseCase<T, in Params> {
 
     private val disposables = CompositeDisposable()
 
-    @Inject internal lateinit var scheduler: ExecutionScheduler
-
     abstract fun buildObservable(params: Params?): Observable<T>
 
     fun execute(observer: UseCaseObserver<T>, params: Params? = null) {
@@ -19,8 +17,9 @@ abstract class UseCase<T, in Params> {
 
     fun dispose() = disposables.dispose()
 
+    class EmptyParams
+
+    @Inject internal lateinit var scheduler: ExecutionScheduler
     internal fun <T> highPriorityScheduler() = scheduler.applyHighPriorityScheduler<T>()
     internal fun <T> lowPriorityScheduler() = scheduler.applyLowPriorityScheduler<T>()
-
-    class EmptyParams
 }
