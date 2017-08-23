@@ -10,9 +10,7 @@ internal class JobExecutor(numberOfThreads: Int, threadIdentifier: String) : Exe
     private val threadPoolExecutor = Executors.newFixedThreadPool(numberOfThreads,
             JobThreadFactory(threadIdentifier)) as ThreadPoolExecutor
 
-    override fun execute(runnable: Runnable?) {
-        threadPoolExecutor.execute(runnable)
-    }
+    override fun execute(runnable: Runnable) = threadPoolExecutor.execute(runnable)
 
     private class JobThreadFactory(private val threadIdentifier: String) : ThreadFactory {
         private val counter = AtomicInteger()

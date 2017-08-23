@@ -23,14 +23,12 @@ import org.robolectric.annotation.Config
 abstract class AndroidTest {
 
     @Rule @JvmField
-    val injectMocks = TestRule { statement, description ->
+    val injectMocks = TestRule { statement, _ ->
         MockitoAnnotations.initMocks(this)
         statement
     }
 
-    fun context(): Context {
-        return RuntimeEnvironment.application
-    }
+    fun context(): Context = RuntimeEnvironment.application
 
     internal class ApplicationStub : Application()
 }
