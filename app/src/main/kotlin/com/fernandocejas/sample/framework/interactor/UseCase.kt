@@ -12,7 +12,9 @@ abstract class UseCase<T, in P> where P : Any {
     abstract fun buildObservable(params: P?): Observable<T>
 
     fun execute(observer: UseCaseObserver<T>, params: P? = null) {
-        disposables.add(buildObservable(params).subscribeWith(observer))
+        disposables
+                .add(buildObservable(params)
+                .subscribeWith(observer))
     }
 
     fun dispose() = disposables.dispose()

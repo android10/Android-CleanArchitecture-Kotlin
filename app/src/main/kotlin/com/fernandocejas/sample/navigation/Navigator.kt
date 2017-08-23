@@ -18,12 +18,7 @@ class Navigator
         }
     }
 
-    private fun handleLoggedInUser(context: Context) {
-        context.startActivity(MoviesActivity.callingIntent(context))
-    }
-
-    private fun showLoginScreen(context: Context) {
-        context.startActivity(LoginActivity.callingIntent(context))
-    }
+    private fun handleLoggedInUser(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
+    private fun showLoginScreen(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
 }
 

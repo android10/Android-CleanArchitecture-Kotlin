@@ -13,8 +13,6 @@ class MoviesActivity : BaseActivity() {
     }
 
     companion object {
-        @JvmStatic fun callingIntent(context: Context): Intent {
-            return Intent(context, MoviesActivity::class.java)
-        }
+        fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)
     }
 }

@@ -13,8 +13,6 @@ class LoginActivity : BaseActivity() {
     }
 
     companion object {
-        @JvmStatic fun callingIntent(context: Context): Intent {
-            return Intent(context, LoginActivity::class.java)
-        }
+        fun callingIntent(context: Context) =Intent(context, LoginActivity::class.java)
     }
 }
