@@ -1,6 +1,6 @@
 package com.fernandocejas.sample.features.login
 
-import com.fernandocejas.sample.framework.UnitTest
+import com.fernandocejas.sample.UnitTest
 import org.amshove.kluent.shouldBe
 import org.junit.Test
 

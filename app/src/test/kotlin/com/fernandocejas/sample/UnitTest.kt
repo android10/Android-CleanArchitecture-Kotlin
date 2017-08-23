@@ -1,4 +1,4 @@
-package com.fernandocejas.sample.framework
+package com.fernandocejas.sample
 
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner

@@ -1,8 +1,7 @@
-package com.fernandocejas.sample.framework
+package com.fernandocejas.sample
 
 import android.app.Application
 import android.content.Context
-import com.fernandocejas.sample.BuildConfig
 import org.junit.Rule
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
