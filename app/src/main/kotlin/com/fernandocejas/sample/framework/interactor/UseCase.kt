@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 abstract class UseCase<T, in P> where P : Any {
 
-    private val disposables = CompositeDisposable()
+    internal val disposables = CompositeDisposable()
 
     abstract fun buildObservable(params: P?): Observable<T>
 
