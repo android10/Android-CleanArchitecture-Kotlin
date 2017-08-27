@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.framework.view
 
-interface LoadingView {
-    fun showLoading()
-    fun hideLoading()
-}
+import com.fernandocejas.sample.features.base.BaseView
+
+interface LoadingView : BaseView
