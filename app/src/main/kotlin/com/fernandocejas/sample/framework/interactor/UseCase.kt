@@ -3,6 +3,7 @@ package com.fernandocejas.sample.framework.interactor
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import javax.inject.Inject
 
 abstract class UseCase<T, in P> where P : Any {
@@ -11,7 +12,7 @@ abstract class UseCase<T, in P> where P : Any {
 
     abstract fun buildObservable(params: P?): Observable<T>
 
-    fun execute(observer: UseCaseObserver<T>, params: P? = null) {
+    fun execute(observer: DisposableObserver<T>, params: P? = null) {
         disposables
                 .add(buildObservable(params)
                 .subscribeWith(observer))

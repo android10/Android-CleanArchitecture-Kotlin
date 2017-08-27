@@ -1,26 +1,26 @@
 package com.fernandocejas.sample.features.movies
 
-import com.fernandocejas.sample.framework.interactor.UseCaseObserver
+import com.fernandocejas.sample.features.base.BasePresenter
+import com.fernandocejas.sample.framework.interactor.UsecaseDisposableObserver
 import javax.inject.Inject
 
 class MoviesPresenter
-@Inject constructor(private val getMovies: GetMovies) {
+@Inject constructor(private val getMovies: GetMovies) : BasePresenter<MoviesView>() {
 
-    internal lateinit var moviesView: MoviesView
+    override lateinit var view: MoviesView
 
     fun destroy() {
         getMovies.dispose()
-        moviesView.dispose()
+        finalize()
     }
 
     fun loadMovies() {
-        moviesView.showLoading()
-        getMovies.execute(MoviesObserver())
+        view.showLoading()
+        getMovies.execute(UsecaseDisposableObserver(
+                { onComplete() },
+                { onGetMoviesNext(it) },
+                { onError(it) }))
     }
 
-    private inner class MoviesObserver : UseCaseObserver<List<Movie>>() {
-        override fun onComplete() = moviesView.hideLoading()
-        override fun onNext(value: List<Movie>) = moviesView.renderList(value.map(::MovieViewModel))
-        override fun onError(e: Throwable) = TODO()
-    }
+    fun onGetMoviesNext(value: List<Movie>) = view.renderList(value.map(::MovieViewModel))
 }

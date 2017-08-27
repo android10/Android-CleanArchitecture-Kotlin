@@ -13,9 +13,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     @Inject lateinit var moviesPresenter: MoviesPresenter
     @Inject lateinit var moviesAdapter: MoviesAdapter
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_movies
-    }
+    override fun layoutId(): Int = R.layout.fragment_movies
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +27,8 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         moviesPresenter.destroy()
+        super.onDestroy()
     }
 
     override fun renderList(movies: List<MovieViewModel>) {
@@ -41,22 +39,10 @@ class MoviesFragment : BaseFragment(), MoviesView {
         TODO()
     }
 
-    override fun showLoading() {
-        //TODO: implement method
-    }
-
-    override fun hideLoading() {
-        //TODO: implement method
-    }
-
-    override fun dispose() {
-        //TODO: dispose view resources
-    }
-
     private fun initializeView() {
         rv_movies.layoutManager = LinearLayoutManager(this.activity.application)
         rv_movies.adapter = moviesAdapter
-        moviesPresenter.moviesView = this
+        moviesPresenter.initialize(this)
     }
 
     private fun loadMovies() {
