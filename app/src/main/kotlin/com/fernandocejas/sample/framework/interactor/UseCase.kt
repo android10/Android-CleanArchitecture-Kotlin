@@ -23,5 +23,5 @@ abstract class UseCase<T, in P> where P : Any {
     internal fun <T> highPriorityScheduler() = scheduler.applyHighPriorityScheduler<T>()
     internal fun <T> lowPriorityScheduler() = scheduler.applyLowPriorityScheduler<T>()
 
-    class None private constructor()
+    class None
 }

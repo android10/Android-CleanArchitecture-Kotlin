@@ -3,9 +3,7 @@ package com.fernandocejas.sample
 import android.app.Application
 import android.content.Context
 import org.junit.Rule
-import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
@@ -20,12 +18,8 @@ import org.robolectric.annotation.Config
         application = AndroidTest.ApplicationStub::class,
         sdk = intArrayOf(21))
 abstract class AndroidTest {
-
-    @Rule @JvmField
-    val injectMocks = TestRule { statement, _ ->
-        MockitoAnnotations.initMocks(this)
-        statement
-    }
+    @Suppress("LeakingThis")
+    @Rule @JvmField val injectMocks = InjectMocksRule.create(this@AndroidTest)
 
     fun context(): Context = RuntimeEnvironment.application
 
