@@ -7,8 +7,7 @@ import org.junit.Test
 class AuthenticatorTest : UnitTest() {
     val authenticator = Authenticator()
 
-    @Test
-    fun returnsDefaultValue() {
+    @Test fun returnsDefaultValue() {
         authenticator.userLoggedIn() shouldBe true
     }
 }

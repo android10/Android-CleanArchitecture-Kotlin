@@ -1,9 +1,9 @@
 package com.fernandocejas.sample.navigation
 
+import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MoviesActivity
-import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.shouldNavigateTo
 import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Before
@@ -13,17 +13,15 @@ import org.mockito.Mockito.verify
 
 
 class NavigatorTest : AndroidTest() {
-    lateinit var navigator: Navigator
+    private lateinit var navigator: Navigator
 
-    @Mock lateinit var authenticator: Authenticator
+    @Mock private lateinit var authenticator: Authenticator
 
-    @Before
-    fun setup() {
+    @Before fun setup() {
         navigator = Navigator(authenticator)
     }
 
-    @Test
-    fun forwardUserToLoginScreen() {
+    @Test fun forwardUserToLoginScreen() {
         whenever(authenticator.userLoggedIn()).thenReturn(false)
 
         navigator.showMainScreen(context())
@@ -32,8 +30,7 @@ class NavigatorTest : AndroidTest() {
         RouteActivity::class shouldNavigateTo LoginActivity::class
     }
 
-    @Test
-    fun forwardUserToMoviesScreen() {
+    @Test fun forwardUserToMoviesScreen() {
         whenever(authenticator.userLoggedIn()).thenReturn(true)
 
         navigator.showMainScreen(context())

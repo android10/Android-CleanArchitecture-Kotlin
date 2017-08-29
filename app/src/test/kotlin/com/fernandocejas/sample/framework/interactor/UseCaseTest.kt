@@ -7,8 +7,7 @@ import org.junit.Test
 
 class UseCaseTest : UnitTest() {
 
-    @Test
-    fun shouldDisposeUseCase() {
+    @Test fun shouldDisposeUseCase() {
         val testUseCase = TestUseCase()
 
         testUseCase.execute(TestUseCaseObserver())
