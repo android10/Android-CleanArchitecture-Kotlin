@@ -25,7 +25,7 @@ class MoviesAdapter
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movieViewModel: MovieViewModel?) {
             with(itemView) {
-                title.text = movieViewModel?.title
+                title.text = movieViewModel?.poster
             }
         }
     }

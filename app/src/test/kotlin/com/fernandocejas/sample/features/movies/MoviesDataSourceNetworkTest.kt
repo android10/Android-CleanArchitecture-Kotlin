@@ -13,10 +13,7 @@ import org.mockito.Mock
 
 class MoviesDataSourceNetworkTest : UnitTest() {
     private val MOVIE_ID = 1
-    private val MOVIE_TITLE = "IronMan"
-    private val MOVIE_YEAR = 1998
-    private val MOVIE_POSTER = "url"
-    private val MOVIE_COLOR = "red"
+    private val MOVIE_POSTER = "poster_url"
 
     private lateinit var network: Network
 
@@ -33,10 +30,7 @@ class MoviesDataSourceNetworkTest : UnitTest() {
         val movie = testObserver.values()[0][0]
         with(movie) {
             id shouldEqual MOVIE_ID
-            title shouldEqual MOVIE_TITLE
-            year shouldEqual MOVIE_YEAR
             poster shouldEqual MOVIE_POSTER
-            color shouldEqual MOVIE_COLOR
         }
 
         testObserver.assertValueCount(1)
@@ -45,7 +39,7 @@ class MoviesDataSourceNetworkTest : UnitTest() {
     }
 
     fun createMovieEntitiesList(): Observable<List<MovieEntity>> {
-        val movieEntity = MovieEntity(MOVIE_ID, MOVIE_TITLE, MOVIE_YEAR, MOVIE_POSTER, MOVIE_COLOR)
+        val movieEntity = MovieEntity(MOVIE_ID, MOVIE_POSTER)
         return Observable.just(listOf(movieEntity))
     }
 }
