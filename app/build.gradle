@@ -81,6 +81,7 @@ dependencies {
   compile applicationDependencies.cardView
   compile applicationDependencies.recyclerView
   compile applicationDependencies.androidAnnotations
+  compile applicationDependencies.glide
   compile applicationDependencies.dagger
   compile applicationDependencies.rxJava
   compile applicationDependencies.rxAndroid
