@@ -31,7 +31,7 @@ class GetMoviesTest : UnitTest() {
         verify(moviesRepository).movies()
         verifyNoMoreInteractions(moviesRepository)
 
-        testScheduler called applyHighPriorityScheduler
+        testScheduler verify applyHighPriorityScheduler
     }
 
     private fun createMovieList() = listOf(Movie.create { String.empty() })

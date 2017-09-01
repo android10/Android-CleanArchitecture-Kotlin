@@ -41,7 +41,7 @@ internal class TestScheduler(private val scheduler: ExecutionScheduler = mock(Ex
                 .observeOn(ui())
     }
 
-    internal infix fun called (function: Function) {
+    internal infix fun verify(function: Function) {
         when (function) {
             is ui -> verify(scheduler).ui()
             is highPriority -> verify(scheduler).highPriority()
