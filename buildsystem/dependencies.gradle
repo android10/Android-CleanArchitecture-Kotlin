@@ -38,6 +38,7 @@ ext {
   mainApplication = [
       kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
       appCompat:                  "com.android.support:appcompat-v7:$appCompat_version",
+      cardView:                   "com.android.support:cardview-v7:$appCompat_version",
       recyclerView:               "com.android.support:recyclerview-v7:$appCompat_version",
       androidAnnotations:         "com.android.support:support-annotations:$appCompat_version",
       daggerCompiler:             "com.google.dagger:dagger-compiler:$dagger_version",
