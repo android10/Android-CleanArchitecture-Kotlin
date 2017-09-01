@@ -1,7 +1,8 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
@@ -54,8 +55,9 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     private fun initializeView() {
-        rv_movies.layoutManager = LinearLayoutManager(this.activity.application)
+        rv_movies.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rv_movies.adapter = moviesAdapter
+        rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this
     }
 

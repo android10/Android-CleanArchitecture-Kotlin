@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.inflate
+import com.fernandocejas.sample.framework.extension.loadFromUrl
 import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -23,10 +24,8 @@ class MoviesAdapter
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movieViewModel: MovieViewModel?) {
-            with(itemView) {
-                title.text = movieViewModel?.poster
-            }
+        fun bind(movieViewModel: MovieViewModel) {
+            itemView.movieImage.loadFromUrl(movieViewModel.poster)
         }
     }
 }
