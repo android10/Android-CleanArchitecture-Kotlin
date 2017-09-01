@@ -10,17 +10,17 @@ import org.mockito.Mock
 
 class MoviesRepositoryTest : UnitTest() {
 
-    private lateinit var repository: MoviesRepository.Source
+    private lateinit var moviesRepository: MoviesRepository.Source
 
     @Mock private lateinit var dataSourceFactory: MoviesDataSource.Factory
 
     @Before fun setUp() {
-        repository = MoviesRepository.Source(dataSourceFactory)
+        moviesRepository = MoviesRepository.Source(dataSourceFactory)
         given { dataSourceFactory.network() } .willReturn(mock(MoviesDataSource.Network::class))
     }
 
     @Test fun shouldGetMoviesFromNetwork() {
-        repository.movies()
+        moviesRepository.movies()
 
         verify(dataSourceFactory).network()
     }
