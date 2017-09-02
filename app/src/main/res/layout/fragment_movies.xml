@@ -6,9 +6,10 @@
 
   <android.support.v7.widget.RecyclerView
       android:id="@+id/rv_movies"
-      android:scrollbars="vertical"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_margin="4dp"
+      android:scrollbars="vertical"
       />
 
 </RelativeLayout>
