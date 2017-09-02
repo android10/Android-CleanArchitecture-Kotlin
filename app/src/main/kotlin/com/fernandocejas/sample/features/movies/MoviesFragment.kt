@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -56,6 +57,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     private fun initializeView() {
         rv_movies.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        moviesAdapter.clickListener = { movie -> Toast.makeText(this.context, "Click: ${movie.id}", Toast.LENGTH_SHORT).show() }
         rv_movies.adapter = moviesAdapter
         rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this
