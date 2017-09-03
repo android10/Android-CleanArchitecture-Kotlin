@@ -3,8 +3,6 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.TestScheduler
 import com.fernandocejas.sample.TestScheduler.Function.applyHighPriorityScheduler
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.framework.extension.empty
-import com.fernandocejas.sample.framework.interactor.UseCase
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
@@ -13,26 +11,28 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
-class GetMoviesTest : UnitTest() {
-    private lateinit var getMovies: GetMovies
+class GetMovieDetailsTest : UnitTest() {
+    private val MOVIE_ID = 1
+
+    private lateinit var getMovieDetails: GetMovieDetails
 
     @Mock private lateinit var moviesRepository: MoviesRepository
 
     private val testScheduler = TestScheduler()
 
     @Before fun setUp() {
-        getMovies = GetMovies(moviesRepository, testScheduler)
-        given { moviesRepository.movies() } .willReturn(createMovieListObservable())
+        getMovieDetails = GetMovieDetails(moviesRepository, testScheduler)
+        given { moviesRepository.movieDetails(MOVIE_ID) } .willReturn(createMovieDetailsObservable())
     }
 
     @Test fun shouldGetDataFromRepository() {
-        getMovies.buildObservable(UseCase.None())
+        getMovieDetails.buildObservable(GetMovieDetails.Params(MOVIE_ID))
 
-        verify(moviesRepository).movies()
+        verify(moviesRepository).movieDetails(MOVIE_ID)
         verifyNoMoreInteractions(moviesRepository)
 
         testScheduler verify applyHighPriorityScheduler
     }
 
-    private fun createMovieListObservable() = Observable.just(listOf(Movie.create { String.empty() }))
+    private fun createMovieDetailsObservable() = Observable.empty<MovieDetails>()
 }

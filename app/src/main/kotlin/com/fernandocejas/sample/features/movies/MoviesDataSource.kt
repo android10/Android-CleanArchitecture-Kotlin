@@ -5,8 +5,7 @@ import dagger.Lazy
 import io.reactivex.Observable
 import javax.inject.Inject
 
-interface MoviesDataSource {
-    fun movies(): Observable<List<Movie>>
+interface MoviesDataSource : MoviesRepository {
 
     class Factory
     @Inject constructor(val network: Lazy<Network>, val disk: Lazy<Disk>) {
@@ -18,10 +17,14 @@ interface MoviesDataSource {
     @Inject constructor(private val restApi: RestApi) : MoviesDataSource {
         override fun movies(): Observable<List<Movie>> =
                 restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
+
+        override fun movieDetails(movieId: Int): Observable<MovieDetails> =
+                Observable.just(MovieDetails.create { id = 1 })
     }
 
     class Disk
     @Inject constructor() : MoviesDataSource {
         override fun movies(): Observable<List<Movie>> = TODO()
+        override fun movieDetails(movieId: Int): Observable<MovieDetails> = TODO()
     }
 }
