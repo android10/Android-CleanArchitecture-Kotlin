@@ -24,7 +24,7 @@ class NavigatorTest : AndroidTest() {
     @Test fun forwardUserToLoginScreen() {
         whenever(authenticator.userLoggedIn()).thenReturn(false)
 
-        navigator.showMainScreen(context())
+        navigator.showMain(context())
 
         verify(authenticator).userLoggedIn()
         RouteActivity::class shouldNavigateTo LoginActivity::class
@@ -33,7 +33,7 @@ class NavigatorTest : AndroidTest() {
     @Test fun forwardUserToMoviesScreen() {
         whenever(authenticator.userLoggedIn()).thenReturn(true)
 
-        navigator.showMainScreen(context())
+        navigator.showMain(context())
 
         verify(authenticator).userLoggedIn()
         RouteActivity::class shouldNavigateTo MoviesActivity::class

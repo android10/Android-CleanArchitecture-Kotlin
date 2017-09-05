@@ -1,6 +1,7 @@
 package com.fernandocejas.sample.di
 
 import com.fernandocejas.sample.AndroidApplication
+import com.fernandocejas.sample.features.movies.MovieDetailsFragment
 import com.fernandocejas.sample.features.movies.MoviesFragment
 import com.fernandocejas.sample.features.movies.MoviesModule
 import com.fernandocejas.sample.navigation.RouteActivity
@@ -17,6 +18,7 @@ interface ApplicationComponent {
 
     //TODO: do scoping here
     fun inject(moviesFragment: MoviesFragment)
+    fun inject(movieDetailsFragment: MovieDetailsFragment)
 
     fun subComponentBuilders(): Map<Class<*>, Provider<SubcomponentBuilder<*>>>
 }

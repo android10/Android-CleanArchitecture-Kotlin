@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
-import android.widget.Toast
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment(), MoviesView {
 
+    @Inject lateinit var navigator: Navigator
     @Inject lateinit var moviesPresenter: MoviesPresenter
     @Inject lateinit var moviesAdapter: MoviesAdapter
 
-    override fun layoutId(): Int {
-        return R.layout.fragment_movies
-    }
+    override fun layoutId() = R.layout.fragment_movies
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +39,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun displayDetails(movie: MovieViewModel) {
-        TODO()
+        navigator.showMovieDetails(context, movie.id)
     }
 
     override fun showLoading() {
@@ -57,13 +56,11 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     private fun initializeView() {
         rv_movies.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        moviesAdapter.clickListener = { movie -> Toast.makeText(this.context, "Click: ${movie.id}", Toast.LENGTH_SHORT).show() }
+        moviesAdapter.clickListener = { moviesPresenter.onMovieClick(it) }
         rv_movies.adapter = moviesAdapter
         rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this
     }
 
-    private fun loadMovies() {
-        moviesPresenter.loadMovies()
-    }
+    private fun loadMovies() = moviesPresenter.loadMovies()
 }
