@@ -8,7 +8,7 @@ buildscript {
 
   ext.compile_sdk = 25
   ext.target_sdk = 25
-  ext.min_sdk = 16
+  ext.min_sdk = 21
 
   ext.application_id = 'com.fernandocejas.sample'
   ext.version_name = '1.0'
