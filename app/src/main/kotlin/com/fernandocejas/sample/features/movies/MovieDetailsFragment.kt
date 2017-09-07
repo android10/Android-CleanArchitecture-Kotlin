@@ -30,6 +30,6 @@ class MovieDetailsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieId.text = arguments.getInt(PARAM_MOVIE_ID).toString()
+        movieId.text = arguments[PARAM_MOVIE_ID].toString()
     }
 }

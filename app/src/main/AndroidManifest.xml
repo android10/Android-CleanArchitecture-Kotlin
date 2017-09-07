@@ -38,7 +38,8 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
     <activity
         android:name=".features.movies.MovieDetailsActivity"
-        android:label="@string/movie_details_screen_title">
+        android:label="@string/movie_details_screen_title"
+        android:theme="@style/AppTheme.NoActionBar">
     </activity>
 
 </application>
