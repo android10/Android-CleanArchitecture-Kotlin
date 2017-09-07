@@ -17,7 +17,7 @@ class MoviesAdapter
         _, _, _ -> notifyDataSetChanged()
     }
 
-    internal var clickListener: (MovieViewModel) -> Unit = {}
+    internal var clickListener: (MovieViewModel, View) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.row_movie))
 
@@ -26,9 +26,9 @@ class MoviesAdapter
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movieViewModel: MovieViewModel, clickListener: (MovieViewModel) -> Unit) {
-            itemView.movieImage.loadFromUrl(movieViewModel.poster)
-            itemView.setOnClickListener { clickListener(movieViewModel) }
+        fun bind(movieViewModel: MovieViewModel, clickListener: (MovieViewModel, View) -> Unit) {
+            itemView.moviePoster.loadFromUrl(movieViewModel.poster)
+            itemView.setOnClickListener { clickListener(movieViewModel, itemView) }
         }
     }
 }

@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
+    card_view:cardBackgroundColor="@color/colorPrimary"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:cardElevation="@dimen/card_elevation"
     card_view:contentPadding="1dp"
-    card_view:cardBackgroundColor="@color/colorPrimary"
     >
 
   <ImageView
-      android:id="@+id/movieImage"
+      android:id="@+id/moviePoster"
       android:layout_width="match_parent"
       android:layout_height="180dp"
       android:scaleType="centerCrop"
+      android:transitionName="moviePoster"
       />
 
   <!-- Used for the ripple effect on touch -->

@@ -1,5 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
+import android.view.View
 import com.fernandocejas.sample.framework.interactor.UseCaseObserver
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ class MoviesPresenter
         getMovies.execute(MoviesObserver())
     }
 
-    fun onMovieClick(movieViewModel: MovieViewModel) = moviesView.displayDetails(movieViewModel)
+    fun onMovieClick(movieViewModel: MovieViewModel, sharedView: View) = moviesView.displayDetails(movieViewModel, sharedView)
 
     internal inner class MoviesObserver : UseCaseObserver<List<Movie>>() {
         override fun onComplete() = moviesView.hideLoading()

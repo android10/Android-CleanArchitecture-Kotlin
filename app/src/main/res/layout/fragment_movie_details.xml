@@ -5,10 +5,14 @@
     android:background="@color/translucentBackground"
     >
 
-    <TextView
-        android:id="@+id/movieId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+  <ImageView
+      android:id="@+id/moviePoster"
+      android:layout_width="match_parent"
+      android:layout_height="250dp"
+      android:layout_centerHorizontal="true"
+      android:scaleType="centerInside"
+      android:transitionName="moviePoster"
+      android:background="@color/colorPrimary"
+      />
 
 </RelativeLayout>

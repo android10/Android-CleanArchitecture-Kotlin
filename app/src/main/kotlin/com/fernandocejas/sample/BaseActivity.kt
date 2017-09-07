@@ -17,5 +17,5 @@ abstract class BaseActivity : AppCompatActivity() {
                 supportFragmentManager.inTransaction { add(R.id.fragmentContainer, fragment()) }
     }
 
-    abstract fun fragment() : BaseFragment
+    abstract fun fragment(): BaseFragment
 }

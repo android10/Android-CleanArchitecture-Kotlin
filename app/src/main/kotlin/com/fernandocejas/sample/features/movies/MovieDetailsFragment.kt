@@ -1,10 +1,8 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
-import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
-import kotlinx.android.synthetic.main.fragment_movie_details.*
 
 class MovieDetailsFragment : BaseFragment() {
 
@@ -26,10 +24,5 @@ class MovieDetailsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-    }
-
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        movieId.text = arguments[PARAM_MOVIE_ID].toString()
     }
 }
