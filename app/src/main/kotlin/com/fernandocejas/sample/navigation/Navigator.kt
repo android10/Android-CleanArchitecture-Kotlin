@@ -7,6 +7,7 @@ import android.view.View
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
+import com.fernandocejas.sample.features.movies.MovieViewModel
 import com.fernandocejas.sample.features.movies.MoviesActivity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,8 +24,8 @@ class Navigator
         }
     }
 
-    fun showMovieDetails(activity: FragmentActivity, movieId: Int, sharedView: View) {
-        val intent = MovieDetailsActivity.callingIntent(activity, movieId)
+    fun showMovieDetails(activity: FragmentActivity, movie: MovieViewModel, sharedView: View) {
+        val intent = MovieDetailsActivity.callingIntent(activity, movie)
         val activityOptions = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(activity, sharedView, "moviePoster")
         activity.startActivity(intent, activityOptions.toBundle())

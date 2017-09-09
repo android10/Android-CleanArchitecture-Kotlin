@@ -7,12 +7,12 @@ import com.fernandocejas.sample.R
 class MovieDetailsFragment : BaseFragment() {
 
     companion object {
-        private const val PARAM_MOVIE_ID = "param_movie_id"
+        private const val PARAM_MOVIE = "param_movie"
 
-        fun forMovie(movieId: Int): MovieDetailsFragment {
+        fun forMovie(movie: MovieViewModel): MovieDetailsFragment {
             val movieDetailsFragment = MovieDetailsFragment()
             val arguments = Bundle()
-            arguments.putInt(PARAM_MOVIE_ID, movieId)
+            arguments.putParcelable(PARAM_MOVIE, movie)
             movieDetailsFragment.arguments = arguments
 
             return movieDetailsFragment

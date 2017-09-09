@@ -23,7 +23,7 @@ class MoviesPresenter
 
     internal inner class MoviesObserver : UseCaseObserver<List<Movie>>() {
         override fun onComplete() = moviesView.hideLoading()
-        override fun onNext(value: List<Movie>) = moviesView.renderList(value.map(::MovieViewModel))
+        override fun onNext(value: List<Movie>) = moviesView.renderList(value.map { MovieViewModel(it.id, it.poster) })
         override fun onError(e: Throwable) = TODO()
     }
 }

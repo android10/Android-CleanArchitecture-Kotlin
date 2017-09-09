@@ -40,7 +40,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun displayDetails(movie: MovieViewModel, sharedView: View) {
-        navigator.showMovieDetails(activity, movie.id, sharedView)
+        navigator.showMovieDetails(activity, movie, sharedView)
     }
 
     override fun showLoading() {

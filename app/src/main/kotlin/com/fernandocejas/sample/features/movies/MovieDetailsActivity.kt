@@ -7,14 +7,14 @@ import com.fernandocejas.sample.BaseActivity
 class MovieDetailsActivity : BaseActivity() {
 
     companion object {
-        private const val INTENT_EXTRA_PARAM_MOVIE_ID = "com.fernandocejas.INTENT_PARAM_MOVIE_ID"
+        private const val INTENT_EXTRA_PARAM_MOVIE = "com.fernandocejas.INTENT_PARAM_MOVIE"
 
-        fun callingIntent(context: Context, movieId: Int): Intent {
+        fun callingIntent(context: Context, movie: MovieViewModel): Intent {
             val intent = Intent(context, MovieDetailsActivity::class.java)
-            intent.putExtra(INTENT_EXTRA_PARAM_MOVIE_ID, movieId)
+            intent.putExtra(INTENT_EXTRA_PARAM_MOVIE, movie)
             return intent
         }
     }
 
-    override fun fragment() = MovieDetailsFragment.forMovie(intent.getIntExtra(INTENT_EXTRA_PARAM_MOVIE_ID, -1))
+    override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
 }
