@@ -80,6 +80,7 @@ dependencies {
   compile applicationDependencies.appCompat
   compile applicationDependencies.cardView
   compile applicationDependencies.recyclerView
+  compile applicationDependencies.design
   compile applicationDependencies.androidAnnotations
   compile applicationDependencies.glide
   compile applicationDependencies.dagger
