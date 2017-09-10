@@ -8,10 +8,10 @@
   <ImageView
       android:id="@+id/moviePoster"
       android:layout_width="match_parent"
-      android:layout_height="250dp"
+      android:layout_height="220dp"
       android:layout_centerHorizontal="true"
-      android:scaleType="centerInside"
-      android:transitionName="moviePoster"
+      android:scaleType="centerCrop"
+      android:transitionName="@string/movie_transition_poster"
       android:background="@color/colorPrimary"
       />
 

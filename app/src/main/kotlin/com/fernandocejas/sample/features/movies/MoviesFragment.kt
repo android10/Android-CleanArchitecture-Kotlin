@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
-import android.widget.ImageView
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.navigation.Navigator
@@ -57,7 +56,8 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     private fun initializeView() {
         rv_movies.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        moviesAdapter.clickListener = { movieViewModel, sharedView ->  moviesPresenter.onMovieClick(movieViewModel, sharedView) }
+        moviesAdapter.clickListener =
+                { movieViewModel, sharedView ->  moviesPresenter.onMovieClick(movieViewModel, sharedView) }
         rv_movies.adapter = moviesAdapter
         rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this

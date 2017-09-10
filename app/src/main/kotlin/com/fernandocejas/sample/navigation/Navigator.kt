@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.FragmentActivity
 import android.view.View
+import com.fernandocejas.sample.R
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
@@ -27,7 +28,7 @@ class Navigator
     fun showMovieDetails(activity: FragmentActivity, movie: MovieViewModel, sharedView: View) {
         val intent = MovieDetailsActivity.callingIntent(activity, movie)
         val activityOptions = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(activity, sharedView, "moviePoster")
+                .makeSceneTransitionAnimation(activity, sharedView, activity.getString(R.string.movie_transition_poster))
         activity.startActivity(intent, activityOptions.toBundle())
     }
 
