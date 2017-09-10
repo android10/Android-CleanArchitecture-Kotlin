@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Base colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,8 +10,7 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
-    <!-- No Action Bar and Translucent -->
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.Translucent">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>

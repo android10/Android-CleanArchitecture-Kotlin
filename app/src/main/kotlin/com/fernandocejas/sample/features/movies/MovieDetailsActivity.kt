@@ -2,10 +2,10 @@ package com.fernandocejas.sample.features.movies
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import com.fernandocejas.sample.BaseActivity
 
 class MovieDetailsActivity : BaseActivity() {
-
     companion object {
         private const val INTENT_EXTRA_PARAM_MOVIE = "com.fernandocejas.INTENT_PARAM_MOVIE"
 
@@ -17,4 +17,9 @@ class MovieDetailsActivity : BaseActivity() {
     }
 
     override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        hideToolbar()
+    }
 }
