@@ -38,8 +38,8 @@ class MoviesFragment : BaseFragment(), MoviesView {
         moviesAdapter.collection = movies
     }
 
-    override fun displayDetails(movie: MovieViewModel, sharedView: View) {
-        navigator.showMovieDetails(activity, movie, sharedView)
+    override fun displayDetails(movie: MovieViewModel, navigationExtras: Navigator.Extras) {
+        navigator.showMovieDetails(activity, movie, navigationExtras)
     }
 
     override fun showLoading() {
@@ -57,7 +57,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     private fun initializeView() {
         rv_movies.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         moviesAdapter.clickListener =
-                { movieViewModel, sharedView ->  moviesPresenter.onMovieClick(movieViewModel, sharedView) }
+                { movieViewModel, navigationExtras ->  moviesPresenter.onMovieClick(movieViewModel, navigationExtras) }
         rv_movies.adapter = moviesAdapter
         rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this

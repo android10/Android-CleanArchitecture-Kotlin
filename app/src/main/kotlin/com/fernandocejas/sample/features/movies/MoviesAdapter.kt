@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.inflate
 import com.fernandocejas.sample.framework.extension.loadFromUrl
+import com.fernandocejas.sample.navigation.Navigator
 import kotlinx.android.synthetic.main.row_movie.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -17,7 +18,7 @@ class MoviesAdapter
         _, _, _ -> notifyDataSetChanged()
     }
 
-    internal var clickListener: (MovieViewModel, View) -> Unit = { _, _ -> }
+    internal var clickListener: (MovieViewModel, Navigator.Extras) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.row_movie))
 
@@ -26,9 +27,9 @@ class MoviesAdapter
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movieViewModel: MovieViewModel, clickListener: (MovieViewModel, View) -> Unit) {
+        fun bind(movieViewModel: MovieViewModel, clickListener: (MovieViewModel, Navigator.Extras) -> Unit) {
             itemView.moviePoster.loadFromUrl(movieViewModel.poster)
-            itemView.setOnClickListener { clickListener(movieViewModel, itemView) }
+            itemView.setOnClickListener { clickListener(movieViewModel, Navigator.Extras(itemView.moviePoster)) }
         }
     }
 }
