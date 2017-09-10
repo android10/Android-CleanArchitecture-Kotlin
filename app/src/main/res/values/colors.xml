@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Base colors-->
-    <color name="colorPrimary">#7f1a18</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#000000</color>
     <color name="colorAccent">#000000</color>
     <color name="colorTextPrimary">#FFFFFF</color>
 
+    <color name="toolbar">#7f1a18</color>
     <color name="translucentBackground">#ED000000</color>
 </resources>

@@ -3,14 +3,14 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Base colors -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <!-- Enable window content transitions -->
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
-    <style name="AppTheme.Translucent">
+    <style name="AppTheme.Translucent" parent="AppTheme">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
@@ -24,7 +24,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:transitionName">@string/movie_transition_poster</item>
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>
