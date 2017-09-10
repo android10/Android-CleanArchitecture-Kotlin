@@ -11,11 +11,9 @@
     >
 
   <ImageView
+      style="@style/MoviePoster"
       android:id="@+id/moviePoster"
-      android:layout_width="match_parent"
       android:layout_height="180dp"
-      android:scaleType="centerCrop"
-      android:transitionName="@string/movie_transition_poster"
       />
 
   <!-- Used for the ripple effect on touch -->

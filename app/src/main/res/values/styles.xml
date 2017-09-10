@@ -11,8 +11,8 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>
 
+    <!-- No Action Bar and Translucent -->
     <style name="AppTheme.NoActionBar">
-        <!-- Translucent options -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
@@ -20,6 +20,13 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <style name="MoviePoster">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:transitionName">@string/movie_transition_poster</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>
