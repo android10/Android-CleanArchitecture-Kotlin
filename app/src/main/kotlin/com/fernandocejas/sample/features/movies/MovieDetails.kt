@@ -4,6 +4,7 @@ import com.fernandocejas.sample.framework.extension.empty
 
 class MovieDetails
 private constructor(val id: Int,
+                    val title: String,
                     val poster: String,
                     val summary: String,
                     val cast: String,
@@ -11,8 +12,8 @@ private constructor(val id: Int,
                     val year: Int,
                     val trailer: String) {
 
-    private constructor(builder: Builder) : this(builder.id, builder.poster, builder.summary,
-            builder.cast, builder.director, builder.year, builder.trailer)
+    private constructor(builder: Builder) : this(builder.id, builder.title, builder.poster,
+            builder.summary, builder.cast, builder.director, builder.year, builder.trailer)
 
     companion object { fun create(init: Builder.() -> Unit) = Builder(init).build() }
 
@@ -20,6 +21,7 @@ private constructor(val id: Int,
         constructor(init: Builder.() -> Unit) : this() { init() }
 
         var id = 0
+        val title = String.empty()
         var poster = String.empty()
         var summary = String.empty()
         var cast = String.empty()

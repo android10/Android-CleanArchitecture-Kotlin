@@ -6,10 +6,9 @@ import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import kotlinx.android.synthetic.main.fragment_movie_details.*
+import javax.inject.Inject
 
-
-class MovieDetailsFragment : BaseFragment() {
-
+class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     companion object {
         private const val PARAM_MOVIE = "param_movie"
 
@@ -23,6 +22,8 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
+    @Inject lateinit var movieDetailsPresenter: MovieDetailsPresenter
+
     override fun layoutId() = R.layout.fragment_movie_details
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +32,40 @@ class MovieDetailsFragment : BaseFragment() {
         appComponent.inject(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        loadMoviePoster()
+    override fun onDestroy() {
+        super.onDestroy()
+        movieDetailsPresenter.destroy()
     }
 
-    private fun loadMoviePoster() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initializeView()
+        savedInstanceState ?: loadMovieDetails()
+    }
+
+    override fun renderDetails(movie: MovieDetailsViewModel) {
+        //TODO: implement method
+    }
+
+    override fun showLoading() {
+        //TODO: implement method
+    }
+
+    override fun hideLoading() {
+        //TODO: implement method
+    }
+
+    override fun dispose() {
+        //TODO: dispose view resources
+    }
+
+    private fun initializeView() {
+        movieDetailsPresenter.movieDetailsView = this
+    }
+
+    private fun loadMovieDetails() {
         val movie = arguments[PARAM_MOVIE] as MovieViewModel
         moviePoster.loadUrlAndPostponeEnterTransition(movie.poster, activity)
+        movieDetailsPresenter.loadMovieDetails(movie.id)
     }
 }

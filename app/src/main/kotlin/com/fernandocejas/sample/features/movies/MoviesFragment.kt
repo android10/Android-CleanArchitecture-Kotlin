@@ -1,7 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
@@ -59,7 +58,6 @@ class MoviesFragment : BaseFragment(), MoviesView {
         moviesAdapter.clickListener =
                 { movieViewModel, navigationExtras ->  moviesPresenter.onMovieClick(movieViewModel, navigationExtras) }
         rv_movies.adapter = moviesAdapter
-        rv_movies.itemAnimator = DefaultItemAnimator()
         moviesPresenter.moviesView = this
     }
 
