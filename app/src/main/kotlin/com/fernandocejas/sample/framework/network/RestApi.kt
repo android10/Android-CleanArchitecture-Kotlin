@@ -13,5 +13,5 @@ class RestApi
     private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
 
     override fun movies(): Observable<List<MovieEntity>> = moviesApi.movies()
-    override fun movieDetails(): Observable<MovieDetailsEntity> = moviesApi.movieDetails()
+    override fun movieDetails(movieId: Int): Observable<MovieDetailsEntity> = moviesApi.movieDetails(movieId)
 }

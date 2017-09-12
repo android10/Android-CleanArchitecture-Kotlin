@@ -19,7 +19,7 @@ interface MoviesDataSource : MoviesRepository {
                 restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
 
         override fun movieDetails(movieId: Int): Observable<MovieDetails> =
-                restApi.movieDetails().map { it.toMovieDetails() }
+                restApi.movieDetails(movieId).map { it.toMovieDetails() }
     }
 
     class Disk
