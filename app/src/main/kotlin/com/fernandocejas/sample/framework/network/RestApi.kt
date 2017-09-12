@@ -1,5 +1,6 @@
 package com.fernandocejas.sample.framework.network
 
+import com.fernandocejas.sample.features.movies.MovieDetailsEntity
 import com.fernandocejas.sample.features.movies.MovieEntity
 import io.reactivex.Observable
 import retrofit2.Retrofit
@@ -12,4 +13,5 @@ class RestApi
     private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
 
     override fun movies(): Observable<List<MovieEntity>> = moviesApi.movies()
+    override fun movieDetails(): Observable<MovieDetailsEntity> = moviesApi.movieDetails()
 }

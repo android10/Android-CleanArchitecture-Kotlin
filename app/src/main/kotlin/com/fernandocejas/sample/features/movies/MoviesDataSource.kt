@@ -19,10 +19,7 @@ interface MoviesDataSource : MoviesRepository {
                 restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
 
         override fun movieDetails(movieId: Int): Observable<MovieDetails> =
-                Observable.just(createTestMovieDetails()) //TODO: remove this
-
-        private fun createTestMovieDetails() =
-                MovieDetails.create { id = 1 }
+                restApi.movieDetails().map { it.toMovieDetails() }
     }
 
     class Disk

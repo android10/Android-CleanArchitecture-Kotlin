@@ -20,7 +20,11 @@ class MovieDetailsPresenter
 
     internal inner class MovieDetailsObserver : UseCaseObserver<MovieDetails>() {
         override fun onComplete() = movieDetailsView.hideLoading()
-        override fun onNext(value: MovieDetails) = movieDetailsView.renderDetails(MovieDetailsViewModel(value.id))
+        override fun onNext(value: MovieDetails) {
+            val movieDetails = MovieDetailsViewModel(value.id, value.title, value.poster,
+                    value.summary, value.cast, value.director, value.year, value.trailer)
+            movieDetailsView.renderDetails(movieDetails)
+        }
         override fun onError(e: Throwable) = TODO()
     }
 }

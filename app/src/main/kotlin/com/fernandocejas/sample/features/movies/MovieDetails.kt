@@ -21,7 +21,7 @@ private constructor(val id: Int,
         constructor(init: Builder.() -> Unit) : this() { init() }
 
         var id = 0
-        val title = String.empty()
+        var title = String.empty()
         var poster = String.empty()
         var summary = String.empty()
         var cast = String.empty()
