@@ -6,4 +6,7 @@
     <!-- Card view. -->
     <dimen name="card_corner_radius">0dp</dimen>
     <dimen name="card_elevation">1dp</dimen>
+
+    <dimen name="movie_details_title">25dp</dimen>
+    <dimen name="movie_details_text">18dp</dimen>
 </resources>

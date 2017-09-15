@@ -54,10 +54,10 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     private fun initializeView() {
-        rv_movies.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         moviesAdapter.clickListener =
                 { movieViewModel, navigationExtras ->  moviesPresenter.onMovieClick(movieViewModel, navigationExtras) }
-        rv_movies.adapter = moviesAdapter
+        movieList.adapter = moviesAdapter
         moviesPresenter.moviesView = this
     }
 

@@ -2,7 +2,6 @@ package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
@@ -45,8 +44,14 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     }
 
     override fun renderDetails(movie: MovieDetailsViewModel) {
-        moviePoster.loadUrlAndPostponeEnterTransition(movie.poster, activity)
-        Toast.makeText(activity, movie.title, Toast.LENGTH_SHORT).show()
+        with(movie) {
+            moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
+            movieTitle.text = title
+            movieSummary.text = summary
+            movieCast.text = cast
+            movieDirector.text = director
+            movieYear.text = year.toString()
+        }
     }
 
     override fun showLoading() {

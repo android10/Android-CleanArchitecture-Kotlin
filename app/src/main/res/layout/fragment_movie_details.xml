@@ -6,10 +6,46 @@
     >
 
   <ImageView
-      style="@style/MoviePoster"
       android:id="@+id/moviePoster"
+      style="@style/MoviePoster"
       android:layout_height="220dp"
       android:layout_centerHorizontal="true"
       />
+
+  <TextView
+      style="@style/MovieTitleText"
+      android:id="@+id/movieTitle"
+      android:layout_alignBottom="@id/moviePoster"
+      />
+
+  <LinearLayout
+      android:id="@+id/movieDetails"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/moviePoster"
+      android:orientation="vertical"
+      >
+
+    <TextView
+        style="@style/MovieDetailsText"
+        android:id="@+id/movieSummary"
+        />
+
+    <TextView
+        style="@style/MovieDetailsText"
+        android:id="@+id/movieCast"
+        />
+
+    <TextView
+        style="@style/MovieDetailsText"
+        android:id="@+id/movieDirector"
+        />
+
+    <TextView
+        style="@style/MovieDetailsText"
+        android:id="@+id/movieYear"
+        />
+
+  </LinearLayout>
 
 </RelativeLayout>
