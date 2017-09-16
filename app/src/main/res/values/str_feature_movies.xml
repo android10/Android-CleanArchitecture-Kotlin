@@ -1,6 +1,6 @@
 <resources>
-    <string name="movies_screen_title">Movies</string>
-    <string name="movie_details_screen_title">Movie Details</string>
+    <string name="movies_screen_title">M.O.V.I.E.S</string>
+    <string name="movie_details_screen_title">M.O.V.I.E Details</string>
 
     <!-- Animations -->
     <string name="movie_transition_poster">moviePosterTransition</string>

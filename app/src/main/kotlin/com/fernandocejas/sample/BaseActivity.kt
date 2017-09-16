@@ -19,7 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 supportFragmentManager.inTransaction { add(R.id.fragmentContainer, fragment()) }
     }
 
-    internal fun hideToolbar() = supportActionBar?.hide()
+    internal fun noToolbar() = supportActionBar?.hide()
 
     abstract fun fragment(): BaseFragment
 }

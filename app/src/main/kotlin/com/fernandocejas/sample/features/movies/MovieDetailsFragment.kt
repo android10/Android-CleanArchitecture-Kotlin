@@ -46,7 +46,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     override fun renderDetails(movie: MovieDetailsViewModel) {
         with(movie) {
             moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
-            movieTitle.text = title
+//            movieTitle.text = title
             movieSummary.text = summary
             movieCast.text = cast
             movieDirector.text = director

@@ -20,6 +20,6 @@ class MovieDetailsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideToolbar()
+        noToolbar()
     }
 }
