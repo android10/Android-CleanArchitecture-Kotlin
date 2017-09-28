@@ -6,6 +6,7 @@ import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import kotlinx.android.synthetic.main.fragment_movie_details.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
@@ -46,7 +47,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     override fun renderDetails(movie: MovieDetailsViewModel) {
         with(movie) {
             moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
-//            movieTitle.text = title
+            activity.toolbar.title = title
             movieSummary.text = summary
             movieCast.text = cast
             movieDirector.text = director
