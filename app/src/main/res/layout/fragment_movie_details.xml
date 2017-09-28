@@ -27,7 +27,7 @@
       <ImageView
           android:id="@+id/moviePoster"
           style="@style/MoviePoster"
-          android:layout_height="220dp"
+          android:layout_height="240dp"
           android:layout_centerHorizontal="true"
           android:fitsSystemWindows="true"
           android:scaleType="centerCrop"
@@ -42,6 +42,7 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      android:fitsSystemWindows="true"
       >
 
     <LinearLayout
@@ -49,23 +50,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingTop="25dp"
         >
 
+      <TextView
+          style="@style/MovieDetailsTitle"
+          android:text="@string/movie_details_summary"/>
       <TextView
           android:id="@+id/movieSummary"
           style="@style/MovieDetailsText"
           />
 
       <TextView
+          style="@style/MovieDetailsTitle"
+          android:text="@string/movie_details_cast"/>
+      <TextView
           android:id="@+id/movieCast"
           style="@style/MovieDetailsText"
           />
 
       <TextView
+          style="@style/MovieDetailsTitle"
+          android:text="@string/movie_details_director"/>
+      <TextView
           android:id="@+id/movieDirector"
           style="@style/MovieDetailsText"
           />
 
+      <TextView
+          style="@style/MovieDetailsTitle"
+          android:text="@string/movie_details_year"/>
       <TextView
           android:id="@+id/movieYear"
           style="@style/MovieDetailsText"

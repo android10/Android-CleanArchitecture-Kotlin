@@ -1,6 +1,10 @@
 <resources>
     <string name="movies_screen_title">Movies</string>
     <string name="movie_details_screen_title">Movie Details</string>
+    <string name="movie_details_summary">Summary</string>
+    <string name="movie_details_cast">Cast</string>
+    <string name="movie_details_director">Director</string>
+    <string name="movie_details_year">Year</string>
 
     <!-- Animations -->
     <string name="movie_transition_poster">moviePosterTransition</string>

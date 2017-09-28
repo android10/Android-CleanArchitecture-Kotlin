@@ -42,22 +42,20 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
-    <style name="MovieTitleText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">35dp</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">@dimen/movie_details_title</item>
-        <item name="android:textAlignment">center</item>
-    </style>
-
-    <style name="MovieDetailsText">
+    <style name="MovieDetailsTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
         <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/movie_details_title</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+
+    <style name="MovieDetailsText" parent="MovieDetailsTitle">
+        <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:textSize">@dimen/movie_details_text</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:paddingBottom">25dp</item>
     </style>
 
 </resources>

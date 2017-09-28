@@ -7,6 +7,6 @@
     <dimen name="card_corner_radius">0dp</dimen>
     <dimen name="card_elevation">1dp</dimen>
 
-    <dimen name="movie_details_title">30dp</dimen>
-    <dimen name="movie_details_text">25dp</dimen>
+    <dimen name="movie_details_title">20dp</dimen>
+    <dimen name="movie_details_text">15dp</dimen>
 </resources>
