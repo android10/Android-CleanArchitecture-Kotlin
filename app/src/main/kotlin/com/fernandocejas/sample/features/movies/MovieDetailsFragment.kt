@@ -1,9 +1,13 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
+import android.support.v4.view.animation.FastOutSlowInInterpolator
+import android.transition.Fade
+import android.transition.TransitionManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.framework.extension.cancelTransition
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -44,7 +48,27 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
         savedInstanceState ?: loadMovieDetails()
     }
 
+    override fun onBackPressed() {
+        val transition = Fade()
+        transition.startDelay = 200
+        transition.duration = 400
+        TransitionManager.beginDelayedTransition(scrollView, transition)
+        movieDetails.visibility = View.INVISIBLE
+
+        if (moviePlay.visibility == View.INVISIBLE) {
+            moviePoster.cancelTransition()
+        } else {
+            moviePlay.animate().scaleX(0.0F).scaleY(0.0F).setDuration(200)
+                    .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
+        }
+    }
+
     override fun renderDetails(movie: MovieDetailsViewModel) {
+        val transition = Fade()
+        transition.startDelay = 200
+        transition.duration = 400
+        TransitionManager.beginDelayedTransition(scrollView, transition)
+
         with(movie) {
             moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
             activity.toolbar.title = title
@@ -53,6 +77,10 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
             movieDirector.text = director
             movieYear.text = year.toString()
         }
+
+        movieDetails.visibility = View.VISIBLE
+        moviePlay.animate().scaleX(1.0F).scaleY(1.0F).setDuration(700)
+                .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
     }
 
     override fun showLoading() {

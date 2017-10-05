@@ -39,6 +39,7 @@
   </android.support.design.widget.AppBarLayout>
 
   <android.support.v4.widget.NestedScrollView
+      android:id="@+id/scrollView"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="25dp"
+        android:visibility="invisible"
         >
 
       <TextView
@@ -96,10 +98,13 @@
       android:clickable="true"
       android:src="@mipmap/ic_launcher"
       android:layout_margin="20dp"
+      android:scaleY="0"
+      android:scaleX="0"
       app:backgroundTint="@color/colorSecondary"
       app:elevation="6dp"
       app:layout_anchor="@id/appbar"
       app:layout_anchorGravity="bottom|right"
-      app:fabSize="normal" />
+      app:fabSize="normal"
+      />
 
 </android.support.design.widget.CoordinatorLayout>

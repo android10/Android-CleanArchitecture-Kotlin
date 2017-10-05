@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="AppTheme.Translucent" parent="AppTheme">
