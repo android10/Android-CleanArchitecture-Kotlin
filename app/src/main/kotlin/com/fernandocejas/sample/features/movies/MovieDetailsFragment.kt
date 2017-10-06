@@ -8,6 +8,7 @@ import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.cancelTransition
+import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -44,8 +45,15 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeView()
-        savedInstanceState ?: loadMovieDetails()
+        if (savedInstanceState == null) {
+            initializeView()
+            loadMovieDetails()
+        } else {
+            moviePlay.animate().scaleX(1.0F).scaleY(1.0F).setDuration(200)
+                    .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
+            moviePoster.loadFromUrl((arguments[PARAM_MOVIE] as MovieViewModel).poster)
+            moviePoster.cancelTransition()
+        }
     }
 
     override fun onBackPressed() {
