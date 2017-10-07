@@ -21,4 +21,6 @@ abstract class BaseFragment : Fragment() {
             inflater?.inflate(layoutId(), container, false)
 
     open fun onBackPressed() {}
+
+    internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
 }

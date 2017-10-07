@@ -1,15 +1,12 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
-import android.support.v4.view.animation.FastOutSlowInInterpolator
-import android.transition.Fade
-import android.transition.TransitionManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
-import com.fernandocejas.sample.framework.extension.cancelTransition
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
+import com.fernandocejas.sample.framework.extension.visible
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -29,13 +26,14 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     }
 
     @Inject lateinit var movieDetailsPresenter: MovieDetailsPresenter
+    @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
     override fun layoutId() = R.layout.fragment_movie_details
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity.supportPostponeEnterTransition()
         appComponent.inject(this)
+        movieDetailsAnimator.postponeEnterTransition(activity)
     }
 
     override fun onDestroy() {
@@ -45,38 +43,25 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (savedInstanceState == null) {
+        if (firstTimeCreated(savedInstanceState)) {
             initializeView()
-            loadMovieDetails()
-        } else {
-            moviePlay.animate().scaleX(1.0F).scaleY(1.0F).setDuration(200)
-                    .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
+            loadMovieDetails() }
+        else {
+            movieDetailsAnimator.scaleUpView(moviePlay)
+            movieDetailsAnimator.cancelTransition(moviePoster)
             moviePoster.loadFromUrl((arguments[PARAM_MOVIE] as MovieViewModel).poster)
-            moviePoster.cancelTransition()
         }
     }
 
     override fun onBackPressed() {
-        val transition = Fade()
-        transition.startDelay = 200
-        transition.duration = 400
-        TransitionManager.beginDelayedTransition(scrollView, transition)
-        movieDetails.visibility = View.INVISIBLE
-
-        if (moviePlay.visibility == View.INVISIBLE) {
-            moviePoster.cancelTransition()
-        } else {
-            moviePlay.animate().scaleX(0.0F).scaleY(0.0F).setDuration(200)
-                    .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
-        }
+        movieDetailsAnimator.fadeInvisible(scrollView, movieDetails)
+        if (moviePlay.visible())
+            movieDetailsAnimator.scaleDownView(moviePlay)
+        else
+            movieDetailsAnimator.cancelTransition(moviePoster)
     }
 
     override fun renderDetails(movie: MovieDetailsViewModel) {
-        val transition = Fade()
-        transition.startDelay = 200
-        transition.duration = 400
-        TransitionManager.beginDelayedTransition(scrollView, transition)
-
         with(movie) {
             moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
             activity.toolbar.title = title
@@ -85,10 +70,8 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
             movieDirector.text = director
             movieYear.text = year.toString()
         }
-
-        movieDetails.visibility = View.VISIBLE
-        moviePlay.animate().scaleX(1.0F).scaleY(1.0F).setDuration(700)
-                .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null).start()
+        movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
+        movieDetailsAnimator.scaleUpView(moviePlay)
     }
 
     override fun showLoading() {

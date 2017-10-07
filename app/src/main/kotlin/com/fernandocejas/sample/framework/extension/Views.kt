@@ -18,6 +18,8 @@ fun View.cancelTransition() {
     transitionName = null
 }
 
+fun View.visible() = this.visibility == View.VISIBLE
+
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View = LayoutInflater.from(context).inflate(layoutRes, this, false)
 
 fun ImageView.loadFromUrl(url: String) = Glide.with(this.context.applicationContext).load(url).transition(DrawableTransitionOptions.withCrossFade()).into(this)!!
