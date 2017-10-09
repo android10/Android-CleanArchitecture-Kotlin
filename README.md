@@ -12,8 +12,8 @@ Here is some material worth reading:
 
 [Clean Architecture…Dynamic Parameters in Use Cases](http://fernandocejas.com/2016/12/24/clean-architecture-dynamic-parameters-in-use-cases/)
 
-## Sample video
-
+## Sample app
+![](https://user-images.githubusercontent.com/1360604/31345866-679a221a-ad17-11e7-8097-7800edb677fa.gif)
 
 ## TODO List
 - [ ] Write Acceptance Tests.
