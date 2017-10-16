@@ -25,7 +25,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
-        savedInstanceState ?: loadMovies()
+        if (firstTimeCreated(savedInstanceState)) { initializeView(); loadMovies() }
     }
 
     override fun onDestroy() {
