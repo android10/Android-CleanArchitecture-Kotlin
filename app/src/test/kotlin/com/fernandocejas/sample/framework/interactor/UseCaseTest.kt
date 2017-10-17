@@ -11,14 +11,16 @@ class UseCaseTest : UnitTest() {
         val testUseCase = TestUseCase()
 
         testUseCase.execute(TestUseCaseObserver())
-        testUseCase.disposables.isDisposed shouldBe false
+        testUseCase.isNotDisposed()
 
         testUseCase.dispose()
-        testUseCase.disposables.isDisposed shouldBe true
+        testUseCase.isDisposed()
     }
 
     private class TestUseCaseObserver : UseCaseObserver<String>()
-    private class TestUseCase : UseCase<String, UseCase.None>() {
-        override fun buildObservable(params: None?): Observable<String> = Observable.just("test")
+    private class TestUseCase : UseCase.RxObservable<String, UseCase.None>() {
+        override fun build(params: None?): Observable<String> = Observable.just("test")
+        fun isDisposed() = disposables.isDisposed shouldBe true
+        fun isNotDisposed() = disposables.isDisposed shouldBe false
     }
 }

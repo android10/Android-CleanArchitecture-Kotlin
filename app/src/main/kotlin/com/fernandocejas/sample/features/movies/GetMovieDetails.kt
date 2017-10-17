@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class GetMovieDetails
 @Inject constructor(private val moviesRepository: MoviesRepository,
-                    private val scheduler: ExecutionScheduler) : UseCase<MovieDetails, Params>() {
+                    private val scheduler: ExecutionScheduler) : UseCase.RxObservable<MovieDetails, Params>() {
 
-    override fun buildObservable(params: Params?): Observable<MovieDetails> =
+    override fun build(params: Params?): Observable<MovieDetails> =
         moviesRepository.movieDetails(params!!.id).compose(scheduler.applyHighPriorityScheduler())
 
     class Params(val id: Int)

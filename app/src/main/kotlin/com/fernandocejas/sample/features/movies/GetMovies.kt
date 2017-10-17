@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class GetMovies
 @Inject constructor(private val moviesRepository: MoviesRepository,
-                    private val scheduler: ExecutionScheduler) : UseCase<List<Movie>, None>() {
+                    private val scheduler: ExecutionScheduler) : UseCase.RxObservable<List<Movie>, None>() {
 
-    override fun buildObservable(params: None?): Observable<List<Movie>> =
+    override fun build(params: None?): Observable<List<Movie>> =
             moviesRepository.movies().compose(scheduler.applyHighPriorityScheduler())
 }

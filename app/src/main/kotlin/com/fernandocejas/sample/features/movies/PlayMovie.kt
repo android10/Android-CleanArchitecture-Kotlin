@@ -4,21 +4,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.fernandocejas.sample.features.movies.PlayMovie.Params
-import com.fernandocejas.sample.framework.interactor.UseCaseCompletable
+import com.fernandocejas.sample.framework.interactor.UseCase
 import io.reactivex.Completable
 import javax.inject.Inject
 
 
 class PlayMovie
-@Inject constructor() : UseCaseCompletable<Params>() {
+@Inject constructor() : UseCase.RxCompletable<Params>() {
 
-    override fun buildCompletable(params: Params?): Completable {
-        return Completable.fromAction { watchVideoFromUrl(params!!.context, params.url) }
-    }
+    override fun build(params: Params?): Completable =
+        Completable.fromAction { watchVideoFromUrl(params!!.context, params.url) }
 
-    private fun watchVideoFromUrl(context: Context, videoUrl: String) {
+    private fun watchVideoFromUrl(context: Context, videoUrl: String) =
         context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl)))
-    }
 
     class Params(val context: Context, val url: String)
 }

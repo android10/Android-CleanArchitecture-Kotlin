@@ -26,7 +26,7 @@ class GetMoviesTest : UnitTest() {
     }
 
     @Test fun shouldGetDataFromRepository() {
-        getMovies.buildObservable(UseCase.None())
+        getMovies.build(UseCase.None())
 
         verify(moviesRepository).movies()
         verifyNoMoreInteractions(moviesRepository)

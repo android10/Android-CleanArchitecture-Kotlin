@@ -26,7 +26,7 @@ class GetMovieDetailsTest : UnitTest() {
     }
 
     @Test fun shouldGetDataFromRepository() {
-        getMovieDetails.buildObservable(GetMovieDetails.Params(MOVIE_ID))
+        getMovieDetails.build(GetMovieDetails.Params(MOVIE_ID))
 
         verify(moviesRepository).movieDetails(MOVIE_ID)
         verifyNoMoreInteractions(moviesRepository)
