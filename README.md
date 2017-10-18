@@ -17,7 +17,7 @@ Here is some material worth reading:
 
 ## TODO List
 - [ ] Write Acceptance Tests.
-- [ ] Create Completable Use case abstraction.
+- [x] Create Completable Use case abstraction.
 - [ ] Implement cache for Offline mode.
 - [ ] Restructure DI and use scoping. 
 - [ ] Error Handling. 
