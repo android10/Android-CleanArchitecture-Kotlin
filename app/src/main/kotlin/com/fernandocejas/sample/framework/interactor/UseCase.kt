@@ -6,9 +6,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
-abstract class UseCase<out Type, in Params> {
+abstract class UseCase<out Type, in Params> where Type : Any {
 
-    protected val disposables = CompositeDisposable()
+    internal val disposables = CompositeDisposable()
 
     fun dispose() = disposables.dispose()
 
