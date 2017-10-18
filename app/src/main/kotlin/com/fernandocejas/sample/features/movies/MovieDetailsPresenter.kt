@@ -25,7 +25,7 @@ class MovieDetailsPresenter
         playMovie.execute(PlayMovie.Params(context, url))
     }
 
-    internal inner class MovieDetailsObserver : UseCaseObserver<MovieDetails>() {
+    internal inner class MovieDetailsObserver : UseCaseObserver.RxObservable<MovieDetails>() {
         override fun onComplete() = movieDetailsView.hideLoading()
         override fun onNext(value: MovieDetails) {
             val movieDetails = MovieDetailsViewModel(value.id, value.title, value.poster,

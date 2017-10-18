@@ -22,7 +22,7 @@ class MoviesPresenter
     fun onMovieClick(movieViewModel: MovieViewModel, navigationExtras: Navigator.Extras) =
             moviesView.displayDetails(movieViewModel, navigationExtras)
 
-    internal inner class MoviesObserver : UseCaseObserver<List<Movie>>() {
+    internal inner class MoviesObserver : UseCaseObserver.RxObservable<List<Movie>>() {
         override fun onComplete() = moviesView.hideLoading()
         override fun onNext(value: List<Movie>) = moviesView.renderList(value.map { MovieViewModel(it.id, it.poster) })
         override fun onError(e: Throwable) = TODO()

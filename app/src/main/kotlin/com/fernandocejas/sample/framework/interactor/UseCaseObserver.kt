@@ -1,17 +1,25 @@
 package com.fernandocejas.sample.framework.interactor
 
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.subscribers.DisposableSubscriber
 
-open class UseCaseObserver<T> : DisposableObserver<T>() {
-    override fun onComplete() {
-        //no op by default
+class UseCaseObserver {
+
+    open class RxSingle<T> : DisposableSingleObserver<T>() {
+        override fun onSuccess(value: T) {}
+        override fun onError(e: Throwable) {}
     }
 
-    override fun onNext(value: T) {
-        //no op by default
+    open class RxObservable<T> : DisposableObserver<T>() {
+        override fun onComplete() {}
+        override fun onNext(value: T) {}
+        override fun onError(e: Throwable) {}
     }
 
-    override fun onError(e: Throwable) {
-        //TODO: default error handling
+    open class RxFlowable<T> : DisposableSubscriber<T>() {
+        override fun onComplete() {}
+        override fun onNext(value: T) {}
+        override fun onError(e: Throwable) {}
     }
 }

@@ -17,7 +17,7 @@ class UseCaseTest : UnitTest() {
         testUseCase.isDisposed()
     }
 
-    private class TestUseCaseObserver : UseCaseObserver<String>()
+    private class TestUseCaseObserver : UseCaseObserver.RxObservable<String>()
     private class TestUseCase : UseCase.RxObservable<String, UseCase.None>() {
         override fun build(params: None?): Observable<String> = Observable.just("test")
         fun isDisposed() = disposables.isDisposed shouldBe true
