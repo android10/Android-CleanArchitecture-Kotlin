@@ -5,9 +5,10 @@ import org.amshove.kluent.shouldBe
 import org.junit.Test
 
 class AuthenticatorTest : UnitTest() {
+
     val authenticator = Authenticator()
 
-    @Test fun returnsDefaultValue() {
+    @Test fun `returns default value`() {
         authenticator.userLoggedIn() shouldBe true
     }
 }

@@ -12,6 +12,7 @@ import org.junit.Test
 import org.mockito.Mock
 
 class GetMovieDetailsTest : UnitTest() {
+
     private val MOVIE_ID = 1
 
     private lateinit var getMovieDetails: GetMovieDetails

@@ -19,7 +19,7 @@ class MoviesRepositoryTest : UnitTest() {
         given { dataSourceFactory.network() } .willReturn(mock(MoviesDataSource.Network::class))
     }
 
-    @Test fun shouldGetMoviesFromNetwork() {
+    @Test fun `should get movies from network`() {
         moviesRepository.movies()
 
         verify(dataSourceFactory).network()

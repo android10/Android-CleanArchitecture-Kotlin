@@ -12,6 +12,7 @@ import org.junit.Test
 import org.mockito.Mock
 
 class MoviesDataSourceNetworkTest : UnitTest() {
+
     private val MOVIE_ID = 1
     private val MOVIE_POSTER = "poster_url"
 
@@ -24,7 +25,7 @@ class MoviesDataSourceNetworkTest : UnitTest() {
         given { restApi.movies() }.willReturn(createMovieEntitiesList())
     }
 
-    @Test fun shouldGetDataFromRestApi() {
+    @Test fun `should get data from rest api`() {
         val testObserver = network.movies().test()
 
         val movie = testObserver.values()[0][0]

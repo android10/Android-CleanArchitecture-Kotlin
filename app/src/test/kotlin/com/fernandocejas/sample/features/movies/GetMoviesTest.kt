@@ -14,6 +14,7 @@ import org.junit.Test
 import org.mockito.Mock
 
 class GetMoviesTest : UnitTest() {
+
     private lateinit var getMovies: GetMovies
 
     @Mock private lateinit var moviesRepository: MoviesRepository

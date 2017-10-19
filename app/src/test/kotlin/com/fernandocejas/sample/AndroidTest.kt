@@ -18,6 +18,7 @@ import org.robolectric.annotation.Config
         application = AndroidTest.ApplicationStub::class,
         sdk = intArrayOf(21))
 abstract class AndroidTest {
+
     @Suppress("LeakingThis")
     @Rule @JvmField val injectMocks = InjectMocksRule.create(this@AndroidTest)
 
