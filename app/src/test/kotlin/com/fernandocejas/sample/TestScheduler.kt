@@ -3,8 +3,7 @@ package com.fernandocejas.sample
 import com.fernandocejas.sample.TestScheduler.Function.*
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import com.nhaarman.mockito_kotlin.verify
-import io.reactivex.Observable
-import io.reactivex.Scheduler
+import io.reactivex.*
 import io.reactivex.schedulers.Schedulers
 import org.amshove.kluent.mock
 
@@ -25,20 +24,44 @@ internal class TestScheduler(private val scheduler: ExecutionScheduler = mock(Ex
         return Schedulers.trampoline()
     }
 
-    override fun <T> applyHighPriorityScheduler(): (Observable<T>) -> Observable<T> {
-        scheduler.applyHighPriorityScheduler<T>()
-        return applyTestSchedulers()
+    override fun <T> highPrioritySingle(): (Single<T>) -> Single<T> {
+        scheduler.highPrioritySingle<T>()
+        return { upstream: Single<T> -> upstream.subscribeOn(highPriority()).observeOn(ui()) }
     }
 
-    override fun <T> applyLowPriorityScheduler(): (Observable<T>) -> Observable<T> {
-        scheduler.applyLowPriorityScheduler<T>()
-        return applyTestSchedulers()
+    override fun <T> lowPrioritySingle(): (Single<T>) -> Single<T> {
+        scheduler.lowPrioritySingle<T>()
+        return { upstream: Single<T> -> upstream.subscribeOn(lowPriority()).observeOn(ui()) }
     }
 
-    private fun <T> applyTestSchedulers() = { upstream: Observable<T> ->
-        upstream
-                .subscribeOn(lowPriority())
-                .observeOn(ui())
+    override fun <T> highPriorityObservable(): (Observable<T>) -> Observable<T> {
+        scheduler.highPriorityObservable<T>()
+        return { upstream: Observable<T> -> upstream.subscribeOn(highPriority()).observeOn(ui()) }
+    }
+
+    override fun <T> lowPriorityObservable(): (Observable<T>) -> Observable<T> {
+        scheduler.lowPriorityObservable<T>()
+        return { upstream: Observable<T> -> upstream.subscribeOn(lowPriority()).observeOn(ui()) }
+    }
+
+    override fun <T> highPriorityFlowable(): (Flowable<T>) -> Flowable<T> {
+        scheduler.highPriorityFlowable<T>()
+        return { upstream: Flowable<T> -> upstream.subscribeOn(highPriority()).observeOn(ui()) }
+    }
+
+    override fun <T> lowPriorityFlowable(): (Flowable<T>) -> Flowable<T> {
+        scheduler.lowPriorityFlowable<T>()
+        return { upstream: Flowable<T> -> upstream.subscribeOn(lowPriority()).observeOn(ui()) }
+    }
+
+    override fun highPriorityCompletable(): (Completable) -> Completable {
+        scheduler.highPriorityCompletable()
+        return { upstream: Completable -> upstream.subscribeOn(highPriority()).observeOn(ui()) }
+    }
+
+    override fun lowPriorityCompletable(): (Completable) -> Completable {
+        scheduler.lowPriorityCompletable()
+        return { upstream: Completable -> upstream.subscribeOn(lowPriority()).observeOn(ui()) }
     }
 
     internal infix fun verify(function: Function) {
@@ -46,8 +69,18 @@ internal class TestScheduler(private val scheduler: ExecutionScheduler = mock(Ex
             is ui -> verify(scheduler).ui()
             is highPriority -> verify(scheduler).highPriority()
             is lowPriority -> verify(scheduler).lowPriority()
-            is applyHighPriorityScheduler -> verify(scheduler).applyHighPriorityScheduler<Any>()
-            is applyLowPriorityScheduler -> verify(scheduler).applyLowPriorityScheduler<Any>()
+
+            is highPrioritySingle -> verify(scheduler).highPrioritySingle<Any>()
+            is lowPrioritySingle -> verify(scheduler).lowPrioritySingle<Any>()
+
+            is highPriorityObservable -> verify(scheduler).highPriorityObservable<Any>()
+            is lowPriorityObservable -> verify(scheduler).lowPriorityObservable<Any>()
+
+            is highPriorityFlowable -> verify(scheduler).highPriorityFlowable<Any>()
+            is lowPriorityFlowable -> verify(scheduler).lowPriorityFlowable<Any>()
+
+            is highPriorityCompletable -> verify(scheduler).highPriorityCompletable()
+            is lowPriorityCompletable -> verify(scheduler).lowPriorityCompletable()
         }
     }
 
@@ -55,7 +88,17 @@ internal class TestScheduler(private val scheduler: ExecutionScheduler = mock(Ex
         object ui : Function()
         object highPriority : Function()
         object lowPriority : Function()
-        object applyHighPriorityScheduler : Function()
-        object applyLowPriorityScheduler : Function()
+
+        object highPrioritySingle : Function()
+        object lowPrioritySingle : Function()
+
+        object highPriorityObservable : Function()
+        object lowPriorityObservable : Function()
+
+        object highPriorityFlowable : Function()
+        object lowPriorityFlowable : Function()
+
+        object highPriorityCompletable : Function()
+        object lowPriorityCompletable : Function()
     }
 }

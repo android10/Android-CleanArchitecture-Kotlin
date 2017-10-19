@@ -1,7 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.TestScheduler
-import com.fernandocejas.sample.TestScheduler.Function.applyHighPriorityScheduler
+import com.fernandocejas.sample.TestScheduler.Function.highPriorityObservable
 import com.fernandocejas.sample.UnitTest
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
@@ -25,13 +25,13 @@ class GetMovieDetailsTest : UnitTest() {
         given { moviesRepository.movieDetails(MOVIE_ID) } .willReturn(createMovieDetailsObservable())
     }
 
-    @Test fun shouldGetDataFromRepository() {
+    @Test fun `should get data from repository`() {
         getMovieDetails.build(GetMovieDetails.Params(MOVIE_ID))
 
         verify(moviesRepository).movieDetails(MOVIE_ID)
         verifyNoMoreInteractions(moviesRepository)
 
-        testScheduler verify applyHighPriorityScheduler
+        testScheduler verify highPriorityObservable
     }
 
     private fun createMovieDetailsObservable() = Observable.empty<MovieDetails>()

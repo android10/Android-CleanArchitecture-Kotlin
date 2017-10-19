@@ -3,6 +3,7 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.framework.network.RestApi
 import dagger.Lazy
 import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 interface MoviesDataSource : MoviesRepository {
@@ -15,7 +16,7 @@ interface MoviesDataSource : MoviesRepository {
 
     class Network
     @Inject constructor(private val restApi: RestApi) : MoviesDataSource {
-        override fun movies(): Observable<List<Movie>> =
+        override fun movies(): Single<List<Movie>> =
                 restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
 
         override fun movieDetails(movieId: Int): Observable<MovieDetails> =
@@ -24,7 +25,7 @@ interface MoviesDataSource : MoviesRepository {
 
     class Disk
     @Inject constructor() : MoviesDataSource {
-        override fun movies(): Observable<List<Movie>> = TODO()
+        override fun movies(): Single<List<Movie>> = TODO()
         override fun movieDetails(movieId: Int): Observable<MovieDetails> = TODO()
     }
 }

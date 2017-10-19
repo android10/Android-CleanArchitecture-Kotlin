@@ -1,10 +1,8 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.features.movies.MoviesPresenter.MoviesObserver
-import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.anyVararg
 import com.nhaarman.mockito_kotlin.argumentCaptor
-import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify
 import org.junit.Before
 import org.junit.Test
@@ -22,32 +20,27 @@ class MoviesPresenterTest : UnitTest() {
         moviesPresenter.moviesView = moviesView
     }
 
-    @Test fun shouldDisposeViewAndUseCase() {
+    @Test fun `should dispose view and useCase`() {
         moviesPresenter.destroy()
 
         verify(getMovies).dispose()
         verify(moviesView).dispose()
     }
 
-    @Test fun shouldLoadMovies() {
+    @Test fun `should load movies`() {
         moviesPresenter.loadMovies()
 
         verify(moviesView).showLoading()
-        verify(getMovies).execute(eq(any()))
+        verify(getMovies).execute(anyVararg(), anyVararg(), anyVararg())
     }
 
-    @Test fun shouldRenderMovies() {
-        val moviesObserverCaptor = argumentCaptor<MoviesObserver>()
+    @Test fun `should render movies`() {
+        val onCompleteCaptor = argumentCaptor<(List<Movie>) -> Unit>()
 
         moviesPresenter.loadMovies()
+        verify(getMovies).execute(onCompleteCaptor.capture(), anyVararg(), anyVararg())
 
-        verify(getMovies).execute(eq(moviesObserverCaptor.capture()))
-
-        val moviesObserver = moviesObserverCaptor.firstValue
-
-        moviesObserver.onNext(emptyList())
-        moviesObserver.onComplete()
-
+        onCompleteCaptor.firstValue.invoke(emptyList())
         verify(moviesView).renderList(emptyList())
         verify(moviesView).hideLoading()
     }

@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import com.fernandocejas.sample.framework.interactor.UseCaseObserver
 import com.fernandocejas.sample.navigation.Navigator
 import javax.inject.Inject
 
@@ -16,15 +15,12 @@ class MoviesPresenter
 
     fun loadMovies() {
         moviesView.showLoading()
-        getMovies.execute(MoviesObserver())
+        getMovies.execute(
+                { movies -> moviesView.renderList(movies.map { MovieViewModel(it.id, it.poster) })
+                            moviesView.hideLoading() },
+                { TODO() })
     }
 
     fun onMovieClick(movieViewModel: MovieViewModel, navigationExtras: Navigator.Extras) =
             moviesView.displayDetails(movieViewModel, navigationExtras)
-
-    internal inner class MoviesObserver : UseCaseObserver.RxObservable<List<Movie>>() {
-        override fun onComplete() = moviesView.hideLoading()
-        override fun onNext(value: List<Movie>) = moviesView.renderList(value.map { MovieViewModel(it.id, it.poster) })
-        override fun onError(e: Throwable) = TODO()
-    }
 }

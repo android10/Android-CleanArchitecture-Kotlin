@@ -11,7 +11,7 @@ class GetMovieDetails
                     private val scheduler: ExecutionScheduler) : UseCase.RxObservable<MovieDetails, Params>() {
 
     override fun build(params: Params?): Observable<MovieDetails> =
-        moviesRepository.movieDetails(params!!.id).compose(scheduler.applyHighPriorityScheduler())
+        moviesRepository.movieDetails(params!!.id).compose(scheduler.highPriorityObservable())
 
     class Params(val id: Int)
 }
