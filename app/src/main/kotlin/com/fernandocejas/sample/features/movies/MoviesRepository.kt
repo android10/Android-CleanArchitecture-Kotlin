@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 interface MoviesRepository {
     fun movies(): Single<List<Movie>>
-    fun movieDetails(movieId: Int): Observable<MovieDetails>
+    fun movieDetails(movieId: Int): Single<MovieDetails>
 
     class Source
     @Inject constructor(private val dataSourceFactory: MoviesDataSource.Factory) : MoviesRepository {

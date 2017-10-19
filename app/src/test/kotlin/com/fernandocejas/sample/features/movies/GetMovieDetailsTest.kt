@@ -1,12 +1,12 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.TestScheduler
-import com.fernandocejas.sample.TestScheduler.Function.highPriorityObservable
+import com.fernandocejas.sample.TestScheduler.Function.highPrioritySingle
 import com.fernandocejas.sample.UnitTest
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -22,7 +22,7 @@ class GetMovieDetailsTest : UnitTest() {
 
     @Before fun setUp() {
         getMovieDetails = GetMovieDetails(moviesRepository, testScheduler)
-        given { moviesRepository.movieDetails(MOVIE_ID) } .willReturn(createMovieDetailsObservable())
+        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(createMovieDetails())
     }
 
     @Test fun `should get data from repository`() {
@@ -31,8 +31,8 @@ class GetMovieDetailsTest : UnitTest() {
         verify(moviesRepository).movieDetails(MOVIE_ID)
         verifyNoMoreInteractions(moviesRepository)
 
-        testScheduler verify highPriorityObservable
+        testScheduler verify highPrioritySingle
     }
 
-    private fun createMovieDetailsObservable() = Observable.empty<MovieDetails>()
+    private fun createMovieDetails() = Single.create<MovieDetails> {}
 }

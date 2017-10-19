@@ -1,7 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
 import android.content.Context
-import com.fernandocejas.sample.framework.interactor.UseCaseObserver
 import javax.inject.Inject
 
 class MovieDetailsPresenter
@@ -18,20 +17,17 @@ class MovieDetailsPresenter
 
     fun loadMovieDetails(movieId: Int) {
         movieDetailsView.showLoading()
-        getMovieDetails.execute(MovieDetailsObserver(), GetMovieDetails.Params(movieId))
+        getMovieDetails.execute(
+                { movie ->
+                    val viewModel = MovieDetailsViewModel(movie.id, movie.title, movie.poster,
+                            movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
+                    movieDetailsView.renderDetails(viewModel)
+                    movieDetailsView.hideLoading() },
+                { TODO() },
+                GetMovieDetails.Params(movieId))
     }
 
     fun playMovie(context: Context, url: String) {
         playMovie.execute(PlayMovie.Params(context, url))
-    }
-
-    internal inner class MovieDetailsObserver : UseCaseObserver.RxObservable<MovieDetails>() {
-        override fun onComplete() = movieDetailsView.hideLoading()
-        override fun onNext(value: MovieDetails) {
-            val movieDetails = MovieDetailsViewModel(value.id, value.title, value.poster,
-                    value.summary, value.cast, value.director, value.year, value.trailer)
-            movieDetailsView.renderDetails(movieDetails)
-        }
-        override fun onError(e: Throwable) = TODO()
     }
 }

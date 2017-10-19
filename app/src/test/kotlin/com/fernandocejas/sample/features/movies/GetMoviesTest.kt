@@ -22,7 +22,7 @@ class GetMoviesTest : UnitTest() {
 
     @Before fun setUp() {
         getMovies = GetMovies(moviesRepository, testScheduler)
-        given { moviesRepository.movies() }.willReturn(createMovieListSingle())
+        given { moviesRepository.movies() }.willReturn(createMovieList())
     }
 
     @Test fun `should get data from repository`() {
@@ -34,5 +34,5 @@ class GetMoviesTest : UnitTest() {
         testScheduler verify highPrioritySingle
     }
 
-    private fun createMovieListSingle() = Single.just(listOf(Movie.create { String.empty() }))
+    private fun createMovieList() = Single.just(listOf(Movie.create { String.empty() }))
 }

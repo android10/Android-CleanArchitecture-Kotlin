@@ -19,13 +19,13 @@ interface MoviesDataSource : MoviesRepository {
         override fun movies(): Single<List<Movie>> =
                 restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
 
-        override fun movieDetails(movieId: Int): Observable<MovieDetails> =
+        override fun movieDetails(movieId: Int): Single<MovieDetails> =
                 restApi.movieDetails(movieId).map { it.toMovieDetails() }
     }
 
     class Disk
     @Inject constructor() : MoviesDataSource {
         override fun movies(): Single<List<Movie>> = TODO()
-        override fun movieDetails(movieId: Int): Observable<MovieDetails> = TODO()
+        override fun movieDetails(movieId: Int): Single<MovieDetails> = TODO()
     }
 }

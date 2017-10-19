@@ -9,5 +9,5 @@ import retrofit2.http.Path
 
 internal interface MoviesApi {
     @GET(Endpoints.MOVIES) fun movies(): Single<List<MovieEntity>>
-    @GET(Endpoints.MOVIE_DETAILS) fun movieDetails(@Path(Endpoints.PARAM_MOVIE_ID) movieId: Int): Observable<MovieDetailsEntity>
+    @GET(Endpoints.MOVIE_DETAILS) fun movieDetails(@Path(Endpoints.PARAM_MOVIE_ID) movieId: Int): Single<MovieDetailsEntity>
 }
