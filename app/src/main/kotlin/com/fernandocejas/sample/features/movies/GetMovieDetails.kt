@@ -13,5 +13,5 @@ class GetMovieDetails
     override fun build(params: Params?): Single<MovieDetails> =
             moviesRepository.movieDetails(params!!.id).compose(scheduler.highPrioritySingle())
 
-    class Params(val id: Int)
+    data class Params(val id: Int)
 }

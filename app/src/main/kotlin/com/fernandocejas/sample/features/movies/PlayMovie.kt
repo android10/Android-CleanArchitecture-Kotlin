@@ -40,5 +40,5 @@ class PlayMovie
         return intent
     }
 
-    class Params(val context: Context, val url: String)
+    data class Params(val context: Context, val url: String)
 }
