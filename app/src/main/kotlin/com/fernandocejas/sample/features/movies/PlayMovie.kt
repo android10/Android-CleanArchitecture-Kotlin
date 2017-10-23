@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 class PlayMovie
 @Inject constructor() : UseCase.RxCompletable<Params>() {
+
     private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
     private val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
 
