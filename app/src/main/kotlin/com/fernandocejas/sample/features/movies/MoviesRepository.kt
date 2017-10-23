@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 

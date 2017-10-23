@@ -11,7 +11,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
-class MoviesDataSourceNetworkTest : UnitTest() {
+class MoviesDataSourceTest : UnitTest() {
 
     private val MOVIE_ID = 1
     private val MOVIE_POSTER = "poster_url"
