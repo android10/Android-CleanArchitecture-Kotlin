@@ -41,9 +41,9 @@ abstract class UseCase<out Type, in Params> where Type : Any {
     }
 
     abstract class RxCompletable<in P> : UseCase<Completable, P>() {
-        fun execute(params: P? = null) = execute({}, params)
+        fun execute(params: P? = null) = execute({}, {}, params)
 
-        fun execute(onComplete: () -> Unit = {}, params: P? = null) =
+        fun execute(onComplete: () -> Unit = {}, onError: (Throwable) -> Unit = {}, params: P? = null) =
                 disposables.add(build(params).subscribe(onComplete))
     }
 
