@@ -2,12 +2,12 @@ apply from: 'buildsystem/ci.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
-  ext.kotlin_version = '1.1.4'
-  ext.gradle_tools = '2.2.3'
-  ext.build_tools = '25.0.2'
+  ext.kotlin_version = '1.2.0'
+  ext.gradle_tools = '3.0.1'
+  ext.build_tools = '27.0.3'
 
-  ext.compile_sdk = 25
-  ext.target_sdk = 25
+  ext.compile_sdk = 27
+  ext.target_sdk = 27
   ext.min_sdk = 21
 
   ext.application_id = 'com.fernandocejas.sample'
@@ -16,12 +16,12 @@ buildscript {
   ext.test_runner = 'android.support.test.runner.AndroidJUnitRunner'
 
   repositories {
+    google()
     jcenter()
-    mavenCentral()
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.3'
+    classpath "com.android.tools.build:gradle:$gradle_tools"
     //noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
