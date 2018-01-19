@@ -72,31 +72,31 @@ dependencies {
 
   //Compile time dependencies
   kapt applicationDependencies.daggerCompiler
-  provided applicationDependencies.javaxAnnotation
-  provided applicationDependencies.javaxInject
+  compileOnly applicationDependencies.javaxAnnotation
+  compileOnly applicationDependencies.javaxInject
 
   //Application dependencies
-  compile applicationDependencies.kotlin
-  compile applicationDependencies.appCompat
-  compile applicationDependencies.cardView
-  compile applicationDependencies.recyclerView
-  compile applicationDependencies.design
-  compile applicationDependencies.androidAnnotations
-  compile applicationDependencies.glide
-  compile applicationDependencies.dagger
-  compile applicationDependencies.rxJava
-  compile applicationDependencies.rxAndroid
-  compile applicationDependencies.retrofit
-  compile applicationDependencies.retrofitAdapter
-  compile applicationDependencies.okhttpLoggingInterceptor
+  implementation applicationDependencies.kotlin
+  implementation applicationDependencies.appCompat
+  implementation applicationDependencies.cardView
+  implementation applicationDependencies.recyclerView
+  implementation applicationDependencies.design
+  implementation applicationDependencies.androidAnnotations
+  implementation applicationDependencies.glide
+  implementation applicationDependencies.dagger
+  implementation applicationDependencies.rxJava
+  implementation applicationDependencies.rxAndroid
+  implementation applicationDependencies.retrofit
+  implementation applicationDependencies.retrofitAdapter
+  implementation applicationDependencies.okhttpLoggingInterceptor
 
   //Unit/Integration tests dependencies
-  testCompile unitTestDependencies.kotlin
-  testCompile unitTestDependencies.kotlinTest
-  testCompile unitTestDependencies.robolectric
-  testCompile unitTestDependencies.junit
-  testCompile unitTestDependencies.mockito
-  testCompile unitTestDependencies.kluent
+  testImplementation unitTestDependencies.kotlin
+  testImplementation unitTestDependencies.kotlinTest
+  testImplementation unitTestDependencies.robolectric
+  testImplementation unitTestDependencies.junit
+  testImplementation unitTestDependencies.mockito
+  testImplementation unitTestDependencies.kluent
 
   //Acceptance tests dependencies
   androidTestCompile acceptanceTestDependencies.testRunner
@@ -106,7 +106,7 @@ dependencies {
   androidTestCompile acceptanceTestDependencies.androidAnnotations
 
   //Development dependencies
-  debugCompile developmentDependencies.leakCanary
-  releaseCompile developmentDependencies.leakCanaryNoop
-  testCompile developmentDependencies.leakCanaryNoop
+  debugImplementation developmentDependencies.leakCanary
+  releaseImplementation developmentDependencies.leakCanaryNoop
+  testImplementation developmentDependencies.leakCanaryNoop
 }
