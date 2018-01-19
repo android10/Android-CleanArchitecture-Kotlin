@@ -110,7 +110,3 @@ dependencies {
   releaseCompile developmentDependencies.leakCanaryNoop
   testCompile developmentDependencies.leakCanaryNoop
 }
-
-kapt {
-  generateStubs = true
-}
