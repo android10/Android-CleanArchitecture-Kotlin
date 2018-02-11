@@ -22,7 +22,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
         appComponent.inject(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
         if (firstTimeCreated(savedInstanceState)) { initializeView(); loadMovies() }
@@ -38,7 +38,7 @@ class MoviesFragment : BaseFragment(), MoviesView {
     }
 
     override fun displayDetails(movie: MovieViewModel, navigationExtras: Navigator.Extras) {
-        navigator.showMovieDetails(activity, movie, navigationExtras)
+        activity?.let { navigator.showMovieDetails(it, movie, navigationExtras) }
     }
 
     override fun showLoading() {

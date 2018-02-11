@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import android.content.Context
 import javax.inject.Inject
 
 class MovieDetailsPresenter
@@ -27,7 +26,5 @@ class MovieDetailsPresenter
                 GetMovieDetails.Params(movieId))
     }
 
-    fun playMovie(context: Context, url: String) {
-        playMovie.execute(PlayMovie.Params(context, url))
-    }
+    fun playMovie(url: String) = playMovie.execute(PlayMovie.Params(url))
 }

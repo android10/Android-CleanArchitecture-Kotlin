@@ -16,7 +16,7 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class,
         application = AndroidTest.ApplicationStub::class,
-        sdk = intArrayOf(21))
+        sdk = [21])
 abstract class AndroidTest {
 
     @Suppress("LeakingThis")

@@ -12,15 +12,15 @@ import javax.inject.Inject
 
 
 class PlayMovie
-@Inject constructor() : UseCase.RxCompletable<Params>() {
+@Inject constructor(private val context: Context) : UseCase.RxCompletable<Params>() {
 
     private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
     private val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
 
     override fun build(params: Params?): Completable =
-        Completable.fromAction { watchVideoFromUrl(params!!.context, params.url) }
+        Completable.fromAction { watchVideoFromUrl(params!!.url) }
 
-    private fun watchVideoFromUrl(context: Context, videoUrl: String) {
+    private fun watchVideoFromUrl(videoUrl: String) {
         try {
             context.startActivity(createYoutubeIntent(videoUrl))
         } catch (ex: ActivityNotFoundException) {
@@ -41,5 +41,5 @@ class PlayMovie
         return intent
     }
 
-    data class Params(val context: Context, val url: String)
+    data class Params(val url: String)
 }

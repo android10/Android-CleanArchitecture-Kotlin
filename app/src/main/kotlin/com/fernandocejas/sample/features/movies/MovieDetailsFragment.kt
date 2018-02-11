@@ -7,8 +7,15 @@ import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import com.fernandocejas.sample.framework.extension.visible
-import kotlinx.android.synthetic.main.fragment_movie_details.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.fragment_movie_details.movieCast
+import kotlinx.android.synthetic.main.fragment_movie_details.movieDetails
+import kotlinx.android.synthetic.main.fragment_movie_details.movieDirector
+import kotlinx.android.synthetic.main.fragment_movie_details.moviePlay
+import kotlinx.android.synthetic.main.fragment_movie_details.moviePoster
+import kotlinx.android.synthetic.main.fragment_movie_details.movieSummary
+import kotlinx.android.synthetic.main.fragment_movie_details.movieYear
+import kotlinx.android.synthetic.main.fragment_movie_details.scrollView
+import kotlinx.android.synthetic.main.toolbar.toolbar
 import javax.inject.Inject
 
 class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
@@ -33,7 +40,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        movieDetailsAnimator.postponeEnterTransition(activity)
+        activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
     }
 
     override fun onDestroy() {
@@ -49,7 +56,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
         else {
             movieDetailsAnimator.scaleUpView(moviePlay)
             movieDetailsAnimator.cancelTransition(moviePoster)
-            moviePoster.loadFromUrl((arguments[PARAM_MOVIE] as MovieViewModel).poster)
+            moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieViewModel).poster)
         }
     }
 
@@ -63,13 +70,15 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
 
     override fun renderDetails(movie: MovieDetailsViewModel) {
         with(movie) {
-            moviePoster.loadUrlAndPostponeEnterTransition(poster, activity)
-            activity.toolbar.title = title
+            activity?.let {
+                moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
+                it.toolbar.title = title
+            }
             movieSummary.text = summary
             movieCast.text = cast
             movieDirector.text = director
             movieYear.text = year.toString()
-            moviePlay.setOnClickListener { movieDetailsPresenter.playMovie(activity, trailer) }
+            moviePlay.setOnClickListener { movieDetailsPresenter.playMovie(trailer) }
         }
         movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
         movieDetailsAnimator.scaleUpView(moviePlay)
@@ -92,6 +101,6 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     }
 
     private fun loadMovieDetails() {
-        movieDetailsPresenter.loadMovieDetails((arguments[PARAM_MOVIE] as MovieViewModel).id)
+        movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieViewModel).id)
     }
 }

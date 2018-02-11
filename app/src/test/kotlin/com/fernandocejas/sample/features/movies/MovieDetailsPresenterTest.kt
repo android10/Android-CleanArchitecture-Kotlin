@@ -1,8 +1,10 @@
 package com.fernandocejas.sample.features.movies
 
-import android.content.Context
 import com.fernandocejas.sample.UnitTest
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.anyVararg
+import com.nhaarman.mockito_kotlin.argumentCaptor
+import com.nhaarman.mockito_kotlin.eq
+import com.nhaarman.mockito_kotlin.verify
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -50,9 +52,8 @@ class MovieDetailsPresenterTest : UnitTest() {
     }
 
     @Test fun `should play movie`() {
-        val context: Context = mock()
-        movieDetailsPresenter.playMovie(context, MOVIE_URL)
+        movieDetailsPresenter.playMovie(MOVIE_URL)
 
-        verify(playMovie).execute(eq(PlayMovie.Params(context, MOVIE_URL)))
+        verify(playMovie).execute(eq(PlayMovie.Params(MOVIE_URL)))
     }
 }

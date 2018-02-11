@@ -6,16 +6,16 @@ apply plugin: 'kotlin-android-extensions'
 android {
   def config = rootProject.extensions.getByName("ext")
 
-  compileSdkVersion config.getAt("compile_sdk")
-  buildToolsVersion config.getAt("build_tools")
+  compileSdkVersion config["compile_sdk"]
+  buildToolsVersion config["build_tools"]
 
   defaultConfig {
-    applicationId config.getAt("application_id")
-    minSdkVersion config.getAt("min_sdk")
-    targetSdkVersion config.getAt("target_sdk")
-    versionCode config.getAt("version_code")
-    versionName config.getAt("version_name")
-    testInstrumentationRunner config.getAt("test_runner")
+    applicationId config["application_id"]
+    minSdkVersion config["min_sdk"]
+    targetSdkVersion config["target_sdk"]
+    versionCode config["version_code"]
+    versionName config["version_name"]
+    testInstrumentationRunner config["test_runner"]
   }
 
   packagingOptions {

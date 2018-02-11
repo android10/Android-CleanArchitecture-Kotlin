@@ -1,16 +1,13 @@
 allprojects {
   repositories {
+    google()
     jcenter()
-    mavenCentral()
-    maven {
-      url "https://maven.google.com"
-    }
   }
 }
 
 ext {
   //Android libraries
-  appCompat_version = '25.4.0'
+  appCompat_version = '27.0.2'
   glide_version = '4.0.0'
 
   //Third party libraries
