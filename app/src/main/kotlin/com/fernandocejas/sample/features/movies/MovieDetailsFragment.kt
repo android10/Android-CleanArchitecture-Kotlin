@@ -44,11 +44,6 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        movieDetailsPresenter.destroy()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (firstTimeCreated(savedInstanceState)) {
@@ -91,10 +86,6 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
 
     override fun hideLoading() {
         //TODO: implement method
-    }
-
-    override fun dispose() {
-        //TODO: dispose view resources
     }
 
     private fun initializeView() {

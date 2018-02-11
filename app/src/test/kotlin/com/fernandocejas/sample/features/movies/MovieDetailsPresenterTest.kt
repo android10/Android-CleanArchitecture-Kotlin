@@ -1,6 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.UnitTest
+import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.anyVararg
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.eq
@@ -25,26 +26,18 @@ class MovieDetailsPresenterTest : UnitTest() {
         movieDetailsPresenter.movieDetailsView = movieDetailsView
     }
 
-    @Test fun `should dispose view and useCases`() {
-        movieDetailsPresenter.destroy()
-
-        verify(getMovieDetails).dispose()
-        verify(playMovie).dispose()
-        verify(movieDetailsView).dispose()
-    }
-
     @Test fun `should load movie details`() {
         movieDetailsPresenter.loadMovieDetails(MOVIE_ID)
 
         verify(movieDetailsView).showLoading()
-        verify(getMovieDetails).execute(anyVararg(), anyVararg(), eq(GetMovieDetails.Params(MOVIE_ID)))
+        verify(getMovieDetails).execute(anyVararg(), eq(GetMovieDetails.Params(MOVIE_ID)))
     }
 
     @Test fun `should render movies`() {
         val onCompleteCaptor = argumentCaptor<(MovieDetails) -> Unit>()
 
         movieDetailsPresenter.loadMovieDetails(MOVIE_ID)
-        verify(getMovieDetails).execute(onCompleteCaptor.capture(), anyVararg(), eq(GetMovieDetails.Params(MOVIE_ID)))
+        verify(getMovieDetails).execute(onCompleteCaptor.capture(), eq(GetMovieDetails.Params(MOVIE_ID)))
 
         onCompleteCaptor.firstValue.invoke(MovieDetails.empty())
         verify(movieDetailsView).renderDetails(anyVararg())
@@ -54,6 +47,6 @@ class MovieDetailsPresenterTest : UnitTest() {
     @Test fun `should play movie`() {
         movieDetailsPresenter.playMovie(MOVIE_URL)
 
-        verify(playMovie).execute(eq(PlayMovie.Params(MOVIE_URL)))
+        verify(playMovie).execute(any(), eq(PlayMovie.Params(MOVIE_URL)))
     }
 }

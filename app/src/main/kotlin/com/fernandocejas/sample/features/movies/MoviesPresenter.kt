@@ -1,5 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
+import com.fernandocejas.sample.framework.interactor.UseCase.None
 import com.fernandocejas.sample.navigation.Navigator
 import javax.inject.Inject
 
@@ -8,17 +9,11 @@ class MoviesPresenter
 
     internal lateinit var moviesView: MoviesView
 
-    fun destroy() {
-        getMovies.dispose()
-        moviesView.dispose()
-    }
-
     fun loadMovies() {
         moviesView.showLoading()
         getMovies.execute(
                 { movies -> moviesView.renderList(movies.map { MovieViewModel(it.id, it.poster) })
-                            moviesView.hideLoading() },
-                { TODO() })
+                            moviesView.hideLoading() }, None())
     }
 
     fun onMovieClick(movieViewModel: MovieViewModel, navigationExtras: Navigator.Extras) =

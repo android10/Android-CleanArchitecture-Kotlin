@@ -20,25 +20,18 @@ class MoviesPresenterTest : UnitTest() {
         moviesPresenter.moviesView = moviesView
     }
 
-    @Test fun `should dispose view and useCase`() {
-        moviesPresenter.destroy()
-
-        verify(getMovies).dispose()
-        verify(moviesView).dispose()
-    }
-
     @Test fun `should load movies`() {
         moviesPresenter.loadMovies()
 
         verify(moviesView).showLoading()
-        verify(getMovies).execute(anyVararg(), anyVararg(), anyVararg())
+        verify(getMovies).execute(anyVararg(), anyVararg())
     }
 
     @Test fun `should render movies`() {
         val onCompleteCaptor = argumentCaptor<(List<Movie>) -> Unit>()
 
         moviesPresenter.loadMovies()
-        verify(getMovies).execute(onCompleteCaptor.capture(), anyVararg(), anyVararg())
+        verify(getMovies).execute(onCompleteCaptor.capture(), anyVararg())
 
         onCompleteCaptor.firstValue.invoke(emptyList())
         verify(moviesView).renderList(emptyList())

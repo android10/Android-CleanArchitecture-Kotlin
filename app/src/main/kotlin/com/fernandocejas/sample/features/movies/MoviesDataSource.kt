@@ -2,8 +2,6 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.framework.network.RestApi
 import dagger.Lazy
-import io.reactivex.Observable
-import io.reactivex.Single
 import javax.inject.Inject
 
 interface MoviesDataSource : MoviesRepository {
@@ -16,16 +14,20 @@ interface MoviesDataSource : MoviesRepository {
 
     class Network
     @Inject constructor(private val restApi: RestApi) : MoviesDataSource {
-        override fun movies(): Single<List<Movie>> =
-                restApi.movies().map { movieEntities -> movieEntities.map { it.toMovie() } }
+        override fun movies(): List<Movie> {
+            val movieList = restApi.movies().execute().body() ?: emptyList()
+            return movieList.map { it.toMovie() }
+        }
 
-        override fun movieDetails(movieId: Int): Single<MovieDetails> =
-                restApi.movieDetails(movieId).map { it.toMovieDetails() }
+        override fun movieDetails(movieId: Int): MovieDetails {
+            val movieDetailsEntity = restApi.movieDetails(movieId).execute().body() ?: MovieDetailsEntity.empty()
+            return movieDetailsEntity.toMovieDetails()
+        }
     }
 
     class Disk
     @Inject constructor() : MoviesDataSource {
-        override fun movies(): Single<List<Movie>> = TODO()
-        override fun movieDetails(movieId: Int): Single<MovieDetails> = TODO()
+        override fun movies(): List<Movie> = TODO()
+        override fun movieDetails(movieId: Int): MovieDetails = TODO()
     }
 }

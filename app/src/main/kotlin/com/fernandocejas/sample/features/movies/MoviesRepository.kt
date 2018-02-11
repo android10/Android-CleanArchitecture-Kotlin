@@ -1,11 +1,10 @@
 package com.fernandocejas.sample.features.movies
 
-import io.reactivex.Single
 import javax.inject.Inject
 
 interface MoviesRepository {
-    fun movies(): Single<List<Movie>>
-    fun movieDetails(movieId: Int): Single<MovieDetails>
+    fun movies(): List<Movie>
+    fun movieDetails(movieId: Int): MovieDetails
 
     class Source
     @Inject constructor(private val dataSourceFactory: MoviesDataSource.Factory) : MoviesRepository {

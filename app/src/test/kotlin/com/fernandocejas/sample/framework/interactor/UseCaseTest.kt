@@ -1,82 +1,39 @@
 package com.fernandocejas.sample.framework.interactor
 
-import com.fernandocejas.sample.UnitTest
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Single
-import org.amshove.kluent.shouldBe
+import com.fernandocejas.sample.AndroidTest
+import kotlinx.coroutines.experimental.runBlocking
+import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-class UseCaseTest : UnitTest() {
+class UseCaseTest : AndroidTest() {
 
-    private val rxSingleUseCase = TestRxSingleUseCase()
-    private val rxObservableUseCase = TestRxObservableUseCase()
-    private val rxFlowableUseCase = TestRxFlowableUseCase()
-    private val rxCompletableUseCase = TestUseCaseRxCompletable()
+    private val TYPE_TEST = "Test"
+    private val TYPE_PARAM = "ParamTest"
 
-    @Test fun `should dispose disposables in RxSingle UseCase using Observer`() {
-        rxSingleUseCase.execute(TestUseCaseRxSingleObserver())
-        `assert disposables are disposed`(rxSingleUseCase)
+    private val useCase = MyUseCase()
+
+    @Test fun `running use case should return use case type`() {
+        val myParams = MyParams(TYPE_PARAM)
+        val myType = runBlocking { useCase.run(myParams) }
+
+        myType shouldEqual MyType(TYPE_TEST)
     }
 
-    @Test fun `should dispose disposables in RxSingle UseCase using Functions`() {
-        rxSingleUseCase.execute({ _ -> }, { _ -> }, null)
-        `assert disposables are disposed`(rxSingleUseCase)
+    @Test fun `should return correct data when executing use case`() {
+        var myTypeResult: MyType? = null
+
+        val myParams = MyParams("TestParam")
+        val onSuccess = { myType: MyType -> myTypeResult = myType }
+
+        runBlocking { useCase.execute(onSuccess, myParams) }
+
+        myTypeResult shouldEqual MyType(TYPE_TEST)
     }
 
-    @Test fun `should dispose disposables in RxObservable UseCase using Observer`() {
-        rxObservableUseCase.execute(TestUseCaseRxObservableObserver())
-        `assert disposables are disposed`(rxObservableUseCase)
-    }
+    data class MyType(val name: String)
+    data class MyParams(val name: String)
 
-    @Test fun `should dispose disposables in RxObservable UseCase using Functions`() {
-        rxObservableUseCase.execute({ _ -> }, { _ -> }, null)
-        `assert disposables are disposed`(rxObservableUseCase)
-    }
-
-    @Test fun `should dispose disposables in RxFlowable UseCase using Observer`() {
-        rxFlowableUseCase.execute(TestUseCaseRxFlowableObserver())
-        `assert disposables are disposed`(rxFlowableUseCase)
-    }
-
-    @Test fun `should dispose disposables in RxFlowable UseCase using Functions`() {
-        rxFlowableUseCase.execute({ _ -> }, { _ -> }, null)
-        `assert disposables are disposed`(rxFlowableUseCase)
-    }
-
-    @Test fun `should dispose disposables in RxCompletable UseCase with Empty Params`() {
-        rxCompletableUseCase.execute(null)
-        `assert disposables are disposed`(rxCompletableUseCase)
-    }
-
-    @Test fun `should dispose disposables in RxCompletable UseCase using Functions`() {
-        rxCompletableUseCase.execute({ }, null)
-        `assert disposables are disposed`(rxCompletableUseCase)
-    }
-
-    private fun `assert disposables are disposed`(useCase: UseCase<Any, UseCase.None>) {
-        useCase.disposables.isDisposed shouldBe false
-        useCase.dispose()
-        useCase.disposables.isDisposed shouldBe true
-    }
-
-    private class TestUseCaseRxSingleObserver : UseCaseObserver.RxSingle<String>()
-    private class TestRxSingleUseCase : UseCase.RxSingle<String, UseCase.None>() {
-        override fun build(params: None?): Single<String> = Single.just("test")
-    }
-
-    private class TestUseCaseRxObservableObserver : UseCaseObserver.RxObservable<String>()
-    private class TestRxObservableUseCase : UseCase.RxObservable<String, UseCase.None>() {
-        override fun build(params: None?): Observable<String> = Observable.just("test")
-    }
-
-    private class TestUseCaseRxFlowableObserver : UseCaseObserver.RxFlowable<String>()
-    private class TestRxFlowableUseCase : UseCase.RxFlowable<String, UseCase.None>() {
-        override fun build(params: None?): Flowable<String> = Flowable.just("test")
-    }
-
-    private class TestUseCaseRxCompletable : UseCase.RxCompletable<UseCase.None>() {
-        override fun build(params: None?): Completable  = Completable.complete()
+    private inner class MyUseCase : UseCase<MyType, MyParams>() {
+        override suspend fun run(params: MyParams) = MyType(TYPE_TEST)
     }
 }

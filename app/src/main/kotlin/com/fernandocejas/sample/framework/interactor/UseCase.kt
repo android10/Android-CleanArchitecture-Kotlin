@@ -1,50 +1,17 @@
 package com.fernandocejas.sample.framework.interactor
 
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 
 abstract class UseCase<out Type, in Params> where Type : Any {
 
-    internal val disposables = CompositeDisposable()
+    abstract suspend fun run(params: Params): Type
 
-    fun dispose() = disposables.dispose()
-
-    abstract fun build(params: Params?): Type
-
-    abstract class RxSingle<T, in P> : UseCase<Single<T>, P>() {
-        fun execute(observer: UseCaseObserver.RxSingle<T>, params: P? = null) =
-                disposables.add(build(params).subscribeWith(observer))
-
-        fun execute(onSuccess: (T) -> Unit, onError: (Throwable) -> Unit, params: P? = null) =
-            disposables.add(build(params).subscribe(onSuccess, onError))
-    }
-
-    abstract class RxObservable<T, in P> : UseCase<Observable<T>, P>() {
-        fun execute(observer: UseCaseObserver.RxObservable<T>, params: P? = null) =
-            disposables.add(build(params).subscribeWith(observer))
-
-        fun execute(onNext: (T) -> Unit, onError: (Throwable) -> Unit, params: P? = null) {
-            disposables.add(build(params).subscribe(onNext, onError))
-        }
-    }
-
-    abstract class RxFlowable<T, in P> : UseCase<Flowable<T>, P>() {
-        fun execute(subscriber: UseCaseObserver.RxFlowable<T>, params: P? = null) =
-                disposables.add(build(params).subscribeWith(subscriber))
-
-        fun execute(onNext: (T) -> Unit, onError: (Throwable) -> Unit, params: P? = null) {
-            disposables.add(build(params).subscribe(onNext, onError))
-        }
-    }
-
-    abstract class RxCompletable<in P> : UseCase<Completable, P>() {
-        fun execute(params: P? = null) = execute({}, params)
-
-        fun execute(onComplete: () -> Unit = {}, params: P? = null) =
-                disposables.add(build(params).subscribe(onComplete))
+    fun execute(onSuccess: (Type) -> Unit, params: Params) {
+        val result = async(CommonPool) { run(params) }
+        launch(UI) { onSuccess.invoke(result.await()) }
     }
 
     class None

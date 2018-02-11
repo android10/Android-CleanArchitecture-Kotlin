@@ -77,6 +77,8 @@ dependencies {
 
   //Application dependencies
   implementation applicationDependencies.kotlin
+  implementation applicationDependencies.kotlinCoroutines
+  implementation applicationDependencies.kotlinCoroutinesAndroid
   implementation applicationDependencies.appCompat
   implementation applicationDependencies.cardView
   implementation applicationDependencies.recyclerView
@@ -84,10 +86,7 @@ dependencies {
   implementation applicationDependencies.androidAnnotations
   implementation applicationDependencies.glide
   implementation applicationDependencies.dagger
-  implementation applicationDependencies.rxJava
-  implementation applicationDependencies.rxAndroid
   implementation applicationDependencies.retrofit
-  implementation applicationDependencies.retrofitAdapter
   implementation applicationDependencies.okhttpLoggingInterceptor
 
   //Unit/Integration tests dependencies
@@ -99,14 +98,20 @@ dependencies {
   testImplementation unitTestDependencies.kluent
 
   //Acceptance tests dependencies
-  androidTestCompile acceptanceTestDependencies.testRunner
-  androidTestCompile acceptanceTestDependencies.testRules
-  androidTestCompile acceptanceTestDependencies.espressoCore
-  androidTestCompile acceptanceTestDependencies.espressoIntents
-  androidTestCompile acceptanceTestDependencies.androidAnnotations
+  androidTestImplementation acceptanceTestDependencies.testRunner
+  androidTestImplementation acceptanceTestDependencies.testRules
+  androidTestImplementation acceptanceTestDependencies.espressoCore
+  androidTestImplementation acceptanceTestDependencies.espressoIntents
+  androidTestImplementation acceptanceTestDependencies.androidAnnotations
 
   //Development dependencies
   debugImplementation developmentDependencies.leakCanary
   releaseImplementation developmentDependencies.leakCanaryNoop
   testImplementation developmentDependencies.leakCanaryNoop
+}
+
+kotlin {
+  experimental {
+    coroutines "enable"
+  }
 }

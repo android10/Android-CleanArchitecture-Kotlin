@@ -11,13 +11,11 @@ ext {
   glide_version = '4.0.0'
 
   //Third party libraries
+  kotlin_coroutines_version = '0.22.1'
   dagger_version = '2.9'
-  rxJava_version = '2.1.2'
-  rxAndroid_version = '2.0.1'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
   retrofit_version = '2.3.0'
-  retrofit_adapter_version = '1.0.0'
   okhttp_logging_interceptor_version = '3.8.1'
 
   //Unit Testing
@@ -35,6 +33,8 @@ ext {
 
   mainApplication = [
       kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+      kotlinCoroutines:           "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version",
+      kotlinCoroutinesAndroid:    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version",
       appCompat:                  "com.android.support:appcompat-v7:$appCompat_version",
       cardView:                   "com.android.support:cardview-v7:$appCompat_version",
       recyclerView:               "com.android.support:recyclerview-v7:$appCompat_version",
@@ -45,10 +45,7 @@ ext {
       dagger:                     "com.google.dagger:dagger:$dagger_version",
       javaxAnnotation:            "javax.annotation:jsr250-api:$javaxAnnotations_version",
       javaxInject:                "javax.inject:javax.inject:$javaxInject_version",
-      rxJava:                     "io.reactivex.rxjava2:rxjava:$rxJava_version",
-      rxAndroid:                  "io.reactivex.rxjava2:rxandroid:$rxAndroid_version",
       retrofit:                   "com.squareup.retrofit2:converter-gson:$retrofit_version",
-      retrofitAdapter:            "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_adapter_version",
       okhttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
 
 

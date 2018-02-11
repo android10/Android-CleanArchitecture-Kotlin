@@ -4,10 +4,7 @@ import android.content.Context
 import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.BuildConfig
 import com.fernandocejas.sample.features.movies.MoviesRepository
-import com.fernandocejas.sample.framework.executor.ExecutionScheduler
-import com.fernandocejas.sample.framework.executor.ThreadScheduler
 import com.fernandocejas.sample.framework.network.Endpoints
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -21,14 +18,11 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides @Singleton fun provideApplicationContext(): Context = application
 
-    @Provides @Singleton fun provideExecutionScheduler(threadScheduler: ThreadScheduler): ExecutionScheduler = threadScheduler
-
     @Provides @Singleton fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(Endpoints.BASE)
                 .client(createClient())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
 

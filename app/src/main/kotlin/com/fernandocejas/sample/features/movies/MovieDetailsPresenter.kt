@@ -8,12 +8,6 @@ class MovieDetailsPresenter
 
     internal lateinit var movieDetailsView: MovieDetailsView
 
-    fun destroy() {
-        getMovieDetails.dispose()
-        playMovie.dispose()
-        movieDetailsView.dispose()
-    }
-
     fun loadMovieDetails(movieId: Int) {
         movieDetailsView.showLoading()
         getMovieDetails.execute(
@@ -22,9 +16,8 @@ class MovieDetailsPresenter
                             movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
                     movieDetailsView.renderDetails(viewModel)
                     movieDetailsView.hideLoading() },
-                { TODO() },
                 GetMovieDetails.Params(movieId))
     }
 
-    fun playMovie(url: String) = playMovie.execute(PlayMovie.Params(url))
+    fun playMovie(url: String) = playMovie.execute({}, PlayMovie.Params(url))
 }

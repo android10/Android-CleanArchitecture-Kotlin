@@ -5,6 +5,7 @@ import android.content.Intent
 import com.fernandocejas.sample.BaseActivity
 
 class MovieDetailsActivity : BaseActivity() {
+
     companion object {
         private const val INTENT_EXTRA_PARAM_MOVIE = "com.fernandocejas.INTENT_PARAM_MOVIE"
 

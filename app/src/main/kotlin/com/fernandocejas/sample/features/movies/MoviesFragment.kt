@@ -28,11 +28,6 @@ class MoviesFragment : BaseFragment(), MoviesView {
         if (firstTimeCreated(savedInstanceState)) { initializeView(); loadMovies() }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        moviesPresenter.destroy()
-    }
-
     override fun renderList(movies: List<MovieViewModel>) {
         moviesAdapter.collection = movies
     }
@@ -47,10 +42,6 @@ class MoviesFragment : BaseFragment(), MoviesView {
 
     override fun hideLoading() {
         //TODO: implement method
-    }
-
-    override fun dispose() {
-        //TODO: dispose view resources
     }
 
     private fun initializeView() {
