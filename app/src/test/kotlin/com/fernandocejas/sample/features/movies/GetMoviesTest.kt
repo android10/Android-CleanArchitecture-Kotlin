@@ -35,5 +35,5 @@ class GetMoviesTest : UnitTest() {
         testScheduler verify highPrioritySingle
     }
 
-    private fun createMovieList() = Single.just(listOf(Movie.create { String.empty() }))
+    private fun createMovieList() = Single.just(listOf(Movie(1, String.empty())))
 }
