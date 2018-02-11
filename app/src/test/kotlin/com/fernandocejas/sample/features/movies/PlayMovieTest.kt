@@ -1,8 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
-import com.nhaarman.mockito_kotlin.anyVararg
-import com.nhaarman.mockito_kotlin.verify
 import org.amshove.kluent.shouldBe
 import org.junit.Before
 import org.junit.Test

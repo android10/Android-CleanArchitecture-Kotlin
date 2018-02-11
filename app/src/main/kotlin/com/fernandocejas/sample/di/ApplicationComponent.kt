@@ -11,14 +11,11 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules = [(ApplicationModule::class), (ApplicationBinders::class), (MoviesModule::class)])
+@Component(modules = [ApplicationModule::class, MoviesModule::class])
 interface ApplicationComponent {
     fun inject(application: AndroidApplication)
     fun inject(routeActivity: RouteActivity)
 
-    //TODO: do scoping here
     fun inject(moviesFragment: MoviesFragment)
     fun inject(movieDetailsFragment: MovieDetailsFragment)
-
-    fun subComponentBuilders(): Map<Class<*>, Provider<SubcomponentBuilder<*>>>
 }
