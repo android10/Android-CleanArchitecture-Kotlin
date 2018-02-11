@@ -20,9 +20,11 @@ class MoviesAdapter
 
     internal var clickListener: (MovieViewModel, Navigator.Extras) -> Unit = { _, _ -> }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.row_movie))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            ViewHolder(parent.inflate(R.layout.row_movie))
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(collection[position], clickListener)
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
+            viewHolder.bind(collection[position], clickListener)
 
     override fun getItemCount() = collection.size
 

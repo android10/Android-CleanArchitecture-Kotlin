@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.toolbar.toolbar
 import javax.inject.Inject
 
 class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
+
     companion object {
         private const val PARAM_MOVIE = "param_movie"
 
@@ -100,7 +101,6 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
         movieDetailsPresenter.movieDetailsView = this
     }
 
-    private fun loadMovieDetails() {
-        movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieViewModel).id)
-    }
+    private fun loadMovieDetails() =
+            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieViewModel).id)
 }

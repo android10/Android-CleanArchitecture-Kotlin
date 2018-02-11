@@ -3,6 +3,7 @@ package com.fernandocejas.sample.di
 import android.content.Context
 import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.BuildConfig
+import com.fernandocejas.sample.features.movies.MoviesRepository
 import com.fernandocejas.sample.framework.executor.ExecutionScheduler
 import com.fernandocejas.sample.framework.executor.ThreadScheduler
 import com.fernandocejas.sample.framework.network.Endpoints
@@ -39,4 +40,6 @@ class ApplicationModule(private val application: AndroidApplication) {
         }
         return okHttpClientBuilder.build()
     }
+
+    @Provides @Singleton fun provideMoviesRepository(repository: MoviesRepository.Source): MoviesRepository = repository
 }
