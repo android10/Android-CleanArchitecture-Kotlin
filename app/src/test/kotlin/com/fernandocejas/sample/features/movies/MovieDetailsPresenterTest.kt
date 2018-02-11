@@ -46,7 +46,7 @@ class MovieDetailsPresenterTest : UnitTest() {
         movieDetailsPresenter.loadMovieDetails(MOVIE_ID)
         verify(getMovieDetails).execute(onCompleteCaptor.capture(), anyVararg(), eq(GetMovieDetails.Params(MOVIE_ID)))
 
-        onCompleteCaptor.firstValue.invoke(MovieDetails.create { })
+        onCompleteCaptor.firstValue.invoke(MovieDetails.empty())
         verify(movieDetailsView).renderDetails(anyVararg())
         verify(movieDetailsView).hideLoading()
     }

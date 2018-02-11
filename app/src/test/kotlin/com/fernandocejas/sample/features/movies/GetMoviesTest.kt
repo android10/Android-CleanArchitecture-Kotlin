@@ -3,7 +3,6 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.TestScheduler
 import com.fernandocejas.sample.TestScheduler.Function.highPrioritySingle
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.framework.extension.empty
 import com.fernandocejas.sample.framework.interactor.UseCase
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
@@ -35,5 +34,5 @@ class GetMoviesTest : UnitTest() {
         testScheduler verify highPrioritySingle
     }
 
-    private fun createMovieList() = Single.just(listOf(Movie(1, String.empty())))
+    private fun createMovieList() = Single.just(listOf(Movie.empty()))
 }
