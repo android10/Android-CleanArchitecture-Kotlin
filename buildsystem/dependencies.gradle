@@ -19,7 +19,7 @@ ext {
   okhttp_logging_interceptor_version = '3.8.1'
 
   //Unit Testing
-  robolectric_version = '3.3.2'
+  robolectric_version = '3.7.1'
   junit_version = '4.12'
   mockito_version = '1.4.0'
   kluent_version = '1.14'
