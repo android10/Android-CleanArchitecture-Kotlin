@@ -17,7 +17,7 @@ class PlayMovieTest : AndroidTest() {
     @Test fun `should play movie trailer`() {
         val params = PlayMovie.Params("https://www.youtube.com/watch?v=fernando")
 
-        playMovie.execute(any(), params)
+        playMovie.execute({}, params)
 
         true shouldBe true //TODO: check shouldNavigateTo
     }
