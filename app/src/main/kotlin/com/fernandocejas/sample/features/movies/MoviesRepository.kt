@@ -15,8 +15,7 @@ interface MoviesRepository {
         }
 
         override fun movieDetails(movieId: Int): MovieDetails {
-            val movieDetailsEntity = service.movieDetails(movieId).execute().body()
-                    ?: MovieDetailsEntity.empty()
+            val movieDetailsEntity = service.movieDetails(movieId).execute().body() ?: MovieDetailsEntity.empty()
             return movieDetailsEntity.toMovieDetails()
         }
     }
