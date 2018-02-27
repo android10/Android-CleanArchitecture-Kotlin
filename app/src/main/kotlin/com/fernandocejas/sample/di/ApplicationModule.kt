@@ -3,7 +3,6 @@ package com.fernandocejas.sample.di
 import android.content.Context
 import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.BuildConfig
-import com.fernandocejas.sample.features.movies.MoviesDataSource
 import com.fernandocejas.sample.features.movies.MoviesRepository
 import com.fernandocejas.sample.framework.network.Endpoints
 import dagger.Module
@@ -36,5 +35,5 @@ class ApplicationModule(private val application: AndroidApplication) {
         return okHttpClientBuilder.build()
     }
 
-    @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesDataSource): MoviesRepository = dataSource
+    @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesRepository.NetworkDataSource): MoviesRepository = dataSource
 }
