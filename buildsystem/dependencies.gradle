@@ -7,7 +7,7 @@ allprojects {
 
 ext {
   //Android libraries
-  appCompat_version = '27.0.2'
+  appCompat_version = '27.1.0'
   glide_version = '4.0.0'
 
   //Third party libraries
