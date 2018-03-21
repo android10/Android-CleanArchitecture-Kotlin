@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import com.fernandocejas.sample.di.ApplicationComponent
 
 abstract class BaseFragment : Fragment() {
-    init {
-        retainInstance = true
-    }
+    init { retainInstance = true }
 
     abstract fun layoutId(): Int
 
