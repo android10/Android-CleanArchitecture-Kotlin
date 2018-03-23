@@ -12,7 +12,7 @@ ext {
 
   //Third party libraries
   kotlin_coroutines_version = '0.22.1'
-  dagger_version = '2.9'
+  dagger_version = '2.11'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
   retrofit_version = '2.3.0'
