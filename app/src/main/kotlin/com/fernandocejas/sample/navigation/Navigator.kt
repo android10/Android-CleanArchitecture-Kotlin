@@ -8,7 +8,7 @@ import android.widget.ImageView
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
-import com.fernandocejas.sample.features.movies.MovieViewModel
+import com.fernandocejas.sample.features.movies.MovieModel
 import com.fernandocejas.sample.features.movies.MoviesActivity
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,7 +25,7 @@ class Navigator
         }
     }
 
-    fun showMovieDetails(activity: FragmentActivity, movie: MovieViewModel, navigationExtras: Extras) {
+    fun showMovieDetails(activity: FragmentActivity, movie: MovieModel, navigationExtras: Extras) {
         val intent = MovieDetailsActivity.callingIntent(activity, movie)
         val sharedView = navigationExtras.transitionSharedElement as ImageView
         val activityOptions = ActivityOptionsCompat

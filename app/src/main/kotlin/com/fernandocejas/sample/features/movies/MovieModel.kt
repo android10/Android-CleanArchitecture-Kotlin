@@ -4,9 +4,9 @@ import android.os.Parcel
 import com.fernandocejas.sample.framework.platform.KParcelable
 import com.fernandocejas.sample.framework.platform.parcelableCreator
 
-data class MovieViewModel(val id: Int, val poster: String) : KParcelable {
+data class MovieModel(val id: Int, val poster: String) : KParcelable {
     companion object {
-        @JvmField val CREATOR = parcelableCreator(::MovieViewModel)
+        @JvmField val CREATOR = parcelableCreator(::MovieModel)
     }
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString())

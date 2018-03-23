@@ -34,11 +34,11 @@ class MoviesFragment : BaseFragment() {
         initializeView()
     }
 
-    private fun renderMovies(movies: List<MovieViewModel>) {
+    private fun renderMovies(movies: List<MovieModel>) {
         moviesAdapter.collection = movies
     }
 
-    private fun displayDetails(movie: MovieViewModel, navigationExtras: Navigator.Extras) {
+    private fun displayDetails(movie: MovieModel, navigationExtras: Navigator.Extras) {
         activity?.let { navigator.showMovieDetails(it, movie, navigationExtras) }
     }
 

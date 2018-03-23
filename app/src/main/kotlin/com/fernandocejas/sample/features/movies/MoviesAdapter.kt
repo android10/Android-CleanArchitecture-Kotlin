@@ -14,11 +14,11 @@ import kotlin.properties.Delegates
 class MoviesAdapter
 @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
-    internal var collection: List<MovieViewModel> by Delegates.observable(emptyList()) {
+    internal var collection: List<MovieModel> by Delegates.observable(emptyList()) {
         _, _, _ -> notifyDataSetChanged()
     }
 
-    internal var clickListener: (MovieViewModel, Navigator.Extras) -> Unit = { _, _ -> }
+    internal var clickListener: (MovieModel, Navigator.Extras) -> Unit = { _, _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             ViewHolder(parent.inflate(R.layout.row_movie))
@@ -29,9 +29,9 @@ class MoviesAdapter
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movieViewModel: MovieViewModel, clickListener: (MovieViewModel, Navigator.Extras) -> Unit) {
-            itemView.moviePoster.loadFromUrl(movieViewModel.poster)
-            itemView.setOnClickListener { clickListener(movieViewModel, Navigator.Extras(itemView.moviePoster)) }
+        fun bind(movieModel: MovieModel, clickListener: (MovieModel, Navigator.Extras) -> Unit) {
+            itemView.moviePoster.loadFromUrl(movieModel.poster)
+            itemView.setOnClickListener { clickListener(movieModel, Navigator.Extras(itemView.moviePoster)) }
         }
     }
 }

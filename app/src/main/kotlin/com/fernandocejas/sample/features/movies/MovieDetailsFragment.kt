@@ -23,7 +23,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     companion object {
         private const val PARAM_MOVIE = "param_movie"
 
-        fun forMovie(movie: MovieViewModel): MovieDetailsFragment {
+        fun forMovie(movie: MovieModel): MovieDetailsFragment {
             val movieDetailsFragment = MovieDetailsFragment()
             val arguments = Bundle()
             arguments.putParcelable(PARAM_MOVIE, movie)
@@ -52,7 +52,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
         else {
             movieDetailsAnimator.scaleUpView(moviePlay)
             movieDetailsAnimator.cancelTransition(moviePoster)
-            moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieViewModel).poster)
+            moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieModel).poster)
         }
     }
 
@@ -93,5 +93,5 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     }
 
     private fun loadMovieDetails() =
-            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieViewModel).id)
+            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieModel).id)
 }
