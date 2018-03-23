@@ -8,6 +8,7 @@ allprojects {
 ext {
   //Android libraries
   appCompat_version = '27.1.0'
+  archComponents_version = '1.1.1'
   glide_version = '4.0.0'
 
   //Third party libraries
@@ -40,6 +41,8 @@ ext {
       recyclerView:               "com.android.support:recyclerview-v7:$appCompat_version",
       design:                     "com.android.support:design:$appCompat_version",
       androidAnnotations:         "com.android.support:support-annotations:$appCompat_version",
+      archComponents:             "android.arch.lifecycle:extensions:$archComponents_version",
+      archComponentsCompiler:     "android.arch.lifecycle:compiler:$archComponents_version",
       glide:                      "com.github.bumptech.glide:glide:$glide_version",
       daggerCompiler:             "com.google.dagger:dagger-compiler:$dagger_version",
       dagger:                     "com.google.dagger:dagger:$dagger_version",
