@@ -17,7 +17,7 @@ class MoviesFragment : BaseFragment() {
     @Inject lateinit var moviesViewModelFactory: MoviesViewModel.Factory
     @Inject lateinit var moviesAdapter: MoviesAdapter
 
-    lateinit var moviesViewModel: MoviesViewModel
+    private lateinit var moviesViewModel: MoviesViewModel
 
     override fun layoutId() = R.layout.fragment_movies
 
@@ -26,16 +26,12 @@ class MoviesFragment : BaseFragment() {
         appComponent.inject(this)
 
         moviesViewModel = ViewModelProviders.of(this, moviesViewModelFactory).get(MoviesViewModel::class.java)
-        moviesViewModel.movies.observe(this, Observer { movies -> renderMovies(movies.orEmpty()) })
+        moviesViewModel.movies.observe(this, Observer { moviesAdapter.collection = it.orEmpty() })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
-    }
-
-    private fun renderMovies(movies: List<MovieModel>) {
-        moviesAdapter.collection = movies
     }
 
     private fun displayDetails(movie: MovieModel, navigationExtras: Navigator.Extras) {
