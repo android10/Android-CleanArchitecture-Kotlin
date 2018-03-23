@@ -71,8 +71,8 @@ dependencies {
   def developmentDependencies = rootProject.ext.development
 
   //Compile time dependencies
+  kapt "android.arch.lifecycle:compiler:1.1.1"
   kapt applicationDependencies.daggerCompiler
-  kapt "android.arch.lifecycle:compiler:1.1.0"
   compileOnly applicationDependencies.javaxAnnotation
   compileOnly applicationDependencies.javaxInject
 
@@ -81,8 +81,7 @@ dependencies {
   implementation applicationDependencies.kotlinCoroutines
   implementation applicationDependencies.kotlinCoroutinesAndroid
   implementation applicationDependencies.appCompat
-  implementation "android.arch.lifecycle:runtime:1.1.0"
-  implementation "android.arch.lifecycle:viewmodel:1.1.0"
+  implementation "android.arch.lifecycle:extensions:1.1.1"
   implementation applicationDependencies.cardView
   implementation applicationDependencies.recyclerView
   implementation applicationDependencies.design
