@@ -1,5 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
@@ -33,8 +35,10 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject lateinit var movieDetailsPresenter: MovieDetailsPresenter
+    @Inject lateinit var movieDetailsViewModelFactory: MovieDetailsViewModel.Factory
     @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
+
+    private lateinit var movieDetailsViewModel: MovieDetailsViewModel
 
     override fun layoutId() = R.layout.fragment_movie_details
 
@@ -43,14 +47,15 @@ class MovieDetailsFragment : BaseFragment() {
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
 
-
+        movieDetailsViewModel = ViewModelProviders.of(this, movieDetailsViewModelFactory).get(MovieDetailsViewModel::class.java)
+        movieDetailsViewModel.movieDetails.observe(this, Observer { renderMovieDetails(it!!) })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (firstTimeCreated(savedInstanceState)) {
-            initializeView()
-            loadMovieDetails() }
+            movieDetailsViewModel.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieView).id)
+        }
         else {
             movieDetailsAnimator.scaleUpView(moviePlay)
             movieDetailsAnimator.cancelTransition(moviePoster)
@@ -66,7 +71,7 @@ class MovieDetailsFragment : BaseFragment() {
             movieDetailsAnimator.cancelTransition(moviePoster)
     }
 
-    fun renderDetails(movie: MovieDetailsView) {
+    private fun renderMovieDetails(movie: MovieDetailsView) {
         with(movie) {
             activity?.let {
                 moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
@@ -76,16 +81,9 @@ class MovieDetailsFragment : BaseFragment() {
             movieCast.text = cast
             movieDirector.text = director
             movieYear.text = year.toString()
-            moviePlay.setOnClickListener { movieDetailsPresenter.playMovie(trailer) }
+            moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
         }
         movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
         movieDetailsAnimator.scaleUpView(moviePlay)
     }
-
-    private fun initializeView() {
-        movieDetailsPresenter.movieDetailsModel = this
-    }
-
-    private fun loadMovieDetails() =
-            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieView).id)
 }
