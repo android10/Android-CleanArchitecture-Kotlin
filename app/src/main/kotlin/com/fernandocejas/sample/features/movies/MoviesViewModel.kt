@@ -6,12 +6,13 @@ import android.arch.lifecycle.ViewModelProvider
 import com.fernandocejas.sample.framework.interactor.UseCase.None
 import javax.inject.Inject
 
-class MoviesViewModel(getMovies: GetMovies) : ViewModel() {
-    init {
-        getMovies.execute({ movieList -> movies.value = movieList.map { MovieView(it.id, it.poster) } }, None())
-    }
+class MoviesViewModel(private val getMovies: GetMovies) : ViewModel() {
 
     var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
+
+    fun loadMovies() {
+        getMovies.execute({ movieList -> movies.value = movieList.map { MovieView(it.id, it.poster) } }, None())
+    }
 
     class Factory
     @Inject constructor(private val getMovies: GetMovies) : ViewModelProvider.Factory {
