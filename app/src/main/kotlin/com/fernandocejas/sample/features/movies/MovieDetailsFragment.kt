@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_movie_details.scrollView
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import javax.inject.Inject
 
-class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
+class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
 
     companion object {
         private const val PARAM_MOVIE = "param_movie"
@@ -89,7 +89,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsView {
     }
 
     private fun initializeView() {
-        movieDetailsPresenter.movieDetailsView = this
+        movieDetailsPresenter.movieDetailsModel = this
     }
 
     private fun loadMovieDetails() =

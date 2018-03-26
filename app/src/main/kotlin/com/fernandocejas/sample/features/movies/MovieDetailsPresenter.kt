@@ -6,16 +6,16 @@ class MovieDetailsPresenter
 @Inject constructor(private val getMovieDetails: GetMovieDetails,
                     private val playMovie: PlayMovie) {
 
-    internal lateinit var movieDetailsView: MovieDetailsView
+    internal lateinit var movieDetailsModel: MovieDetailsModel
 
     fun loadMovieDetails(movieId: Int) {
-        movieDetailsView.showLoading()
+        movieDetailsModel.showLoading()
         getMovieDetails.execute(
                 { movie ->
                     val viewModel = MovieDetailsViewModel(movie.id, movie.title, movie.poster,
                             movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
-                    movieDetailsView.renderDetails(viewModel)
-                    movieDetailsView.hideLoading() },
+                    movieDetailsModel.renderDetails(viewModel)
+                    movieDetailsModel.hideLoading() },
                 GetMovieDetails.Params(movieId))
     }
 

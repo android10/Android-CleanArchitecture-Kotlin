@@ -19,17 +19,17 @@ class MovieDetailsPresenterTest : UnitTest() {
 
     @Mock private lateinit var getMovieDetails: GetMovieDetails
     @Mock private lateinit var playMovie: PlayMovie
-    @Mock private lateinit var movieDetailsView: MovieDetailsView
+    @Mock private lateinit var movieDetailsModel: MovieDetailsModel
 
     @Before fun setUp() {
         movieDetailsPresenter = MovieDetailsPresenter(getMovieDetails, playMovie)
-        movieDetailsPresenter.movieDetailsView = movieDetailsView
+        movieDetailsPresenter.movieDetailsModel = movieDetailsModel
     }
 
     @Test fun `should load movie details`() {
         movieDetailsPresenter.loadMovieDetails(MOVIE_ID)
 
-        verify(movieDetailsView).showLoading()
+        verify(movieDetailsModel).showLoading()
         verify(getMovieDetails).execute(anyVararg(), eq(GetMovieDetails.Params(MOVIE_ID)))
     }
 
@@ -40,8 +40,8 @@ class MovieDetailsPresenterTest : UnitTest() {
         verify(getMovieDetails).execute(onCompleteCaptor.capture(), eq(GetMovieDetails.Params(MOVIE_ID)))
 
         onCompleteCaptor.firstValue.invoke(MovieDetails.empty())
-        verify(movieDetailsView).renderDetails(anyVararg())
-        verify(movieDetailsView).hideLoading()
+        verify(movieDetailsModel).renderDetails(anyVararg())
+        verify(movieDetailsModel).hideLoading()
     }
 
     @Test fun `should play movie`() {
