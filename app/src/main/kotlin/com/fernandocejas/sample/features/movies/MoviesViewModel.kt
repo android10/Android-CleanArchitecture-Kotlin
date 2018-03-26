@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 class MoviesViewModel(getMovies: GetMovies) : ViewModel() {
     init {
-        getMovies.execute({ movieList -> movies.value = movieList.map { MovieModel(it.id, it.poster) } }, None())
+        getMovies.execute({ movieList -> movies.value = movieList.map { MovieView(it.id, it.poster) } }, None())
     }
 
-    var movies: MutableLiveData<List<MovieModel>> = MutableLiveData()
+    var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
     class Factory
     @Inject constructor(private val getMovies: GetMovies) : ViewModelProvider.Factory {

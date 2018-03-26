@@ -12,7 +12,7 @@ class MovieDetailsPresenter
         movieDetailsModel.showLoading()
         getMovieDetails.execute(
                 { movie ->
-                    val viewModel = MovieDetailsViewModel(movie.id, movie.title, movie.poster,
+                    val viewModel = MovieDetailsView(movie.id, movie.title, movie.poster,
                             movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
                     movieDetailsModel.renderDetails(viewModel)
                     movieDetailsModel.hideLoading() },

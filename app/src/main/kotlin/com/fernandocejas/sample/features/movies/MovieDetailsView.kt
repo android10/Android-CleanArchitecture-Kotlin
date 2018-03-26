@@ -1,6 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
-data class MovieDetailsViewModel (val id: Int,
+data class MovieDetailsView(val id: Int,
                                   val title: String,
                                   val poster: String,
                                   val summary: String,

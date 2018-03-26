@@ -18,12 +18,12 @@ import kotlinx.android.synthetic.main.fragment_movie_details.scrollView
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import javax.inject.Inject
 
-class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
+class MovieDetailsFragment : BaseFragment() {
 
     companion object {
         private const val PARAM_MOVIE = "param_movie"
 
-        fun forMovie(movie: MovieModel): MovieDetailsFragment {
+        fun forMovie(movie: MovieView): MovieDetailsFragment {
             val movieDetailsFragment = MovieDetailsFragment()
             val arguments = Bundle()
             arguments.putParcelable(PARAM_MOVIE, movie)
@@ -42,6 +42,8 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +54,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
         else {
             movieDetailsAnimator.scaleUpView(moviePlay)
             movieDetailsAnimator.cancelTransition(moviePoster)
-            moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieModel).poster)
+            moviePoster.loadFromUrl((arguments!![PARAM_MOVIE] as MovieView).poster)
         }
     }
 
@@ -64,7 +66,7 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
             movieDetailsAnimator.cancelTransition(moviePoster)
     }
 
-    override fun renderDetails(movie: MovieDetailsViewModel) {
+    fun renderDetails(movie: MovieDetailsView) {
         with(movie) {
             activity?.let {
                 moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
@@ -80,18 +82,10 @@ class MovieDetailsFragment : BaseFragment(), MovieDetailsModel {
         movieDetailsAnimator.scaleUpView(moviePlay)
     }
 
-    override fun showLoading() {
-        //TODO: implement method
-    }
-
-    override fun hideLoading() {
-        //TODO: implement method
-    }
-
     private fun initializeView() {
         movieDetailsPresenter.movieDetailsModel = this
     }
 
     private fun loadMovieDetails() =
-            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieModel).id)
+            movieDetailsPresenter.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieView).id)
 }
