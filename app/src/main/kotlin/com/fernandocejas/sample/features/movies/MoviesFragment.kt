@@ -34,14 +34,10 @@ class MoviesFragment : BaseFragment() {
         initializeView()
     }
 
-    private fun displayDetails(movie: MovieModel, navigationExtras: Navigator.Extras) {
-        activity?.let { navigator.showMovieDetails(it, movie, navigationExtras) }
-    }
-
     private fun initializeView() {
         movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-//        moviesAdapter.clickListener =
-//                { movieViewModel, navigationExtras ->  moviesPresenter.onMovieClick(movieViewModel, navigationExtras) }
         movieList.adapter = moviesAdapter
+        moviesAdapter.clickListener = { movieViewModel, navigationExtras ->
+                    navigator.showMovieDetails(activity!!, movieViewModel, navigationExtras) }
     }
 }
