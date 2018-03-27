@@ -1,12 +1,12 @@
 package com.fernandocejas.sample.features.movies
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
+import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.framework.extension.visible
 import kotlinx.android.synthetic.main.fragment_movie_details.movieCast
@@ -46,9 +46,7 @@ class MovieDetailsFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
-
-        movieDetailsViewModel = viewModel(movieDetailsViewModelFactory)
-        movieDetailsViewModel.movieDetails.observe(this, Observer { renderMovieDetails(it!!) })
+        movieDetailsViewModel = viewModel(movieDetailsViewModelFactory) { observe(movieDetails, ::renderMovieDetails) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,17 +68,19 @@ class MovieDetailsFragment : BaseFragment() {
             movieDetailsAnimator.cancelTransition(moviePoster)
     }
 
-    private fun renderMovieDetails(movie: MovieDetailsView) {
-        with(movie) {
-            activity?.let {
-                moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
-                it.toolbar.title = title
+    private fun renderMovieDetails(movie: MovieDetailsView?) {
+        movie?.let {
+            with(movie) {
+                activity?.let {
+                    moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
+                    it.toolbar.title = title
+                }
+                movieSummary.text = summary
+                movieCast.text = cast
+                movieDirector.text = director
+                movieYear.text = year.toString()
+                moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
             }
-            movieSummary.text = summary
-            movieCast.text = cast
-            movieDirector.text = director
-            movieYear.text = year.toString()
-            moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
         }
         movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
         movieDetailsAnimator.scaleUpView(moviePlay)

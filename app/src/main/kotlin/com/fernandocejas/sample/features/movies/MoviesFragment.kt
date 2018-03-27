@@ -1,11 +1,11 @@
 package com.fernandocejas.sample.features.movies
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_movies.movieList
@@ -24,9 +24,7 @@ class MoviesFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-
-        moviesViewModel = viewModel(moviesViewModelFactory)
-        moviesViewModel.movies.observe(this, Observer { moviesAdapter.collection = it.orEmpty() })
+        moviesViewModel = viewModel(moviesViewModelFactory) { observe(movies, ::renderMoviesList) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,5 +38,9 @@ class MoviesFragment : BaseFragment() {
         movieList.adapter = moviesAdapter
         moviesAdapter.clickListener = { movie, navigationExtras ->
                     navigator.showMovieDetails(activity!!, movie, navigationExtras) }
+    }
+
+    private fun renderMoviesList(movies: List<MovieView>?) {
+        moviesAdapter.collection = movies.orEmpty()
     }
 }
