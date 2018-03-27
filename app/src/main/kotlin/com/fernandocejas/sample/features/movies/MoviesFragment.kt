@@ -1,12 +1,12 @@
 package com.fernandocejas.sample.features.movies
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_movies.movieList
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class MoviesFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
 
-        moviesViewModel = ViewModelProviders.of(this, moviesViewModelFactory).get(MoviesViewModel::class.java)
+        moviesViewModel = viewModel(moviesViewModelFactory)
         moviesViewModel.movies.observe(this, Observer { moviesAdapter.collection = it.orEmpty() })
     }
 

@@ -1,13 +1,13 @@
 package com.fernandocejas.sample.features.movies
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
+import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.framework.extension.visible
 import kotlinx.android.synthetic.main.fragment_movie_details.movieCast
 import kotlinx.android.synthetic.main.fragment_movie_details.movieDetails
@@ -47,7 +47,7 @@ class MovieDetailsFragment : BaseFragment() {
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
 
-        movieDetailsViewModel = ViewModelProviders.of(this, movieDetailsViewModelFactory).get(MovieDetailsViewModel::class.java)
+        movieDetailsViewModel = viewModel(movieDetailsViewModelFactory)
         movieDetailsViewModel.movieDetails.observe(this, Observer { renderMovieDetails(it!!) })
     }
 
