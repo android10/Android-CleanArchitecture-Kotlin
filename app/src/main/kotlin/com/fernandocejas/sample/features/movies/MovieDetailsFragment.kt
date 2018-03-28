@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
@@ -36,7 +35,6 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
     private lateinit var movieDetailsViewModel: MovieDetailsViewModel

@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
@@ -15,7 +14,6 @@ import javax.inject.Inject
 class MoviesFragment : BaseFragment() {
 
     @Inject lateinit var navigator: Navigator
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var moviesAdapter: MoviesAdapter
 
     private lateinit var moviesViewModel: MoviesViewModel
