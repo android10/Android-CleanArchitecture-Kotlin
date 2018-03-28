@@ -1,5 +1,6 @@
 package com.fernandocejas.sample.features.movies
 
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
@@ -35,7 +36,7 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject lateinit var movieDetailsViewModelFactory: MovieDetailsViewModel.Factory
+    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
     private lateinit var movieDetailsViewModel: MovieDetailsViewModel
@@ -46,7 +47,7 @@ class MovieDetailsFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
-        movieDetailsViewModel = viewModel(movieDetailsViewModelFactory) { observe(movieDetails, ::renderMovieDetails) }
+        movieDetailsViewModel = viewModel(viewModelFactory) { observe(movieDetails, ::renderMovieDetails) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
