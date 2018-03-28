@@ -11,7 +11,10 @@ class MoviesViewModel(private val getMovies: GetMovies) : ViewModel() {
     var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 
     fun loadMovies() {
-        getMovies.execute({ movieList -> movies.value = movieList.map { MovieView(it.id, it.poster) } }, None())
+        getMovies.execute(
+                { movieList ->
+                    movies.value = movieList.map { MovieView(it.id, it.poster) }
+                }, None())
     }
 
     class Factory
