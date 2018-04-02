@@ -29,7 +29,7 @@ class MoviesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
-        moviesViewModel.loadMovies()
+        loadMoviesList()
     }
 
     private fun initializeView() {
@@ -39,7 +39,13 @@ class MoviesFragment : BaseFragment() {
                     navigator.showMovieDetails(activity!!, movie, navigationExtras) }
     }
 
+    private fun loadMoviesList() {
+        //start loading
+        moviesViewModel.loadMovies()
+    }
+
     private fun renderMoviesList(movies: List<MovieView>?) {
         moviesAdapter.collection = movies.orEmpty()
+        //end loading
     }
 }

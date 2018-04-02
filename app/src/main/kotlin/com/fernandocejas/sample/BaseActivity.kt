@@ -2,6 +2,7 @@ package com.fernandocejas.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Window
 import com.fernandocejas.sample.framework.extension.inTransaction
 import kotlinx.android.synthetic.main.toolbar.toolbar
 

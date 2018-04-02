@@ -9,4 +9,7 @@
 
     <dimen name="movie_details_title">20dp</dimen>
     <dimen name="movie_details_text">15dp</dimen>
+
+    <!-- Progress view. -->
+    <dimen name="progress_view_height">5dp</dimen>
 </resources>
