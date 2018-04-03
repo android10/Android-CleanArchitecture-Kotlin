@@ -81,6 +81,7 @@ dependencies {
   implementation applicationDependencies.kotlinCoroutines
   implementation applicationDependencies.kotlinCoroutinesAndroid
   implementation applicationDependencies.appCompat
+  implementation applicationDependencies.constraintLayout
   implementation applicationDependencies.archComponents
   implementation applicationDependencies.cardView
   implementation applicationDependencies.recyclerView

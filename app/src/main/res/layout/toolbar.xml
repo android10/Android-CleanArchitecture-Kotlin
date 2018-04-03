@@ -5,31 +5,47 @@
     android:id="@+id/appbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true">
-
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+    android:fitsSystemWindows="true"
+    >
 
   <android.support.v7.widget.Toolbar
       android:id="@+id/toolbar"
+      style="@style/BaseToolbarStyle"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
-      style="@style/BaseToolbarStyle"
-      app:layout_scrollFlags="scroll|enterAlways"/>
+      app:layout_scrollFlags="scroll|enterAlways"
+      />
+
+  <android.support.constraint.ConstraintLayout
+      android:id="@+id/progress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="-14dp"
+      android:visibility="gone"
+      >
 
     <ProgressBar
-        android:id="@+id/progress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/progress_view_height"
-        android:layout_alignBottom="@id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:indeterminateOnly="true"
         android:indeterminateTint="@color/colorSecondary"
-        android:visibility="visible"
+        android:paddingTop="-4dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         />
 
-  </RelativeLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="4dp"
+        />
+
+  </android.support.constraint.ConstraintLayout>
 
 </android.support.design.widget.AppBarLayout>
 

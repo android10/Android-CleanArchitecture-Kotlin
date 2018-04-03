@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     >
 
-  <include layout="@layout/toolbar" />
+  <include layout="@layout/toolbar"/>
 
   <FrameLayout
       android:id="@+id/fragmentContainer"

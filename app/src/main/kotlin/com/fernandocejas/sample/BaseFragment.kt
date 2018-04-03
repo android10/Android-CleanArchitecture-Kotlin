@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fernandocejas.sample.di.ApplicationComponent
+import kotlinx.android.synthetic.main.toolbar.progress
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
@@ -25,4 +26,11 @@ abstract class BaseFragment : Fragment() {
     open fun onBackPressed() {}
 
     internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null
+
+    internal fun showProgress() = progressStatus(View.VISIBLE)
+
+    internal fun hideProgress() = progressStatus(View.GONE)
+
+    private fun progressStatus(viewStatus: Int) =
+            with(activity) { if (this is BaseActivity) this.progress.visibility = viewStatus }
 }

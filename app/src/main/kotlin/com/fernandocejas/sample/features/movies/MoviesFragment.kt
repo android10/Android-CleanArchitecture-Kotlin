@@ -40,12 +40,12 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun loadMoviesList() {
-        //start loading
+        showProgress()
         moviesViewModel.loadMovies()
     }
 
     private fun renderMoviesList(movies: List<MovieView>?) {
         moviesAdapter.collection = movies.orEmpty()
-        //end loading
+        hideProgress()
     }
 }
