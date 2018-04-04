@@ -5,6 +5,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.features.movies.MovieError.ListNotAvailable
+import com.fernandocejas.sample.framework.exception.ErrorEvent
+import com.fernandocejas.sample.framework.exception.ErrorEvent.Network
+import com.fernandocejas.sample.framework.exception.ErrorEvent.ServerDown
+import com.fernandocejas.sample.framework.extension.error
 import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.navigation.Navigator
@@ -23,7 +28,10 @@ class MoviesFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        moviesViewModel = viewModel(viewModelFactory) { observe(movies, ::renderMoviesList) }
+        moviesViewModel = viewModel(viewModelFactory) {
+            observe(movies, ::renderMoviesList)
+            error(errorEvent, ::handleError)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,5 +55,13 @@ class MoviesFragment : BaseFragment() {
     private fun renderMoviesList(movies: List<MovieView>?) {
         moviesAdapter.collection = movies.orEmpty()
         hideProgress()
+    }
+
+    private fun handleError(errorEvent: ErrorEvent?) {
+        when (errorEvent) {
+            is Network -> TODO()
+            is ServerDown -> TODO()
+            is ListNotAvailable -> TODO()
+        }
     }
 }
