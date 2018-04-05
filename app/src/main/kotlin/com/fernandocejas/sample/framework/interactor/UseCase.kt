@@ -1,7 +1,7 @@
 package com.fernandocejas.sample.framework.interactor
 
-import com.fernandocejas.sample.features.movies.MovieError
 import com.fernandocejas.sample.framework.exception.ErrorEvent
+import com.fernandocejas.sample.framework.exception.ErrorEvent.Unknown
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -16,7 +16,7 @@ abstract class UseCase<out Type, in Params> where Type : Any {
         launch(UI) {
             val result = job.await()
             when (job.isCompletedExceptionally) {
-                true -> onError.invoke(MovieError(job.getCompletionExceptionOrNull()))
+                true -> onError.invoke(Unknown(job.getCompletionExceptionOrNull()))
                 false -> onSuccess.invoke(result)
             }
         }
