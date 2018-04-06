@@ -5,11 +5,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
-import com.fernandocejas.sample.features.movies.MovieError.ListNotAvailable
-import com.fernandocejas.sample.framework.exception.ErrorEvent
-import com.fernandocejas.sample.framework.exception.ErrorEvent.Network
-import com.fernandocejas.sample.framework.exception.ErrorEvent.ServerDown
-import com.fernandocejas.sample.framework.extension.error
+import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
+import com.fernandocejas.sample.framework.exception.Failure
+import com.fernandocejas.sample.framework.exception.Failure.Network
+import com.fernandocejas.sample.framework.exception.Failure.ServerDown
+import com.fernandocejas.sample.framework.extension.failure
 import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
 import com.fernandocejas.sample.navigation.Navigator
@@ -30,7 +30,7 @@ class MoviesFragment : BaseFragment() {
         appComponent.inject(this)
         moviesViewModel = viewModel(viewModelFactory) {
             observe(movies, ::renderMoviesList)
-            error(errorEvent, ::handleError)
+            failure(failure, ::handleFailure)
         }
     }
 
@@ -57,8 +57,8 @@ class MoviesFragment : BaseFragment() {
         hideProgress()
     }
 
-    private fun handleError(errorEvent: ErrorEvent?) {
-        when (errorEvent) {
+    private fun handleFailure(failure: Failure?) {
+        when (failure) {
             is Network -> TODO()
             is ServerDown -> TODO()
             is ListNotAvailable -> TODO()
