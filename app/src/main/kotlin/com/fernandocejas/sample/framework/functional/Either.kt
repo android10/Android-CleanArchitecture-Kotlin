@@ -1,17 +1,18 @@
 package com.fernandocejas.sample.framework.functional
 
-class Either<out L, out R>
-private constructor(private val left: L? = null, private val right: R? = null) {
+sealed class Either<out L, out R> {
+    data class Left<out L>(val a: L) : Either<L, Nothing>()
+    data class Right<out R>(val b: R) : Either<Nothing, R>()
 
-    fun <L, R> left(l: L): Either<L, R> = Either(l, null)
+    val isRight: Boolean
+        get() = this is Right<R>
 
-    fun left() = left
-
-    fun isLeft() = left != null
-
-    fun <L, R> right(r: R): Either<L, R> = Either(null, r)
-
-    fun right() = right
-
-    fun isRight() = right != null
+    val isLeft: Boolean
+        get() = this is Left<L>
 }
+
+fun <T, L, R> Either<L, R>.either(fnL: (L) -> T, fnR: (R) -> T): T =
+        when (this) {
+            is Either.Left -> fnL(a)
+            is Either.Right -> fnR(b)
+        }

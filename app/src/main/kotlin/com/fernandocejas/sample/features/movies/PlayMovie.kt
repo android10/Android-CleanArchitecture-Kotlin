@@ -5,7 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.fernandocejas.sample.features.movies.PlayMovie.Params
+import com.fernandocejas.sample.framework.exception.Failure
 import com.fernandocejas.sample.framework.extension.empty
+import com.fernandocejas.sample.framework.functional.Either
+import com.fernandocejas.sample.framework.functional.Either.Right
 import com.fernandocejas.sample.framework.interactor.UseCase
 import com.fernandocejas.sample.framework.interactor.UseCase.None
 import javax.inject.Inject
@@ -16,9 +19,9 @@ class PlayMovie
     private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
     private val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
 
-    override suspend fun run(params: Params): None {
+    override suspend fun run(params: Params): Either<Failure, None> {
         watchVideoFromUrl(params.url)
-        return None()
+        return Right(None())
     }
 
     private fun watchVideoFromUrl(videoUrl: String) {

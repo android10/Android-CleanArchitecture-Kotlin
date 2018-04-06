@@ -4,6 +4,11 @@ import android.os.Bundle
 import android.view.View
 import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
+import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
+import com.fernandocejas.sample.framework.exception.Failure
+import com.fernandocejas.sample.framework.exception.Failure.Network
+import com.fernandocejas.sample.framework.exception.Failure.ServerDown
+import com.fernandocejas.sample.framework.extension.failure
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import com.fernandocejas.sample.framework.extension.observe
@@ -45,7 +50,11 @@ class MovieDetailsFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         activity?.let { movieDetailsAnimator.postponeEnterTransition(it) }
-        movieDetailsViewModel = viewModel(viewModelFactory) { observe(movieDetails, ::renderMovieDetails) }
+
+        movieDetailsViewModel = viewModel(viewModelFactory) {
+            observe(movieDetails, ::renderMovieDetails)
+            failure(failure, ::handleFailure)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,5 +92,13 @@ class MovieDetailsFragment : BaseFragment() {
         }
         movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
         movieDetailsAnimator.scaleUpView(moviePlay)
+    }
+
+    private fun handleFailure(failure: Failure?) {
+        when (failure) {
+            is Network -> TODO()
+            is ServerDown -> TODO()
+            is NonExistentMovie -> TODO()
+        }
     }
 }

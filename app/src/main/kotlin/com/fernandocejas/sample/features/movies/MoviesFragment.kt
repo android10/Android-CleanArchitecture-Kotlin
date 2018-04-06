@@ -28,6 +28,7 @@ class MoviesFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
+
         moviesViewModel = viewModel(viewModelFactory) {
             observe(movies, ::renderMoviesList)
             failure(failure, ::handleFailure)
