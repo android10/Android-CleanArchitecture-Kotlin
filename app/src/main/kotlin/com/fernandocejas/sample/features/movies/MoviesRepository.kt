@@ -1,6 +1,5 @@
 package com.fernandocejas.sample.features.movies
 
-import android.content.Context
 import com.fernandocejas.sample.framework.exception.Failure
 import com.fernandocejas.sample.framework.exception.Failure.NetworkConnection
 import com.fernandocejas.sample.framework.exception.Failure.ServerError
