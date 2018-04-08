@@ -7,8 +7,8 @@ import com.fernandocejas.sample.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
 import com.fernandocejas.sample.framework.exception.Failure
-import com.fernandocejas.sample.framework.exception.Failure.Network
-import com.fernandocejas.sample.framework.exception.Failure.ServerDown
+import com.fernandocejas.sample.framework.exception.Failure.NetworkConnection
+import com.fernandocejas.sample.framework.exception.Failure.ServerError
 import com.fernandocejas.sample.framework.extension.failure
 import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
@@ -60,8 +60,8 @@ class MoviesFragment : BaseFragment() {
 
     private fun handleFailure(failure: Failure?) {
         when (failure) {
-            is Network -> TODO()
-            is ServerDown -> TODO()
+            is NetworkConnection -> TODO()
+            is ServerError -> TODO()
             is ListNotAvailable -> TODO()
         }
     }
