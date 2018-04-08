@@ -7,6 +7,7 @@ import com.fernandocejas.sample.framework.exception.Failure.ServerError
 import com.fernandocejas.sample.framework.functional.Either
 import com.fernandocejas.sample.framework.functional.Either.Left
 import com.fernandocejas.sample.framework.functional.Either.Right
+import com.fernandocejas.sample.framework.platform.NetworkHandler
 import javax.inject.Inject
 
 interface MoviesRepository {
@@ -14,18 +15,18 @@ interface MoviesRepository {
     fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
 
     class Network
-    @Inject constructor(private val context: Context,
+    @Inject constructor(private val networkHandler: NetworkHandler,
                         private val service: MoviesService) : MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
-            return when (isConnectedToNetwork()) {
+            return when (networkHandler.isConnected) {
                 true -> requestMovies()
                 false -> Left(NetworkConnection())
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
-            return when (isConnectedToNetwork()) {
+            return when (networkHandler.isConnected) {
                 true -> requestMovieDetails(movieId)
                 false -> Left(NetworkConnection())
             }
@@ -55,11 +56,6 @@ interface MoviesRepository {
             } catch (exception: Throwable) {
                 Left(ServerError())
             }
-        }
-
-        private fun isConnectedToNetwork(): Boolean {
-            //TODO: implement this
-            return true
         }
     }
 }
