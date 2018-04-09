@@ -56,6 +56,6 @@ task deployDebug(type: Exec, dependsOn: 'app:installDebug') {
     }
     def sdkDir = properties.getProperty('sdk.dir')
     def adb = "$sdkDir/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.fernandocejas.sample/com.fernandocejas.sample.RouteActivity'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.fernandocejas.sample/com.fernandocejas.sample.navigation.RouteActivity'
   }
 }
