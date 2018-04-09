@@ -7,6 +7,7 @@ import com.fernandocejas.sample.framework.functional.Either
 import com.fernandocejas.sample.framework.functional.Either.Left
 import com.fernandocejas.sample.framework.functional.Either.Right
 import com.fernandocejas.sample.framework.platform.NetworkHandler
+import retrofit2.Call
 import javax.inject.Inject
 
 interface MoviesRepository {
@@ -19,38 +20,24 @@ interface MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isConnected) {
-                true -> requestMovies()
+                true -> request(service.movies(), { it.map { it.toMovie() } }, emptyList())
                 false -> Left(NetworkConnection())
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
             return when (networkHandler.isConnected) {
-                true -> requestMovieDetails(movieId)
+                true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
                 false -> Left(NetworkConnection())
             }
         }
 
-        private fun requestMovies(): Either<Failure, List<Movie>> {
+        private fun <T, R> request(call: Call<T>, transform: (T) -> R, default: T): Either<Failure, R> {
             return try {
-                val response = service.movies().execute()
-                if (response.isSuccessful) {
-                    Right((response.body() ?: emptyList()).map { it.toMovie() })
-                } else {
-                    Left(ServerError())
-                }
-            } catch (exception: Throwable) {
-                Left(ServerError())
-            }
-        }
-
-        private fun requestMovieDetails(movieId: Int): Either<Failure, MovieDetails> {
-            return try {
-                val response = service.movieDetails(movieId).execute()
-                if (response.isSuccessful) {
-                    Right((response.body() ?: MovieDetailsEntity.empty()).toMovieDetails())
-                } else {
-                    Left(ServerError())
+                val response = call.execute()
+                when (response.isSuccessful) {
+                    true -> Right(transform((response.body() ?: default)))
+                    false -> Left(ServerError())
                 }
             } catch (exception: Throwable) {
                 Left(ServerError())
