@@ -8,12 +8,13 @@ import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
 import com.fernandocejas.sample.framework.exception.Failure
 import com.fernandocejas.sample.framework.exception.Failure.NetworkConnection
 import com.fernandocejas.sample.framework.exception.Failure.ServerError
+import com.fernandocejas.sample.framework.extension.close
 import com.fernandocejas.sample.framework.extension.failure
+import com.fernandocejas.sample.framework.extension.isVisible
 import com.fernandocejas.sample.framework.extension.loadFromUrl
 import com.fernandocejas.sample.framework.extension.loadUrlAndPostponeEnterTransition
 import com.fernandocejas.sample.framework.extension.observe
 import com.fernandocejas.sample.framework.extension.viewModel
-import com.fernandocejas.sample.framework.extension.visible
 import kotlinx.android.synthetic.main.fragment_movie_details.movieCast
 import kotlinx.android.synthetic.main.fragment_movie_details.movieDetails
 import kotlinx.android.synthetic.main.fragment_movie_details.movieDirector
@@ -70,7 +71,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     override fun onBackPressed() {
         movieDetailsAnimator.fadeInvisible(scrollView, movieDetails)
-        if (moviePlay.visible())
+        if (moviePlay.isVisible())
             movieDetailsAnimator.scaleDownView(moviePlay)
         else
             movieDetailsAnimator.cancelTransition(moviePoster)
@@ -96,9 +97,9 @@ class MovieDetailsFragment : BaseFragment() {
 
     private fun handleFailure(failure: Failure?) {
         when (failure) {
-            is NetworkConnection -> TODO()
-            is ServerError -> TODO()
-            is NonExistentMovie -> TODO()
+            is NetworkConnection -> { notify(R.string.failure_network_connection); close() }
+            is ServerError -> { notify(R.string.failure_server_error); close() }
+            is NonExistentMovie -> { notify(R.string.failure_movie_non_existent); close() }
         }
     }
 }
