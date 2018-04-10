@@ -1,6 +1,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.UnitTest
+import com.fernandocejas.sample.framework.functional.Either.Right
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
@@ -19,7 +20,7 @@ class GetMovieDetailsTest : UnitTest() {
 
     @Before fun setUp() {
         getMovieDetails = GetMovieDetails(moviesRepository)
-        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(MovieDetails.empty())
+        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty()))
     }
 
     @Test fun `should get data from repository`() {

@@ -1,6 +1,9 @@
 package com.fernandocejas.sample.framework.interactor
 
 import com.fernandocejas.sample.AndroidTest
+import com.fernandocejas.sample.framework.exception.Failure
+import com.fernandocejas.sample.framework.functional.Either
+import com.fernandocejas.sample.framework.functional.Either.Right
 import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
@@ -12,28 +15,28 @@ class UseCaseTest : AndroidTest() {
 
     private val useCase = MyUseCase()
 
-    @Test fun `running use case should return use case type`() {
-        val myParams = MyParams(TYPE_PARAM)
-        val myType = runBlocking { useCase.run(myParams) }
+    @Test fun `running use case should return 'Either' of use case type`() {
+        val params = MyParams(TYPE_PARAM)
+        val result = runBlocking { useCase.run(params) }
 
-        myType shouldEqual MyType(TYPE_TEST)
+        result shouldEqual Right(MyType(TYPE_TEST))
     }
 
     @Test fun `should return correct data when executing use case`() {
-        var myTypeResult: MyType? = null
+        var result: Either<Failure, MyType>? = null
 
-        val myParams = MyParams("TestParam")
-        val onSuccess = { myType: MyType -> myTypeResult = myType }
+        val params = MyParams("TestParam")
+        val onResult = { myResult: Either<Failure, MyType> -> result = myResult }
 
-        runBlocking { useCase.execute(onSuccess, myParams) }
+        runBlocking { useCase.execute(onResult, params) }
 
-        myTypeResult shouldEqual MyType(TYPE_TEST)
+        result shouldEqual Right(MyType(TYPE_TEST))
     }
 
     data class MyType(val name: String)
     data class MyParams(val name: String)
 
     private inner class MyUseCase : UseCase<MyType, MyParams>() {
-        override suspend fun run(params: MyParams) = MyType(TYPE_TEST)
+        override suspend fun run(params: MyParams) = Right(MyType(TYPE_TEST))
     }
 }
