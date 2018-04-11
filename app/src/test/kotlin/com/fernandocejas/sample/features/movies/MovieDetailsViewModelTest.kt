@@ -26,8 +26,7 @@ class MovieDetailsViewModelTest : AndroidTest() {
         movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails, playMovie)
     }
 
-    @Test
-    fun `loading movie details should update live data`() {
+    @Test fun `loading movie details should update live data`() {
         runBlocking {
             val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
                     "cast", "director", 2018, "trailer")

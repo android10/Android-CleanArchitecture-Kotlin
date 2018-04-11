@@ -21,14 +21,14 @@ ext {
   okhttp_logging_interceptor_version = '3.8.1'
 
   //Unit Testing
-  robolectric_version = '3.7.1'
+  robolectric_version = '3.8'
   junit_version = '4.12'
   mockito_version = '1.4.0'
   kluent_version = '1.14'
 
   //Acceptance Testing
-  runner_version = '0.5'
-  espresso_version = '2.2.2'
+  runner_version = '1.0.1'
+  espresso_version = '3.0.1'
 
   //Development
   leakCanaryVersion = '1.5'
