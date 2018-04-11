@@ -2,6 +2,7 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.framework.functional.Either.Right
+import com.fernandocejas.sample.navigation.Navigator
 import com.nhaarman.mockito_kotlin.given
 import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
@@ -16,10 +17,11 @@ class MovieDetailsViewModelTest : AndroidTest() {
     private lateinit var playMovie: PlayMovie
 
     @Mock private lateinit var moviesRepository: MoviesRepository
+    @Mock private lateinit var navigator: Navigator
 
     @Before
     fun setUp() {
-        playMovie = PlayMovie(context())
+        playMovie = PlayMovie(context(), navigator)
         getMovieDetails = GetMovieDetails(moviesRepository)
         movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails, playMovie)
     }
