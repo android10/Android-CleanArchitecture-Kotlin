@@ -33,6 +33,7 @@ class MoviesRepositoryTest : UnitTest() {
     @Test fun `should return empty list by default`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { moviesResponse.body() }.willReturn(null)
+        given { moviesResponse.isSuccessful }.willReturn(true)
         given { moviesCall.execute() }.willReturn(moviesResponse)
         given { service.movies() }.willReturn(moviesCall)
 
@@ -45,6 +46,7 @@ class MoviesRepositoryTest : UnitTest() {
     @Test fun `should get movie list from service`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { moviesResponse.body() }.willReturn(listOf(MovieEntity(1, "poster")))
+        given { moviesResponse.isSuccessful }.willReturn(true)
         given { moviesCall.execute() }.willReturn(moviesResponse)
         given { service.movies() }.willReturn(moviesCall)
 
@@ -57,6 +59,7 @@ class MoviesRepositoryTest : UnitTest() {
     @Test fun `should return empty details by default`() {
         given { networkHandler.isConnected }.willReturn(true)
         given { movieDetailsResponse.body() }.willReturn(null)
+        given { movieDetailsResponse.isSuccessful }.willReturn(true)
         given { movieDetailsCall.execute() }.willReturn(movieDetailsResponse)
         given { service.movieDetails(1) }.willReturn(movieDetailsCall)
 
@@ -71,6 +74,7 @@ class MoviesRepositoryTest : UnitTest() {
         given { movieDetailsResponse.body() }.willReturn(
                 MovieDetailsEntity(8, "title", String.empty(), String.empty(),
                         String.empty(), String.empty(), 0, String.empty()))
+        given { movieDetailsResponse.isSuccessful }.willReturn(true)
         given { movieDetailsCall.execute() }.willReturn(movieDetailsResponse)
         given { service.movieDetails(1) }.willReturn(movieDetailsCall)
 
