@@ -27,8 +27,8 @@ ext {
   kluent_version = '1.14'
 
   //Acceptance Testing
-  runner_version = '1.0.1'
-  espresso_version = '3.0.1'
+  runner_version = '1.0.2-alpha1'
+  espresso_version = '3.0.2-alpha1'
 
   //Development
   leakCanaryVersion = '1.5'
