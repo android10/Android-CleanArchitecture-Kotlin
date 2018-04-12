@@ -27,25 +27,23 @@ class MovieDetailsViewModelTest : AndroidTest() {
     }
 
     @Test fun `loading movie details should update live data`() {
-        runBlocking {
-            val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
-                    "cast", "director", 2018, "trailer")
-            given { moviesRepository.movieDetails(0) }.willReturn(Right(movieDetails))
+        val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
+                "cast", "director", 2018, "trailer")
+        given { runBlocking {  moviesRepository.movieDetails(0) } }.willReturn(Right(movieDetails))
 
-            movieDetailsViewModel.loadMovieDetails(0)
+        movieDetailsViewModel.loadMovieDetails(0)
 
-            val movie = movieDetailsViewModel.movieDetails.value
+        val movie = movieDetailsViewModel.movieDetails.value
 
-            with(movie!!) {
-                id shouldEqualTo 0
-                title shouldEqualTo "IronMan"
-                poster shouldEqualTo "poster"
-                summary shouldEqualTo "summary"
-                cast shouldEqualTo "cast"
-                director shouldEqualTo "director"
-                year shouldEqualTo 2018
-                trailer shouldEqualTo "trailer"
-            }
+        with(movie!!) {
+            id shouldEqualTo 0
+            title shouldEqualTo "IronMan"
+            poster shouldEqualTo "poster"
+            summary shouldEqualTo "summary"
+            cast shouldEqualTo "cast"
+            director shouldEqualTo "director"
+            year shouldEqualTo 2018
+            trailer shouldEqualTo "trailer"
         }
     }
 }

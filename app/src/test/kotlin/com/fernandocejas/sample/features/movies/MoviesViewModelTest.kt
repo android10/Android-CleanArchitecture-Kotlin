@@ -23,19 +23,17 @@ class MoviesViewModelTest : AndroidTest() {
     }
 
     @Test fun `loading movies should update live data`() {
-        runBlocking {
-            val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-            given { moviesRepository.movies() }.willReturn(Right(moviesList))
+        val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
+        given { runBlocking { moviesRepository.movies() } }.willReturn(Right(moviesList))
 
-            moviesViewModel.loadMovies()
+        moviesViewModel.loadMovies()
 
-            val movies = moviesViewModel.movies.value
+        val movies = moviesViewModel.movies.value
 
-            movies!!.size shouldEqualTo 2
-            movies[0].id shouldEqualTo 0
-            movies[0].poster shouldEqualTo "IronMan"
-            movies[1].id shouldEqualTo 1
-            movies[1].poster shouldEqualTo "Batman"
-        }
+        movies!!.size shouldEqualTo 2
+        movies[0].id shouldEqualTo 0
+        movies[0].poster shouldEqualTo "IronMan"
+        movies[1].id shouldEqualTo 1
+        movies[1].poster shouldEqualTo "Batman"
     }
 }
