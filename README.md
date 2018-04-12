@@ -1,9 +1,10 @@
-# Android - Clean Architecture - Kotlin
+# Android - Clean Architecture - Kotlin [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin.svg?branch=master)](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin)
 The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming for example.
 
 ## Blog post with implementation details explanation:
 [WIP](http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/)
 
+## Android - Clean Architecture - Java:
 There is another Android Clean Architecture repository written in Java: https://github.com/android10/Android-CleanArchitecture with really nice discussions: https://github.com/android10/Android-CleanArchitecture/issues.
 Article, lessons learned and some more material coming up. Check the following known bugs and TODO list. 
 
