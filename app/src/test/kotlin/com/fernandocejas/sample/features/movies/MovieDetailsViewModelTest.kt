@@ -19,7 +19,6 @@ import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.framework.functional.Either.Right
 import com.fernandocejas.sample.navigation.Navigator
 import com.nhaarman.mockito_kotlin.given
-import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
@@ -44,7 +43,7 @@ class MovieDetailsViewModelTest : AndroidTest() {
     @Test fun `loading movie details should update live data`() {
         val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
                 "cast", "director", 2018, "trailer")
-        given { runBlocking {  moviesRepository.movieDetails(0) } }.willReturn(Right(movieDetails))
+        given { moviesRepository.movieDetails(0) }.willReturn(Right(movieDetails))
 
         movieDetailsViewModel.loadMovieDetails(0)
 
