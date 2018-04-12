@@ -17,6 +17,8 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.framework.functional.Either.Right
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.given
 import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
@@ -27,31 +29,26 @@ import org.mockito.Mock
 class MoviesViewModelTest : AndroidTest() {
 
     private lateinit var moviesViewModel: MoviesViewModel
-    private lateinit var getMovies: GetMovies
 
-    @Mock private lateinit var moviesRepository: MoviesRepository
+    @Mock private lateinit var getMovies: GetMovies
 
     @Before
     fun setUp() {
-        getMovies = GetMovies(moviesRepository)
         moviesViewModel = MoviesViewModel(getMovies)
     }
 
     @Test fun `loading movies should update live data`() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-        given { moviesRepository.movies() }.willReturn(Right(moviesList))
+        given { runBlocking { getMovies.run(eq(any())) } }.willReturn(Right(moviesList))
 
-        var movies: List<MovieView>? = null
-
-        runBlocking {
-            moviesViewModel.loadMovies()
-            movies = moviesViewModel.movies.value
+        moviesViewModel.movies.observeForever {
+            it!!.size shouldEqualTo 2
+            it[0].id shouldEqualTo 0
+            it[0].poster shouldEqualTo "IronMan"
+            it[1].id shouldEqualTo 1
+            it[1].poster shouldEqualTo "Batman"
         }
 
-        movies!!.size shouldEqualTo 2
-        movies!![0].id shouldEqualTo 0
-        movies!![0].poster shouldEqualTo "IronMan"
-        movies!![1].id shouldEqualTo 1
-        movies!![1].poster shouldEqualTo "Batman"
+        runBlocking { moviesViewModel.loadMovies() }
     }
 }
