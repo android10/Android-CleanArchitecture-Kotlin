@@ -7,7 +7,6 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-27.0.2
     - build-tools-27.0.3
     - android-27
     - extra-google-m2repository
@@ -16,10 +15,10 @@ android:
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    # - sys-img-armeabi-v7a-android-16
-    # - sys-img-armeabi-v7a-android-21
-    # - sys-img-armeabi-v7a-android-22
-    # - sys-img-armeabi-v7a-android-25
+    - sys-img-armeabi-v7a-android-16
+    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-25
 
 licenses:
     - 'android-sdk-license-.+'

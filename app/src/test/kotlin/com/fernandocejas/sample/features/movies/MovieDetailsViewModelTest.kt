@@ -46,9 +46,12 @@ class MovieDetailsViewModelTest : AndroidTest() {
                 "cast", "director", 2018, "trailer")
         given { moviesRepository.movieDetails(0) }.willReturn(Right(movieDetails))
 
-        runBlocking { movieDetailsViewModel.loadMovieDetails(0) }
+        var movie: MovieDetailsView? = null
 
-        val movie = movieDetailsViewModel.movieDetails.value
+        runBlocking {
+            movieDetailsViewModel.loadMovieDetails(0)
+            movie = movieDetailsViewModel.movieDetails.value
+        }
 
         with(movie!!) {
             id shouldEqualTo 0

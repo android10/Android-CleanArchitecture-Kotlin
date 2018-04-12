@@ -41,14 +41,17 @@ class MoviesViewModelTest : AndroidTest() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
         given { moviesRepository.movies() }.willReturn(Right(moviesList))
 
-        runBlocking { moviesViewModel.loadMovies() }
+        var movies: List<MovieView>? = null
 
-        val movies = moviesViewModel.movies.value
+        runBlocking {
+            moviesViewModel.loadMovies()
+            movies = moviesViewModel.movies.value
+        }
 
         movies!!.size shouldEqualTo 2
-        movies[0].id shouldEqualTo 0
-        movies[0].poster shouldEqualTo "IronMan"
-        movies[1].id shouldEqualTo 1
-        movies[1].poster shouldEqualTo "Batman"
+        movies!![0].id shouldEqualTo 0
+        movies!![0].poster shouldEqualTo "IronMan"
+        movies!![1].id shouldEqualTo 1
+        movies!![1].poster shouldEqualTo "Batman"
     }
 }
