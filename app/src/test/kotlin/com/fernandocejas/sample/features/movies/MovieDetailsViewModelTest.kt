@@ -19,6 +19,7 @@ import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.framework.functional.Either.Right
 import com.fernandocejas.sample.navigation.Navigator
 import com.nhaarman.mockito_kotlin.given
+import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
@@ -45,7 +46,7 @@ class MovieDetailsViewModelTest : AndroidTest() {
                 "cast", "director", 2018, "trailer")
         given { moviesRepository.movieDetails(0) }.willReturn(Right(movieDetails))
 
-        movieDetailsViewModel.loadMovieDetails(0)
+        runBlocking { movieDetailsViewModel.loadMovieDetails(0) }
 
         val movie = movieDetailsViewModel.movieDetails.value
 

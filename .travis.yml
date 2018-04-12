@@ -27,4 +27,4 @@ licenses:
     - 'android-sdk-preview-license-.+'
 
 script:
-  ./gradlew clean runUnitTests
+  ./gradlew runUnitTests

@@ -18,6 +18,7 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.framework.functional.Either.Right
 import com.nhaarman.mockito_kotlin.given
+import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
@@ -40,7 +41,7 @@ class MoviesViewModelTest : AndroidTest() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
         given { moviesRepository.movies() }.willReturn(Right(moviesList))
 
-        moviesViewModel.loadMovies()
+        runBlocking { moviesViewModel.loadMovies() }
 
         val movies = moviesViewModel.movies.value
 
