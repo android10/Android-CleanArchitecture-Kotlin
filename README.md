@@ -1,8 +1,13 @@
-# Android-CleanArchitecture-Kotlin
-This is a WIP with new features and a more realistic example of my last Clean Architecture repo: https://github.com/android10/Android-CleanArchitecture 
+# Android - Clean Architecture - Kotlin
+The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming for example.
+
+## Blog post with implementation details explanation:
+[WIP](http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/)
+
+There is another Android Clean Architecture repository written in Java: https://github.com/android10/Android-CleanArchitecture with really nice discussions: https://github.com/android10/Android-CleanArchitecture/issues.
 Article, lessons learned and some more material coming up. Check the following known bugs and TODO list. 
 
-Here is some material worth reading:
+## Other material worth reading:
 
 [Architecting Android…The clean way?](http://fernandocejas.com/2014/09/03/architecting-android-the-clean-way/)
 
@@ -15,50 +20,25 @@ Here is some material worth reading:
 ## Sample app
 ![](https://user-images.githubusercontent.com/1360604/31345866-679a221a-ad17-11e7-8097-7800edb677fa.gif)
 
-## TODO List
-- [ ] Write Acceptance Tests.
-- [x] Create Completable Use case abstraction.
-- [ ] Implement cache for Offline mode.
-- [ ] Restructure DI and use scoping. 
-- [ ] Error Handling. 
-- [ ] Pull to refresh.
-- [ ] Loading data UI (spinner?).
-- [ ] Clean up, code style and minor refactor.
-- [ ] Write article with lessons learned. 
-
-
-## Known bugs (Also WIP)
-- [ ] One Leak within ```MoviesActivity.kt```
-- [ ] Resize Images at API Level: https://github.com/android10/Sample-Data/tree/master/Android-CleanArchitecture-Kotlin
-
-
 ## Clean architecture
 ![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture.png)
-
-## Architectural approach
-![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture_layers.png)
-
-## Architectural reactive approach
-![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture_layers_details.png)
-
 
 ## Local Development
 Here are some useful Gradle/adb commands for executing this example:
 
- * `./gradlew clean build` - Build the entire example and execute unit and integration tests plus lint check.
- * `./gradlew deployDebug` - Install the debug apk on the current connected device.
- * `./gradlew runUnitTests` - Execute domain and data layer tests (both unit and integration).
- * `./gradlew runAcceptanceTests` - Execute espresso and instrumentation acceptance tests.
+ * `./gradlew deployDebug` - Builds and install the debug apk on the current connected device.
+ * `./gradlew runUnitTests` - Execute all unit tests (both unit and integration).
  
 ## Discussions
 Refer to the issues section: https://github.com/android10/Android-CleanArchitecture-Kotlin/issues
  
 ## Code style
-- [ ] For now use regular Kotlin code style. TODO: add a gradle task to install it. 
+Here you can download and install the java codestyle.
+https://github.com/android10/java-code-styles
 
 ## License
 
-    Copyright 2017 Fernando Cejas
+    Copyright 2018 Fernando Cejas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -74,5 +54,3 @@ Refer to the issues section: https://github.com/android10/Android-CleanArchitect
 
 
 ![http://www.fernandocejas.com](https://github.com/android10/Sample-Data/blob/master/android10/android10_logo_big.png)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--CleanArchitecture-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/909)
