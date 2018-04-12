@@ -26,6 +26,12 @@ import kotlinx.android.synthetic.main.activity_layout.fragmentContainer
 import kotlinx.android.synthetic.main.toolbar.progress
 import kotlinx.android.synthetic.main.toolbar.toolbar
 
+/**
+ * Base Activity class with helper methods for handling fragment transactions and back button
+ * events.
+ *
+ * @see AppCompatActivity
+ */
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

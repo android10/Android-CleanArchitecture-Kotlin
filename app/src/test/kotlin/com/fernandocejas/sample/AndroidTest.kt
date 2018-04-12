@@ -25,8 +25,10 @@ import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
 /**
- * Base class for Robolectric data layer tests.
- * Inherit from this class to create a test.
+ * Base class for Android tests. Inherit from it to create test cases which contain android
+ * framework dependencies or components.
+ *
+ * @see UnitTest
  */
 @RunWith(RobolectricTestRunner::class)
 @Config(constants = BuildConfig::class,

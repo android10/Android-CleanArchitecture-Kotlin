@@ -30,6 +30,11 @@ import com.fernandocejas.sample.framework.extension.viewContainer
 import kotlinx.android.synthetic.main.toolbar.progress
 import javax.inject.Inject
 
+/**
+ * Base Fragment class with helper methods for handling views and back button events.
+ *
+ * @see Fragment
+ */
 abstract class BaseFragment : Fragment() {
 
     abstract fun layoutId(): Int
