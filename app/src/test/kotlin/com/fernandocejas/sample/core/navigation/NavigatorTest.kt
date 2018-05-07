@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.navigation
+package com.fernandocejas.sample.core.navigation
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.features.login.Authenticator

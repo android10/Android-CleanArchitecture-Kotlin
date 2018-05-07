@@ -30,7 +30,7 @@ import com.fernandocejas.sample.core.extension.invisible
 import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.extension.viewModel
 import com.fernandocejas.sample.core.extension.visible
-import com.fernandocejas.sample.navigation.Navigator
+import com.fernandocejas.sample.core.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_movies.emptyView
 import kotlinx.android.synthetic.main.fragment_movies.movieList
 import javax.inject.Inject

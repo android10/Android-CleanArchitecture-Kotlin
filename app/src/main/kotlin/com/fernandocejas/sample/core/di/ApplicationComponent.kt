@@ -13,25 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.navigation
+package com.fernandocejas.sample.core.di
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.fernandocejas.sample.AndroidApplication
-import com.fernandocejas.sample.di.ApplicationComponent
-import javax.inject.Inject
+import com.fernandocejas.sample.core.di.viewmodel.ViewModelModule
+import com.fernandocejas.sample.features.movies.MovieDetailsFragment
+import com.fernandocejas.sample.features.movies.MoviesFragment
+import com.fernandocejas.sample.core.navigation.RouteActivity
+import dagger.Component
+import javax.inject.Singleton
 
-class RouteActivity : AppCompatActivity() {
+@Singleton
+@Component(modules = [ApplicationModule::class, ViewModelModule::class])
+interface ApplicationComponent {
+    fun inject(application: AndroidApplication)
+    fun inject(routeActivity: RouteActivity)
 
-    private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        (application as AndroidApplication).appComponent
-    }
-
-    @Inject internal lateinit var navigator: Navigator
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        appComponent.inject(this)
-        navigator.showMain(this)
-    }
+    fun inject(moviesFragment: MoviesFragment)
+    fun inject(movieDetailsFragment: MovieDetailsFragment)
 }

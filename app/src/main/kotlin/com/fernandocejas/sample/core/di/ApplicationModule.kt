@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.di
+package com.fernandocejas.sample.core.di
 
 import android.content.Context
 import com.fernandocejas.sample.AndroidApplication

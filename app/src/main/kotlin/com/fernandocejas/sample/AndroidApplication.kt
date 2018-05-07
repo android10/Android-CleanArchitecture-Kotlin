@@ -16,9 +16,9 @@
 package com.fernandocejas.sample
 
 import android.app.Application
-import com.fernandocejas.sample.di.ApplicationComponent
-import com.fernandocejas.sample.di.ApplicationModule
-import com.fernandocejas.sample.di.DaggerApplicationComponent
+import com.fernandocejas.sample.core.di.ApplicationComponent
+import com.fernandocejas.sample.core.di.ApplicationModule
+import com.fernandocejas.sample.core.di.DaggerApplicationComponent
 import com.squareup.leakcanary.LeakCanary
 
 class AndroidApplication : Application() {

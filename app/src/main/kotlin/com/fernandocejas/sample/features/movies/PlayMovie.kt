@@ -22,7 +22,7 @@ import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.interactor.UseCase
 import com.fernandocejas.sample.core.interactor.UseCase.None
-import com.fernandocejas.sample.navigation.Navigator
+import com.fernandocejas.sample.core.navigation.Navigator
 import javax.inject.Inject
 
 class PlayMovie

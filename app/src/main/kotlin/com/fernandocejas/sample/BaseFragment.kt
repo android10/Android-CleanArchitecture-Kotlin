@@ -24,7 +24,7 @@ import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.fernandocejas.sample.di.ApplicationComponent
+import com.fernandocejas.sample.core.di.ApplicationComponent
 import com.fernandocejas.sample.core.extension.appContext
 import com.fernandocejas.sample.core.extension.viewContainer
 import kotlinx.android.synthetic.main.toolbar.progress
