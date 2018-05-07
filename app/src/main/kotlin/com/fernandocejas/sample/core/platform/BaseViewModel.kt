@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.extension
+package com.fernandocejas.sample.core.platform
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
-import com.fernandocejas.sample.framework.exception.Failure
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
+import com.fernandocejas.sample.core.exception.Failure
 
-fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
-        liveData.observe(this, Observer(body))
+/**
+ * Base ViewModel class with default Failure handling.
+ * @see ViewModel
+ * @see Failure
+ */
+abstract class BaseViewModel : ViewModel() {
 
-fun <L : LiveData<Failure>> LifecycleOwner.failure(liveData: L, body: (Failure?) -> Unit) =
-        liveData.observe(this, Observer(body))
+    var failure: MutableLiveData<Failure> = MutableLiveData()
+
+    protected fun handleFailure(failure: Failure) {
+        this.failure.value = failure
+    }
+}

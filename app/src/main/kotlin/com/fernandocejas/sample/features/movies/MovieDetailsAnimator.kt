@@ -21,7 +21,7 @@ import android.transition.Fade
 import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
-import com.fernandocejas.sample.framework.extension.cancelTransition
+import com.fernandocejas.sample.core.extension.cancelTransition
 import javax.inject.Inject
 
 

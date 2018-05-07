@@ -13,18 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.platform
+package com.fernandocejas.sample.core.extension
 
-import android.content.Context
-import com.fernandocejas.sample.framework.extension.networkInfo
-import javax.inject.Inject
-import javax.inject.Singleton
+import android.arch.lifecycle.LifecycleOwner
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
+import com.fernandocejas.sample.core.exception.Failure
 
-/**
- * Injectable class which handles device network connection.
- */
-@Singleton
-class NetworkHandler
-@Inject constructor(private val context: Context) {
-    val isConnected get() = context.networkInfo.isConnectedOrConnecting
-}
+fun <T : Any, L : LiveData<T>> LifecycleOwner.observe(liveData: L, body: (T?) -> Unit) =
+        liveData.observe(this, Observer(body))
+
+fun <L : LiveData<Failure>> LifecycleOwner.failure(liveData: L, body: (Failure?) -> Unit) =
+        liveData.observe(this, Observer(body))

@@ -15,7 +15,7 @@
  */
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.fernandocejas.sample.framework.platform
+package com.fernandocejas.sample.core.platform
 
 import android.os.Parcel
 import android.os.Parcelable

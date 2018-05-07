@@ -13,22 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.platform
-
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import com.fernandocejas.sample.framework.exception.Failure
+package com.fernandocejas.sample.core.exception
 
 /**
- * Base ViewModel class with default Failure handling.
- * @see ViewModel
- * @see Failure
+ * Base Class for handling errors/failures/exceptions.
+ * Every feature specific failure should extend [FeatureFailure] class.
  */
-abstract class BaseViewModel : ViewModel() {
+sealed class Failure {
+    class NetworkConnection: Failure()
+    class ServerError: Failure()
 
-    var failure: MutableLiveData<Failure> = MutableLiveData()
-
-    protected fun handleFailure(failure: Failure) {
-        this.failure.value = failure
-    }
+    /** * Extend this class for feature specific failures.*/
+    abstract class FeatureFailure: Failure()
 }

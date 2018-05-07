@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.platform
+package com.fernandocejas.sample.core.platform
 
 import android.arch.lifecycle.MutableLiveData
 import com.fernandocejas.sample.AndroidTest
-import com.fernandocejas.sample.framework.exception.Failure
-import com.fernandocejas.sample.framework.exception.Failure.NetworkConnection
+import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test
 

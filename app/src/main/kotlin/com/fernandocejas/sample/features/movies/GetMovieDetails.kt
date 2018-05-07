@@ -16,7 +16,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
-import com.fernandocejas.sample.framework.interactor.UseCase
+import com.fernandocejas.sample.core.interactor.UseCase
 import javax.inject.Inject
 
 class GetMovieDetails

@@ -17,7 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import android.arch.lifecycle.MutableLiveData
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
-import com.fernandocejas.sample.framework.platform.BaseViewModel
+import com.fernandocejas.sample.core.platform.BaseViewModel
 import javax.inject.Inject
 
 class MovieDetailsViewModel

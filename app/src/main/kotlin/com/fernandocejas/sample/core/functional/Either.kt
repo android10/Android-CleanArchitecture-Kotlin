@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.functional
+package com.fernandocejas.sample.core.functional
 
 /**
- * Represents a value of one of two possible types (a disjoint union.).
+ * Represents a value of one of two possible types (a disjoint union).
  * Instances of [Either] are either an instance of [Left] or [Right].
- * FP Convention dictates that [Left] is used for "failure" and [Right] is used for "success".
+ * FP Convention dictates that [Left] is used for "failure"
+ * and [Right] is used for "success".
  *
  * @see Left
  * @see Right
@@ -35,7 +36,7 @@ sealed class Either<out L, out R> {
 
     fun either(fnL: (L) -> Any, fnR: (R) -> Any): Any =
             when (this) {
-                is Either.Left -> fnL(a)
-                is Either.Right -> fnR(b)
+                is Left -> fnL(a)
+                is Right -> fnR(b)
             }
 }

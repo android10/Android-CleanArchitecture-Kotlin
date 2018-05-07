@@ -16,7 +16,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
-import com.fernandocejas.sample.framework.functional.Either.Right
+import com.fernandocejas.sample.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.given

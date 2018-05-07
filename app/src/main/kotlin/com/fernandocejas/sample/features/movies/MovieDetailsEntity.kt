@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import com.fernandocejas.sample.framework.extension.empty
+import com.fernandocejas.sample.core.extension.empty
 
 data class MovieDetailsEntity(private val id: Int,
                               private val title: String,

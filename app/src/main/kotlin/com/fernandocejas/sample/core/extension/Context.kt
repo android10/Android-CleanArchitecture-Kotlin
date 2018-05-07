@@ -13,16 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.exception
+package com.fernandocejas.sample.core.extension
 
-/**
- * Base Class for handling errors/failures/exceptions.
- * Every feature specific failure should extend [FeatureFailure] class.
- */
-sealed class Failure {
-    class NetworkConnection: Failure()
-    class ServerError: Failure()
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 
-    /** * Extend this class for feature specific failures.*/
-    abstract class FeatureFailure: Failure()
-}
+val Context.networkInfo: NetworkInfo get() =
+    (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo

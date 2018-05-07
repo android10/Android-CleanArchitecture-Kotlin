@@ -21,7 +21,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
 import android.widget.Toast
-import com.fernandocejas.sample.framework.extension.inTransaction
+import com.fernandocejas.sample.core.extension.inTransaction
 import kotlinx.android.synthetic.main.activity_layout.fragmentContainer
 import kotlinx.android.synthetic.main.toolbar.progress
 import kotlinx.android.synthetic.main.toolbar.toolbar

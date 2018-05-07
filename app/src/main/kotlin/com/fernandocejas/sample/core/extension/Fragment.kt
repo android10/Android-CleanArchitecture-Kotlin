@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.extension
+package com.fernandocejas.sample.core.extension
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider.Factory

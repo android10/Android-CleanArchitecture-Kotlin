@@ -17,11 +17,11 @@ package com.fernandocejas.sample.features.movies
 
 import android.content.Context
 import com.fernandocejas.sample.features.movies.PlayMovie.Params
-import com.fernandocejas.sample.framework.exception.Failure
-import com.fernandocejas.sample.framework.functional.Either
-import com.fernandocejas.sample.framework.functional.Either.Right
-import com.fernandocejas.sample.framework.interactor.UseCase
-import com.fernandocejas.sample.framework.interactor.UseCase.None
+import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.functional.Either
+import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.interactor.UseCase
+import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.navigation.Navigator
 import javax.inject.Inject
 

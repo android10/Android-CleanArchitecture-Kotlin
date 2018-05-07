@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.extension
+package com.fernandocejas.sample.core.extension
 
 import android.graphics.drawable.Drawable
 import android.support.annotation.LayoutRes
@@ -49,7 +49,8 @@ fun ImageView.loadFromUrl(url: String) =
                 .into(this)!!
 
 fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
-    val target: Target<Drawable> = ImageViewBaseTarget(this, activity)
+    val target: Target<Drawable> = ImageViewBaseTarget(this,
+            activity)
     Glide.with(context.applicationContext).load(url).into(target)
 }
 

@@ -13,11 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.extension
+package com.fernandocejas.sample.core.platform
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import com.fernandocejas.sample.core.extension.networkInfo
+import javax.inject.Inject
+import javax.inject.Singleton
 
-val Context.networkInfo: NetworkInfo get() =
-    (this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).activeNetworkInfo
+/**
+ * Injectable class which handles device network connection.
+ */
+@Singleton
+class NetworkHandler
+@Inject constructor(private val context: Context) {
+    val isConnected get() = context.networkInfo.isConnectedOrConnecting
+}

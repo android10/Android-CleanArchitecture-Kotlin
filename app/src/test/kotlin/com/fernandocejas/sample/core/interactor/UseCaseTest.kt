@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.framework.interactor
+package com.fernandocejas.sample.core.interactor
 
 import com.fernandocejas.sample.AndroidTest
-import com.fernandocejas.sample.framework.exception.Failure
-import com.fernandocejas.sample.framework.functional.Either
-import com.fernandocejas.sample.framework.functional.Either.Right
+import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.functional.Either
+import com.fernandocejas.sample.core.functional.Either.Right
 import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.Test

@@ -25,8 +25,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fernandocejas.sample.di.ApplicationComponent
-import com.fernandocejas.sample.framework.extension.appContext
-import com.fernandocejas.sample.framework.extension.viewContainer
+import com.fernandocejas.sample.core.extension.appContext
+import com.fernandocejas.sample.core.extension.viewContainer
 import kotlinx.android.synthetic.main.toolbar.progress
 import javax.inject.Inject
 
