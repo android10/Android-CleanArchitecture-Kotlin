@@ -18,25 +18,32 @@ Article, lessons learned and some more material coming up. Check the following k
 
 [Clean Architecture…Dynamic Parameters in Use Cases](http://fernandocejas.com/2016/12/24/clean-architecture-dynamic-parameters-in-use-cases/)
 
+### ----------------------------------------------------------------------------------------------
+
 ## Sample app
 ![](https://user-images.githubusercontent.com/1360604/31345866-679a221a-ad17-11e7-8097-7800edb677fa.gif)
-<br>
+
+### ----------------------------------------------------------------------------------------------
 
 ## Clean Architecture
 ![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_main.png)
-<br>
+
+### ----------------------------------------------------------------------------------------------
 
 ## Android 3 Layers Architecture
 ![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_layers.png)
-<br>
+
+### ----------------------------------------------------------------------------------------------
 
 ## UI Layer: MVVM 
 ![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_mvvm_app.png)
-<br>
+
+### ----------------------------------------------------------------------------------------------
 
 ## Data Layer: Repository 
 ![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_archictecture_reloaded_repository.png)
-<br>
+
+### ----------------------------------------------------------------------------------------------
 
 ## Local Development
 Here are some useful Gradle/adb commands for executing this example:
