@@ -17,6 +17,7 @@ package com.fernandocejas.sample
 
 import android.app.Application
 import android.content.Context
+import com.fernandocejas.sample.core.platform.BaseActivity
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock

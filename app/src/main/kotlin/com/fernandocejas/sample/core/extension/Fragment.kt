@@ -23,8 +23,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.view.View
-import com.fernandocejas.sample.BaseActivity
-import com.fernandocejas.sample.BaseFragment
+import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.activity_layout.fragmentContainer
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =

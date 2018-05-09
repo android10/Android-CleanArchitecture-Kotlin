@@ -17,7 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
 import android.view.View
-import com.fernandocejas.sample.BaseFragment
+import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
 import com.fernandocejas.sample.core.exception.Failure

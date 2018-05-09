@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample
+package com.fernandocejas.sample.core.platform
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.view.Window
-import android.widget.Toast
+import com.fernandocejas.sample.R.id
+import com.fernandocejas.sample.R.layout
 import com.fernandocejas.sample.core.extension.inTransaction
-import kotlinx.android.synthetic.main.activity_layout.fragmentContainer
-import kotlinx.android.synthetic.main.toolbar.progress
 import kotlinx.android.synthetic.main.toolbar.toolbar
 
 /**
@@ -36,18 +32,20 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout)
+        setContentView(layout.activity_layout)
         setSupportActionBar(toolbar)
         addFragment(savedInstanceState)
     }
 
     override fun onBackPressed() {
-        (supportFragmentManager.findFragmentById(R.id.fragmentContainer) as BaseFragment).onBackPressed()
+        (supportFragmentManager.findFragmentById(
+                id.fragmentContainer) as BaseFragment).onBackPressed()
         super.onBackPressed()
     }
 
     private fun addFragment(savedInstanceState: Bundle?) =
-            savedInstanceState ?: supportFragmentManager.inTransaction { add(R.id.fragmentContainer, fragment()) }
+            savedInstanceState ?: supportFragmentManager.inTransaction { add(
+                    id.fragmentContainer, fragment()) }
 
     abstract fun fragment(): BaseFragment
 }

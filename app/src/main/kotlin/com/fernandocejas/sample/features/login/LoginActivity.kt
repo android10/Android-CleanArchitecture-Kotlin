@@ -17,7 +17,7 @@ package com.fernandocejas.sample.features.login
 
 import android.content.Context
 import android.content.Intent
-import com.fernandocejas.sample.BaseActivity
+import com.fernandocejas.sample.core.platform.BaseActivity
 
 class LoginActivity : BaseActivity() {
     companion object {

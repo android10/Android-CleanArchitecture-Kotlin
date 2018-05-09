@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.features.login
 
-import com.fernandocejas.sample.BaseFragment
+import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.R
 
 class LoginFragment : BaseFragment() {

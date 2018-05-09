@@ -19,7 +19,7 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
-import com.fernandocejas.sample.BaseFragment
+import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
 import com.fernandocejas.sample.core.exception.Failure
