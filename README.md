@@ -1,8 +1,8 @@
 # Android - Clean Architecture - Kotlin [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin.svg?branch=master)](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin)
-The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming for example.
+The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming.
 
 ## Blog post with implementation details explanation:
-[WIP](http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/)
+[Architecting Android… Reloaded](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
 
 ## Android - Clean Architecture - Java:
 There is another Android Clean Architecture repository written in Java: https://github.com/android10/Android-CleanArchitecture with really nice discussions: https://github.com/android10/Android-CleanArchitecture/issues.
@@ -21,8 +21,17 @@ Article, lessons learned and some more material coming up. Check the following k
 ## Sample app
 ![](https://user-images.githubusercontent.com/1360604/31345866-679a221a-ad17-11e7-8097-7800edb677fa.gif)
 
-## Clean architecture
-![http://fernandocejas.com/2015/07/18/architecting-android-the-evolution/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture/clean_architecture.png)
+## Clean Architecture
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_main.png)
+
+## Android 3 Layers Architecture
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_layers.png)
+
+## UI Layer: MVVM 
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_mvvm_app.png)
+
+## Data Layer: Repository 
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_archictecture_reloaded_repository.png)
 
 ## Local Development
 Here are some useful Gradle/adb commands for executing this example:
