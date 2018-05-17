@@ -89,6 +89,17 @@ class MoviesRepositoryTest : UnitTest() {
         verifyZeroInteractions(service)
     }
 
+    @Test fun `movies service should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(null)
+
+        val movies = networkRepository.movies()
+
+        movies shouldBeInstanceOf Either::class.java
+        movies.isLeft shouldEqual true
+        movies.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        verifyZeroInteractions(service)
+    }
+
     @Test fun `movies service should return server error if no successful response`() {
         given { networkHandler.isConnected }.willReturn(true)
 
@@ -140,6 +151,17 @@ class MoviesRepositoryTest : UnitTest() {
 
     @Test fun `movie details service should return network failure when no connection`() {
         given { networkHandler.isConnected }.willReturn(false)
+
+        val movieDetails = networkRepository.movieDetails(1)
+
+        movieDetails shouldBeInstanceOf Either::class.java
+        movieDetails.isLeft shouldEqual true
+        movieDetails.either({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        verifyZeroInteractions(service)
+    }
+
+    @Test fun `movie details service should return network failure when undefined connection`() {
+        given { networkHandler.isConnected }.willReturn(null)
 
         val movieDetails = networkRepository.movieDetails(1)
 

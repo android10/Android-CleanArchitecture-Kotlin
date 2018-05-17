@@ -36,14 +36,14 @@ interface MoviesRepository {
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isConnected) {
                 true -> request(service.movies(), { it.map { it.toMovie() } }, emptyList())
-                false -> Left(NetworkConnection())
+                false, null -> Left(NetworkConnection())
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
             return when (networkHandler.isConnected) {
                 true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
-                false -> Left(NetworkConnection())
+                false, null -> Left(NetworkConnection())
             }
         }
 
