@@ -78,8 +78,8 @@ class Navigator
         intent.putExtra("force_fullscreen", true)
 
         if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
         return intent
     }
 
