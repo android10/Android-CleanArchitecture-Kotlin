@@ -43,7 +43,7 @@ class UseCaseTest : AndroidTest() {
         val params = MyParams("TestParam")
         val onResult = { myResult: Either<Failure, MyType> -> result = myResult }
 
-        runBlocking { useCase.execute(onResult, params) }
+        runBlocking { useCase(params, onResult) }
 
         result shouldEqual Right(MyType(TYPE_TEST))
     }
