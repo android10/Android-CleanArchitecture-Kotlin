@@ -29,8 +29,7 @@ class MovieDetailsViewModel
     fun loadMovieDetails(movieId: Int) =
             getMovieDetails(Params(movieId)) { it.either(::handleFailure, ::handleMovieDetails) }
 
-    fun playMovie(url: String) =
-            playMovie(PlayMovie.Params(url))
+    fun playMovie(url: String) = playMovie(PlayMovie.Params(url))
 
     private fun handleMovieDetails(movie: MovieDetails) {
         this.movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
