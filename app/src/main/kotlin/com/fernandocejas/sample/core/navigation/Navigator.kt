@@ -77,6 +77,9 @@ class Navigator
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$videoId"))
         intent.putExtra("force_fullscreen", true)
 
+        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
         return intent
     }
 
