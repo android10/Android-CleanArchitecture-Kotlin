@@ -39,7 +39,7 @@ class PlayMovieTest : AndroidTest() {
     @Test fun `should play movie trailer`() {
         val params = PlayMovie.Params(VIDEO_URL)
 
-        playMovie.execute({}, params)
+        playMovie(params)
 
         verify(navigator).openVideo(context, VIDEO_URL)
     }
