@@ -24,13 +24,14 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.spy
 
 class MoviesViewModelTest : AndroidTest() {
 
     private lateinit var moviesViewModel: MoviesViewModel
 
-    @Mock private lateinit var getMovies: GetMovies
+    private val getMovies = spy(GetMovies(mock(MoviesRepository::class.java)))
 
     @Before
     fun setUp() {
