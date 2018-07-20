@@ -44,11 +44,11 @@ class MoviesViewModelTest : AndroidTest() {
 
         moviesViewModel.movies.observeForever {
             val success = it as ViewState.Success
-            success.responseTo<List<Movie>>()!!.size shouldEqualTo 2
-            success.responseTo<List<Movie>>()!![0].id shouldEqualTo 0
-            success.responseTo<List<Movie>>()!![0].poster shouldEqualTo "IronMan"
-            success.responseTo<List<Movie>>()!![1].id shouldEqualTo 1
-            success.responseTo<List<Movie>>()!![1].poster shouldEqualTo "Batman"
+            success.responseTo<List<Movie>>().size shouldEqualTo 2
+            success.responseTo<List<Movie>>()[0].id shouldEqualTo 0
+            success.responseTo<List<Movie>>()[0].poster shouldEqualTo "IronMan"
+            success.responseTo<List<Movie>>()[1].id shouldEqualTo 1
+            success.responseTo<List<Movie>>()[1].poster shouldEqualTo "Batman"
         }
 
         runBlocking { moviesViewModel.loadMovies() }
