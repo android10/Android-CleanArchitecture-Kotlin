@@ -30,6 +30,7 @@ import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.extension.viewModel
 import com.fernandocejas.sample.core.extension.visible
 import com.fernandocejas.sample.core.navigation.Navigator
+import com.fernandocejas.sample.core.platform.ViewState
 import kotlinx.android.synthetic.main.fragment_movies.emptyView
 import kotlinx.android.synthetic.main.fragment_movies.movieList
 import javax.inject.Inject
@@ -55,7 +56,9 @@ class MoviesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
-        loadMoviesList()
+        if (savedInstanceState == null) {
+            loadMoviesList()
+        }
     }
 
 
