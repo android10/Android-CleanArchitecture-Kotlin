@@ -25,7 +25,6 @@ import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
 import com.fernandocejas.sample.core.exception.Failure.ServerError
-import com.fernandocejas.sample.core.extension.failure
 import com.fernandocejas.sample.core.extension.invisible
 import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.extension.viewModel
@@ -49,8 +48,7 @@ class MoviesFragment : BaseFragment() {
         appComponent.inject(this)
 
         moviesViewModel = viewModel(viewModelFactory) {
-            observe(movies, ::renderMoviesList)
-            failure(failure, ::handleFailure)
+            observe(movies, ::handleViewState)
         }
     }
 
@@ -73,6 +71,13 @@ class MoviesFragment : BaseFragment() {
         movieList.visible()
         showProgress()
         moviesViewModel.loadMovies()
+    }
+
+    private fun handleViewState(viewState: ViewState?) {
+        when(viewState) {
+            is ViewState.Success -> renderMoviesList(viewState.responseTo())
+            is ViewState.Error -> handleFailure(viewState.error)
+        }
     }
 
     private fun renderMoviesList(movies: List<MovieView>?) {

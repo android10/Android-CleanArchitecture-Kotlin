@@ -17,6 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.platform.ViewState
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.given
@@ -42,11 +43,12 @@ class MoviesViewModelTest : AndroidTest() {
         given { runBlocking { getMovies.run(eq(any())) } }.willReturn(Right(moviesList))
 
         moviesViewModel.movies.observeForever {
-            it!!.size shouldEqualTo 2
-            it[0].id shouldEqualTo 0
-            it[0].poster shouldEqualTo "IronMan"
-            it[1].id shouldEqualTo 1
-            it[1].poster shouldEqualTo "Batman"
+            val success = it as ViewState.Success
+            success.responseTo<List<Movie>>()!!.size shouldEqualTo 2
+            success.responseTo<List<Movie>>()!![0].id shouldEqualTo 0
+            success.responseTo<List<Movie>>()!![0].poster shouldEqualTo "IronMan"
+            success.responseTo<List<Movie>>()!![1].id shouldEqualTo 1
+            success.responseTo<List<Movie>>()!![1].poster shouldEqualTo "Batman"
         }
 
         runBlocking { moviesViewModel.loadMovies() }

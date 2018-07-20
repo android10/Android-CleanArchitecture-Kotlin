@@ -16,18 +16,23 @@
 package com.fernandocejas.sample.features.movies
 
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
+import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.interactor.UseCase.None
-import com.fernandocejas.sample.core.platform.BaseViewModel
+import com.fernandocejas.sample.core.platform.ViewState
 import javax.inject.Inject
 
 class MoviesViewModel
-@Inject constructor(private val getMovies: GetMovies) : BaseViewModel() {
+@Inject constructor(private val getMovies: GetMovies) : ViewModel() {
 
-    var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
+    var movies: MutableLiveData<ViewState> = MutableLiveData()
 
-    fun loadMovies() = getMovies(None()) { it.either(::handleFailure, ::handleMovieList) }
+    fun loadMovies() = getMovies(None()) { handleMoviesViewState(it) }
 
-    private fun handleMovieList(movies: List<Movie>) {
-        this.movies.value = movies.map { MovieView(it.id, it.poster) }
-    }
+    private fun handleMoviesViewState(either: Either<Failure, List<Movie>>) =
+            when (either) {
+                is Either.Right -> movies.value = ViewState.Success(either.b.map { MovieView(it.id, it.poster) })
+                is Either.Left -> movies.value = ViewState.Error(either.a)
+            }
 }
