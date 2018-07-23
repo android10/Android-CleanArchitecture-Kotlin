@@ -56,9 +56,7 @@ class MoviesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
-        if (savedInstanceState == null) {
-            loadMoviesList()
-        }
+        loadMoviesList()
     }
 
 
