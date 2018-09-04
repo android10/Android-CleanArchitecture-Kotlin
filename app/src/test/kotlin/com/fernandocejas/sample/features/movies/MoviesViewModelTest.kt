@@ -16,6 +16,7 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
+import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.eq
@@ -24,7 +25,9 @@ import kotlinx.coroutines.experimental.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.notification.Failure
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 
 class MoviesViewModelTest : AndroidTest() {
 
@@ -39,7 +42,10 @@ class MoviesViewModelTest : AndroidTest() {
 
     @Test fun `loading movies should update live data`() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-        given { runBlocking { getMovies.run(eq(any())) } }.willReturn(Right(moviesList))
+
+        `when`(getMovies(any(), any())).thenAnswer { answer ->
+            answer.getArgument<(Either<Failure, List<Movie>>) -> Unit>(1)(Right(moviesList))
+        }
 
         moviesViewModel.movies.observeForever {
             it!!.size shouldEqualTo 2
