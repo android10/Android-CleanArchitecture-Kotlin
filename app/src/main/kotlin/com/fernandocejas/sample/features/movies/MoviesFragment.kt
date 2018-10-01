@@ -76,7 +76,7 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun renderMoviesList(movies: List<MovieView>?) {
-        moviesAdapter.collection = movies.orEmpty()
+        moviesAdapter.submitList(movies)
         hideProgress()
     }
 
