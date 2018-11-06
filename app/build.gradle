@@ -112,9 +112,3 @@ dependencies {
   releaseImplementation developmentDependencies.leakCanaryNoop
   testImplementation developmentDependencies.leakCanaryNoop
 }
-
-kotlin {
-  experimental {
-    coroutines "enable"
-  }
-}
