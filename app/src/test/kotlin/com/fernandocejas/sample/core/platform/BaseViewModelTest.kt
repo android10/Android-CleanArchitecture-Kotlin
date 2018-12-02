@@ -19,6 +19,8 @@ import android.arch.lifecycle.MutableLiveData
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
+import com.fernandocejas.sample.core.functional.Either
+import com.fernandocejas.sample.core.interactor.UseCase
 import org.amshove.kluent.shouldBeInstanceOf
 import org.junit.Test
 
@@ -36,7 +38,13 @@ class BaseViewModelTest : AndroidTest() {
         error shouldBeInstanceOf NetworkConnection::class.java
     }
 
-    private class MyViewModel : BaseViewModel() {
+    private class DummyUseCase : UseCase<Any, Any>() {
+        override suspend fun run(params: Any): Either<Failure, Any> {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+    }
+
+    private class MyViewModel : BaseViewModel(DummyUseCase()) {
         fun handleError(failure: Failure) = handleFailure(failure)
     }
 }
