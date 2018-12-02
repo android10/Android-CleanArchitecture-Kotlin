@@ -21,7 +21,7 @@ import com.fernandocejas.sample.core.platform.BaseViewModel
 import javax.inject.Inject
 
 class MoviesViewModel
-@Inject constructor(private val getMovies: GetMovies) : BaseViewModel() {
+@Inject constructor(private val getMovies: GetMovies) : BaseViewModel(getMovies) {
 
     var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
 

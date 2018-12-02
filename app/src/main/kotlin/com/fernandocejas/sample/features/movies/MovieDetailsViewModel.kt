@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 class MovieDetailsViewModel
 @Inject constructor(private val getMovieDetails: GetMovieDetails,
-                    private val playMovie: PlayMovie) : BaseViewModel() {
+                    private val playMovie: PlayMovie) : BaseViewModel(getMovieDetails) {
 
     var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
 

@@ -18,17 +18,23 @@ package com.fernandocejas.sample.core.platform
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.interactor.UseCase
 
 /**
  * Base ViewModel class with default Failure handling.
  * @see ViewModel
  * @see Failure
  */
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel(private val useCase: UseCase<*, *>) : ViewModel() {
 
     var failure: MutableLiveData<Failure> = MutableLiveData()
 
     protected fun handleFailure(failure: Failure) {
         this.failure.value = failure
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        useCase.cancel()
     }
 }
