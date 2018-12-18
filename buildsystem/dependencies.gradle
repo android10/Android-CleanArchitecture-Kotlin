@@ -52,8 +52,6 @@ ext {
       javaxInject:                "javax.inject:javax.inject:$javaxInject_version",
       retrofit:                   "com.squareup.retrofit2:converter-gson:$retrofit_version",
       okhttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
-
-
   ]
 
   unitTesting = [

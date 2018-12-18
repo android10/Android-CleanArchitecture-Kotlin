@@ -36,14 +36,14 @@ interface MoviesRepository {
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isConnected) {
                 true -> request(service.movies(), { it.map { it.toMovie() } }, emptyList())
-                false, null -> Left(NetworkConnection())
+                false, null -> Left(NetworkConnection)
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
             return when (networkHandler.isConnected) {
                 true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
-                false, null -> Left(NetworkConnection())
+                false, null -> Left(NetworkConnection)
             }
         }
 
@@ -52,10 +52,10 @@ interface MoviesRepository {
                 val response = call.execute()
                 when (response.isSuccessful) {
                     true -> Right(transform((response.body() ?: default)))
-                    false -> Left(ServerError())
+                    false -> Left(ServerError)
                 }
             } catch (exception: Throwable) {
-                Left(ServerError())
+                Left(ServerError)
             }
         }
     }

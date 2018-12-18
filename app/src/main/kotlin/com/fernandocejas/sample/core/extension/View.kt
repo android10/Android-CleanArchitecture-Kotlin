@@ -49,8 +49,7 @@ fun ImageView.loadFromUrl(url: String) =
                 .into(this)!!
 
 fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
-    val target: Target<Drawable> = ImageViewBaseTarget(this,
-            activity)
+    val target: Target<Drawable> = ImageViewBaseTarget(this, activity)
     Glide.with(context.applicationContext).load(url).into(target)
 }
 

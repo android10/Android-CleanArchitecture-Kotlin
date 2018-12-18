@@ -27,7 +27,7 @@ class BaseViewModelTest : AndroidTest() {
     @Test fun `should handle failure by updating live data`() {
         val viewModel = MyViewModel()
 
-        viewModel.handleError(NetworkConnection())
+        viewModel.handleError(NetworkConnection)
 
         val failure = viewModel.failure
         val error = viewModel.failure.value

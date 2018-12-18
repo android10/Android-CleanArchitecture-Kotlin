@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.fernandocejas.sample"
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    package="com.fernandocejas.sample"
 xmlns:android="http://schemas.android.com/apk/res/android">
 
 <!--Permissions-->
@@ -13,7 +14,8 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    tools:ignore="GoogleAppIndexingWarning">
 
   <!--Activities-->
     <activity
