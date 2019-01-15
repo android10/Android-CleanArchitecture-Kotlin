@@ -44,7 +44,11 @@ class BaseViewModelTest : AndroidTest() {
         }
     }
 
-    private class MyViewModel : BaseViewModel(DummyUseCase()) {
+    private class MyViewModel : BaseViewModel() {
         fun handleError(failure: Failure) = handleFailure(failure)
+
+        override fun cancelRequest() {
+            //Nothing to do
+        }
     }
 }
