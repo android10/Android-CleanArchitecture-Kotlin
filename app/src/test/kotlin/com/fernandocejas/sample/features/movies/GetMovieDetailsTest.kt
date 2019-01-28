@@ -35,7 +35,7 @@ class GetMovieDetailsTest : UnitTest() {
 
     @Before fun setUp() {
         getMovieDetails = GetMovieDetails(moviesRepository)
-        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty()))
+        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty))
     }
 
     @Test fun `should get data from repository`() {
