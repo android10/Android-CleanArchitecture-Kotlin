@@ -18,6 +18,9 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.nhaarman.mockito_kotlin.verify
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -32,14 +35,18 @@ class PlayMovieTest : AndroidTest() {
 
     @Mock private lateinit var navigator: Navigator
 
+    @Mock private lateinit var scope: CoroutineScope
+
+    @Mock private lateinit var dispatcher: CoroutineDispatcher
+
     @Before fun setUp() {
-        playMovie = PlayMovie(context, navigator)
+        playMovie = PlayMovie(context, navigator, scope, dispatcher)
     }
 
     @Test fun `should play movie trailer`() {
         val params = PlayMovie.Params(VIDEO_URL)
 
-        playMovie(params)
+        runBlocking { playMovie.run(params) }
 
         verify(navigator).openVideo(context, VIDEO_URL)
     }

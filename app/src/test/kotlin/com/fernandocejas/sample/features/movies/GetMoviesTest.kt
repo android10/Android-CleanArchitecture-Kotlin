@@ -21,6 +21,8 @@ import com.fernandocejas.sample.core.interactor.UseCase
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -32,8 +34,12 @@ class GetMoviesTest : UnitTest() {
 
     @Mock private lateinit var moviesRepository: MoviesRepository
 
+    @Mock private lateinit var scope: CoroutineScope
+
+    @Mock private lateinit var dispatcher: CoroutineDispatcher
+
     @Before fun setUp() {
-        getMovies = GetMovies(moviesRepository)
+        getMovies = GetMovies(moviesRepository, scope, dispatcher)
         given { moviesRepository.movies() }.willReturn(Right(listOf(Movie.empty)))
     }
 

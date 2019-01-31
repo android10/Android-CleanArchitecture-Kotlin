@@ -19,16 +19,25 @@ import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
+import org.mockito.Mock
 
 class UseCaseTest : AndroidTest() {
 
     private val TYPE_TEST = "Test"
     private val TYPE_PARAM = "ParamTest"
 
-    private val useCase = MyUseCase()
+    @Mock
+    private lateinit var scope: CoroutineScope
+
+    @Mock
+    private lateinit var dispatcher: CoroutineDispatcher
+
+    private val useCase = MyUseCase(scope, dispatcher)
 
     @Test fun `running use case should return 'Either' of use case type`() {
         val params = MyParams(TYPE_PARAM)
@@ -51,7 +60,8 @@ class UseCaseTest : AndroidTest() {
     data class MyType(val name: String)
     data class MyParams(val name: String)
 
-    private inner class MyUseCase : UseCase<MyType, MyParams>() {
+    private inner class MyUseCase(scope : CoroutineScope, dispatcher: CoroutineDispatcher)
+        : UseCase<MyType, MyParams>(scope, dispatcher) {
         override suspend fun run(params: MyParams) = Right(MyType(TYPE_TEST))
     }
 }

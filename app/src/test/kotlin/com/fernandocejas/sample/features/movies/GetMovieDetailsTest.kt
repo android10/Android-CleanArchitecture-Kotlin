@@ -20,6 +20,8 @@ import com.fernandocejas.sample.core.functional.Either.Right
 import com.nhaarman.mockito_kotlin.given
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -33,8 +35,12 @@ class GetMovieDetailsTest : UnitTest() {
 
     @Mock private lateinit var moviesRepository: MoviesRepository
 
+    @Mock private lateinit var scope: CoroutineScope
+
+    @Mock private lateinit var dispatcher: CoroutineDispatcher
+
     @Before fun setUp() {
-        getMovieDetails = GetMovieDetails(moviesRepository)
+        getMovieDetails = GetMovieDetails(moviesRepository, scope, dispatcher)
         given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty))
     }
 
