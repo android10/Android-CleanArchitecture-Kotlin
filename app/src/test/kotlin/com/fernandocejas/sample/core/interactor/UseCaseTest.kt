@@ -23,6 +23,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
+import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
@@ -37,7 +38,12 @@ class UseCaseTest : AndroidTest() {
     @Mock
     private lateinit var dispatcher: CoroutineDispatcher
 
-    private val useCase = MyUseCase(scope, dispatcher)
+    private lateinit var useCase: MyUseCase
+
+    @Before
+    fun setUp() {
+        useCase = MyUseCase(scope, dispatcher)
+    }
 
     @Test fun `running use case should return 'Either' of use case type`() {
         val params = MyParams(TYPE_PARAM)
