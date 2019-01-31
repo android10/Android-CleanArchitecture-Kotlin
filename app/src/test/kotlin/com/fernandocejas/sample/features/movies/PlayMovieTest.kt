@@ -46,7 +46,7 @@ class PlayMovieTest : AndroidTest() {
     @Test fun `should play movie trailer`() {
         val params = PlayMovie.Params(VIDEO_URL)
 
-        runBlocking { playMovie.run(params) }
+        runBlocking { playMovie(params) }
 
         verify(navigator).openVideo(context, VIDEO_URL)
     }
