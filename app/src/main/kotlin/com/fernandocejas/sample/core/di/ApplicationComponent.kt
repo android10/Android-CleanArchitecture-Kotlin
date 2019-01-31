@@ -16,6 +16,7 @@
 package com.fernandocejas.sample.core.di
 
 import com.fernandocejas.sample.AndroidApplication
+import com.fernandocejas.sample.core.di.usecase.UseCaseModule
 import com.fernandocejas.sample.core.di.viewmodel.ViewModelModule
 import com.fernandocejas.sample.features.movies.MovieDetailsFragment
 import com.fernandocejas.sample.features.movies.MoviesFragment
@@ -24,7 +25,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, ViewModelModule::class])
+@Component(modules = [ApplicationModule::class, ViewModelModule::class, UseCaseModule::class])
 interface ApplicationComponent {
     fun inject(application: AndroidApplication)
     fun inject(routeActivity: RouteActivity)

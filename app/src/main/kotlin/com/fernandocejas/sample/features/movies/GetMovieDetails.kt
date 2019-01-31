@@ -15,16 +15,17 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import com.fernandocejas.sample.core.interactor.UseCaseScope
-import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
 import com.fernandocejas.sample.core.interactor.UseCase
+import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
+import javax.inject.Named
 
 class GetMovieDetails
 @Inject constructor(private val moviesRepository: MoviesRepository,
-                    scope: UseCaseScope,
-                    dispatcher: CoroutineDispatcher)
+                    @Named("UseCaseScope") scope: CoroutineScope,
+                    @Named("UseCaseDispatcher")dispatcher: CoroutineDispatcher)
     : UseCase<MovieDetails, Params>(scope, dispatcher) {
 
     override suspend fun run(params: Params) = moviesRepository.movieDetails(params.id)
