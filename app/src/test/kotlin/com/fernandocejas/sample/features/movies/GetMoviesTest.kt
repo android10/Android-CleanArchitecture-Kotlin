@@ -18,9 +18,9 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.UnitTest
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.interactor.UseCase
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.runBlocking

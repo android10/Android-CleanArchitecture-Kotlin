@@ -23,7 +23,7 @@ ext {
   //Unit Testing
   robolectric_version = '3.8'
   junit_version = '4.12'
-  mockito_version = '1.4.0'
+  mockito_version = '2.1.0'
   kluent_version = '1.14'
 
   //Acceptance Testing
@@ -59,7 +59,7 @@ ext {
       kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
       robolectric:        "org.robolectric:robolectric:$robolectric_version",
       junit:              "junit:junit:$junit_version",
-      mockito:            "com.nhaarman:mockito-kotlin:$mockito_version",
+      mockito:            "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_version",
       kluent:             "org.amshove.kluent:kluent:$kluent_version",
   ]
 
