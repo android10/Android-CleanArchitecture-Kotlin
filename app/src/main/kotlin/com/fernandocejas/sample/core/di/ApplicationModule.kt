@@ -55,6 +55,6 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides @Singleton fun provideUseCaseScope(): UseCaseScope = UseCaseScope()
 
-    @Provides @Singleton fun provideCoroutineDispatcher() = Dispatchers.IO
+    @Provides @Singleton fun provideCoroutineDispatcher() = Dispatchers.Main
 
 }

@@ -35,13 +35,12 @@ abstract class UseCase<out Type, in Params>(private val scope: CoroutineScope,
 
     operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) {
         scope.launch {
-            lateinit var result: Either<Failure, Type>
+            val result = run(params)
 
-            async(dispatcher) {
-                result = run(params)
-            }.await()
+            withContext(dispatcher) {
+                onResult(result)
+            }
 
-            onResult(result)
         }
     }
 
