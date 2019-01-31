@@ -18,9 +18,11 @@ package com.fernandocejas.sample.core.di
 import android.content.Context
 import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.BuildConfig
+import com.fernandocejas.sample.core.interactor.UseCaseScope
 import com.fernandocejas.sample.features.movies.MoviesRepository
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,4 +52,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     }
 
     @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+
+    @Provides @Singleton fun provideUseCaseScope(): UseCaseScope = UseCaseScope()
+
+    @Provides @Singleton fun provideCoroutineDispatcher() = Dispatchers.IO
+
 }

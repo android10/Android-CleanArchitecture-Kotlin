@@ -42,7 +42,7 @@ interface MoviesRepository {
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
             return when (networkHandler.isConnected) {
-                true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
+                true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty)
                 false, null -> Left(NetworkConnection)
             }
         }

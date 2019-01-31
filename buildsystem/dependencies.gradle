@@ -13,7 +13,7 @@ ext {
   glide_version = '4.0.0'
 
   //Third party libraries
-  kotlin_coroutines_version = '0.22.1'
+  kotlin_coroutines_version = '1.1.1'
   dagger_version = '2.11'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
