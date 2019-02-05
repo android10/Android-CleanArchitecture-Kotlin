@@ -18,8 +18,8 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
@@ -32,15 +32,15 @@ class MoviesViewModelTest : AndroidTest() {
 
     @Mock private lateinit var getMovies: GetMovies
 
+    private val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
+
     @Before
     fun setUp() {
+        getMovies = mock { onBlocking { run(any()) } doReturn Right(moviesList) }
         moviesViewModel = MoviesViewModel(getMovies)
     }
 
     @Test fun `loading movies should update live data`() {
-        val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-        given { runBlocking { getMovies.run(eq(any())) } }.willReturn(Right(moviesList))
-
         moviesViewModel.movies.observeForever {
             it!!.size shouldEqualTo 2
             it[0].id shouldEqualTo 0

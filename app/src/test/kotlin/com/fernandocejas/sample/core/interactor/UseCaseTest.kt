@@ -19,30 +19,25 @@ import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 
 class UseCaseTest : AndroidTest() {
 
     private val TYPE_TEST = "Test"
     private val TYPE_PARAM = "ParamTest"
 
-    @Mock
-    private lateinit var scope: CoroutineScope
-
-    @Mock
-    private lateinit var dispatcher: CoroutineDispatcher
-
-    private lateinit var useCase: MyUseCase
+    private lateinit var useCase: UseCase<MyType, MyParams>
 
     @Before
     fun setUp() {
-        useCase = MyUseCase(scope, dispatcher)
+        useCase = mock { onBlocking { run(any()) } doReturn Right(MyType(TYPE_TEST)) }
     }
 
     @Test fun `running use case should return 'Either' of use case type`() {
@@ -58,16 +53,11 @@ class UseCaseTest : AndroidTest() {
         val params = MyParams("TestParam")
         val onResult = { myResult: Either<Failure, MyType> -> result = myResult }
 
-        runBlocking { useCase(params, onResult) }
-
-        result shouldEqual Right(MyType(TYPE_TEST))
+        whenever(runBlocking { useCase(params, onResult) })
+                .then { result shouldEqual Right(MyType(TYPE_TEST)) }
     }
 
     data class MyType(val name: String)
     data class MyParams(val name: String)
 
-    private inner class MyUseCase(scope : CoroutineScope, dispatcher: CoroutineDispatcher)
-        : UseCase<MyType, MyParams>(scope, dispatcher) {
-        override suspend fun run(params: MyParams) = Right(MyType(TYPE_TEST))
-    }
 }
