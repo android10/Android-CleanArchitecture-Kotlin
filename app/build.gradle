@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.amazonaws.appsync'
 
 android {
   def config = rootProject.extensions.getByName("ext")
 
   compileSdkVersion config["compile_sdk"]
-  buildToolsVersion config["build_tools"]
 
   defaultConfig {
     applicationId config["application_id"]
@@ -91,6 +91,14 @@ dependencies {
   implementation applicationDependencies.dagger
   implementation applicationDependencies.retrofit
   implementation applicationDependencies.okhttpLoggingInterceptor
+  // AWS Amplify: Base SDK
+  implementation 'com.amazonaws:aws-android-sdk-core:2.13.+'
+  // AWS Amplify: AppSync SDK
+  implementation 'com.amazonaws:aws-android-sdk-appsync:2.8.+'
+  implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+  implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+  // AWS Amplify: Auth Mobile Client
+  implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.13.+'
 
   //Unit/Integration tests dependencies
   testImplementation unitTestDependencies.kotlin

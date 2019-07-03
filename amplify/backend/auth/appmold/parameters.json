@@ -1,0 +1,78 @@
+{
+    "identityPoolName": "appmoldkotlin8329d8f5_identitypool_8329d8f5",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "appmold_lambda_log_policy",
+    "openIdLambdaRoleName": "appmold_openid_lambda_role",
+    "openIdRolePolicy": "appmold_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "appmold_openid_lambda_iam_policy",
+    "openIdLogPolicy": "appmold_openid_lambda_log_policy",
+    "userPoolName": "appmoldkotlin8329d8f5_userpool_8329d8f5",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "appmold_sns-role",
+    "roleExternalId": "appmold_role_external_id",
+    "policyName": "appmold-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "appmold_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": "365",
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "appmold_totp_lambda_role",
+    "mfaLambdaLogPolicy": "appmold_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "appmold_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "appmold_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "appmold_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "appmold_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "appmold_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "useDefault": "manual",
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "appmold",
+    "thirdPartyAuth": false,
+    "usernameAttributes": [
+        "email"
+    ],
+    "hostedUI": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    }
+}

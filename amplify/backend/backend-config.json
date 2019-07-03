@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"appmold": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

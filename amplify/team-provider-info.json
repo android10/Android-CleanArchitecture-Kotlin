@@ -1,0 +1,19 @@
+{
+    "macos": {
+        "awscloudformation": {
+            "AuthRoleName": "appmoldkotlin-macos-20190703101333-authRole",
+            "UnauthRoleArn": "arn:aws:iam::546042148463:role/appmoldkotlin-macos-20190703101333-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::546042148463:role/appmoldkotlin-macos-20190703101333-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "appmoldkotlin-macos-20190703101333-deployment",
+            "UnauthRoleName": "appmoldkotlin-macos-20190703101333-unauthRole",
+            "StackName": "appmoldkotlin-macos-20190703101333",
+            "StackId": "arn:aws:cloudformation:us-west-2:546042148463:stack/appmoldkotlin-macos-20190703101333/8132e490-9dad-11e9-a7d0-0206b4669a7e"
+        },
+        "categories": {
+            "auth": {
+                "appmold": {}
+            }
+        }
+    }
+}
