@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_refresh">Segarkan</string>
+
+    <string name="failure_network_connection">Koneksi jaringan tidak tersedia.</string>
+    <string name="failure_server_error">Terjadi kesalahan pada server</string>
+    <string name="failure_movies_list_unavailable">Film tidak tersedia.</string>
+    <string name="failure_movie_non_existent">Film tidak ada.</string>
+
+</resources>
