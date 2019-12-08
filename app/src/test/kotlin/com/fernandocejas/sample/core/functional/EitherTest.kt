@@ -31,7 +31,7 @@ class EitherTest : UnitTest() {
         result shouldBeInstanceOf Either::class.java
         result.isRight shouldBe true
         result.isLeft shouldBe false
-        result.either({},
+        result.fold({},
                 { right ->
                     right shouldBeInstanceOf String::class.java
                     right shouldEqualTo "ironman"
@@ -44,7 +44,7 @@ class EitherTest : UnitTest() {
         result shouldBeInstanceOf Either::class.java
         result.isLeft shouldBe true
         result.isRight shouldBe false
-        result.either(
+        result.fold(
                 { left ->
                     left shouldBeInstanceOf String::class.java
                     left shouldEqualTo "ironman"
