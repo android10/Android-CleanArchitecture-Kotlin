@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 Fernando Cejas Open Source Project
+ * Copyright (C) 2019 Fernando Cejas Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,16 +44,35 @@ sealed class Either<out L, out R> {
         }
 }
 
-// Credits to Alex Hart -> https://proandroiddev.com/kotlins-nothing-type-946de7d464fb
-// Composes 2 functions
+/**
+ * Composes 2 functions
+ * See <a href="https://proandroiddev.com/kotlins-nothing-type-946de7d464fb">Credits to Alex Hart.</a>
+ */
 fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
     f(this(it))
 }
 
+/**
+ * Right-biased flatMap() FP convention which means that Right is assumed to be the default case
+ * to operate on. If it is Left, operations like map, flatMap, ... return the Left value unchanged.
+ */
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
     when (this) {
         is Either.Left -> Either.Left(a)
         is Either.Right -> fn(b)
     }
 
+/**
+ * Right-biased map() FP convention which means that Right is assumed to be the default case
+ * to operate on. If it is Left, operations like map, flatMap, ... return the Left value unchanged.
+ */
 fun <T, L, R> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> = this.flatMap(fn.c(::right))
+
+/** Returns the value from this `Right` or the given argument if this is a `Left`.
+ *  Right(12).getOrElse(17) RETURNS 12 and Left(12).getOrElse(17) RETURNS 17
+ */
+fun <L, R> Either<L, R>.getOrElse(value: R): R =
+    when (this) {
+        is Either.Left -> value
+        is Either.Right -> b
+    }

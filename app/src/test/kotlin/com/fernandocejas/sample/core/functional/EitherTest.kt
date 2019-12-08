@@ -50,4 +50,16 @@ class EitherTest : UnitTest() {
                     left shouldEqualTo "ironman"
                 }, {})
     }
+
+    @Test fun `Either fold should ignore passed argument if it is Right type`() {
+        val result = Right("Right").getOrElse("Other")
+
+        result shouldEqualTo "Right"
+    }
+
+    @Test fun `Either fold should return argument if it is Left type`() {
+        val result = Left("Left").getOrElse("Other")
+
+        result shouldEqualTo "Other"
+    }
 }
