@@ -7,17 +7,18 @@ allprojects {
 
 ext {
   //Android libraries
-  appCompat_version = '27.1.0'
-  constraintLayout_version = '1.0.2'
-  archComponents_version = '1.1.1'
+  appCompat_version = '1.1.0'
+  material_version = '1.0.0'
+  constraintLayout_version = '1.1.3'
+  archComponents_version = '2.0.0'
   glide_version = '4.0.0'
 
   //Third party libraries
-  kotlin_coroutines_version = '0.22.1'
+  kotlin_coroutines_version = '1.3.5'
   dagger_version = '2.11'
   javaxAnnotations_version = '1.0'
   javaxInject_version = '1'
-  retrofit_version = '2.3.0'
+  retrofit_version = '2.6.2'
   okhttp_logging_interceptor_version = '3.8.1'
 
   //Unit Testing
@@ -27,31 +28,30 @@ ext {
   kluent_version = '1.14'
 
   //Acceptance Testing
-  runner_version = '1.0.2-alpha1'
-  espresso_version = '3.0.2-alpha1'
+  runner_version = '1.1.1'
+  espresso_version = '3.1.0'
 
   //Development
   leakCanaryVersion = '1.5'
 
   mainApplication = [
-      kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
-      kotlinCoroutines:           "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version",
-      kotlinCoroutinesAndroid:    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version",
-      appCompat:                  "com.android.support:appcompat-v7:$appCompat_version",
-      cardView:                   "com.android.support:cardview-v7:$appCompat_version",
-      recyclerView:               "com.android.support:recyclerview-v7:$appCompat_version",
-      design:                     "com.android.support:design:$appCompat_version",
-      constraintLayout:           "com.android.support.constraint:constraint-layout:$constraintLayout_version",
-      androidAnnotations:         "com.android.support:support-annotations:$appCompat_version",
-      archComponents:             "android.arch.lifecycle:extensions:$archComponents_version",
-      archComponentsCompiler:     "android.arch.lifecycle:compiler:$archComponents_version",
-      glide:                      "com.github.bumptech.glide:glide:$glide_version",
-      daggerCompiler:             "com.google.dagger:dagger-compiler:$dagger_version",
-      dagger:                     "com.google.dagger:dagger:$dagger_version",
-      javaxAnnotation:            "javax.annotation:jsr250-api:$javaxAnnotations_version",
-      javaxInject:                "javax.inject:javax.inject:$javaxInject_version",
-      retrofit:                   "com.squareup.retrofit2:converter-gson:$retrofit_version",
-      okhttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
+          kotlin:                     "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+          kotlinCoroutines:           "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version",
+          kotlinCoroutinesAndroid:    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version",
+          appCompat:                  "androidx.appcompat:appcompat:$appCompat_version",
+          recyclerView:               "androidx.recyclerview:recyclerview:$appCompat_version",
+          design:                     "com.google.android.material:material:$material_version",
+          constraintLayout:           "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+          androidAnnotations:         "androidx.annotation:annotation:$material_version",
+          archComponents:             "androidx.lifecycle:lifecycle-extensions:$archComponents_version",
+          archComponentsCompiler:     "androidx.lifecycle:lifecycle-compiler:$archComponents_version",
+          glide:                      "com.github.bumptech.glide:glide:$glide_version",
+          daggerCompiler:             "com.google.dagger:dagger-compiler:$dagger_version",
+          dagger:                     "com.google.dagger:dagger:$dagger_version",
+          javaxAnnotation:            "javax.annotation:jsr250-api:$javaxAnnotations_version",
+          javaxInject:                "javax.inject:javax.inject:$javaxInject_version",
+          retrofit:                   "com.squareup.retrofit2:converter-gson:$retrofit_version",
+          okhttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
   ]
 
   unitTesting = [
@@ -64,11 +64,11 @@ ext {
   ]
 
   acceptanceTesting = [
-      testRunner:         "com.android.support.test:runner:$runner_version",
-      testRules:          "com.android.support.test:rules:$runner_version",
-      espressoCore:       "com.android.support.test.espresso:espresso-core:$espresso_version",
-      espressoIntents:    "com.android.support.test.espresso:espresso-intents:$espresso_version",
-      androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+          testRunner:         "androidx.test:runner:$runner_version",
+          testRules:          "androidx.test:rules:$runner_version",
+          espressoCore:       "androidx.test.espresso:espresso-core:$espresso_version",
+          espressoIntents:    "androidx.test.espresso:espresso-intents:$espresso_version",
+          androidAnnotations: "androidx.annotation:annotation:$material_version",
   ]
 
   development = [

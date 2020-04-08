@@ -16,13 +16,13 @@
 package com.fernandocejas.sample
 
 import android.app.Activity
-import android.support.annotation.IdRes
-import android.support.annotation.StringRes
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.intent.Intents.intended
-import android.support.test.espresso.intent.matcher.IntentMatchers
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
 
 class Matchers {
     fun <T : Activity> nextOpenActivityIs(clazz: Class<T>) {

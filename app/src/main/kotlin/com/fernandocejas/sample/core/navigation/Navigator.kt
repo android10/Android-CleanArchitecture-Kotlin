@@ -19,16 +19,16 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.FragmentActivity
+import com.fernandocejas.sample.core.extension.empty
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.MovieView
 import com.fernandocejas.sample.features.movies.MoviesActivity
-import com.fernandocejas.sample.core.extension.empty
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -51,8 +51,7 @@ class Navigator
     fun showMovieDetails(activity: FragmentActivity, movie: MovieView, navigationExtras: Extras) {
         val intent = MovieDetailsActivity.callingIntent(activity, movie)
         val sharedView = navigationExtras.transitionSharedElement as ImageView
-        val activityOptions = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
+        val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
         activity.startActivity(intent, activityOptions.toBundle())
     }
 
@@ -76,9 +75,7 @@ class Navigator
 
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:$videoId"))
         intent.putExtra("force_fullscreen", true)
-
-        if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.M)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         return intent
     }

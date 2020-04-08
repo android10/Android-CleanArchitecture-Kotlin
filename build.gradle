@@ -2,12 +2,12 @@ apply from: 'buildsystem/ci.gradle'
 apply from: 'buildsystem/dependencies.gradle'
 
 buildscript {
-  ext.kotlin_version = '1.2.51'
+  ext.kotlin_version = '1.3.71'
   ext.gradle_tools = '3.1.3'
-  ext.build_tools = '27.0.3'
+  ext.build_tools = '29.0.3'
 
-  ext.compile_sdk = 27
-  ext.target_sdk = 27
+  ext.compile_sdk = 29
+  ext.target_sdk = 29
   ext.min_sdk = 21
 
   ext.application_id = 'com.fernandocejas.sample'
@@ -21,7 +21,7 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.1'
+    classpath 'com.android.tools.build:gradle:3.6.2'
     //noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }

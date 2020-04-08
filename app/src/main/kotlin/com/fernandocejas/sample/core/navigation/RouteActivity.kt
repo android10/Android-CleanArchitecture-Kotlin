@@ -16,7 +16,7 @@
 package com.fernandocejas.sample.core.navigation
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.fernandocejas.sample.AndroidApplication
 import com.fernandocejas.sample.core.di.ApplicationComponent
 import javax.inject.Inject

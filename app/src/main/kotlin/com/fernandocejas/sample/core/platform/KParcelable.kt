@@ -40,7 +40,7 @@ inline fun <reified T> parcelableCreator(crossinline create: (Parcel) -> T) =
 inline fun <reified T> parcelableClassLoaderCreator(crossinline create: (Parcel, ClassLoader) -> T) =
         object : Parcelable.ClassLoaderCreator<T> {
             override fun createFromParcel(source: Parcel, loader: ClassLoader) = create(source, loader)
-            override fun createFromParcel(source: Parcel) = createFromParcel(source, T::class.java.classLoader)
+            override fun createFromParcel(source: Parcel) = T::class.java.classLoader?.let { createFromParcel(source, it) }
             override fun newArray(size: Int) = arrayOfNulls<T>(size)
         }
 

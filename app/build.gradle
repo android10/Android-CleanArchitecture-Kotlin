@@ -7,7 +7,7 @@ android {
   def config = rootProject.extensions.getByName("ext")
 
   compileSdkVersion config["compile_sdk"]
-  buildToolsVersion '28.0.3'
+  buildToolsVersion config["build_tools"]
 
   defaultConfig {
     applicationId config["application_id"]
@@ -83,7 +83,6 @@ dependencies {
   implementation applicationDependencies.appCompat
   implementation applicationDependencies.constraintLayout
   implementation applicationDependencies.archComponents
-  implementation applicationDependencies.cardView
   implementation applicationDependencies.recyclerView
   implementation applicationDependencies.design
   implementation applicationDependencies.androidAnnotations
@@ -111,10 +110,4 @@ dependencies {
   debugImplementation developmentDependencies.leakCanary
   releaseImplementation developmentDependencies.leakCanaryNoop
   testImplementation developmentDependencies.leakCanaryNoop
-}
-
-kotlin {
-  experimental {
-    coroutines "enable"
-  }
 }
