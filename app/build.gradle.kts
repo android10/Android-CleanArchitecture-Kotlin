@@ -51,7 +51,6 @@ android {
 }
 
 dependencies {
-  implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
   //Compile time dependencies
   kapt(Libraries.lifecycleCompiler)
   kapt(Libraries.daggerCompiler)
@@ -67,6 +66,7 @@ dependencies {
   implementation(Libraries.constraintLayout)
   implementation(Libraries.viewModel)
   implementation(Libraries.liveData)
+  implementation(Libraries.lifecycleExtensions)
   implementation(Libraries.cardView)
   implementation(Libraries.recyclerView)
   implementation(Libraries.material)
