@@ -35,7 +35,7 @@ interface MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isConnected) {
-                true -> request(service.movies(), { it.map { it.toMovie() } }, emptyList())
+                true -> request(service.movies(), { it.map { movieEntity -> movieEntity.toMovie() } }, emptyList())
                 false, null -> Left(NetworkConnection)
             }
         }
