@@ -1,4 +1,5 @@
 const val projectName = "Android-CleanArchitecture-Kotlin"
+const val appId = "com.fernandocejas.sample"
 const val kotlinVersion = "1.3.72"
 
 object BuildPlugins {
@@ -11,6 +12,7 @@ object BuildPlugins {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
+    const val kotlinKapt = "kotlin-kapt"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
 }
 

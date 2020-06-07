@@ -1,63 +1,52 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+  id(BuildPlugins.androidApplication)
+  id(BuildPlugins.kotlinAndroid)
+  id(BuildPlugins.kotlinKapt)
+  id(BuildPlugins.kotlinAndroidExtensions)
+}
 
 android {
-  compileSdkVersion 29
+  compileSdkVersion(AndroidSdk.compile)
 
   defaultConfig {
-    applicationId 'com.fernandocejas.sample'
-    minSdkVersion 21
-    targetSdkVersion 29
-    versionCode 1
-    versionName '1.0'
-    testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-  }
-
-  packagingOptions {
-    exclude 'LICENSE.txt'
-    exclude 'META-INF/DEPENDENCIES'
-    exclude 'META-INF/ASL2.0'
-    exclude 'META-INF/NOTICE'
-    exclude 'META-INF/LICENSE'
-  }
-
-  lintOptions {
-    quiet true
-    abortOnError false
-    ignoreWarnings true
-    disable 'InvalidPackage'            //Some libraries have issues with this.
-    disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
-    disable 'IconDensities'             //For testing purpose. This is safe to remove.
-    disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
-  }
-
-  signingConfigs {
-    debug {
-      storeFile file('../buildsystem/debug.keystore')
-      storePassword 'android'
-      keyAlias 'androiddebugkey'
-      keyPassword 'android'
-    }
-  }
-
-  buildTypes {
-    debug {
-      minifyEnabled false
-      signingConfig signingConfigs.debug
-    }
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
+    applicationId = appId
+    minSdkVersion(AndroidSdk.min)
+    targetSdkVersion(AndroidSdk.target)
+    versionCode = 1
+    versionName = "1.0"
+    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
   }
 
   sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-    main.java.srcDirs += [file("$buildDir/generated/source/kapt/main")]
-    test.java.srcDirs += 'src/test/kotlin'
-    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    getByName("main") { java.srcDir("src/main/kotlin") }
+    getByName("main") { java.srcDir("$buildDir/generated/source/kapt/main") }
+    getByName("test") { java.srcDir("src/test/kotlin") }
+    getByName("androidTest") { java.srcDir("src/androidTest/kotlin") }
+  }
+
+  packagingOptions {
+    exclude("LICENSE.txt")
+    exclude("META-INF/DEPENDENCIES")
+    exclude("META-INF/ASL2.0")
+    exclude("META-INF/NOTICE")
+    exclude("META-INF/NOTICE")
+  }
+
+  lintOptions {
+    isQuiet = true
+    isAbortOnError = false
+    isIgnoreWarnings = true
+    disable("InvalidPackage")           //Some libraries have issues with this.
+    disable("OldTargetApi")             //Lint gives this warning related to SDK Beta.
+    disable("IconDensities")            //For testing purpose. This is safe to remove.
+    disable("IconMissingDensityFolder") //For testing purpose. This is safe to remove.
+  }
+
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = false
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    }
   }
 }
 
@@ -111,7 +100,5 @@ dependencies {
 }
 
 kotlin {
-  experimental {
-    coroutines "enable"
-  }
+  experimental.coroutines = org.jetbrains.kotlin.gradle.dsl.Coroutines.ENABLE
 }
