@@ -51,52 +51,46 @@ android {
 }
 
 dependencies {
-//  def applicationDependencies = rootProject.ext.mainApplication
-//  def unitTestDependencies = rootProject.ext.unitTesting
-//  def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
-//  def developmentDependencies = rootProject.ext.development
-//
-//  //Compile time dependencies
-//  kapt applicationDependencies.archComponentsCompiler
-//  kapt applicationDependencies.daggerCompiler
-//  compileOnly applicationDependencies.javaxAnnotation
-//  compileOnly applicationDependencies.javaxInject
-//
-//  //Application dependencies
-//  implementation applicationDependencies.kotlin
-//  implementation applicationDependencies.kotlinCoroutines
-//  implementation applicationDependencies.kotlinCoroutinesAndroid
-//  implementation applicationDependencies.appCompat
-//  implementation applicationDependencies.constraintLayout
-//  implementation applicationDependencies.archComponents
-//  implementation applicationDependencies.cardView
-//  implementation applicationDependencies.recyclerView
-//  implementation applicationDependencies.design
-//  implementation applicationDependencies.androidAnnotations
-//  implementation applicationDependencies.glide
-//  implementation applicationDependencies.dagger
-//  implementation applicationDependencies.retrofit
-//  implementation applicationDependencies.okhttpLoggingInterceptor
-//
-//  //Unit/Integration tests dependencies
-//  testImplementation unitTestDependencies.kotlin
-//  testImplementation unitTestDependencies.kotlinTest
-//  testImplementation unitTestDependencies.robolectric
-//  testImplementation unitTestDependencies.junit
-//  testImplementation unitTestDependencies.mockito
-//  testImplementation unitTestDependencies.kluent
-//
-//  //Acceptance tests dependencies
-//  androidTestImplementation acceptanceTestDependencies.testRunner
-//  androidTestImplementation acceptanceTestDependencies.testRules
-//  androidTestImplementation acceptanceTestDependencies.espressoCore
-//  androidTestImplementation acceptanceTestDependencies.espressoIntents
-//  androidTestImplementation acceptanceTestDependencies.androidAnnotations
-//
-//  //Development dependencies
-//  debugImplementation developmentDependencies.leakCanary
-//  releaseImplementation developmentDependencies.leakCanaryNoop
-//  testImplementation developmentDependencies.leakCanaryNoop
+  //Compile time dependencies
+  kapt(Libraries.archComponentsCompiler)
+  kapt(Libraries.daggerCompiler)
+  compileOnly(Libraries.javaxAnnotation)
+  compileOnly(Libraries.javaxInject)
+
+  // Application dependencies
+  implementation(Libraries.kotlinStdLib)
+  implementation(Libraries.kotlinCoroutines)
+  implementation(Libraries.kotlinCoroutinesAndroid)
+  implementation(Libraries.appCompat)
+  implementation(Libraries.ktxCore)
+  implementation(Libraries.constraintLayout)
+  implementation(Libraries.archComponents)
+  implementation(Libraries.cardView)
+  implementation(Libraries.recyclerView)
+  implementation(Libraries.material)
+  implementation(Libraries.androidAnnotations)
+  implementation(Libraries.glide)
+  implementation(Libraries.dagger)
+  implementation(Libraries.retrofit)
+  implementation(Libraries.okhttpLoggingInterceptor)
+
+  // Unit/Android tests dependencies
+  testImplementation(TestLibraries.junit4)
+  testImplementation(TestLibraries.mockito)
+  testImplementation(TestLibraries.kluent)
+  testImplementation(TestLibraries.robolectric)
+
+  // Acceptance tests dependencies
+  androidTestImplementation(TestLibraries.testRunner)
+  androidTestImplementation(TestLibraries.espressoCore)
+  androidTestImplementation(TestLibraries.testExtJunit)
+  androidTestImplementation(TestLibraries.testRules)
+  androidTestImplementation(TestLibraries.espressoIntents)
+
+  // Development dependencies
+  debugImplementation(DevLibraries.leakCanary)
+  releaseImplementation(DevLibraries.leakCanaryNoop)
+  testImplementation(DevLibraries.leakCanaryNoop)
 }
 
 kotlin {

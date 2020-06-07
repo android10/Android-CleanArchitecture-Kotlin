@@ -30,13 +30,42 @@ object Libraries {
     private object Versions {
         const val jetpack = "1.1.0"
         const val constraintLayout = "1.1.3"
+        const val cardView = "1.0.0"
+        const val material = "1.0.0-rc01"
+        const val archComponents = "1.1.1"
         const val ktx = "1.3.0"
+        const val coroutines = "0.22.1"
+        const val glide = "4.0.0"
+        const val retrofit = "2.3.0"
+        const val okHttpLoggingInterceptor = "3.8.1"
+
+        //TODO: Legacy -> WIP
+        const val dagger = "2.11"
+        const val javaxAnnotations = "1.0"
+        const val javaxInject = "1"
     }
 
-    const val kotlinStdLib     = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    const val appCompat        = "androidx.appcompat:appcompat:${Versions.jetpack}"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val ktxCore          = "androidx.core:core-ktx:${Versions.ktx}"
+    const val kotlinStdLib             = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    const val kotlinCoroutines         = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val kotlinCoroutinesAndroid  = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val appCompat                = "androidx.appcompat:appcompat:${Versions.jetpack}"
+    const val constraintLayout         = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val ktxCore                  = "androidx.core:core-ktx:${Versions.ktx}"
+    const val archComponentsCompiler   = "android.arch.lifecycle:compiler:${Versions.archComponents}"
+    const val archComponents           = "android.arch.lifecycle:extensions:${Versions.archComponents}"
+    const val cardView                 = "androidx.cardview:cardview:${Versions.cardView}"
+    const val recyclerView             = "com.android.support:recyclerview-v7:${Versions.jetpack}"
+    const val material                 = "com.google.android.material:material:${Versions.material}"
+    const val androidAnnotations       = "com.android.support:support-annotations:${Versions.jetpack}"
+    const val glide                    = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val dagger                   = "com.google.dagger:dagger:${Versions.dagger}"
+    const val retrofit                 = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
+
+    //TODO: Legacy -> WIP -> Migrate to Koin?
+    const val daggerCompiler   = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val javaxAnnotation  = "javax.annotation:jsr250-api:${Versions.javaxAnnotations}"
+    const val javaxInject      = "javax.inject:javax.inject:${Versions.javaxInject}"
 }
 
 object TestLibraries {
@@ -44,22 +73,31 @@ object TestLibraries {
         const val junit4 = "4.13"
         const val mockito = "2.7.22"
         const val robolectric = "4.3.1"
-        const val assertJ = "3.16.1"
+        const val kluent = "1.14"
         const val testRunner = "1.1.0"
         const val espresso = "3.2.0"
         const val testExtensions = "1.1.1"
         const val testRules = "1.1.0"
     }
 
-    const val junit4         = "junit:junit:${Versions.junit4}"
-    const val mockito        = "org.mockito:mockito-core:${Versions.mockito}"
-    const val robolectric    = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val assertJ        = "org.assertj:assertj-core:${Versions.assertJ}"
-    const val testRunner     = "androidx.test:runner:${Versions.testRunner}"
-    const val espresso       = "androidx.test.espresso:espresso-core:${Versions.espresso}"
-    const val testExtJunit   = "androidx.test.ext:junit:${Versions.testExtensions}"
-    const val testRules      = "androidx.test:rules:${Versions.testRules}"
-    const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockito}"
+    const val junit4          = "junit:junit:${Versions.junit4}"
+    const val mockito         = "org.mockito:mockito-core:${Versions.mockito}"
+    const val robolectric     = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val kluent          = "org.amshove.kluent:kluent:${Versions.kluent}"
+    const val testRunner      = "androidx.test:runner:${Versions.testRunner}"
+    const val testRules       = "androidx.test:rules:${Versions.testRules}"
+    const val espressoCore    = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espressoIntents = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val testExtJunit    = "androidx.test.ext:junit:${Versions.testExtensions}"
+}
+
+object DevLibraries {
+    private object Versions {
+        const val leakCanary = "1.5"
+    }
+
+    const val leakCanary =     "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+    const val leakCanaryNoop = "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakCanary}"
 }
 
 object ScriptPlugins {
