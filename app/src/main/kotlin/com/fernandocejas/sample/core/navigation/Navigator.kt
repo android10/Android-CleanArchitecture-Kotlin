@@ -19,10 +19,10 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.ImageView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.fragment.app.FragmentActivity
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity

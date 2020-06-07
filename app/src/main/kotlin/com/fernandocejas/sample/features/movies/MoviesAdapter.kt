@@ -15,9 +15,9 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.core.extension.inflate
 import com.fernandocejas.sample.core.extension.loadFromUrl

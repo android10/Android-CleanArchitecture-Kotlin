@@ -14,7 +14,7 @@ android {
     targetSdkVersion(AndroidSdk.target)
     versionCode = 1
     versionName = "1.0"
-    testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   sourceSets {
@@ -51,8 +51,9 @@ android {
 }
 
 dependencies {
+  implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
   //Compile time dependencies
-  kapt(Libraries.archComponentsCompiler)
+  kapt(Libraries.lifecycleCompiler)
   kapt(Libraries.daggerCompiler)
   compileOnly(Libraries.javaxAnnotation)
   compileOnly(Libraries.javaxInject)
@@ -64,7 +65,8 @@ dependencies {
   implementation(Libraries.appCompat)
   implementation(Libraries.ktxCore)
   implementation(Libraries.constraintLayout)
-  implementation(Libraries.archComponents)
+  implementation(Libraries.viewModel)
+  implementation(Libraries.liveData)
   implementation(Libraries.cardView)
   implementation(Libraries.recyclerView)
   implementation(Libraries.material)
@@ -72,7 +74,7 @@ dependencies {
   implementation(Libraries.glide)
   implementation(Libraries.dagger)
   implementation(Libraries.retrofit)
-  implementation(Libraries.okhttpLoggingInterceptor)
+  implementation(Libraries.okHttpLoggingInterceptor)
 
   // Unit/Android tests dependencies
   testImplementation(TestLibraries.junit4)
@@ -91,8 +93,4 @@ dependencies {
   debugImplementation(DevLibraries.leakCanary)
   releaseImplementation(DevLibraries.leakCanaryNoop)
   testImplementation(DevLibraries.leakCanaryNoop)
-}
-
-kotlin {
-  experimental.coroutines = org.jetbrains.kotlin.gradle.dsl.Coroutines.ENABLE
 }

@@ -1,6 +1,5 @@
 plugins {
-  //TODO: Apply ci.gradle -> rename this to infrastructure
-//  id(ScriptPlugins.infrastructure)
+  id(ScriptPlugins.infrastructure)
 }
 
 buildscript {
@@ -21,3 +20,4 @@ allprojects {
     jcenter()
   }
 }
+

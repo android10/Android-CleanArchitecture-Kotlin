@@ -7,4 +7,6 @@
     <string name="failure_server_error">Server Error</string>
     <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
     <string name="failure_movie_non_existent">Movie Not Existent.</string>
+
+    <string name="content_description_empty">No content description.</string>
 </resources>

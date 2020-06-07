@@ -24,7 +24,7 @@ data class MovieView(val id: Int, val poster: String) : KParcelable {
         @JvmField val CREATOR = parcelableCreator(::MovieView)
     }
 
-    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString())
+    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString()!!)
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest) {

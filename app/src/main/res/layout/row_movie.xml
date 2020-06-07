@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView android:id="@+id/movieCard"
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/movieCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     card_view:cardBackgroundColor="@color/colorPrimary"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
-    card_view:cardElevation="@dimen/card_elevation"
-    >
+    card_view:cardElevation="@dimen/card_elevation">
 
   <ImageView
       style="@style/MoviePoster"
@@ -25,4 +25,4 @@
       android:orientation="horizontal"
       />
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.core.platform
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
