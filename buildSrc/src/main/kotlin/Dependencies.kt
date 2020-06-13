@@ -22,10 +22,6 @@ object AndroidSdk {
     const val target = compile
 }
 
-object Modules {
-    const val app = ":app"
-}
-
 object Libraries {
     private object Versions {
         const val jetpack = "1.1.0"
