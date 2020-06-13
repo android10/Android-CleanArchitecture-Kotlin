@@ -40,7 +40,7 @@ object Libraries {
         const val retrofit = "2.3.0"
         const val okHttpLoggingInterceptor = "3.8.1"
 
-        //TODO: Legacy -> WIP
+        //TODO: Legacy -> WIP -> Try Hilt?
         const val dagger = "2.11"
         const val javaxAnnotations = "1.0"
         const val javaxInject = "1"
@@ -65,7 +65,7 @@ object Libraries {
     const val retrofit                 = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
 
-    //TODO: Legacy -> WIP -> Migrate to Koin?
+    //TODO: Legacy -> WIP -> Migrate to Koin or Hilt?
     const val daggerCompiler   = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val javaxAnnotation  = "javax.annotation:jsr250-api:${Versions.javaxAnnotations}"
     const val javaxInject      = "javax.inject:javax.inject:${Versions.javaxInject}"
