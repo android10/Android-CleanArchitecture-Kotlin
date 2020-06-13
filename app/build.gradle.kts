@@ -1,8 +1,12 @@
 plugins {
+  // Application Specific Plugins
   id(BuildPlugins.androidApplication)
   id(BuildPlugins.kotlinAndroid)
   id(BuildPlugins.kotlinKapt)
   id(BuildPlugins.kotlinAndroidExtensions)
+
+  // Internal Script Plugins
+  id(ScriptPlugins.compilation)
 }
 
 android {
@@ -22,14 +26,6 @@ android {
 
     //TODO: Remove this when migrating the DI framework
     getByName("main") { java.srcDir("$buildDir/generated/source/kapt/main") }
-  }
-
-  packagingOptions {
-    exclude("LICENSE.txt")
-    exclude("META-INF/DEPENDENCIES")
-    exclude("META-INF/ASL2.0")
-    exclude("META-INF/NOTICE")
-    exclude("META-INF/NOTICE")
   }
 
   lintOptions {
@@ -90,6 +86,7 @@ dependencies {
   androidTestImplementation(TestLibraries.espressoIntents)
 
   // Development dependencies
+  //TODO: When upgrading Leak Canary to 2.x, these Noop are no longer necessary.
   debugImplementation(DevLibraries.leakCanary)
   releaseImplementation(DevLibraries.leakCanaryNoop)
   testImplementation(DevLibraries.leakCanaryNoop)

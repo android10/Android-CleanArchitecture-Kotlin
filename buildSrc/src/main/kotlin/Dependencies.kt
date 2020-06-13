@@ -1,4 +1,4 @@
-const val projectName = "Android-CleanArchitecture-Kotlin"
+const val projectName = "Android-CleanArchitecture-Kotlin" //TODO: Reuse this in settings.gradle
 const val appId = "com.fernandocejas.sample"
 const val kotlinVersion = "1.3.72"
 
@@ -102,4 +102,5 @@ object DevLibraries {
 
 object ScriptPlugins {
     const val infrastructure = "scripts.infrastructure"
+    const val compilation = "scripts.compilation"
 }
