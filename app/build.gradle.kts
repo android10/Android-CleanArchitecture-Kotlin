@@ -5,9 +5,10 @@ plugins {
   id(BuildPlugins.kotlinKapt)
   id(BuildPlugins.kotlinAndroidExtensions)
 
-  // Internal Script Plugins
-  id(ScriptPlugins.compilation)
+  // Internal Script plugins
+  id(ScriptPlugins.variants)
   id(ScriptPlugins.quality)
+  id(ScriptPlugins.compilation)
 }
 
 android {
@@ -27,13 +28,6 @@ android {
 
     //TODO: Remove this when migrating the DI framework
     getByName("main") { java.srcDir("$buildDir/generated/source/kapt/main") }
-  }
-
-  buildTypes {
-    getByName("release") {
-      isMinifyEnabled = false
-      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-    }
   }
 }
 
