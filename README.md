@@ -50,8 +50,10 @@ Article, lessons learned and some more material coming up. Check the following k
 ## Local Development
 Here are some useful Gradle/adb commands for executing this example:
 
- * `./gradlew deployDebug` - Builds and install the debug apk on the current connected device.
- * `./gradlew runUnitTests` - Execute all unit tests (both unit and integration).
+ * `./gradlew runApp` - Builds and install the debug apk on the current connected device.
+ * `./gradlew compileApp` - Builds the debug apk.
+ * `./gradlew runUnitTests` - Execute unit tests (both unit and integration).
+ * `./gradlew runAcceptanceTests` - Execute acceptance and instrumentation tests in the connected device.
  
 ## Discussions
 Refer to the issues section: https://github.com/android10/Android-CleanArchitecture-Kotlin/issues
