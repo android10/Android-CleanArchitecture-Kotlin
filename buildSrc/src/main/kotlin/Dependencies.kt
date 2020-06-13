@@ -103,4 +103,5 @@ object DevLibraries {
 object ScriptPlugins {
     const val infrastructure = "scripts.infrastructure"
     const val compilation = "scripts.compilation"
+    const val quality = "scripts.quality"
 }

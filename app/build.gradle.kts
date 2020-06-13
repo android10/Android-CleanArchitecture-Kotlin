@@ -7,6 +7,7 @@ plugins {
 
   // Internal Script Plugins
   id(ScriptPlugins.compilation)
+  id(ScriptPlugins.quality)
 }
 
 android {
@@ -26,16 +27,6 @@ android {
 
     //TODO: Remove this when migrating the DI framework
     getByName("main") { java.srcDir("$buildDir/generated/source/kapt/main") }
-  }
-
-  lintOptions {
-    isQuiet = true
-    isAbortOnError = false
-    isIgnoreWarnings = true
-    disable("InvalidPackage")           //Some libraries have issues with this.
-    disable("OldTargetApi")             //Lint gives this warning related to SDK Beta.
-    disable("IconDensities")            //For testing purpose. This is safe to remove.
-    disable("IconMissingDensityFolder") //For testing purpose. This is safe to remove.
   }
 
   buildTypes {
