@@ -18,10 +18,10 @@ android {
   }
 
   sourceSets {
-    getByName("main") { java.srcDir("src/main/kotlin") }
+    map { it.java.srcDir("src/${it.name}/kotlin") }
+
+    //TODO: Remove this when migrating the DI framework
     getByName("main") { java.srcDir("$buildDir/generated/source/kapt/main") }
-    getByName("test") { java.srcDir("src/test/kotlin") }
-    getByName("androidTest") { java.srcDir("src/androidTest/kotlin") }
   }
 
   packagingOptions {
