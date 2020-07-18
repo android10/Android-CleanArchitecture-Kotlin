@@ -15,6 +15,7 @@
  */
 package com.fernandocejas.sample.core.platform
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fernandocejas.sample.core.exception.Failure
@@ -26,9 +27,8 @@ import com.fernandocejas.sample.core.exception.Failure
  */
 abstract class BaseViewModel : ViewModel() {
 
-    var failure: MutableLiveData<Failure> = MutableLiveData()
+    private val _failure: MutableLiveData<Failure> = MutableLiveData()
+    val failure: LiveData<Failure> = _failure
 
-    protected fun handleFailure(failure: Failure) {
-        this.failure.value = failure
-    }
+    protected fun handleFailure(failure: Failure) { _failure.value = failure }
 }

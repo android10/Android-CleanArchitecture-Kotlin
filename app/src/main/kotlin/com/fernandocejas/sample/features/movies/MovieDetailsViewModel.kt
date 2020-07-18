@@ -15,6 +15,7 @@
  */
 package com.fernandocejas.sample.features.movies
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fernandocejas.sample.core.platform.BaseViewModel
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
@@ -24,7 +25,8 @@ class MovieDetailsViewModel
 @Inject constructor(private val getMovieDetails: GetMovieDetails,
                     private val playMovie: PlayMovie) : BaseViewModel() {
 
-    var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
+    private val _movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
+    val movieDetails: LiveData<MovieDetailsView> = _movieDetails
 
     fun loadMovieDetails(movieId: Int) =
             getMovieDetails(Params(movieId)) { it.fold(::handleFailure, ::handleMovieDetails) }
@@ -32,7 +34,7 @@ class MovieDetailsViewModel
     fun playMovie(url: String) = playMovie(PlayMovie.Params(url))
 
     private fun handleMovieDetails(movie: MovieDetails) {
-        this.movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
+        _movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
                 movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
     }
 }

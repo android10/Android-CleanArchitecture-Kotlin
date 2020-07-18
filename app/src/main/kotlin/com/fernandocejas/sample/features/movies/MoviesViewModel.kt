@@ -15,6 +15,7 @@
  */
 package com.fernandocejas.sample.features.movies
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.core.platform.BaseViewModel
@@ -23,11 +24,12 @@ import javax.inject.Inject
 class MoviesViewModel
 @Inject constructor(private val getMovies: GetMovies) : BaseViewModel() {
 
-    var movies: MutableLiveData<List<MovieView>> = MutableLiveData()
+    private val _movies: MutableLiveData<List<MovieView>> = MutableLiveData()
+    val movies: LiveData<List<MovieView>> = _movies
 
     fun loadMovies() = getMovies(None()) { it.fold(::handleFailure, ::handleMovieList) }
 
     private fun handleMovieList(movies: List<Movie>) {
-        this.movies.value = movies.map { MovieView(it.id, it.poster) }
+        _movies.value = movies.map { MovieView(it.id, it.poster) }
     }
 }
