@@ -23,6 +23,7 @@ import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Before
 import org.junit.Test
+import org.mockito.BDDMockito.given
 import org.mockito.Mock
 
 class GetMovieDetailsTest : UnitTest() {

@@ -16,15 +16,15 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
-import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.interactor.UseCase
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.any
 import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
-import org.mockito.BDDMockito.given
+import org.mockito.BDDMockito.any
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 
 class MoviesViewModelTest : AndroidTest() {
 
@@ -39,9 +39,7 @@ class MoviesViewModelTest : AndroidTest() {
 
     @Test fun `loading movies should update live data`() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-//        given { runBlocking { getMovies.run(eq(any())) } }.willReturn(Right(moviesList))
-//        val movies = Either(
-//        given { runBlocking { getMovies.run() } }.willReturn(movies) //TODO(): fix tests
+        `when`(runBlocking { getMovies.run(any(UseCase.None::class.java)) } ).thenReturn(Right(moviesList))
 
         moviesViewModel.movies.observeForever {
             it!!.size shouldEqualTo 2
