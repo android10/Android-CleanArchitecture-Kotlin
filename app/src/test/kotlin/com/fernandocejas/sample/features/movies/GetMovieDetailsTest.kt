@@ -17,14 +17,12 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.UnitTest
 import com.fernandocejas.sample.core.functional.Either.Right
-import com.nhaarman.mockito_kotlin.given
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyNoMoreInteractions
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.BDDMockito.given
 import org.mockito.Mock
+import org.mockito.Mockito.*
 
 class GetMovieDetailsTest : UnitTest() {
 
@@ -36,7 +34,7 @@ class GetMovieDetailsTest : UnitTest() {
 
     @Before fun setUp() {
         getMovieDetails = GetMovieDetails(moviesRepository)
-        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty()))
+        `when`(moviesRepository.movieDetails(MOVIE_ID)).thenReturn(Right(MovieDetails.empty()))
     }
 
     @Test fun `should get data from repository`() {

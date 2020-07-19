@@ -20,10 +20,10 @@ import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MoviesActivity
 import com.fernandocejas.sample.shouldNavigateTo
-import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 
 
@@ -38,7 +38,7 @@ class NavigatorTest : AndroidTest() {
     }
 
     @Test fun `should forward user to login screen`() {
-        whenever(authenticator.userLoggedIn()).thenReturn(false)
+        `when`(authenticator.userLoggedIn()).thenReturn(false)
 
         navigator.showMain(activityContext())
 
@@ -47,7 +47,7 @@ class NavigatorTest : AndroidTest() {
     }
 
     @Test fun `should forward user to movies screen`() {
-        whenever(authenticator.userLoggedIn()).thenReturn(true)
+        `when`(authenticator.userLoggedIn()).thenReturn(true)
 
         navigator.showMain(activityContext())
 

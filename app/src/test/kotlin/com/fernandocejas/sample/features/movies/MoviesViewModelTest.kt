@@ -39,7 +39,7 @@ class MoviesViewModelTest : AndroidTest() {
 
     @Test fun `loading movies should update live data`() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-        `when`(runBlocking { getMovies.run(any(UseCase.None::class.java)) } ).thenReturn(Right(moviesList))
+        `when`(runBlocking { getMovies.run(any()) }).thenReturn(Right(moviesList))
 
         moviesViewModel.movies.observeForever {
             it!!.size shouldEqualTo 2
