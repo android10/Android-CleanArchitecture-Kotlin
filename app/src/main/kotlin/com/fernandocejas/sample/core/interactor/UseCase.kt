@@ -30,14 +30,15 @@ import kotlinx.coroutines.*
 abstract class UseCase<out Type, in Params> where Type : Any {
 
     private val supervisor = SupervisorJob()
-    private val scopeIO = CoroutineScope(Dispatchers.IO + supervisor)
-    private val scopeMain = CoroutineScope(Dispatchers.Main + supervisor)
+    private val scope = CoroutineScope(Dispatchers.Main + supervisor)
 
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
     operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) {
-        val job = scopeIO.async { run(params) }
-        scopeMain.launch(Dispatchers.Main) { onResult(job.await()) }
+        scope.launch {
+            val result = withContext(Dispatchers.IO) { run(params) }
+            onResult(result)
+        }
     }
 
     class None
