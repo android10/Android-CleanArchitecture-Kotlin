@@ -17,10 +17,7 @@ package com.fernandocejas.sample.core.interactor
 
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.functional.Either
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -32,11 +29,15 @@ import kotlinx.coroutines.launch
  */
 abstract class UseCase<out Type, in Params> where Type : Any {
 
+    private val supervisor = SupervisorJob()
+    private val scopeIO = CoroutineScope(Dispatchers.IO + supervisor)
+    private val scopeMain = CoroutineScope(Dispatchers.Main + supervisor)
+
     abstract suspend fun run(params: Params): Either<Failure, Type>
 
     operator fun invoke(params: Params, onResult: (Either<Failure, Type>) -> Unit = {}) {
-        val job = GlobalScope.async(Dispatchers.Default) { run(params) }
-        GlobalScope.launch(Dispatchers.Main) { onResult(job.await()) }
+        val job = scopeIO.async { run(params) }
+        scopeMain.launch(Dispatchers.Main) { onResult(job.await()) }
     }
 
     class None
