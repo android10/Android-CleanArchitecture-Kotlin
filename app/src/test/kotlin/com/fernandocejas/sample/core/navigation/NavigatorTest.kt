@@ -42,7 +42,7 @@ class NavigatorTest : AndroidTest() {
 
         navigator.showMain(context())
 
-        verify { authenticator.userLoggedIn() }
+        verify(exactly = 1) { authenticator.userLoggedIn() }
         verifyNavigation { RouteActivity::class to LoginActivity::class }
     }
 
@@ -51,7 +51,7 @@ class NavigatorTest : AndroidTest() {
 
         navigator.showMain(context())
 
-        verify { authenticator.userLoggedIn() }
+        verify(exactly = 1) { authenticator.userLoggedIn() }
         verifyNavigation { RouteActivity::class to MoviesActivity::class }
     }
 }

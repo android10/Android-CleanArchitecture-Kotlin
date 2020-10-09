@@ -15,32 +15,31 @@
  */
 package com.fernandocejas.sample.features.movies
 
-//import com.fernandocejas.sample.UnitTest
-//import com.fernandocejas.sample.core.functional.Either.Right
-//import kotlinx.coroutines.runBlocking
-//import org.junit.Before
-//import org.junit.Test
-//import org.mockito.BDDMockito.given
-//import org.mockito.Mock
-//import org.mockito.Mockito.*
-//
-//class GetMovieDetailsTest : UnitTest() {
-//
-//    private val MOVIE_ID = 1
-//
-//    private lateinit var getMovieDetails: GetMovieDetails
-//
-//    @Mock private lateinit var moviesRepository: MoviesRepository
-//
-//    @Before fun setUp() {
-//        getMovieDetails = GetMovieDetails(moviesRepository)
-//        `when`(moviesRepository.movieDetails(MOVIE_ID)).thenReturn(Right(MovieDetails.empty()))
-//    }
-//
-//    @Test fun `should get data from repository`() {
-//        runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
-//
-//        verify(moviesRepository).movieDetails(MOVIE_ID)
-//        verifyNoMoreInteractions(moviesRepository)
-//    }
-//}
+import com.fernandocejas.sample.UnitTest
+import com.fernandocejas.sample.core.functional.Either.Right
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.verify
+import kotlinx.coroutines.runBlocking
+import org.junit.Before
+import org.junit.Test
+
+class GetMovieDetailsTest : UnitTest() {
+
+    private val MOVIE_ID = 1
+
+    private lateinit var getMovieDetails: GetMovieDetails
+
+    @MockK private lateinit var moviesRepository: MoviesRepository
+
+    @Before fun setUp() {
+        getMovieDetails = GetMovieDetails(moviesRepository)
+        every { moviesRepository.movieDetails(MOVIE_ID) } returns Right(MovieDetails.empty())
+    }
+
+    @Test fun `should get data from repository`() {
+        runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
+
+        verify(exactly = 1) { moviesRepository.movieDetails(MOVIE_ID) }
+    }
+}
