@@ -17,10 +17,9 @@ package com.fernandocejas.sample
 
 import android.app.Application
 import android.content.Context
-import com.fernandocejas.sample.core.platform.BaseActivity
+import android.os.Build
 import org.junit.Rule
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
@@ -32,15 +31,15 @@ import org.robolectric.annotation.Config
  * @see UnitTest
  */
 @RunWith(RobolectricTestRunner::class)
-@Config(application = AndroidTest.ApplicationStub::class)
+@Config(application = AndroidTest.ApplicationStub::class,
+        manifest = Config.NONE,
+        sdk = [Build.VERSION_CODES.O_MR1])
 abstract class AndroidTest {
 
     @Suppress("LeakingThis")
     @Rule @JvmField val injectMocks = InjectMocksRule.create(this@AndroidTest)
 
-    fun context(): Context = RuntimeEnvironment.application
-
-    fun activityContext(): Context = mock(BaseActivity::class.java)
+    fun context(): Context = RuntimeEnvironment.systemContext
 
     internal class ApplicationStub : Application()
 }

@@ -59,7 +59,7 @@ dependencies {
 
   // Unit/Android tests dependencies
   testImplementation(TestLibraries.junit4)
-  testImplementation(TestLibraries.mockito)
+  testImplementation(TestLibraries.mockk)
   testImplementation(TestLibraries.kluent)
   testImplementation(TestLibraries.robolectric)
 

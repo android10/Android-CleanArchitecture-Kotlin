@@ -70,8 +70,8 @@ object Libraries {
 object TestLibraries {
     private object Versions {
         const val junit4 = "4.13"
-        const val mockito = "2.7.22"
-        const val robolectric = "4.3.1"
+        const val mockk = "1.10.0"
+        const val robolectric = "4.4"
         const val kluent = "1.14"
         const val testRunner = "1.1.0"
         const val espressoCore = "3.2.0"
@@ -81,7 +81,7 @@ object TestLibraries {
     }
 
     const val junit4          = "junit:junit:${Versions.junit4}"
-    const val mockito         = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockk           = "io.mockk:mockk:${Versions.mockk}"
     const val robolectric     = "org.robolectric:robolectric:${Versions.robolectric}"
     const val kluent          = "org.amshove.kluent:kluent:${Versions.kluent}"
     const val testRunner      = "androidx.test:runner:${Versions.testRunner}"
