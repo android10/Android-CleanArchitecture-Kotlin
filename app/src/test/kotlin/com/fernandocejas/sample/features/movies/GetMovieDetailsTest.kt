@@ -26,8 +26,6 @@ import org.junit.Test
 
 class GetMovieDetailsTest : UnitTest() {
 
-    private val MOVIE_ID = 1
-
     private lateinit var getMovieDetails: GetMovieDetails
 
     @MockK private lateinit var moviesRepository: MoviesRepository
@@ -41,5 +39,9 @@ class GetMovieDetailsTest : UnitTest() {
         runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
 
         verify(exactly = 1) { moviesRepository.movieDetails(MOVIE_ID) }
+    }
+
+    companion object {
+        private const val MOVIE_ID = 1
     }
 }

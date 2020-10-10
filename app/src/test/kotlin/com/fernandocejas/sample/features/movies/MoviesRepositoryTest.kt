@@ -100,6 +100,9 @@ class MoviesRepositoryTest : UnitTest() {
 
     @Test fun `movies service should return server error if no successful response`() {
         every { networkHandler.isConnected } returns true
+        every { moviesResponse.isSuccessful } returns false
+        every { moviesCall.execute() } returns moviesResponse
+        every { service.movies() } returns moviesCall
 
         val movies = networkRepository.movies()
 
@@ -110,6 +113,8 @@ class MoviesRepositoryTest : UnitTest() {
 
     @Test fun `movies request should catch exceptions`() {
         every { networkHandler.isConnected } returns true
+        every { moviesCall.execute() } returns moviesResponse
+        every { service.movies() } returns moviesCall
 
         val movies = networkRepository.movies()
 
@@ -171,6 +176,10 @@ class MoviesRepositoryTest : UnitTest() {
 
     @Test fun `movie details service should return server error if no successful response`() {
         every { networkHandler.isConnected } returns true
+        every { movieDetailsResponse.body() } returns null
+        every { movieDetailsResponse.isSuccessful } returns false
+        every { movieDetailsCall.execute() } returns movieDetailsResponse
+        every { service.movieDetails(1) } returns movieDetailsCall
 
         val movieDetails = networkRepository.movieDetails(1)
 
@@ -181,6 +190,8 @@ class MoviesRepositoryTest : UnitTest() {
 
     @Test fun `movie details request should catch exceptions`() {
         every { networkHandler.isConnected } returns true
+        every { movieDetailsCall.execute() } returns movieDetailsResponse
+        every { service.movieDetails(1) } returns movieDetailsCall
 
         val movieDetails = networkRepository.movieDetails(1)
 
