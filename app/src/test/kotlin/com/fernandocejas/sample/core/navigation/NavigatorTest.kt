@@ -19,8 +19,7 @@ import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MoviesActivity
-import com.fernandocejas.sample.to
-import com.fernandocejas.sample.verifyNavigation
+import com.fernandocejas.sample.shouldNavigateTo
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
@@ -43,7 +42,7 @@ class NavigatorTest : AndroidTest() {
         navigator.showMain(context())
 
         verify(exactly = 1) { authenticator.userLoggedIn() }
-        verifyNavigation { RouteActivity::class to LoginActivity::class }
+        RouteActivity::class shouldNavigateTo LoginActivity::class
     }
 
     @Test fun `should forward user to movies screen`() {
@@ -52,6 +51,6 @@ class NavigatorTest : AndroidTest() {
         navigator.showMain(context())
 
         verify(exactly = 1) { authenticator.userLoggedIn() }
-        verifyNavigation { RouteActivity::class to MoviesActivity::class }
+        RouteActivity::class shouldNavigateTo MoviesActivity::class
     }
 }
