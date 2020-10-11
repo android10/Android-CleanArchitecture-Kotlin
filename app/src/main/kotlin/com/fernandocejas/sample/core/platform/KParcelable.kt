@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "EXTENSION_SHADOWED_BY_MEMBER")
 
 package com.fernandocejas.sample.core.platform
 

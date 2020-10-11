@@ -44,8 +44,10 @@ class NetworkHandler
                 else -> false
             }
         } else {
-            val nwInfo = connectivityManager.activeNetworkInfo ?: return false
-            return nwInfo.isConnected
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
         }
     }
 }
