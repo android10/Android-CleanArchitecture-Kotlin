@@ -44,6 +44,6 @@ before_script:
   - chmod +x gradlew
 
 script:
-  ./gradlew clean
-  ./gradlew compileApp
-  ./gradlew runUnitTests
+  - ./gradlew clean
+  - ./gradlew compileApp
+  - ./gradlew runUnitTests
