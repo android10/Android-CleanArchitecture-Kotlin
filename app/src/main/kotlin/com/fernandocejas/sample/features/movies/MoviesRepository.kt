@@ -34,16 +34,16 @@ interface MoviesRepository {
                         private val service: MoviesService) : MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
-            return when (networkHandler.isConnected) {
+            return when (networkHandler.isNetworkAvailable()) {
                 true -> request(service.movies(), { it.map { movieEntity -> movieEntity.toMovie() } }, emptyList())
-                false, null -> Left(NetworkConnection)
+                false -> Left(NetworkConnection)
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
-            return when (networkHandler.isConnected) {
+            return when (networkHandler.isNetworkAvailable()) {
                 true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
-                false, null -> Left(NetworkConnection)
+                false -> Left(NetworkConnection)
             }
         }
 
