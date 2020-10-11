@@ -1,5 +1,5 @@
 object Dependencies {
-    const val AndroidBuildTools = "com.android.tools.build:gradle:4.0.0"
+    const val AndroidBuildTools = "com.android.tools.build:gradle:4.0.1"
 }
 
 plugins {

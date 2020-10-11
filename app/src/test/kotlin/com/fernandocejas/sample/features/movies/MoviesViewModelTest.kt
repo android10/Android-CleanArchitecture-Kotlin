@@ -17,6 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
+import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
@@ -37,7 +38,7 @@ class MoviesViewModelTest : AndroidTest() {
 
     @Test fun `loading movies should update live data`() {
         val moviesList = listOf(Movie(0, "IronMan"), Movie(1, "Batman"))
-        every { runBlocking { getMovies.run(any()) } } returns Right(moviesList)
+        coEvery { getMovies.run(any()) } returns Right(moviesList)
 
         moviesViewModel.movies.observeForever {
             it!!.size shouldEqualTo 2
