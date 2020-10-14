@@ -15,12 +15,13 @@ android {
   compileSdkVersion(AndroidSdk.compile)
 
   defaultConfig {
-    applicationId = appId
     minSdkVersion(AndroidSdk.min)
     targetSdkVersion(AndroidSdk.target)
-    versionCode = 1
-    versionName = "1.0"
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    applicationId = AndroidClient.appId
+    versionCode = AndroidClient.versionCode
+    versionName = AndroidClient.versionName
+    testInstrumentationRunner = AndroidClient.testRunner
   }
 
   sourceSets {

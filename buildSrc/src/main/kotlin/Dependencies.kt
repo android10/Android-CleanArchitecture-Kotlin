@@ -1,25 +1,33 @@
-const val projectName = "Android-CleanArchitecture-Kotlin" //TODO: Reuse this in settings.gradle
-const val appId = "com.fernandocejas.sample"
-const val kotlinVersion = "1.4.0"
-
-object BuildPlugins {
-    object Versions {
-        const val buildToolsVersion = "4.0.1"
-        const val gradleVersion = "6.6.1"
-    }
-
-    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    const val androidApplication = "com.android.application"
-    const val kotlinAndroid = "kotlin-android"
-    const val kotlinKapt = "kotlin-kapt"
-    const val kotlinAndroidExtensions = "kotlin-android-extensions"
+object Kotlin {
+    const val standardLibrary = "1.4.0"
+    const val coroutines = "1.3.9"
 }
 
 object AndroidSdk {
     const val min = 21
     const val compile = 29
     const val target = compile
+}
+
+object AndroidClient {
+    const val appId = "com.fernandocejas.sample"
+    const val versionCode = 1
+    const val versionName = "1.0"
+    const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
+}
+
+object BuildPlugins {
+
+    object Versions {
+        const val buildToolsVersion = "4.0.1"
+        const val gradleVersion = "6.6.1"
+    }
+    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.standardLibrary}"
+    const val androidApplication = "com.android.application"
+    const val kotlinAndroid = "kotlin-android"
+    const val kotlinKapt = "kotlin-kapt"
+    const val kotlinAndroidExtensions = "kotlin-android-extensions"
 }
 
 object Libraries {
@@ -33,7 +41,6 @@ object Libraries {
         const val lifecycleExtensions = "2.1.0"
         const val annotations = "1.1.0"
         const val ktx = "1.3.2"
-        const val coroutines = "1.3.9"
         const val glide = "4.11.0"
         const val retrofit = "2.9.0"
         const val okHttpLoggingInterceptor = "4.9.0"
@@ -44,16 +51,16 @@ object Libraries {
         const val javaxInject = "1"
     }
 
-    const val kotlinStdLib             = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    const val kotlinCoroutines         = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    const val kotlinCoroutinesAndroid  = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val kotlinStdLib             = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
+    const val kotlinCoroutines         = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
+    const val kotlinCoroutinesAndroid  = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
     const val appCompat                = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val constraintLayout         = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val ktxCore                  = "androidx.core:core-ktx:${Versions.ktx}"
     const val lifecycleCompiler        = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
     const val viewModel                = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val liveData                 = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycleExtensions      = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}" //TODO: Deprecated
+    const val lifecycleExtensions      = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}"
     const val cardView                 = "androidx.cardview:cardview:${Versions.cardView}"
     const val recyclerView             = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val material                 = "com.google.android.material:material:${Versions.material}"
