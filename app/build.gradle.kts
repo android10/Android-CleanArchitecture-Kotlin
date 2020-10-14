@@ -71,8 +71,5 @@ dependencies {
   androidTestImplementation(TestLibraries.espressoIntents)
 
   // Development dependencies
-  //TODO: When upgrading Leak Canary to 2.x, these Noop are no longer necessary.
   debugImplementation(DevLibraries.leakCanary)
-  releaseImplementation(DevLibraries.leakCanaryNoop)
-  testImplementation(DevLibraries.leakCanaryNoop)
 }

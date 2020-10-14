@@ -19,7 +19,6 @@ import android.app.Application
 import com.fernandocejas.sample.core.di.ApplicationComponent
 import com.fernandocejas.sample.core.di.ApplicationModule
 import com.fernandocejas.sample.core.di.DaggerApplicationComponent
-import com.squareup.leakcanary.LeakCanary
 
 class AndroidApplication : Application() {
 
@@ -33,12 +32,7 @@ class AndroidApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         this.injectMembers()
-        this.initializeLeakDetection()
     }
 
     private fun injectMembers() = appComponent.inject(this)
-
-    private fun initializeLeakDetection() {
-        if (BuildConfig.DEBUG) LeakCanary.install(this)
-    }
 }

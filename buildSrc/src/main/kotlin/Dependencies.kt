@@ -95,11 +95,10 @@ object TestLibraries {
 
 object DevLibraries {
     private object Versions {
-        const val leakCanary = "1.5"
+        const val leakCanary = "2.5"
     }
 
     const val leakCanary =     "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    const val leakCanaryNoop = "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakCanary}"
 }
 
 object ScriptPlugins {

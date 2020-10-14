@@ -43,10 +43,10 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
         LayoutInflater.from(context).inflate(layoutRes, this, false)
 
 fun ImageView.loadFromUrl(url: String) =
-        Glide.with(this.context.applicationContext)
-                .load(url)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(this)!!
+    Glide.with(this.context.applicationContext)
+        .load(url)
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(this)
 
 fun ImageView.loadUrlAndPostponeEnterTransition(url: String, activity: FragmentActivity) {
     val target: Target<Drawable> = ImageViewBaseTarget(this, activity)
