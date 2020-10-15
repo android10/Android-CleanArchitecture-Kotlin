@@ -1,6 +1,6 @@
 package scripts
 
-plugins { id("core.android") }
+plugins { id("com.android.application") apply false }
 
 object BuildTypes {
     const val DEBUG = "debug"

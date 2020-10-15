@@ -1,6 +1,6 @@
 package scripts
 
-plugins { id("core.android") }
+plugins { id("com.android.application") apply false }
 
 android {
     packagingOptions {
