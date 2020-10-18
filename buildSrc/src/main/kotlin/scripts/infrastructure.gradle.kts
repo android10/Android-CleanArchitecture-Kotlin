@@ -3,13 +3,6 @@ package scripts
 import scripts.Variants_gradle.*
 import java.util.*
 
-private object Default {
-    const val BUILD_TYPE = BuildTypes.DEBUG
-    const val BUILD_FLAVOR = ProductFlavors.DEV
-
-    val VARIANT = "${BUILD_FLAVOR.capitalize()}${BUILD_TYPE.capitalize()}"
-}
-
 tasks.register("clean", Delete::class){
     delete(rootProject.buildDir)
 }
@@ -21,22 +14,22 @@ tasks.named<Wrapper>("wrapper") {
 
 tasks.register("runUnitTests") {
     description = "Runs all Unit Tests."
-    dependsOn(":app:test${Default.VARIANT}UnitTest")
+    dependsOn(":app:test${Default.BUILD_VARIANT}UnitTest")
 }
 
 tasks.register("runAcceptanceTests") {
     description = "Runs all Acceptance Tests in the connected device."
-    dependsOn(":app:connected${Default.VARIANT}AndroidTest")
+    dependsOn(":app:connected${Default.BUILD_VARIANT}AndroidTest")
 }
 
 tasks.register("compileApp") {
     description = "Compiles the Clean Architecture Android Client."
-    dependsOn(":app:assemble${Default.VARIANT}")
+    dependsOn(":app:assemble${Default.BUILD_VARIANT}")
 }
 
 tasks.register("runApp", Exec::class) {
     val compileAppTask = "compileApp"
-    val installAppTask = ":app:install${Default.VARIANT}"
+    val installAppTask = ":app:install${Default.BUILD_VARIANT}"
 
     description = "Compiles and runs the Clean Architecture Android Client in the connected device."
     dependsOn(compileAppTask, installAppTask)

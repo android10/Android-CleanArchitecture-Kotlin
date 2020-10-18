@@ -2,12 +2,12 @@ package scripts
 
 plugins { id("com.android.application") apply false }
 
-object BuildTypes {
+private object BuildTypes {
     const val DEBUG = "debug"
     const val RELEASE = "release"
 }
 
-object ProductFlavors {
+private object ProductFlavors {
     const val DEV = "dev"
     const val INTERNAL = "internal"
     const val PUBLIC = "public"
@@ -15,6 +15,13 @@ object ProductFlavors {
 
 private object FlavorDimensions {
     const val DEFAULT = "default"
+}
+
+object Default {
+    const val BUILD_TYPE = BuildTypes.DEBUG
+    const val BUILD_FLAVOR = ProductFlavors.DEV
+
+    val BUILD_VARIANT = "${BUILD_FLAVOR.capitalize()}${BUILD_TYPE.capitalize()}"
 }
 
 android {
