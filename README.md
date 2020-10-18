@@ -55,6 +55,7 @@ Here are some useful Gradle/adb commands for executing this example:
  * `./gradlew runUnitTests` - Execute unit tests (both unit and integration).
  * `./gradlew runAcceptanceTests` - Execute acceptance and instrumentation tests in the connected device.
  * `./gradlew runTestCoverage` - Reports code coverage on tests within the Android codebase.
+ * `./gradlew runStaticCodeAnalysis` - Run static analysis on the Android codebase.
  
 ## Discussions
 Refer to the issues section: https://github.com/android10/Android-CleanArchitecture-Kotlin/issues

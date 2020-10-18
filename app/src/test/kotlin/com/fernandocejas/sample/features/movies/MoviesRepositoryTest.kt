@@ -122,7 +122,7 @@ class MoviesRepositoryTest : UnitTest() {
         val movieDetails = networkRepository.movieDetails(1)
 
         movieDetails shouldEqual Right(MovieDetails.empty())
-        verify(exactly = 1) {service.movieDetails(1) }
+        verify(exactly = 1) { service.movieDetails(1) }
     }
 
     @Test fun `should get movie details from service`() {
