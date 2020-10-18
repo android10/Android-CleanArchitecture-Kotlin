@@ -27,7 +27,7 @@ tasks.register("jacocoReport", JacocoReport::class) {
     dependsOn("test${Default.BUILD_VARIANT}UnitTest")
 
     val buildVariantClassPath = "${Default.BUILD_FLAVOR}${Default.BUILD_TYPE.capitalize()}"
-    val outputDir = "${project.buildDir}/testCoverage/html"
+    val outputDir = "${project.buildDir}/testCoverage"
 
     reports {
         xml.isEnabled = true
@@ -77,24 +77,31 @@ tasks.register("runTestCoverage") {
 
 val detektAll by tasks.registering(Detekt::class) {
     group = "Quality"
-    description = "Runs a detekt code analysis ruleset on the Android codebase."
+    description = "Runs a detekt code analysis on the Android codebase."
     parallel = true
     buildUponDefaultConfig = true
 
+    val outputFile = "${project.buildDir}/staticAnalysis/index.html"
+
     setSource(files(rootProject.projectDir))
-    config.setFrom(project.rootDir.resolve("config/detekt/detekt.yml"))
+    config.setFrom("${project.rootDir}/config/detekt/detekt.yml")
 
     include("**/*.kt")
     exclude("**/*.kts", "*/build/*", "/buildSrc")
 
     reports {
-        xml.enabled = true
         html.enabled = true
+        html.destination = file(outputFile)
+        xml.enabled = false
         txt.enabled = false
+    }
+
+    doLast {
+        println("Static Analysis Report: $outputFile")
     }
 }
 
-tasks.register("runStaticCodeAnalysis") {
+tasks.register("runStaticAnalysis") {
     description = "Run static analysis on the Android codebase."
     dependsOn(detektAll)
 }
