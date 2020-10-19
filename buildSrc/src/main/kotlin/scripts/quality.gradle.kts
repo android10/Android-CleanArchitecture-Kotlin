@@ -64,9 +64,7 @@ tasks.register("jacocoReport", JacocoReport::class) {
     executionData.setFrom(fileTree(project.buildDir) {
         include("**/*.exec", "**/*.ec") })
 
-    doLast {
-        println("Code Coverage Report: $outputDir/index.html")
-    }
+    doLast { println("Code Coverage Report: $outputDir/index.html") }
 }
 
 tasks.register("runTestCoverage") {
@@ -96,9 +94,9 @@ val detektAll by tasks.registering(Detekt::class) {
         txt.enabled = false
     }
 
-    doLast {
-        println("Static Analysis Report: $outputFile")
-    }
+    val reportFile = "Static Analysis Report: $outputFile \n"
+    doFirst { println(reportFile) }
+    doLast { println(reportFile) }
 }
 
 tasks.register("runStaticAnalysis") {

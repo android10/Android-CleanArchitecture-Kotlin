@@ -30,6 +30,13 @@ object BuildPlugins {
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
 }
 
+object ScriptPlugins {
+    const val infrastructure = "scripts.infrastructure"
+    const val variants = "scripts.variants"
+    const val quality = "scripts.quality"
+    const val compilation = "scripts.compilation"
+}
+
 object Libraries {
     private object Versions {
         const val appCompat = "1.2.0"
@@ -105,12 +112,5 @@ object DevLibraries {
         const val leakCanary = "2.5"
     }
 
-    const val leakCanary =     "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-}
-
-object ScriptPlugins {
-    const val infrastructure = "scripts.infrastructure"
-    const val variants = "scripts.variants"
-    const val quality = "scripts.quality"
-    const val compilation = "scripts.compilation"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 }
