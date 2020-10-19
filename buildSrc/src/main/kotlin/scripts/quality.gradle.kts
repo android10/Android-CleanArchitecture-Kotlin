@@ -21,7 +21,7 @@ android {
     }
 }
 
-tasks.register("jacocoReport", JacocoReport::class) {
+val jacocoReport by tasks.registering(JacocoReport::class) {
     group = "Quality"
     description = "Report code coverage on tests within the Android codebase."
     dependsOn("test${Default.BUILD_VARIANT}UnitTest")
@@ -70,7 +70,7 @@ tasks.register("jacocoReport", JacocoReport::class) {
 tasks.register("runTestCoverage") {
     group = "Quality"
     description = "Report code coverage on tests within the Android codebase."
-    dependsOn("jacocoReport")
+    dependsOn(jacocoReport)
 }
 
 val detektAll by tasks.registering(Detekt::class) {
