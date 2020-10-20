@@ -33,7 +33,7 @@ class GetMoviesTest : UnitTest() {
 
     @Before fun setUp() {
         getMovies = GetMovies(moviesRepository)
-        every { moviesRepository.movies() } returns Right(listOf(Movie.empty()))
+        every { moviesRepository.movies() } returns Right(listOf(Movie.empty))
     }
 
     @Test fun `should get data from repository`() {
