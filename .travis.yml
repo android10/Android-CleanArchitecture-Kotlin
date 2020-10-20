@@ -47,3 +47,7 @@ script:
   - ./gradlew clean
   - ./gradlew compileApp
   - ./gradlew runUnitTests
+  - ./gradlew runTestCoverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
