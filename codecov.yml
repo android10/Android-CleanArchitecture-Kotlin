@@ -1,0 +1,28 @@
+# Coverage configuration
+# ----------------------
+coverage:
+  status:
+    project:
+      default:
+        # basic
+        target: auto
+        threshold: 5%
+        base: auto
+    patch: false
+
+# Ignoring Paths
+# --------------
+# which folders/files to ignore
+ignore:
+  - ".*/test/.*"
+  - ".*/androidTest/.*"
+  - ".*/_version.py"
+  - "setup.py"
+  - "versioneer.py"
+
+# Pull request comments:
+# ----------------------
+# Diff is the Coverage Diff of the pull request.
+# Files are the files impacted by the pull request
+comment:
+  layout: diff, files  # accepted in any order: reach, diff, flags, and/or files
