@@ -1,5 +1,5 @@
 object Kotlin {
-    const val standardLibrary = "1.4.0"
+    const val standardLibrary = "1.4.10"
     const val coroutines = "1.3.9"
 }
 
@@ -19,7 +19,7 @@ object AndroidClient {
 object BuildPlugins {
 
     object Versions {
-        const val buildToolsVersion = "4.0.1"
+        const val buildToolsVersion = "4.1.0"
         const val gradleVersion = "6.6.1"
     }
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
