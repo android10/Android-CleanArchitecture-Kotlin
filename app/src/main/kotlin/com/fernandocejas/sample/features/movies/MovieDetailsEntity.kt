@@ -27,7 +27,7 @@ data class MovieDetailsEntity(private val id: Int,
                               private val trailer: String) {
 
     companion object {
-        fun empty() = MovieDetailsEntity(0, String.empty(), String.empty(), String.empty(),
+        val empty = MovieDetailsEntity(0, String.empty(), String.empty(), String.empty(),
                 String.empty(), String.empty(), 0, String.empty())
     }
 
