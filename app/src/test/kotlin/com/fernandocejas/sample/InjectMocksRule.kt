@@ -18,12 +18,9 @@ package com.fernandocejas.sample
 import io.mockk.MockKAnnotations
 import org.junit.rules.TestRule
 
-class InjectMocksRule {
-
-    companion object {
-        fun create(testClass: Any) = TestRule { statement, _ ->
-            MockKAnnotations.init(testClass, relaxUnitFun = true)
-            statement
-        }
+object InjectMocksRule {
+    fun create(testClass: Any) = TestRule { statement, _ ->
+        MockKAnnotations.init(testClass, relaxUnitFun = true)
+        statement
     }
 }
