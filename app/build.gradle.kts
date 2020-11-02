@@ -54,8 +54,12 @@ dependencies {
   implementation(Libraries.androidAnnotations)
   implementation(Libraries.glide)
   implementation(Libraries.hilt)
+  implementation(Libraries.hiltLifecycle)
   implementation(Libraries.retrofit)
   implementation(Libraries.okHttpLoggingInterceptor)
+
+  //TODO: change this
+  implementation ("androidx.fragment:fragment-ktx:1.2.5")
 
   // Unit/Android tests dependencies
   testImplementation(TestLibraries.junit4)

@@ -23,10 +23,11 @@ import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.interactor.UseCase
 import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.core.navigation.Navigator
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class PlayMovie
-@Inject constructor(private val context: Context,
+@Inject constructor(@ApplicationContext private val context: Context,
                     private val navigator: Navigator) : UseCase<None, Params>() {
 
     override suspend fun run(params: Params): Either<Failure, None> {

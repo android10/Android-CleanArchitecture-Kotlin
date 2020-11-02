@@ -15,15 +15,19 @@
  */
 package com.fernandocejas.sample.features.movies
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.fernandocejas.sample.core.platform.BaseViewModel
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
 import javax.inject.Inject
 
 class MovieDetailsViewModel
-@Inject constructor(private val getMovieDetails: GetMovieDetails,
-                    private val playMovie: PlayMovie) : BaseViewModel() {
+@ViewModelInject constructor(private val getMovieDetails: GetMovieDetails,
+                             @Assisted private val savedStateHandle: SavedStateHandle,
+                             private val playMovie: PlayMovie) : BaseViewModel() {
 
     private val _movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
     val movieDetails: LiveData<MovieDetailsView> = _movieDetails

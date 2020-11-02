@@ -15,14 +15,18 @@
  */
 package com.fernandocejas.sample.features.movies
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.core.platform.BaseViewModel
 import javax.inject.Inject
 
 class MoviesViewModel
-@Inject constructor(private val getMovies: GetMovies) : BaseViewModel() {
+@ViewModelInject constructor(private val getMovies: GetMovies,
+                             @Assisted private val savedStateHandle: SavedStateHandle) : BaseViewModel() {
 
     private val _movies: MutableLiveData<List<MovieView>> = MutableLiveData()
     val movies: LiveData<List<MovieView>> = _movies

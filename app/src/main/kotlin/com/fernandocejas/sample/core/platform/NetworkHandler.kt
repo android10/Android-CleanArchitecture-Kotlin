@@ -19,6 +19,7 @@ import android.content.Context
 import android.net.NetworkCapabilities
 import android.os.Build
 import com.fernandocejas.sample.core.extension.connectivityManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,7 +28,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class NetworkHandler
-@Inject constructor(private val context: Context) {
+@Inject constructor(@ApplicationContext private val context: Context) {
     fun isNetworkAvailable(): Boolean {
         val connectivityManager = context.connectivityManager
 
