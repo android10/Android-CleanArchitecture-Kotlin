@@ -26,12 +26,15 @@ import retrofit2.Call
 import javax.inject.Inject
 
 interface MoviesRepository {
+    
     fun movies(): Either<Failure, List<Movie>>
     fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
 
     class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: MoviesService) : MoviesRepository {
+    @Inject constructor(
+        private val networkHandler: NetworkHandler,
+        private val service: MoviesService
+    ) : MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isNetworkAvailable()) {
