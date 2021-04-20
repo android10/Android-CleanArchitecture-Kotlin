@@ -17,6 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.fernandocejas.sample.core.platform.BaseViewModel
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
 import javax.inject.Inject
@@ -29,9 +30,14 @@ class MovieDetailsViewModel
     val movieDetails: LiveData<MovieDetailsView> = _movieDetails
 
     fun loadMovieDetails(movieId: Int) =
-            getMovieDetails(Params(movieId)) { it.fold(::handleFailure, ::handleMovieDetails) }
+        getMovieDetails(Params(movieId), viewModelScope) {
+            it.fold(
+                ::handleFailure,
+                ::handleMovieDetails
+            )
+        }
 
-    fun playMovie(url: String) = playMovie(PlayMovie.Params(url))
+    fun playMovie(url: String) = playMovie(PlayMovie.Params(url), viewModelScope)
 
     private fun handleMovieDetails(movie: MovieDetails) {
         _movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
