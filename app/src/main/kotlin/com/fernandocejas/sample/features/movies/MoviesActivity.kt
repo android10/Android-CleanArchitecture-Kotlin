@@ -20,7 +20,6 @@ import android.content.Intent
 import com.fernandocejas.sample.core.platform.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MoviesActivity : BaseActivity() {
 
     companion object {
