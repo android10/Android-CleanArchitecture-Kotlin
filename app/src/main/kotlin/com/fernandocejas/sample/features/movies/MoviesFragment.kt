@@ -31,15 +31,20 @@ import com.fernandocejas.sample.core.extension.visible
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
-    @Inject lateinit var navigator: Navigator
-    @Inject lateinit var moviesAdapter: MoviesAdapter
+    @Inject
+    lateinit var navigator: Navigator
 
-    private val moviesViewModel: MoviesViewModel by viewModels()
+    @Inject
+    lateinit var moviesAdapter: MoviesAdapter
+
+    private val moviesViewModel by viewModels<MoviesViewModel>()
 
     override fun layoutId() = R.layout.fragment_movies
 
@@ -63,7 +68,8 @@ class MoviesFragment : BaseFragment() {
         movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         movieList.adapter = moviesAdapter
         moviesAdapter.clickListener = { movie, navigationExtras ->
-                    navigator.showMovieDetails(requireActivity(), movie, navigationExtras) }
+            navigator.showMovieDetails(requireActivity(), movie, navigationExtras)
+        }
     }
 
     private fun loadMoviesList() {

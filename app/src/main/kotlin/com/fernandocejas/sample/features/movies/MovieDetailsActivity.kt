@@ -18,7 +18,9 @@ package com.fernandocejas.sample.features.movies
 import android.content.Context
 import android.content.Intent
 import com.fernandocejas.sample.core.platform.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieDetailsActivity : BaseActivity() {
 
     companion object {
