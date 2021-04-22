@@ -15,7 +15,6 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import androidx.hilt.Assisted
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -27,8 +26,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel
 @Inject constructor(private val getMovieDetails: GetMovieDetails,
-                             @Assisted private val savedStateHandle: SavedStateHandle,
-                             private val playMovie: PlayMovie) : BaseViewModel() {
+                    private val savedStateHandle: SavedStateHandle,
+                    private val playMovie: PlayMovie) : BaseViewModel() {
 
     private val _movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
     val movieDetails: LiveData<MovieDetailsView> = _movieDetails
