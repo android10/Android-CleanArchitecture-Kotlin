@@ -17,6 +17,7 @@ package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
@@ -46,14 +47,8 @@ class MovieDetailsFragment : BaseFragment() {
     companion object {
         private const val PARAM_MOVIE = "param_movie"
 
-        fun forMovie(movie: MovieView?): MovieDetailsFragment {
-            val movieDetailsFragment = MovieDetailsFragment()
-            movie?.let {
-                val arguments = Bundle()
-                arguments.putParcelable(PARAM_MOVIE, it)
-                movieDetailsFragment.arguments = arguments
-            }
-            return movieDetailsFragment
+        fun forMovie(movie: MovieView?) = MovieDetailsFragment().apply {
+            arguments = bundleOf(PARAM_MOVIE to movie)
         }
     }
 
