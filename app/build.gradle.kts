@@ -4,6 +4,7 @@ plugins {
   id(BuildPlugins.kotlinAndroid)
   id(BuildPlugins.kotlinKapt)
   id(BuildPlugins.kotlinAndroidExtensions)
+  id(BuildPlugins.androidHilt)
 
   // Internal Script plugins
   id(ScriptPlugins.variants)
@@ -35,9 +36,7 @@ android {
 dependencies {
   //Compile time dependencies
   kapt(Libraries.lifecycleCompiler)
-  kapt(Libraries.daggerCompiler)
-  compileOnly(Libraries.javaxAnnotation)
-  compileOnly(Libraries.javaxInject)
+  kapt(Libraries.hiltCompiler)
 
   // Application dependencies
   implementation(Libraries.kotlinStdLib)
@@ -54,9 +53,12 @@ dependencies {
   implementation(Libraries.material)
   implementation(Libraries.androidAnnotations)
   implementation(Libraries.glide)
-  implementation(Libraries.dagger)
+  implementation(Libraries.hilt)
   implementation(Libraries.retrofit)
   implementation(Libraries.okHttpLoggingInterceptor)
+
+  //TODO: change this
+  implementation ("androidx.fragment:fragment-ktx:1.2.5")
 
   // Unit/Android tests dependencies
   testImplementation(TestLibraries.junit4)
@@ -70,6 +72,7 @@ dependencies {
   androidTestImplementation(TestLibraries.testExtJunit)
   androidTestImplementation(TestLibraries.testRules)
   androidTestImplementation(TestLibraries.espressoIntents)
+  androidTestImplementation(TestLibraries.hiltTesting)
 
   // Development dependencies
   debugImplementation(DevLibraries.leakCanary)

@@ -19,6 +19,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.core.extension.inTransaction
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.toolbar.*
 
 /**
@@ -27,6 +28,7 @@ import kotlinx.android.synthetic.main.toolbar.*
  *
  * @see AppCompatActivity
  */
+@AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

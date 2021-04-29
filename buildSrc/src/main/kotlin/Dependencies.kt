@@ -17,16 +17,19 @@ object AndroidClient {
 }
 
 object BuildPlugins {
-
     object Versions {
         const val buildToolsVersion = "4.1.0"
-        const val gradleVersion = "6.6.1"
+        const val gradleVersion = "6.7"
+        const val hilt = "2.35.1"
     }
+
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.standardLibrary}"
+    const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinKapt = "kotlin-kapt"
+    const val androidHilt = "dagger.hilt.android.plugin"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
 }
 
@@ -39,6 +42,7 @@ object ScriptPlugins {
 
 object Libraries {
     private object Versions {
+        const val hilt = BuildPlugins.Versions.hilt
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.0.2"
         const val recyclerView = "1.1.0"
@@ -51,11 +55,6 @@ object Libraries {
         const val glide = "4.11.0"
         const val retrofit = "2.9.0"
         const val okHttpLoggingInterceptor = "4.9.0"
-
-        //TODO: Legacy -> WIP -> Try Hilt?
-        const val dagger = "2.11"
-        const val javaxAnnotations = "1.0"
-        const val javaxInject = "1"
     }
 
     const val kotlinStdLib             = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
@@ -73,14 +72,10 @@ object Libraries {
     const val material                 = "com.google.android.material:material:${Versions.material}"
     const val androidAnnotations       = "androidx.annotation:annotation:${Versions.annotations}"
     const val glide                    = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val dagger                   = "com.google.dagger:dagger:${Versions.dagger}"
+    const val hilt                     = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler             = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val retrofit                 = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
-
-    //TODO: Legacy -> WIP -> Migrate to Koin or Hilt?
-    const val daggerCompiler   = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    const val javaxAnnotation  = "javax.annotation:jsr250-api:${Versions.javaxAnnotations}"
-    const val javaxInject      = "javax.inject:javax.inject:${Versions.javaxInject}"
 }
 
 object TestLibraries {
@@ -94,6 +89,7 @@ object TestLibraries {
         const val espressoIntents = "3.1.0"
         const val testExtensions = "1.1.1"
         const val testRules = "1.1.0"
+        const val hiltTesting = BuildPlugins.Versions.hilt
     }
 
     const val junit4          = "junit:junit:${Versions.junit4}"
@@ -105,6 +101,7 @@ object TestLibraries {
     const val espressoCore    = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espressoIntents}"
     const val testExtJunit    = "androidx.test.ext:junit:${Versions.testExtensions}"
+    const val hiltTesting     = "com.google.dagger:hilt-android-testing:${Versions.hiltTesting}"
 }
 
 object DevLibraries {
