@@ -25,7 +25,6 @@ import com.fernandocejas.sample.core.exception.Failure.ServerError
 import com.fernandocejas.sample.core.extension.*
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
@@ -46,8 +45,7 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject
-    lateinit var movieDetailsAnimator: MovieDetailsAnimator
+    @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
     private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
 
@@ -102,18 +100,10 @@ class MovieDetailsFragment : BaseFragment() {
 
     private fun handleFailure(failure: Failure?) {
         when (failure) {
-            is NetworkConnection -> {
-                notify(R.string.failure_network_connection); close()
-            }
-            is ServerError -> {
-                notify(R.string.failure_server_error); close()
-            }
-            is NonExistentMovie -> {
-                notify(R.string.failure_movie_non_existent); close()
-            }
-            else -> {
-                notify(R.string.failure_server_error); close()
-            }
+            is NetworkConnection -> { notify(R.string.failure_network_connection); close() }
+            is ServerError -> { notify(R.string.failure_server_error); close() }
+            is NonExistentMovie -> { notify(R.string.failure_movie_non_existent); close() }
+            else -> { notify(R.string.failure_server_error); close() }
         }
     }
 }
