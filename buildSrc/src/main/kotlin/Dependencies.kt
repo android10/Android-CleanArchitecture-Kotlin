@@ -24,7 +24,8 @@ object BuildPlugins {
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.standardLibrary}"
+    const val kotlinGradlePlugin =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Kotlin.standardLibrary}"
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "kotlin-android"
@@ -57,25 +58,30 @@ object Libraries {
         const val okHttpLoggingInterceptor = "4.9.0"
     }
 
-    const val kotlinStdLib             = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
-    const val kotlinCoroutines         = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
-    const val kotlinCoroutinesAndroid  = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
-    const val appCompat                = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val constraintLayout         = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val ktxCore                  = "androidx.core:core-ktx:${Versions.ktx}"
-    const val lifecycleCompiler        = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
-    const val viewModel                = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    const val liveData                 = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    const val lifecycleExtensions      = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}"
-    const val cardView                 = "androidx.cardview:cardview:${Versions.cardView}"
-    const val recyclerView             = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val material                 = "com.google.android.material:material:${Versions.material}"
-    const val androidAnnotations       = "androidx.annotation:annotation:${Versions.annotations}"
-    const val glide                    = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val hilt                     = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltCompiler             = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-    const val retrofit                 = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-    const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
+    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
+    const val kotlinCoroutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Kotlin.coroutines}"
+    const val kotlinCoroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Kotlin.coroutines}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val ktxCore = "androidx.core:core-ktx:${Versions.ktx}"
+    const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val lifecycleExtensions =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}"
+    const val cardView = "androidx.cardview:cardview:${Versions.cardView}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val material = "com.google.android.material:material:${Versions.material}"
+    const val androidAnnotations = "androidx.annotation:annotation:${Versions.annotations}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val retrofit = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val okHttpLoggingInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
 }
 
 object TestLibraries {
@@ -92,16 +98,17 @@ object TestLibraries {
         const val hiltTesting = BuildPlugins.Versions.hilt
     }
 
-    const val junit4          = "junit:junit:${Versions.junit4}"
-    const val mockk           = "io.mockk:mockk:${Versions.mockk}"
-    const val robolectric     = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val kluent          = "org.amshove.kluent:kluent:${Versions.kluent}"
-    const val testRunner      = "androidx.test:runner:${Versions.testRunner}"
-    const val testRules       = "androidx.test:rules:${Versions.testRules}"
-    const val espressoCore    = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
-    const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espressoIntents}"
-    const val testExtJunit    = "androidx.test.ext:junit:${Versions.testExtensions}"
-    const val hiltTesting     = "com.google.dagger:hilt-android-testing:${Versions.hiltTesting}"
+    const val junit4 = "junit:junit:${Versions.junit4}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val kluent = "org.amshove.kluent:kluent:${Versions.kluent}"
+    const val testRunner = "androidx.test:runner:${Versions.testRunner}"
+    const val testRules = "androidx.test:rules:${Versions.testRules}"
+    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+    const val espressoIntents =
+        "androidx.test.espresso:espresso-intents:${Versions.espressoIntents}"
+    const val testExtJunit = "androidx.test.ext:junit:${Versions.testExtensions}"
+    const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.hiltTesting}"
 }
 
 object DevLibraries {

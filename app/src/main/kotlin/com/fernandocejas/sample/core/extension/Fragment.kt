@@ -24,7 +24,7 @@ import com.fernandocejas.sample.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.activity_layout.*
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =
-        beginTransaction().func().commit()
+    beginTransaction().func().commit()
 
 fun BaseFragment.close() = fragmentManager?.popBackStack()
 

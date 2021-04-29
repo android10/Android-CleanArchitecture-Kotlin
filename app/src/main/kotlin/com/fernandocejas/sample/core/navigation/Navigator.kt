@@ -23,12 +23,12 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
+import com.fernandocejas.sample.core.extension.empty
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.MovieView
 import com.fernandocejas.sample.features.movies.MoviesActivity
-import com.fernandocejas.sample.core.extension.empty
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -37,7 +37,8 @@ import javax.inject.Singleton
 class Navigator
 @Inject constructor(private val authenticator: Authenticator) {
 
-    private fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
+    private fun showLogin(context: Context) =
+        context.startActivity(LoginActivity.callingIntent(context))
 
     fun showMain(context: Context) {
         when (authenticator.userLoggedIn()) {
@@ -46,13 +47,14 @@ class Navigator
         }
     }
 
-    private fun showMovies(context: Context) = context.startActivity(MoviesActivity.callingIntent(context))
+    private fun showMovies(context: Context) =
+        context.startActivity(MoviesActivity.callingIntent(context))
 
     fun showMovieDetails(activity: FragmentActivity, movie: MovieView, navigationExtras: Extras) {
         val intent = MovieDetailsActivity.callingIntent(activity, movie)
         val sharedView = navigationExtras.transitionSharedElement as ImageView
         val activityOptions = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
+            .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
         activity.startActivity(intent, activityOptions.toBundle())
     }
 
@@ -70,7 +72,10 @@ class Navigator
     private fun createYoutubeIntent(videoUrl: String): Intent {
         val videoId = when {
             videoUrl.startsWith(VIDEO_URL_HTTP) -> videoUrl.replace(VIDEO_URL_HTTP, String.empty())
-            videoUrl.startsWith(VIDEO_URL_HTTPS) -> videoUrl.replace(VIDEO_URL_HTTPS, String.empty())
+            videoUrl.startsWith(VIDEO_URL_HTTPS) -> videoUrl.replace(
+                VIDEO_URL_HTTPS,
+                String.empty()
+            )
             else -> videoUrl
         }
 

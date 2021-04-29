@@ -18,7 +18,6 @@ package com.fernandocejas.sample.features.movies
 import android.content.Context
 import android.content.Intent
 import com.fernandocejas.sample.core.platform.BaseActivity
-import dagger.hilt.android.AndroidEntryPoint
 
 class MovieDetailsActivity : BaseActivity() {
 
@@ -31,5 +30,6 @@ class MovieDetailsActivity : BaseActivity() {
             }
     }
 
-    override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
+    override fun fragment() =
+        MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
 }

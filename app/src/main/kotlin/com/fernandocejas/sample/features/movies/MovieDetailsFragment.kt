@@ -42,7 +42,8 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
+    @Inject
+    lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
     private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
 
@@ -97,10 +98,18 @@ class MovieDetailsFragment : BaseFragment() {
 
     private fun handleFailure(failure: Failure?) {
         when (failure) {
-            is NetworkConnection -> { notify(R.string.failure_network_connection); close() }
-            is ServerError -> { notify(R.string.failure_server_error); close() }
-            is NonExistentMovie -> { notify(R.string.failure_movie_non_existent); close() }
-            else -> { notify(R.string.failure_server_error); close() }
+            is NetworkConnection -> {
+                notify(R.string.failure_network_connection); close()
+            }
+            is ServerError -> {
+                notify(R.string.failure_server_error); close()
+            }
+            is NonExistentMovie -> {
+                notify(R.string.failure_movie_non_existent); close()
+            }
+            else -> {
+                notify(R.string.failure_server_error); close()
+            }
         }
     }
 }

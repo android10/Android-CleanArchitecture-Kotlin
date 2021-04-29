@@ -23,7 +23,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class RouteActivity : AppCompatActivity() {
 
-    @Inject internal lateinit var navigator: Navigator
+    @Inject
+    internal lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

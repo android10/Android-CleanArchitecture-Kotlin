@@ -60,13 +60,9 @@ Here are some useful Gradle/adb commands for executing this example:
 ## Discussions
 Refer to the issues section: https://github.com/android10/Android-CleanArchitecture-Kotlin/issues
  
-## Code style
-Here you can download and install the java codestyle.
-https://github.com/android10/java-code-styles
-
 ## License
 
-    Copyright 2018 Fernando Cejas
+    Copyright 2021 Fernando Cejas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
