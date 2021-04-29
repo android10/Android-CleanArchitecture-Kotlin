@@ -17,8 +17,10 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.navigation.Navigator
+import com.fernandocejas.sample.features.movies.PlayMovieTest.Companion.VIDEO_URL
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
@@ -35,9 +37,9 @@ class PlayMovieTest : AndroidTest() {
     }
 
     @Test fun `should play movie trailer`() {
-        val params = PlayMovie.Params(Companion.VIDEO_URL)
+        val params = PlayMovie.Params(VIDEO_URL)
 
-        playMovie(params)
+        runBlocking { playMovie.run(params) }
 
         verify(exactly = 1) { navigator.openVideo(context, VIDEO_URL) }
     }
