@@ -47,7 +47,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     @Inject lateinit var movieDetailsAnimator: MovieDetailsAnimator
 
-    private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
+    private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
 
     override fun layoutId() = R.layout.fragment_movie_details
 

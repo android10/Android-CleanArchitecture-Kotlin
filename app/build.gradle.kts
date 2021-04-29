@@ -54,7 +54,6 @@ dependencies {
   implementation(Libraries.androidAnnotations)
   implementation(Libraries.glide)
   implementation(Libraries.hilt)
-  implementation(Libraries.hiltLifecycle)
   implementation(Libraries.retrofit)
   implementation(Libraries.okHttpLoggingInterceptor)
 

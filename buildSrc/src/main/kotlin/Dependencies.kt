@@ -20,7 +20,7 @@ object BuildPlugins {
     object Versions {
         const val buildToolsVersion = "4.1.0"
         const val gradleVersion = "6.7"
-        const val hilt = "2.29-alpha"
+        const val hilt = "2.35.1"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
@@ -43,7 +43,6 @@ object ScriptPlugins {
 object Libraries {
     private object Versions {
         const val hilt = BuildPlugins.Versions.hilt
-        const val hiltLifecycle = "1.0.0-alpha01"
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.0.2"
         const val recyclerView = "1.1.0"
@@ -74,7 +73,6 @@ object Libraries {
     const val androidAnnotations       = "androidx.annotation:annotation:${Versions.annotations}"
     const val glide                    = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val hilt                     = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltLifecycle            = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltLifecycle}"
     const val hiltCompiler             = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val retrofit                 = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptor}"
