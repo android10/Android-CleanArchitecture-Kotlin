@@ -1,6 +1,6 @@
 ![banner](https://user-images.githubusercontent.com/37318022/40349145-3e0c8d8a-5dd8-11e8-8654-5784f9ab7554.png)
 
-# Android - Clean Architecture - Kotlin [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin.svg?branch=master)](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin) [![codecov](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin/branch/master/graph/badge.svg?token=x1AtDcNuDv)](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin)
+# Android - Clean Architecture - Kotlin [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin.svg?branch=main)](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin) [![codecov](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin/branch/main/graph/badge.svg?token=x1AtDcNuDv)](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin)
 The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting aproaches like Functional Programming.
 
 ## Blog post with implementation details explanation:
@@ -28,22 +28,22 @@ Article, lessons learned and some more material coming up. Check the following k
 ### ----------------------------------------------------------------------------------------------
 
 ## Clean Architecture
-![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_main.png)
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/main/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_main.png)
 
 ### ----------------------------------------------------------------------------------------------
 
 ## Android 3 Layers Architecture
-![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_layers.png)
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/main/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_layers.png)
 
 ### ----------------------------------------------------------------------------------------------
 
 ## UI Layer: MVVM 
-![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_mvvm_app.png)
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/main/Android-CleanArchitecture-Kotlin/architecture/clean_architecture_reloaded_mvvm_app.png)
 
 ### ----------------------------------------------------------------------------------------------
 
 ## Data Layer: Repository 
-![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/master/Android-CleanArchitecture-Kotlin/architecture/clean_archictecture_reloaded_repository.png)
+![https://fernandocejas.com/2018/05/07/architecting-android-reloaded/](https://github.com/android10/Sample-Data/blob/main/Android-CleanArchitecture-Kotlin/architecture/clean_archictecture_reloaded_repository.png)
 
 ### ----------------------------------------------------------------------------------------------
 
@@ -81,6 +81,6 @@ https://github.com/android10/java-code-styles
     limitations under the License.
 
 
-![https://fernandocejas.com](https://github.com/android10/Sample-Data/blob/master/android10/android10_logo_big.png)
+![https://fernandocejas.com](https://github.com/android10/Sample-Data/blob/main/android10/android10_logo_big.png)
 
 <a href="https://www.buymeacoffee.com/android10" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
