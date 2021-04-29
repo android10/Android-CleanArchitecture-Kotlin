@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class MovieDetailsFragment : BaseFragment() {
 
     companion object {

@@ -35,7 +35,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
     @Inject
