@@ -38,8 +38,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
-    @Inject lateinit var navigator: Navigator
-    @Inject lateinit var moviesAdapter: MoviesAdapter
+    @Inject
+    lateinit var navigator: Navigator
+    @Inject
+    lateinit var moviesAdapter: MoviesAdapter
 
     private val moviesViewModel: MoviesViewModel by viewModels()
 
@@ -65,7 +67,8 @@ class MoviesFragment : BaseFragment() {
         movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         movieList.adapter = moviesAdapter
         moviesAdapter.clickListener = { movie, navigationExtras ->
-            navigator.showMovieDetails(requireActivity(), movie, navigationExtras) }
+            navigator.showMovieDetails(requireActivity(), movie, navigationExtras)
+        }
     }
 
     private fun loadMoviesList() {

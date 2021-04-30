@@ -30,24 +30,38 @@ interface MoviesRepository {
     fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
 
     class Network
-    @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: MoviesService) : MoviesRepository {
+    @Inject constructor(
+        private val networkHandler: NetworkHandler,
+        private val service: MoviesService
+    ) : MoviesRepository {
 
         override fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isNetworkAvailable()) {
-                true -> request(service.movies(), { it.map { movieEntity -> movieEntity.toMovie() } }, emptyList())
+                true -> request(
+                    service.movies(),
+                    { it.map { movieEntity -> movieEntity.toMovie() } },
+                    emptyList()
+                )
                 false -> Left(NetworkConnection)
             }
         }
 
         override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
             return when (networkHandler.isNetworkAvailable()) {
-                true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty)
+                true -> request(
+                    service.movieDetails(movieId),
+                    { it.toMovieDetails() },
+                    MovieDetailsEntity.empty
+                )
                 false -> Left(NetworkConnection)
             }
         }
 
-        private fun <T, R> request(call: Call<T>, transform: (T) -> R, default: T): Either<Failure, R> {
+        private fun <T, R> request(
+            call: Call<T>,
+            transform: (T) -> R,
+            default: T
+        ): Either<Failure, R> {
             return try {
                 val response = call.execute()
                 when (response.isSuccessful) {

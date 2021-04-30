@@ -21,7 +21,8 @@ import com.fernandocejas.sample.core.platform.parcelableCreator
 
 data class MovieView(val id: Int, val poster: String) : KParcelable {
     companion object {
-        @JvmField val CREATOR = parcelableCreator(::MovieView)
+        @JvmField
+        val CREATOR = parcelableCreator(::MovieView)
     }
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString()!!)
