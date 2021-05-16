@@ -4,7 +4,7 @@ object Kotlin {
 }
 
 object AndroidSdk {
-    const val min = 21
+    const val min = 26
     const val compile = 29
     const val target = compile
 }
@@ -18,8 +18,8 @@ object AndroidClient {
 
 object BuildPlugins {
     object Versions {
-        const val buildToolsVersion = "4.1.0"
-        const val gradleVersion = "6.7"
+        const val buildToolsVersion = "4.2.0"
+        const val gradleVersion = "6.8"
         const val hilt = "2.35.1"
     }
 
