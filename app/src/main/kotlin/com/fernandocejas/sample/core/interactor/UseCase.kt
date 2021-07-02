@@ -29,7 +29,7 @@ import kotlinx.coroutines.*
  */
 abstract class UseCase<out Type, in Params> where Type : Any {
 
-    abstract suspend fun run(params: Params): Either<Failure, Type>
+    abstract suspend fun CoroutineScope.run(params: Params): Either<Failure, Type>
 
     operator fun invoke(
         params: Params,

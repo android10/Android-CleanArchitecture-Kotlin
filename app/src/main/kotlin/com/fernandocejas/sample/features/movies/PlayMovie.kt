@@ -24,6 +24,7 @@ import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.features.movies.PlayMovie.Params
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 class PlayMovie
@@ -32,7 +33,7 @@ class PlayMovie
     private val navigator: Navigator
 ) : UseCase<None, Params>() {
 
-    override suspend fun run(params: Params): Either<Failure, None> {
+    override suspend fun CoroutineScope.run(params: Params): Either<Failure, None> {
         navigator.openVideo(context, params.url)
         return Right(None())
     }
