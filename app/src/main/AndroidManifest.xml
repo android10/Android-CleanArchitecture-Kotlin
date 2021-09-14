@@ -1,50 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-    package="com.fernandocejas.sample"
-xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.fernandocejas.sample">
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-<!--Permissions-->
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application
+        android:name=".AndroidApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".features.login.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Activities -->
+        <activity
+            android:name=".core.navigation.RouteActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.Translucent">
 
-<!--Application-->
-<application
-    android:allowBackup="true"
-    android:name=".AndroidApplication"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme"
-    tools:ignore="GoogleAppIndexingWarning">
+        </activity>
 
-  <!--Activities-->
-    <activity
-        android:name="com.fernandocejas.sample.core.navigation.RouteActivity"
-        android:noHistory="true"
-        android:theme="@style/AppTheme.Translucent">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-
-    <activity
-        android:name=".features.login.LoginActivity"
-        android:label="@string/login_screen_title">
-    </activity>
-
-    <activity
-        android:name=".features.movies.MoviesActivity"
-        android:label="@string/movies_screen_title">
-    </activity>
-
-    <activity
-        android:name=".features.movies.MovieDetailsActivity"
-        android:label="@string/movie_details_screen_title"
-        android:theme="@style/AppTheme.Translucent">
-    </activity>
-
-</application>
+        <activity
+            android:name=".features.login.LoginActivity"
+            android:label="@string/login_screen_title"></activity>
+        <activity
+            android:name=".features.movies.MoviesActivity"
+            android:label="@string/movies_screen_title"></activity>
+        <activity
+            android:name=".features.movies.MovieDetailsActivity"
+            android:label="@string/movie_details_screen_title"
+            android:theme="@style/AppTheme.Translucent"></activity>
+    </application>
 
 </manifest>
-

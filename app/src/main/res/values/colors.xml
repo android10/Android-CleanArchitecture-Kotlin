@@ -8,4 +8,6 @@
     <color name="colorTextSecondary">#7f1a18</color>
 
     <color name="translucentBackground">#ED000000</color>
+    <color name="backGround">#1C2135</color>
+    <color name="btnColor">#2E5CFF</color>
 </resources>
