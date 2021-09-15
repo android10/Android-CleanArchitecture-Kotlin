@@ -15,31 +15,31 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".features.login.LoginScreenActivity"
+            android:exported="true" />
+        <activity
             android:name=".features.login.MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- Activities -->
+        </activity> <!-- Activities -->
         <activity
             android:name=".core.navigation.RouteActivity"
             android:noHistory="true"
-            android:theme="@style/AppTheme.Translucent">
-
-        </activity>
-
+            android:theme="@style/AppTheme.Translucent"></activity>
         <activity
             android:name=".features.login.LoginActivity"
-            android:label="@string/login_screen_title"></activity>
+            android:label="@string/login_screen_title" />
         <activity
             android:name=".features.movies.MoviesActivity"
-            android:label="@string/movies_screen_title"></activity>
+            android:label="@string/movies_screen_title" />
         <activity
             android:name=".features.movies.MovieDetailsActivity"
             android:label="@string/movie_details_screen_title"
-            android:theme="@style/AppTheme.Translucent"></activity>
+            android:theme="@style/AppTheme.Translucent" />
     </application>
 
 </manifest>

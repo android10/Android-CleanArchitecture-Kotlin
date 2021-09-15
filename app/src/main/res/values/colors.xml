@@ -10,4 +10,8 @@
     <color name="translucentBackground">#ED000000</color>
     <color name="backGround">#1C2135</color>
     <color name="btnColor">#2E5CFF</color>
+    <color name="boxBackGroundColor">#282B4A</color>
+    <color name="colorText">#8C92AC</color>
+    <color name="colorTextHit">#2E5CFF</color>
+    <color name="btnLogin">#60638C</color>
 </resources>
