@@ -62,7 +62,7 @@ Refer to the issues section: https://github.com/android10/Android-CleanArchitect
  
 ## License
 
-    Copyright 2021 Fernando Cejas
+    Copyright 2022 Fernando Cejas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
