@@ -9,4 +9,6 @@
     <string name="failure_movie_non_existent">Movie Not Existent.</string>
 
     <string name="content_description_empty">No content description.</string>
+    <string name="login_email">Email</string>
+    <string name="password">Password</string>
 </resources>

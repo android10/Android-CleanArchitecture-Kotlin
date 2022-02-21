@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.login.LoginScreenActivity">
+
+    <LinearLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="777dp"
+        android:background="@color/backGround"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-1dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_editUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="@string/login_email"
+            android:minHeight="48dp"
+            android:textColorHint="@color/colorText"
+            app:hintTextColor="@color/colorTextHit">
+
+            <EditText
+                android:id="@+id/editUsername"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/edit_text_bg"
+
+                android:inputType="text|textEmailAddress"
+
+                android:textColor="@color/colorTextHit"
+                android:textColorHint="@color/colorText"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_bg"
+
+            android:hint="@string/password"
+            android:minHeight="48dp"
+            android:textColorHint="@color/colorText"
+            app:hintTextColor="@color/colorTextHit">
+
+            <EditText
+                android:id="@+id/editPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/edit_text_bg"
+
+
+                android:inputType="textPassword"
+                android:textColor="@color/colorTextHit"
+                android:textColorHint="@color/colorText"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logIn"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/btn_login"
+            android:text="LOG IN"
+            android:textColor="@color/colorText"
+            android:textSize="28dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
