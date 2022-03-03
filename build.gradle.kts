@@ -1,11 +1,12 @@
 plugins {
   id(ScriptPlugins.infrastructure)
+  id(BuildPlugins.versionsPlugin) version(BuildPlugins.Versions.versions)
 }
 
 buildscript {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
 
   dependencies {
@@ -18,6 +19,9 @@ buildscript {
 allprojects {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
+
+    // Required by Detekt
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven") }
   }
 }

@@ -1,9 +1,10 @@
 plugins {
+  kotlin(BuildPlugins.androidExtensions)
+
   // Application Specific Plugins
   id(BuildPlugins.androidApplication)
   id(BuildPlugins.kotlinAndroid)
   id(BuildPlugins.kotlinKapt)
-  id(BuildPlugins.kotlinAndroidExtensions)
   id(BuildPlugins.androidHilt)
 
   // Internal Script plugins
@@ -13,11 +14,11 @@ plugins {
 }
 
 android {
-  compileSdkVersion(AndroidSdk.compile)
+  compileSdk = AndroidSdk.compile
 
   defaultConfig {
-    minSdkVersion(AndroidSdk.min)
-    targetSdkVersion(AndroidSdk.target)
+    minSdk = AndroidSdk.min
+    targetSdk = AndroidSdk.target
 
     applicationId = AndroidClient.appId
     versionCode = AndroidClient.versionCode
@@ -47,7 +48,6 @@ dependencies {
   implementation(Libraries.constraintLayout)
   implementation(Libraries.viewModel)
   implementation(Libraries.liveData)
-  implementation(Libraries.lifecycleExtensions)
   implementation(Libraries.cardView)
   implementation(Libraries.recyclerView)
   implementation(Libraries.material)
@@ -56,9 +56,7 @@ dependencies {
   implementation(Libraries.hilt)
   implementation(Libraries.retrofit)
   implementation(Libraries.okHttpLoggingInterceptor)
-
-  //TODO: change this
-  implementation ("androidx.fragment:fragment-ktx:1.2.5")
+  implementation (Libraries.fragmentKtx)
 
   // Unit/Android tests dependencies
   testImplementation(TestLibraries.junit4)
