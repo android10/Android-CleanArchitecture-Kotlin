@@ -10,7 +10,6 @@ plugins {
 }
 
 repositories {
-    jcenter()
     google()
 }
 

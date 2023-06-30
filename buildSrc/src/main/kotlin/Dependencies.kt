@@ -18,7 +18,7 @@ object AndroidClient {
 
 object BuildPlugins {
     object Versions {
-        const val buildToolsVersion = "4.2.0"
+        const val buildToolsVersion = "34.0.0"
         const val gradleVersion = "6.8"
         const val hilt = "2.35.1"
     }
