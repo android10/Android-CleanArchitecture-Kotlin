@@ -16,7 +16,9 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -30,6 +32,7 @@ import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.extension.visible
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.core.platform.BaseFragment
+import com.fernandocejas.sample.databinding.FragmentMoviesBinding
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -44,7 +47,8 @@ class MoviesFragment : BaseFragment() {
 
     private val moviesViewModel: MoviesViewModel by viewModels()
 
-    override fun layoutId() = R.layout.fragment_movies
+    private var _binding: FragmentMoviesBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,24 +59,37 @@ class MoviesFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeView()
         loadMoviesList()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     private fun initializeView() {
-        movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        movieList.adapter = moviesAdapter
+        binding.movieList.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        binding.movieList.adapter = moviesAdapter
         moviesAdapter.clickListener = { movie, navigationExtras ->
             navigator.showMovieDetails(requireActivity(), movie, navigationExtras)
         }
     }
 
     private fun loadMoviesList() {
-        emptyView.invisible()
-        movieList.visible()
+        binding.emptyView.invisible()
+        binding.movieList.visible()
         showProgress()
         moviesViewModel.loadMovies()
     }
@@ -92,8 +109,8 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun renderFailure(@StringRes message: Int) {
-        movieList.invisible()
-        emptyView.visible()
+        binding.movieList.invisible()
+        binding.emptyView.visible()
         hideProgress()
         notifyWithAction(message, R.string.action_refresh, ::loadMoviesList)
     }

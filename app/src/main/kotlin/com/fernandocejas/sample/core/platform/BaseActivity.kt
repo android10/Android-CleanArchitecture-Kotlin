@@ -48,6 +48,8 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    fun toolbar() = binding.toolBarContainer.toolbar
+
     fun fragmentContainer() = binding.fragmentContainer
     fun progressBar() = binding.toolBarContainer.progress
 

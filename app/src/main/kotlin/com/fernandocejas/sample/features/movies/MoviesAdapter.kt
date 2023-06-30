@@ -15,41 +15,45 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import android.view.View
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.fernandocejas.sample.R
-import com.fernandocejas.sample.core.extension.inflate
 import com.fernandocejas.sample.core.extension.loadFromUrl
 import com.fernandocejas.sample.core.navigation.Navigator
-import kotlinx.android.synthetic.main.row_movie.view.*
+import com.fernandocejas.sample.databinding.RowMovieBinding
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
+@SuppressLint("NotifyDataSetChanged")
 class MoviesAdapter
 @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     internal var collection: List<MovieView> by Delegates.observable(emptyList()) { _, _, _ ->
+        //TODO: go for a more efficient solution
         notifyDataSetChanged()
     }
 
     internal var clickListener: (MovieView, Navigator.Extras) -> Unit = { _, _ -> }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.row_movie))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val rowMovieBinding = RowMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(rowMovieBinding)
+    }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(collection[position], clickListener)
+    }
 
     override fun getItemCount() = collection.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(private val rowMovieBinding: RowMovieBinding) : RecyclerView.ViewHolder(rowMovieBinding.root) {
         fun bind(movieView: MovieView, clickListener: (MovieView, Navigator.Extras) -> Unit) {
-            itemView.moviePoster.loadFromUrl(movieView.poster)
+            rowMovieBinding.moviePoster.loadFromUrl(movieView.poster)
             itemView.setOnClickListener {
                 clickListener(
                     movieView,
-                    Navigator.Extras(itemView.moviePoster)
+                    Navigator.Extras(rowMovieBinding.moviePoster)
                 )
             }
         }

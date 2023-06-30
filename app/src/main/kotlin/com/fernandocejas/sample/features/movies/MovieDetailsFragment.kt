@@ -16,19 +16,26 @@
 package com.fernandocejas.sample.features.movies
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
 import com.fernandocejas.sample.core.exception.Failure.ServerError
-import com.fernandocejas.sample.core.extension.*
+import com.fernandocejas.sample.core.extension.close
+import com.fernandocejas.sample.core.extension.failure
+import com.fernandocejas.sample.core.extension.isVisible
+import com.fernandocejas.sample.core.extension.loadFromUrl
+import com.fernandocejas.sample.core.extension.loadUrlAndPostponeEnterTransition
+import com.fernandocejas.sample.core.extension.observe
+import com.fernandocejas.sample.core.platform.BaseActivity
 import com.fernandocejas.sample.core.platform.BaseFragment
+import com.fernandocejas.sample.databinding.FragmentMovieDetailsBinding
 import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_movie_details.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -47,7 +54,8 @@ class MovieDetailsFragment : BaseFragment() {
 
     private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
 
-    override fun layoutId() = R.layout.fragment_movie_details
+    private var _binding: FragmentMovieDetailsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,41 +67,57 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMovieDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (firstTimeCreated(savedInstanceState)) {
             movieDetailsViewModel.loadMovieDetails((arguments?.get(PARAM_MOVIE) as MovieView).id)
         } else {
-            movieDetailsAnimator.scaleUpView(moviePlay)
-            movieDetailsAnimator.cancelTransition(moviePoster)
-            moviePoster.loadFromUrl((requireArguments()[PARAM_MOVIE] as MovieView).poster)
+            movieDetailsAnimator.scaleUpView(binding.moviePlay)
+            movieDetailsAnimator.cancelTransition(binding.moviePoster)
+            binding.moviePoster.loadFromUrl((requireArguments()[PARAM_MOVIE] as MovieView).poster)
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onBackPressed() {
-        movieDetailsAnimator.fadeInvisible(scrollView, movieDetails)
-        if (moviePlay.isVisible())
-            movieDetailsAnimator.scaleDownView(moviePlay)
+        movieDetailsAnimator.fadeInvisible(binding.scrollView, binding.movieDetails)
+        if (binding.moviePlay.isVisible())
+            movieDetailsAnimator.scaleDownView(binding.moviePlay)
         else
-            movieDetailsAnimator.cancelTransition(moviePoster)
+            movieDetailsAnimator.cancelTransition(binding.moviePoster)
     }
 
     private fun renderMovieDetails(movie: MovieDetailsView?) {
         movie?.let {
             with(movie) {
                 activity?.let {
-                    moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
-                    it.toolbar.title = title
+                    binding.moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
+                    (it as BaseActivity).toolbar().title = title
                 }
-                movieSummary.text = summary
-                movieCast.text = cast
-                movieDirector.text = director
-                movieYear.text = year.toString()
-                moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
+                with(binding) {
+                    movieSummary.text = summary
+                    movieCast.text = cast
+                    movieDirector.text = director
+                    movieYear.text = year.toString()
+                    moviePlay.setOnClickListener { movieDetailsViewModel.playMovie(trailer) }
+                }
             }
         }
-        movieDetailsAnimator.fadeVisible(scrollView, movieDetails)
-        movieDetailsAnimator.scaleUpView(moviePlay)
+        movieDetailsAnimator.fadeVisible(binding.scrollView, binding.movieDetails)
+        movieDetailsAnimator.scaleUpView(binding.moviePlay)
     }
 
     private fun handleFailure(failure: Failure?) {
