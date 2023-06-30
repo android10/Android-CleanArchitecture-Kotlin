@@ -32,7 +32,6 @@ import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
 @AndroidEntryPoint

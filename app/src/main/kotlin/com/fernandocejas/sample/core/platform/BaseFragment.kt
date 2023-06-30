@@ -27,7 +27,6 @@ import com.fernandocejas.sample.core.extension.appContext
 import com.fernandocejas.sample.core.extension.viewContainer
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.toolbar.*
 
 /**
  * Base Fragment class with helper methods for handling views and back button events.
@@ -55,7 +54,7 @@ abstract class BaseFragment : Fragment() {
     internal fun hideProgress() = progressStatus(View.GONE)
 
     private fun progressStatus(viewStatus: Int) =
-        with(activity) { if (this is BaseActivity) this.progress.visibility = viewStatus }
+        with(activity) { if (this is BaseActivity) this.progressBar().visibility = viewStatus }
 
     internal fun notify(@StringRes message: Int) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()

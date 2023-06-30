@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.core.di
 
-import com.fernandocejas.sample.BuildConfig
+//import com.fernandocejas.sample.BuildConfig
 import com.fernandocejas.sample.features.movies.MoviesRepository
 import dagger.Module
 import dagger.Provides
@@ -43,11 +43,11 @@ class ApplicationModule {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-            okHttpClientBuilder.addInterceptor(loggingInterceptor)
-        }
+//        if (BuildConfig.DEBUG) {
+//            val loggingInterceptor =
+//                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+//            okHttpClientBuilder.addInterceptor(loggingInterceptor)
+//        }
         return okHttpClientBuilder.build()
     }
 

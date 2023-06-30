@@ -17,10 +17,9 @@ package com.fernandocejas.sample.core.platform
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.fernandocejas.sample.R
 import com.fernandocejas.sample.core.extension.inTransaction
+import com.fernandocejas.sample.databinding.ActivityLayoutBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.toolbar.*
 
 /**
  * Base Activity class with helper methods for handling fragment transactions and back button
@@ -31,24 +30,30 @@ import kotlinx.android.synthetic.main.toolbar.*
 @AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityLayoutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout)
-        setSupportActionBar(toolbar)
+
+        binding = ActivityLayoutBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolBarContainer.toolbar)
         addFragment(savedInstanceState)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        (supportFragmentManager.findFragmentById(R.id.fragmentContainer) as BaseFragment).onBackPressed()
+        (supportFragmentManager.findFragmentById(binding.fragmentContainer.id) as BaseFragment).onBackPressed()
         super.onBackPressed()
     }
 
+    fun fragmentContainer() = binding.fragmentContainer
+    fun progressBar() = binding.toolBarContainer.progress
+
     private fun addFragment(savedInstanceState: Bundle?) =
         savedInstanceState ?: supportFragmentManager.inTransaction {
-            add(
-                R.id.fragmentContainer,
-                fragment()
-            )
+            add(binding.fragmentContainer.id, fragment())
         }
 
     abstract fun fragment(): BaseFragment
