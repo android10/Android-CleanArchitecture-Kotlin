@@ -34,18 +34,14 @@ import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.databinding.FragmentMoviesBinding
 import com.fernandocejas.sample.features.movies.MovieFailure.ListNotAvailable
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MoviesFragment : BaseFragment() {
 
-    @Inject
-    lateinit var navigator: Navigator
-    @Inject
-    lateinit var moviesAdapter: MoviesAdapter
+    private val navigator: Navigator by inject()
+    private val moviesAdapter: MoviesAdapter by inject()
 
-    private val moviesViewModel: MoviesViewModel by viewModels()
+    private val moviesViewModel: MoviesViewModel by inject()
 
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!

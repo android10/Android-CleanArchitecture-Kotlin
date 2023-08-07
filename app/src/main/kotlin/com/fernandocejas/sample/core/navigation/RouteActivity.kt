@@ -17,14 +17,11 @@ package com.fernandocejas.sample.core.navigation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class RouteActivity : AppCompatActivity() {
 
-    @Inject
-    internal lateinit var navigator: Navigator
+    private val navigator: Navigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

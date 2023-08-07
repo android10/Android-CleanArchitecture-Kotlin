@@ -22,12 +22,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fernandocejas.sample.core.extension.loadFromUrl
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.databinding.RowMovieBinding
-import javax.inject.Inject
 import kotlin.properties.Delegates
 
 @SuppressLint("NotifyDataSetChanged")
-class MoviesAdapter
-@Inject constructor() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter: RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     internal var collection: List<MovieView> by Delegates.observable(emptyList()) { _, _, _ ->
         //TODO: go for a more efficient solution

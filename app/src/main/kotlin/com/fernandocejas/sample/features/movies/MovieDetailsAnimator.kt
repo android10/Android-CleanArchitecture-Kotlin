@@ -22,20 +22,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.fernandocejas.sample.core.extension.cancelTransition
-import javax.inject.Inject
 
 
-class MovieDetailsAnimator
-@Inject constructor() {
-
-    private val TRANSITION_DELAY = 200L
-    private val TRANSITION_DURATION = 400L
-
-    private val SCALE_UP_VALUE = 1.0F
-    private val SCALE_UP_DURATION = 400L
-
-    private val SCALE_DOWN_VALUE = 0.0F
-    private val SCALE_DOWN_DURATION = 200L
+class MovieDetailsAnimator {
 
     internal fun postponeEnterTransition(activity: FragmentActivity) =
         activity.postponeEnterTransition()
@@ -70,6 +59,17 @@ class MovieDetailsAnimator
         transition.duration = TRANSITION_DURATION
         TransitionManager.beginDelayedTransition(viewContainer, transition)
         view.visibility = visibility
+    }
+
+    companion object {
+        private const val TRANSITION_DELAY = 200L
+        private const val TRANSITION_DURATION = 400L
+
+        private const val SCALE_UP_VALUE = 1.0F
+        private const val SCALE_UP_DURATION = 400L
+
+        private const val SCALE_DOWN_VALUE = 0.0F
+        private const val SCALE_DOWN_DURATION = 200L
     }
 }
 

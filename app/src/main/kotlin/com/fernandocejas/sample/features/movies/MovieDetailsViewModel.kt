@@ -20,12 +20,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fernandocejas.sample.core.platform.BaseViewModel
 import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 
-@HiltViewModel
-class MovieDetailsViewModel
-@Inject constructor(
+class MovieDetailsViewModel(
     private val getMovieDetails: GetMovieDetails,
     private val playMovie: PlayMovie
 ) : BaseViewModel() {

@@ -18,8 +18,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
-//    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -65,9 +63,6 @@ android {
 dependencies {
     //Compile time dependencies
     kapt("androidx.lifecycle:lifecycle-compiler:2.6.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
-
-    implementation("com.google.dagger:hilt-android:2.46.1")
 
     // Application dependencies
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
@@ -79,6 +74,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+
+
+    //koin
+    implementation("io.insert-koin:koin-android:3.4.3")
+//    implementation("io.insert-koin:koin-android-viewmodel:3.4")
 
     // Update from here
     implementation("androidx.cardview:cardview:1.0.0")
@@ -104,7 +104,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.46.1")
 
     // Development dependencies
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")

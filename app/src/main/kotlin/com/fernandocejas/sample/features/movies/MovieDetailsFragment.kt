@@ -20,7 +20,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
 import com.fernandocejas.sample.R
 import com.fernandocejas.sample.core.exception.Failure
 import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
@@ -35,10 +34,8 @@ import com.fernandocejas.sample.core.platform.BaseActivity
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.databinding.FragmentMovieDetailsBinding
 import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class MovieDetailsFragment : BaseFragment() {
 
     companion object {
@@ -49,10 +46,9 @@ class MovieDetailsFragment : BaseFragment() {
         }
     }
 
-    @Inject
-    lateinit var movieDetailsAnimator: MovieDetailsAnimator
+    private val movieDetailsAnimator: MovieDetailsAnimator by inject()
 
-    private val movieDetailsViewModel by viewModels<MovieDetailsViewModel>()
+    private val movieDetailsViewModel: MovieDetailsViewModel by inject()
 
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!

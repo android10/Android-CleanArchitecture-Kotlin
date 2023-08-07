@@ -24,14 +24,12 @@ import com.fernandocejas.sample.R.color
 import com.fernandocejas.sample.core.extension.appContext
 import com.fernandocejas.sample.core.extension.viewContainer
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Base Fragment class with helper methods for handling views and back button events.
  *
  * @see Fragment
  */
-@AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
 
     open fun onBackPressed() {}

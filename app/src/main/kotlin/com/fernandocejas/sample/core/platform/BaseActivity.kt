@@ -19,7 +19,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.fernandocejas.sample.core.extension.inTransaction
 import com.fernandocejas.sample.databinding.ActivityLayoutBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Base Activity class with helper methods for handling fragment transactions and back button
@@ -27,7 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  * @see AppCompatActivity
  */
-@AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLayoutBinding

@@ -23,12 +23,9 @@ import com.fernandocejas.sample.core.interactor.UseCase
 import com.fernandocejas.sample.core.interactor.UseCase.None
 import com.fernandocejas.sample.core.navigation.Navigator
 import com.fernandocejas.sample.features.movies.PlayMovie.Params
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 
-class PlayMovie
-@Inject constructor(
-    @ApplicationContext private val context: Context,
+class PlayMovie(
+    private val context: Context,
     private val navigator: Navigator
 ) : UseCase<None, Params>() {
 

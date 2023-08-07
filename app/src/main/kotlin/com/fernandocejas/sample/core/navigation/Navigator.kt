@@ -23,19 +23,15 @@ import android.view.View
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
-import com.fernandocejas.sample.core.extension.empty
+import com.fernandocejas.sample.core.extension.emptyString
 import com.fernandocejas.sample.features.login.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.MovieView
 import com.fernandocejas.sample.features.movies.MoviesActivity
-import javax.inject.Inject
-import javax.inject.Singleton
 
 
-@Singleton
-class Navigator
-@Inject constructor(private val authenticator: Authenticator) {
+class Navigator(private val authenticator: Authenticator) {
 
     private fun showLogin(context: Context) =
         context.startActivity(LoginActivity.callingIntent(context))
@@ -58,8 +54,8 @@ class Navigator
         activity.startActivity(intent, activityOptions.toBundle())
     }
 
-    private val VIDEO_URL_HTTP = "http://www.youtube.com/watch?v="
-    private val VIDEO_URL_HTTPS = "https://www.youtube.com/watch?v="
+    private val videoUrlHttp = "http://www.youtube.com/watch?v="
+    private val videoUrlHttps = "https://www.youtube.com/watch?v="
 
     fun openVideo(context: Context, videoUrl: String) {
         try {
@@ -71,10 +67,10 @@ class Navigator
 
     private fun createYoutubeIntent(videoUrl: String): Intent {
         val videoId = when {
-            videoUrl.startsWith(VIDEO_URL_HTTP) -> videoUrl.replace(VIDEO_URL_HTTP, String.empty())
-            videoUrl.startsWith(VIDEO_URL_HTTPS) -> videoUrl.replace(
-                VIDEO_URL_HTTPS,
-                String.empty()
+            videoUrl.startsWith(videoUrlHttp) -> videoUrl.replace(videoUrlHttp, emptyString())
+            videoUrl.startsWith(videoUrlHttps) -> videoUrl.replace(
+                videoUrlHttps,
+                emptyString()
             )
             else -> videoUrl
         }
