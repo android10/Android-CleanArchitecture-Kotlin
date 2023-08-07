@@ -1,0 +1,40 @@
+[versions]
+# sdk -----------
+compileSdk = "33"
+minSdk = "26"
+targetSdk = "33"
+# kotlin ---------
+kotlin = "1.8.22"
+kotlinCoroutines = "1.7.2"
+# android --------
+ktx = "1.10.1"
+appCompat = "1.6.1"
+materialDesign = "1.1.1"
+composeBom = "2023.05.01"
+activityCompose = "1.7.2"
+liveData = "1.4.3"
+# plugings -------
+androidGradlePlugin = "8.0.2"
+
+
+[libraries]
+# dependencies ---
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
+android-core-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
+android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "liveData" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "materialDesign" }
+androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "materialDesign" }
+androidx-activty-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+
+# tooling --------
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

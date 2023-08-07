@@ -1,36 +1,3 @@
-//plugins {
-//  id(ScriptPlugins.infrastructure)
-//}
-//
-//buildscript {
-//  repositories {
-//    google()
-//    jcenter()
-//  }
-//
-//  dependencies {
-//    classpath (BuildPlugins.androidGradlePlugin)
-//    classpath (BuildPlugins.kotlinGradlePlugin)
-//    classpath (BuildPlugins.hiltGradlePlugin)
-//  }
-//}
-
-//allprojects {
-//  repositories {
-//    google()
-//    jcenter()
-//  }
-//}
-
-
-//allprojects {
-//  repositories {
-//    google()
-//    jcenter()
-//  }
-//}
-
-
 plugins {
     /**
      * Use `apply false` in the top-level build.gradle file to add a Gradle
