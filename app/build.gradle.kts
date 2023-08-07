@@ -18,6 +18,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-android")
     id("kotlin-kapt")
+//    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -63,14 +64,10 @@ android {
 
 dependencies {
     //Compile time dependencies
-//  ksp("androidx.lifecycle:lifecycle-compiler:2.6.1")
-//  ksp("com.google.dagger:hilt-android-compiler:2.46.1")
     kapt("androidx.lifecycle:lifecycle-compiler:2.6.1")
-//  kapt("com.google.dagger:hilt-android-compiler:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-
+    implementation("com.google.dagger:hilt-android:2.46.1")
 
     // Application dependencies
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
@@ -89,7 +86,6 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.annotation:annotation:1.6.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
-//  implementation("com.google.dagger:hilt-android:2.46.1")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
 
