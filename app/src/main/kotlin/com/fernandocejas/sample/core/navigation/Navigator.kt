@@ -24,7 +24,7 @@ import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import com.fernandocejas.sample.core.extension.emptyString
-import com.fernandocejas.sample.features.login.Authenticator
+import com.fernandocejas.sample.features.auth.Authenticator
 import com.fernandocejas.sample.features.login.LoginActivity
 import com.fernandocejas.sample.features.movies.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.MovieView
