@@ -18,7 +18,7 @@ package com.fernandocejas.sample.core.platform
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.failure.Failure
 
 /**
  * Base ViewModel class with default Failure handling.

@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.features.movies
 
-import com.fernandocejas.sample.core.exception.Failure.FeatureFailure
+import com.fernandocejas.sample.core.failure.Failure.FeatureFailure
 
 class MovieFailure {
     class ListNotAvailable : FeatureFailure()

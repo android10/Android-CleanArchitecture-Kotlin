@@ -28,7 +28,7 @@
     </activity>
 
     <activity
-        android:name=".features.login.LoginActivity"
+        android:name=".features.login.ui.LoginActivity"
         android:label="@string/login_screen_title">
     </activity>
 

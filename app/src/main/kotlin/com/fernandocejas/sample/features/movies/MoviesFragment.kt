@@ -20,12 +20,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.fernandocejas.sample.R
-import com.fernandocejas.sample.core.exception.Failure
-import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
-import com.fernandocejas.sample.core.exception.Failure.ServerError
+import com.fernandocejas.sample.core.failure.Failure
+import com.fernandocejas.sample.core.failure.Failure.NetworkConnection
+import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.extension.failure
 import com.fernandocejas.sample.core.extension.invisible
 import com.fernandocejas.sample.core.extension.observe

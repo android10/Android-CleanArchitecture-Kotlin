@@ -13,16 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.core.exception
+package com.fernandocejas.sample.features.login.ui
 
-/**
- * Base Class for handling errors/failures/exceptions.
- * Every feature specific failure should extend [FeatureFailure] class.
- */
-sealed class Failure {
-    object NetworkConnection : Failure()
-    object ServerError : Failure()
+import com.fernandocejas.sample.core.platform.BaseFragment
 
-    /** * Extend this class for feature specific failures.*/
-    abstract class FeatureFailure : Failure()
-}
+class LoginFragment : BaseFragment()

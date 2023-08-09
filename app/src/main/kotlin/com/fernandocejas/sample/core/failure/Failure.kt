@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.login
+package com.fernandocejas.sample.core.failure
 
-import android.content.Context
-import android.content.Intent
-import com.fernandocejas.sample.core.platform.BaseActivity
+/**
+ * Base Class for handling errors/failures/exceptions.
+ * Every feature specific failure should extend [FeatureFailure] class.
+ */
+sealed class Failure {
+    object NetworkConnection : Failure()
+    object ServerError : Failure()
 
-class LoginActivity : BaseActivity() {
-    companion object {
-        fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
-    }
-
-    override fun fragment() = LoginFragment()
+    /** * Extend this class for feature specific failures.*/
+    abstract class FeatureFailure : Failure()
 }

@@ -16,7 +16,7 @@
 package com.fernandocejas.sample.features.movies
 
 import android.content.Context
-import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.failure.Failure
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.interactor.UseCase

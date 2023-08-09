@@ -16,7 +16,7 @@
 package com.fernandocejas.sample.core.functional
 
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.core.exception.Failure.ServerError
+import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.functional.Either.Left
 import com.fernandocejas.sample.core.functional.Either.Right
 import org.amshove.kluent.shouldBe

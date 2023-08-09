@@ -16,8 +16,8 @@
 package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.core.exception.Failure.NetworkConnection
-import com.fernandocejas.sample.core.exception.Failure.ServerError
+import com.fernandocejas.sample.core.failure.Failure.NetworkConnection
+import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.extension.empty
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right

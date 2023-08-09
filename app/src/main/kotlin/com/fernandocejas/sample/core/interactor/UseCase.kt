@@ -15,7 +15,7 @@
  */
 package com.fernandocejas.sample.core.interactor
 
-import com.fernandocejas.sample.core.exception.Failure
+import com.fernandocejas.sample.core.failure.Failure
 import com.fernandocejas.sample.core.functional.Either
 import kotlinx.coroutines.*
 
