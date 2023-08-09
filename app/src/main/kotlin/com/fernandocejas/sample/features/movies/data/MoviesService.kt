@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.auth
+package com.fernandocejas.sample.features.movies.data
 
+import retrofit2.Retrofit
 
-class Authenticator {
-    //Learning purpose: We assume the user is always logged in
-    //Here you should put your own logic to return whether the user
-    //is authenticated or not
-    fun userLoggedIn() = true
+class MoviesService(retrofit: Retrofit) : MoviesApi {
+    private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
+
+    override fun movies() = moviesApi.movies()
+    override fun movieDetails(movieId: Int) = moviesApi.movieDetails(movieId)
 }

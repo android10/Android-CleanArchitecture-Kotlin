@@ -17,6 +17,10 @@ package com.fernandocejas.sample.features.movies
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails
+import com.fernandocejas.sample.features.movies.interactor.MovieDetails
+import com.fernandocejas.sample.features.movies.interactor.PlayMovie
+import com.fernandocejas.sample.features.movies.ui.MovieDetailsViewModel
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking

@@ -13,12 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.interactor
 
-import com.fernandocejas.sample.core.failure.Failure.FeatureFailure
+import com.fernandocejas.sample.core.interactor.UseCase
+import com.fernandocejas.sample.core.interactor.UseCase.None
+import com.fernandocejas.sample.features.movies.data.MoviesRepository
 
-class MovieFailure {
-    class ListNotAvailable : FeatureFailure()
-    class NonExistentMovie : FeatureFailure()
+class GetMovies(
+    private val moviesRepository: MoviesRepository
+) : UseCase<List<Movie>, None>() {
+
+    override suspend fun run(params: None) = moviesRepository.movies()
 }
-

@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.failure
 
-data class MovieEntity(private val id: Int, private val poster: String) {
-    fun toMovie() = Movie(id, poster)
+import com.fernandocejas.sample.core.failure.Failure.FeatureFailure
+
+class MovieFailure {
+    class ListNotAvailable : FeatureFailure()
+    class NonExistentMovie : FeatureFailure()
 }
+

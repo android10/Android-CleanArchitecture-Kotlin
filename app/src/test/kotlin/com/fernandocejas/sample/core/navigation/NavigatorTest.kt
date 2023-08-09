@@ -16,9 +16,9 @@
 package com.fernandocejas.sample.core.navigation
 
 import com.fernandocejas.sample.AndroidTest
-import com.fernandocejas.sample.features.auth.Authenticator
+import com.fernandocejas.sample.features.auth.credentials.Authenticator
 import com.fernandocejas.sample.features.login.ui.LoginActivity
-import com.fernandocejas.sample.features.movies.MoviesActivity
+import com.fernandocejas.sample.features.movies.ui.MoviesActivity
 import com.fernandocejas.sample.shouldNavigateTo
 import io.mockk.every
 import io.mockk.impl.annotations.MockK

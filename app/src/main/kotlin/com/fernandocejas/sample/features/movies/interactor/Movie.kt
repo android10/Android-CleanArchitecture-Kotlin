@@ -13,17 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.interactor
 
-import android.content.Context
-import android.content.Intent
-import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.extension.empty
 
-class MoviesActivity : BaseActivity() {
+data class Movie(val id: Int, val poster: String) {
 
     companion object {
-        fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)
+        val empty = Movie(0, String.empty())
     }
-
-    override fun fragment() = MoviesFragment()
 }

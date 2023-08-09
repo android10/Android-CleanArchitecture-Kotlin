@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.interactor
 
-import com.fernandocejas.sample.core.extension.empty
+import com.fernandocejas.sample.core.interactor.UseCase
+import com.fernandocejas.sample.features.movies.data.MoviesRepository
+import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails.Params
 
-data class Movie(val id: Int, val poster: String) {
+class GetMovieDetails(private val moviesRepository: MoviesRepository) :
+    UseCase<MovieDetails, Params>() {
 
-    companion object {
-        val empty = Movie(0, String.empty())
-    }
+    override suspend fun run(params: Params) = moviesRepository.movieDetails(params.id)
+
+    data class Params(val id: Int)
 }

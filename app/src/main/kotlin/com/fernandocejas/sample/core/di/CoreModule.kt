@@ -1,7 +1,7 @@
 package com.fernandocejas.sample.core.di
 
 import com.fernandocejas.sample.core.navigation.Navigator
-import com.fernandocejas.sample.core.platform.NetworkHandler
+import com.fernandocejas.sample.core.network.NetworkHandler
 import okhttp3.OkHttpClient
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module

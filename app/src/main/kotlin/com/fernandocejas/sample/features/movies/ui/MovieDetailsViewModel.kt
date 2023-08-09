@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fernandocejas.sample.core.platform.BaseViewModel
-import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
+import com.fernandocejas.sample.features.movies.interactor.MovieDetails
+import com.fernandocejas.sample.features.movies.interactor.PlayMovie
+import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails
+import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails.Params
 
 class MovieDetailsViewModel(
     private val getMovieDetails: GetMovieDetails,

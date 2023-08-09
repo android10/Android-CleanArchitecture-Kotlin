@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,7 +33,7 @@ import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.platform.BaseActivity
 import com.fernandocejas.sample.core.platform.BaseFragment
 import com.fernandocejas.sample.databinding.FragmentMovieDetailsBinding
-import com.fernandocejas.sample.features.movies.MovieFailure.NonExistentMovie
+import com.fernandocejas.sample.features.movies.failure.MovieFailure.NonExistentMovie
 import org.koin.android.ext.android.inject
 
 class MovieDetailsFragment : BaseFragment() {

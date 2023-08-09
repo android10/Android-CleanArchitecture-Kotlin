@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.ui
 
-import com.fernandocejas.sample.core.interactor.UseCase
-import com.fernandocejas.sample.features.movies.GetMovieDetails.Params
-
-class GetMovieDetails(private val moviesRepository: MoviesRepository) :
-    UseCase<MovieDetails, Params>() {
-
-    override suspend fun run(params: Params) = moviesRepository.movieDetails(params.id)
-
-    data class Params(val id: Int)
-}
+data class MovieDetailsView(
+    val id: Int,
+    val title: String,
+    val poster: String,
+    val summary: String,
+    val cast: String,
+    val director: String,
+    val year: Int,
+    val trailer: String
+)

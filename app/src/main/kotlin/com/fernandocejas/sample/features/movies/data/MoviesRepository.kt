@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.data
 
 import com.fernandocejas.sample.core.failure.Failure
 import com.fernandocejas.sample.core.failure.Failure.NetworkConnection
@@ -21,7 +21,9 @@ import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Left
 import com.fernandocejas.sample.core.functional.Either.Right
-import com.fernandocejas.sample.core.platform.NetworkHandler
+import com.fernandocejas.sample.core.network.NetworkHandler
+import com.fernandocejas.sample.features.movies.interactor.Movie
+import com.fernandocejas.sample.features.movies.interactor.MovieDetails
 import retrofit2.Call
 
 interface MoviesRepository {

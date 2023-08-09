@@ -13,22 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.auth.credentials
 
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
 
-internal interface MoviesApi {
-    companion object {
-        private const val PARAM_MOVIE_ID = "movieId"
-        private const val MOVIES = "movies.json"
-        private const val MOVIE_DETAILS = "movie_0{$PARAM_MOVIE_ID}.json"
-    }
-
-    @GET(MOVIES)
-    fun movies(): Call<List<MovieEntity>>
-
-    @GET(MOVIE_DETAILS)
-    fun movieDetails(@Path(PARAM_MOVIE_ID) movieId: Int): Call<MovieDetailsEntity>
+class Authenticator {
+    //Learning purpose: We assume the user is always logged in
+    //Here you should put your own logic to return whether the user
+    //is authenticated or not
+    fun userLoggedIn() = true
 }

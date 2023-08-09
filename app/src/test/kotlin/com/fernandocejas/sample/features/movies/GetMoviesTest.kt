@@ -18,6 +18,9 @@ package com.fernandocejas.sample.features.movies
 import com.fernandocejas.sample.UnitTest
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.interactor.UseCase
+import com.fernandocejas.sample.features.movies.data.MoviesRepository
+import com.fernandocejas.sample.features.movies.interactor.GetMovies
+import com.fernandocejas.sample.features.movies.interactor.Movie
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify

@@ -24,11 +24,11 @@ import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import com.fernandocejas.sample.core.extension.emptyString
-import com.fernandocejas.sample.features.auth.Authenticator
+import com.fernandocejas.sample.features.auth.credentials.Authenticator
 import com.fernandocejas.sample.features.login.ui.LoginActivity
-import com.fernandocejas.sample.features.movies.MovieDetailsActivity
-import com.fernandocejas.sample.features.movies.MovieView
-import com.fernandocejas.sample.features.movies.MoviesActivity
+import com.fernandocejas.sample.features.movies.ui.MovieDetailsActivity
+import com.fernandocejas.sample.features.movies.ui.MovieView
+import com.fernandocejas.sample.features.movies.ui.MoviesActivity
 
 
 class Navigator(private val authenticator: Authenticator) {

@@ -1,6 +1,7 @@
 package com.fernandocejas.sample.core
 
 import com.fernandocejas.sample.core.di.coreModule
+import com.fernandocejas.sample.features.auth.authFeature
 import com.fernandocejas.sample.features.login.loginFeature
 import com.fernandocejas.sample.features.movies.moviesFeature
 import org.koin.core.module.Module
@@ -52,6 +53,7 @@ private fun coreFeature() = object : Feature {
 
 fun allFeatures() = listOf(
     coreFeature(),
+    authFeature(),
     loginFeature(),
     moviesFeature(),
 )

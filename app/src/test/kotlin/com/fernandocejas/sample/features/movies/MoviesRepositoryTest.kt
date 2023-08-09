@@ -21,8 +21,14 @@ import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.extension.empty
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
-import com.fernandocejas.sample.core.platform.NetworkHandler
-import com.fernandocejas.sample.features.movies.MoviesRepository.Network
+import com.fernandocejas.sample.core.network.NetworkHandler
+import com.fernandocejas.sample.features.movies.data.MoviesRepository.Network
+import com.fernandocejas.sample.features.movies.data.MovieDetailsEntity
+import com.fernandocejas.sample.features.movies.data.MovieEntity
+import com.fernandocejas.sample.features.movies.data.MoviesRepository
+import com.fernandocejas.sample.features.movies.data.MoviesService
+import com.fernandocejas.sample.features.movies.interactor.Movie
+import com.fernandocejas.sample.features.movies.interactor.MovieDetails
 import io.mockk.Called
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -136,8 +142,10 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldEqual Right(MovieDetails(8, "title", String.empty(),
-            String.empty(), String.empty(), String.empty(), 0, String.empty()))
+        movieDetails shouldEqual Right(
+            MovieDetails(8, "title", String.empty(),
+            String.empty(), String.empty(), String.empty(), 0, String.empty())
+        )
         verify(exactly = 1) { service.movieDetails(1) }
     }
 

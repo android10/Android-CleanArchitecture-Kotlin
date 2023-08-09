@@ -13,25 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.data
 
-import com.fernandocejas.sample.core.extension.empty
+import com.fernandocejas.sample.features.movies.interactor.Movie
 
-data class MovieDetails(
-    val id: Int,
-    val title: String,
-    val poster: String,
-    val summary: String,
-    val cast: String,
-    val director: String,
-    val year: Int,
-    val trailer: String
-) {
-
-    companion object {
-        val empty = MovieDetails(
-            0, String.empty(), String.empty(), String.empty(),
-            String.empty(), String.empty(), 0, String.empty()
-        )
-    }
+data class MovieEntity(private val id: Int, private val poster: String) {
+    fun toMovie() = Movie(id, poster)
 }

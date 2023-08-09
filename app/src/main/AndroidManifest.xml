@@ -33,12 +33,12 @@
     </activity>
 
     <activity
-        android:name=".features.movies.MoviesActivity"
+        android:name=".features.movies.ui.MoviesActivity"
         android:label="@string/movies_screen_title">
     </activity>
 
     <activity
-        android:name=".features.movies.MovieDetailsActivity"
+        android:name=".features.movies.ui.MovieDetailsActivity"
         android:label="@string/movie_details_screen_title"
         android:theme="@style/AppTheme.Translucent">
     </activity>
