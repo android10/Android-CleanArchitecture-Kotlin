@@ -13,12 +13,36 @@ materialDesign = "1.1.1"
 composeBom = "2023.05.01"
 activityCompose = "1.7.2"
 liveData = "1.4.3"
+lifecycleCompiler = "2.6.1"
+constraintlayout = "2.1.4"
+lifecycleViewmodelKtx = "2.6.1"
+lifecycleLivedataKtx = "2.6.1"
+lifecycleExtensions = "2.2.0"
+koinAndroid = "3.4.3"
+recyclerview = "1.3.1"
+cardview = "1.0.0"
+materialDesignLegacy = "1.9.0"
+annotation = "1.6.0"
+glide = "4.15.1"
+converterGson = "2.9.0"
+fragmentKtx = "1.6.1"
+# testing
+junit = "4.13.2"
+mockk = "1.13.5"
+kluentAndroid = "1.73"
+robolectric = "4.10.3"
+runner = "1.5.2"
+espressoCore = "3.5.1"
+junitVersion = "1.1.5"
+rules = "1.5.0"
+# tooling -------
+leakcanaryAndroid = "2.12"
 # plugings -------
 androidGradlePlugin = "8.0.2"
 
 
 [libraries]
-# dependencies ---
+# main module dependencies ---
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
@@ -29,10 +53,34 @@ androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "materialDesign" }
 androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "materialDesign" }
 androidx-activty-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-
-# tooling --------
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycleCompiler" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+material = { module = "com.google.android.material:material", version.ref = "materialDesignLegacy" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+# main module unit/integration test dependencies ---
+junit = { module = "junit:junit", version.ref = "junit" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "kluentAndroid" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+# main module ui test dependencies ---
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espressoCore" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+# main module tooling dependencies --------
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
 
 
 [plugins]

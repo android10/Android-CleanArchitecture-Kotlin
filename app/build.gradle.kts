@@ -62,49 +62,40 @@ android {
 
 dependencies {
     //Compile time dependencies
-    kapt("androidx.lifecycle:lifecycle-compiler:2.6.1")
+    kapt(libs.androidx.lifecycle.compiler)
 
     // Application dependencies
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.koin.android)
+    implementation(libs.android.appcompat)
+    implementation(libs.android.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.extensions)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.material)
+    implementation(libs.androidx.annotation)
+    implementation(libs.glide)
+    implementation(libs.converter.gson)
 
+    // Unit/Integration tests dependencies
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kluent.android)
+    testImplementation(libs.robolectric)
 
-    //koin
-    implementation("io.insert-koin:koin-android:3.4.3")
-//    implementation("io.insert-koin:koin-android-viewmodel:3.4")
+    // UI tests dependencies
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.espresso.intents)
 
-    // Update from here
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.annotation:annotation:1.6.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
-
-    //TODO: change this
-    implementation("androidx.fragment:fragment-ktx:1.6.0")
-
-    // Unit/Android tests dependencies
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("io.mockk:mockk:1.13.5")
-    testImplementation("org.amshove.kluent:kluent-android:1.73")
-    testImplementation("org.robolectric:robolectric:4.10.3")
-
-    // Acceptance tests dependencies
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
-
-    // Development dependencies
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
+    // Development/Tooling dependencies
+    debugImplementation(libs.leakcanary.android)
 }
