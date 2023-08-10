@@ -61,6 +61,7 @@ android {
     }
 }
 
+// https://kotlinlang.org/docs/gradle-configure-project.html#gradle-java-toolchains-support
 kotlin {
     jvmToolchain(appConfig.javaVersion.toString().toInt())
 }
