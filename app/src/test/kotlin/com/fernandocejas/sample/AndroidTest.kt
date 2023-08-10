@@ -18,15 +18,23 @@ package com.fernandocejas.sample
 import android.app.Application
 import android.content.Context
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
+import io.kotest.matchers.string.shouldBeEqualIgnoringCase
+import io.mockk.MockKAnnotations
 import org.junit.Rule
+import org.junit.rules.TestRule
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
+import kotlin.reflect.KClass
 
 /**
- * Base class for Android tests. Inherit from it to create test cases which contain android
- * framework dependencies or components.
+ * Base class for Android tests. Inherit from it to
+ * create test cases which contain android framework
+ * dependencies or components.
  *
  * @see UnitTest
  */
@@ -36,10 +44,36 @@ import org.robolectric.annotation.Config
         sdk = [Build.VERSION_CODES.O_MR1])
 abstract class AndroidTest {
 
+    @Rule
+    @JvmField
     @Suppress("LeakingThis")
-    @Rule @JvmField val injectMocks = InjectMocksRule.create(this@AndroidTest)
+    val injectMocks = InjectMocksRule.create(this@AndroidTest)
 
-    fun context(): Context = RuntimeEnvironment.getApplication().applicationContext
+    fun context(): Context = RuntimeEnvironment.systemContext
 
     internal class ApplicationStub : Application()
+
+    object InjectMocksRule {
+        fun create(testClass: Any) = TestRule { statement, _ ->
+            MockKAnnotations.init(testClass, relaxUnitFun = true)
+            statement
+        }
+    }
+
+    /**
+     * Container for customized Android
+     * specific Test Assertions.
+     */
+    object AndroidAssertions {
+        infix fun KClass<out AppCompatActivity>.shouldNavigateTo(
+            nextActivity: KClass<out AppCompatActivity>
+        ): () -> Unit = {
+
+            val originActivity = Robolectric.buildActivity(this.java).get()
+            val shadowActivity = Shadows.shadowOf(originActivity)
+            val nextIntent = shadowActivity.peekNextStartedActivity()
+
+            nextIntent.component?.className shouldBeEqualIgnoringCase nextActivity.java.canonicalName!!
+        }
+    }
 }

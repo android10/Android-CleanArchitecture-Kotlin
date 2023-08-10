@@ -27,9 +27,9 @@ glide = "4.15.1"
 converterGson = "2.9.0"
 fragmentKtx = "1.6.1"
 # testing
+kotest = "5.6.2"
 junit = "4.13.2"
 mockk = "1.13.5"
-kluentAndroid = "1.73"
 robolectric = "4.10.3"
 runner = "1.5.2"
 espressoCore = "3.5.1"
@@ -67,9 +67,11 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 # main module unit/integration test dependencies ---
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-kluent-android = { module = "org.amshove.kluent:kluent-android", version.ref = "kluentAndroid" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 # main module ui test dependencies ---
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }

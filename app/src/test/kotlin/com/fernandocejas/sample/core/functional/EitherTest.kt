@@ -19,37 +19,32 @@ import com.fernandocejas.sample.UnitTest
 import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.functional.Either.Left
 import com.fernandocejas.sample.core.functional.Either.Right
-import org.amshove.kluent.shouldBe
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
-import org.amshove.kluent.shouldEqualTo
-import org.junit.Test
+import io.kotest.matchers.equals.shouldBeEqual
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Test
 
 class EitherTest : UnitTest() {
 
-    @Test fun `Either Right should return correct type`() {
+    @Test
+    fun `Either Right should return correct type`() {
         val result = Right("ironman")
 
-        result shouldBeInstanceOf Either::class.java
         result.isRight shouldBe true
         result.isLeft shouldBe false
         result.fold({},
                 { right ->
-                    right shouldBeInstanceOf String::class.java
-                    right shouldEqualTo "ironman"
+                    right shouldBeEqual "ironman"
                 })
     }
 
     @Test fun `Either Left should return correct type`() {
         val result = Left("ironman")
 
-        result shouldBeInstanceOf Either::class.java
         result.isLeft shouldBe true
         result.isRight shouldBe false
         result.fold(
                 { left ->
-                    left shouldBeInstanceOf String::class.java
-                    left shouldEqualTo "ironman"
+                    left shouldBeEqual "ironman"
                 }, {})
     }
 
@@ -57,14 +52,14 @@ class EitherTest : UnitTest() {
         val success = "Success"
         val result = Right(success).getOrElse("Other")
 
-        result shouldEqualTo success
+        result shouldBeEqual success
     }
 
     @Test fun `Either fold should return argument if it is Left type`() {
         val other = "Other"
         val result = Left("Failure").getOrElse(other)
 
-        result shouldEqual other
+        result shouldBeEqual other
     }
 
     @Test
@@ -96,7 +91,7 @@ class EitherTest : UnitTest() {
             Left(ServerError)
         }
 
-        result shouldEqual Left(ServerError)
+        result shouldBeEqual Left(ServerError)
         result.isLeft shouldBe true
     }
 
@@ -107,7 +102,7 @@ class EitherTest : UnitTest() {
         val result = either.flatMap { Right(20) }
 
         result.isLeft shouldBe true
-        result shouldEqual either
+        result shouldBeEqual either
     }
 
     @Test
@@ -142,7 +137,7 @@ class EitherTest : UnitTest() {
 
         var methodCalled = false
         val result = either.onSuccess {
-            it shouldEqual success
+            it shouldBeEqual success
             methodCalled = true
         }
 
@@ -170,7 +165,7 @@ class EitherTest : UnitTest() {
             resultValue
         }
 
-        result shouldEqual Right(resultValue)
+        result shouldBeEqual Right(resultValue)
     }
 
     @Test
@@ -180,6 +175,6 @@ class EitherTest : UnitTest() {
         val result = either.map { Right(20) }
 
         result.isLeft shouldBe true
-        result shouldEqual either
+        result shouldBeEqual either
     }
 }

@@ -94,9 +94,11 @@ dependencies {
     implementation(libs.converter.gson)
 
     // Unit/Integration tests dependencies
+    testImplementation(libs.kotest.runner.junit5)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.kotest.property)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
-    testImplementation(libs.kluent.android)
     testImplementation(libs.robolectric)
 
     // UI tests dependencies

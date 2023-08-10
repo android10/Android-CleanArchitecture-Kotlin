@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.ui
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.functional.Either.Right
@@ -21,10 +21,11 @@ import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails
 import com.fernandocejas.sample.features.movies.interactor.MovieDetails
 import com.fernandocejas.sample.features.movies.interactor.PlayMovie
 import com.fernandocejas.sample.features.movies.ui.MovieDetailsViewModel
+import io.kotest.matchers.equals.shouldBeEqual
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.amshove.kluent.shouldEqualTo
 import org.junit.Before
 import org.junit.Test
 
@@ -32,29 +33,33 @@ class MovieDetailsViewModelTest : AndroidTest() {
 
     private lateinit var movieDetailsViewModel: MovieDetailsViewModel
 
-    @MockK private lateinit var getMovieDetails: GetMovieDetails
-    @MockK private lateinit var playMovie: PlayMovie
+    @MockK
+    private lateinit var getMovieDetails: GetMovieDetails
+
+    @MockK
+    private lateinit var playMovie: PlayMovie
 
     @Before
     fun setUp() {
         movieDetailsViewModel = MovieDetailsViewModel(getMovieDetails, playMovie)
     }
 
-    @Test fun `loading movie details should update live data`() {
+    @Test
+    fun `loading movie details should update live data`() {
         val movieDetails = MovieDetails(0, "IronMan", "poster", "summary",
                 "cast", "director", 2018, "trailer")
         coEvery { getMovieDetails.run(any()) } returns Right(movieDetails)
 
         movieDetailsViewModel.movieDetails.observeForever {
             with(it!!) {
-                id shouldEqualTo 0
-                title shouldEqualTo "IronMan"
-                poster shouldEqualTo "poster"
-                summary shouldEqualTo "summary"
-                cast shouldEqualTo "cast"
-                director shouldEqualTo "director"
-                year shouldEqualTo 2018
-                trailer shouldEqualTo "trailer"
+                id shouldBeEqual 0
+                title shouldBeEqual "IronMan"
+                poster shouldBeEqual "poster"
+                summary shouldBeEqual "summary"
+                cast shouldBeEqual "cast"
+                director shouldBeEqual "director"
+                year shouldBeEqual 2018
+                trailer shouldBeEqual "trailer"
             }
         }
 

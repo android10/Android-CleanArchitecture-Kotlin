@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.interactor
 
 import com.fernandocejas.sample.UnitTest
 import com.fernandocejas.sample.core.functional.Either.Right
@@ -22,7 +22,7 @@ import com.fernandocejas.sample.features.movies.data.MoviesRepository
 import com.fernandocejas.sample.features.movies.interactor.GetMovies
 import com.fernandocejas.sample.features.movies.interactor.Movie
 import io.mockk.every
-import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -32,14 +32,16 @@ class GetMoviesTest : UnitTest() {
 
     private lateinit var getMovies: GetMovies
 
-    @MockK private lateinit var moviesRepository: MoviesRepository
+    private val moviesRepository: MoviesRepository = mockk()
 
-    @Before fun setUp() {
+    @Before
+    fun setUp() {
         getMovies = GetMovies(moviesRepository)
         every { moviesRepository.movies() } returns Right(listOf(Movie.empty))
     }
 
-    @Test fun `should get data from repository`() {
+    @Test
+    fun `should get data from repository`() {
         runBlocking { getMovies.run(UseCase.None()) }
 
         verify(exactly = 1) { moviesRepository.movies() }

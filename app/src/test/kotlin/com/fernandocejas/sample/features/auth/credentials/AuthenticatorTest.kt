@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.login
+package com.fernandocejas.sample.features.auth.credentials
 
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.features.auth.credentials.Authenticator
-import org.amshove.kluent.shouldBe
+import io.kotest.matchers.shouldBe
 import org.junit.Test
 
 class AuthenticatorTest : UnitTest() {
 
     private val authenticator = Authenticator()
 
-    @Test fun `returns default value`() {
+    @Test
+    fun `returns default value`() {
         authenticator.userLoggedIn() shouldBe true
     }
 }

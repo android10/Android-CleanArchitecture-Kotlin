@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.interactor
 
 import com.fernandocejas.sample.AndroidTest
 import com.fernandocejas.sample.core.navigation.Navigator
-import com.fernandocejas.sample.features.movies.interactor.PlayMovie
 import io.mockk.impl.annotations.MockK
 import io.mockk.verify
 import kotlinx.coroutines.runBlocking
@@ -30,13 +29,16 @@ class PlayMovieTest : AndroidTest() {
 
     private val context = context()
 
-    @MockK private lateinit var navigator: Navigator
+    @MockK
+    private lateinit var navigator: Navigator
 
-    @Before fun setUp() {
+    @Before
+    fun setUp() {
         playMovie = PlayMovie(context, navigator)
     }
 
-    @Test fun `should play movie trailer`() {
+    @Test
+    fun `should play movie trailer`() {
         val params = PlayMovie.Params(VIDEO_URL)
 
         runBlocking { playMovie.run(params) }

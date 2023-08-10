@@ -13,28 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.data
 
 import com.fernandocejas.sample.UnitTest
+import com.fernandocejas.sample.core.extension.empty
+import com.fernandocejas.sample.core.failure.Failure
 import com.fernandocejas.sample.core.failure.Failure.NetworkConnection
 import com.fernandocejas.sample.core.failure.Failure.ServerError
-import com.fernandocejas.sample.core.extension.empty
 import com.fernandocejas.sample.core.functional.Either
 import com.fernandocejas.sample.core.functional.Either.Right
 import com.fernandocejas.sample.core.network.NetworkHandler
-import com.fernandocejas.sample.features.movies.data.MoviesRepository.Network
 import com.fernandocejas.sample.features.movies.data.MovieDetailsEntity
 import com.fernandocejas.sample.features.movies.data.MovieEntity
 import com.fernandocejas.sample.features.movies.data.MoviesRepository
+import com.fernandocejas.sample.features.movies.data.MoviesRepository.Network
 import com.fernandocejas.sample.features.movies.data.MoviesService
 import com.fernandocejas.sample.features.movies.interactor.Movie
 import com.fernandocejas.sample.features.movies.interactor.MovieDetails
+import io.kotest.matchers.equals.shouldBeEqual
+import io.kotest.matchers.should
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.beInstanceOf
 import io.mockk.Called
 import io.mockk.every
-import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
 import io.mockk.verify
-import org.amshove.kluent.shouldBeInstanceOf
-import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Call
@@ -44,19 +47,21 @@ class MoviesRepositoryTest : UnitTest() {
 
     private lateinit var networkRepository: MoviesRepository.Network
 
-    @MockK private lateinit var networkHandler: NetworkHandler
-    @MockK private lateinit var service: MoviesService
+    private val networkHandler: NetworkHandler = mockk()
+    private val service: MoviesService = mockk()
 
-    @MockK private lateinit var moviesCall: Call<List<MovieEntity>>
-    @MockK private lateinit var moviesResponse: Response<List<MovieEntity>>
-    @MockK private lateinit var movieDetailsCall: Call<MovieDetailsEntity>
-    @MockK private lateinit var movieDetailsResponse: Response<MovieDetailsEntity>
+    private val moviesCall: Call<List<MovieEntity>> = mockk()
+    private val moviesResponse: Response<List<MovieEntity>> = mockk()
+    private val movieDetailsCall: Call<MovieDetailsEntity> = mockk()
+    private val movieDetailsResponse: Response<MovieDetailsEntity> = mockk()
 
-    @Before fun setUp() {
+    @Before
+    fun setUp() {
         networkRepository = Network(networkHandler, service)
     }
 
-    @Test fun `should return empty list by default`() {
+    @Test
+    fun `should return empty list by default`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { moviesResponse.body() } returns null
         every { moviesResponse.isSuccessful } returns true
@@ -65,11 +70,12 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movies = networkRepository.movies()
 
-        movies shouldEqual Right(emptyList<Movie>())
+        movies shouldBeEqual Right(emptyList())
         verify(exactly = 1) { service.movies() }
     }
 
-    @Test fun `should get movie list from service`() {
+    @Test
+    fun `should get movie list from service`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { moviesResponse.body() } returns listOf(MovieEntity(1, "poster"))
         every { moviesResponse.isSuccessful } returns true
@@ -78,22 +84,24 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movies = networkRepository.movies()
 
-        movies shouldEqual Right(listOf(Movie(1, "poster")))
+        movies shouldBeEqual Right(listOf(Movie(1, "poster")))
         verify(exactly = 1) { service.movies() }
     }
 
-    @Test fun `movies service should return network failure when no connection`() {
+    @Test
+    fun `movies service should return network failure when no connection`() {
         every { networkHandler.isNetworkAvailable() } returns false
 
         val movies = networkRepository.movies()
 
-        movies shouldBeInstanceOf Either::class.java
-        movies.isLeft shouldEqual true
-        movies.fold({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        movies should beInstanceOf<Either<Failure, List<Movie>>>()
+        movies.isLeft shouldBeEqual true
+        movies.fold({ failure -> failure should beInstanceOf<NetworkConnection>() }, {})
         verify { service wasNot Called }
     }
 
-    @Test fun `movies service should return server error if no successful response`() {
+    @Test
+    fun `movies service should return server error if no successful response`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { moviesResponse.isSuccessful } returns false
         every { moviesCall.execute() } returns moviesResponse
@@ -101,24 +109,24 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movies = networkRepository.movies()
 
-        movies shouldBeInstanceOf Either::class.java
-        movies.isLeft shouldEqual true
-        movies.fold({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        movies.isLeft shouldBeEqual true
+        movies.fold({ failure -> failure should beInstanceOf<ServerError>() }, {})
     }
 
-    @Test fun `movies request should catch exceptions`() {
+    @Test
+    fun `movies request should catch exceptions`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { moviesCall.execute() } returns moviesResponse
         every { service.movies() } returns moviesCall
 
         val movies = networkRepository.movies()
 
-        movies shouldBeInstanceOf Either::class.java
-        movies.isLeft shouldEqual true
-        movies.fold({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        movies.isLeft shouldBe true
+        movies.fold({ failure -> failure should beInstanceOf<ServerError>() }, {})
     }
 
-    @Test fun `should return empty movie details by default`() {
+    @Test
+    fun `should return empty movie details by default`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { movieDetailsResponse.body() } returns null
         every { movieDetailsResponse.isSuccessful } returns true
@@ -127,11 +135,12 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldEqual Right(MovieDetails.empty)
+        movieDetails shouldBeEqual Right(MovieDetails.empty)
         verify(exactly = 1) { service.movieDetails(1) }
     }
 
-    @Test fun `should get movie details from service`() {
+    @Test
+    fun `should get movie details from service`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { movieDetailsResponse.body() } returns
                 MovieDetailsEntity(8, "title", String.empty(), String.empty(),
@@ -142,25 +151,26 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldEqual Right(
+        movieDetails shouldBeEqual Right(
             MovieDetails(8, "title", String.empty(),
             String.empty(), String.empty(), String.empty(), 0, String.empty())
         )
         verify(exactly = 1) { service.movieDetails(1) }
     }
 
-    @Test fun `movie details service should return network failure when no connection`() {
+    @Test
+    fun `movie details service should return network failure when no connection`() {
         every { networkHandler.isNetworkAvailable() } returns false
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldBeInstanceOf Either::class.java
-        movieDetails.isLeft shouldEqual true
-        movieDetails.fold({ failure -> failure shouldBeInstanceOf NetworkConnection::class.java }, {})
+        movieDetails.isLeft shouldBeEqual true
+        movieDetails.fold({ failure -> failure should beInstanceOf<NetworkConnection>() }, {})
         verify { service wasNot Called }
     }
 
-    @Test fun `movie details service should return server error if no successful response`() {
+    @Test
+    fun `movie details service should return server error if no successful response`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { movieDetailsResponse.body() } returns null
         every { movieDetailsResponse.isSuccessful } returns false
@@ -169,20 +179,20 @@ class MoviesRepositoryTest : UnitTest() {
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldBeInstanceOf Either::class.java
-        movieDetails.isLeft shouldEqual true
-        movieDetails.fold({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        movieDetails should beInstanceOf<Either<Failure, MovieDetails>>()
+        movieDetails.isLeft shouldBeEqual true
+        movieDetails.fold({ failure -> failure should beInstanceOf<ServerError>() }, {})
     }
 
-    @Test fun `movie details request should catch exceptions`() {
+    @Test
+    fun `movie details request should catch exceptions`() {
         every { networkHandler.isNetworkAvailable() } returns true
         every { movieDetailsCall.execute() } returns movieDetailsResponse
         every { service.movieDetails(1) } returns movieDetailsCall
 
         val movieDetails = networkRepository.movieDetails(1)
 
-        movieDetails shouldBeInstanceOf Either::class.java
-        movieDetails.isLeft shouldEqual true
-        movieDetails.fold({ failure -> failure shouldBeInstanceOf ServerError::class.java }, {})
+        movieDetails.isLeft shouldBeEqual true
+        movieDetails.fold({ failure -> failure should beInstanceOf<ServerError>() }, {})
     }
 }
