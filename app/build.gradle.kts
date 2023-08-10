@@ -20,8 +20,9 @@ plugins {
     alias(libs.plugins.kotlin.parcelize)
 }
 
+val appConfig = AppConfig()
+
 android {
-    val appConfig = AppConfig()
 
     namespace = appConfig.id
     compileSdk = appConfig.compileSdk
@@ -58,6 +59,14 @@ android {
             isMinifyEnabled = false
         }
     }
+}
+
+kotlin {
+    jvmToolchain(appConfig.javaVersion.toString().toInt())
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
