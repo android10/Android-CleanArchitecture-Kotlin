@@ -39,7 +39,7 @@ abstract class AndroidTest {
     @Suppress("LeakingThis")
     @Rule @JvmField val injectMocks = InjectMocksRule.create(this@AndroidTest)
 
-    fun context(): Context = RuntimeEnvironment.systemContext
+    fun context(): Context = RuntimeEnvironment.getApplication().applicationContext
 
     internal class ApplicationStub : Application()
 }
