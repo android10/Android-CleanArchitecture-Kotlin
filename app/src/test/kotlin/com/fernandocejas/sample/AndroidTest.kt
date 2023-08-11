@@ -59,21 +59,4 @@ abstract class AndroidTest {
             statement
         }
     }
-
-    /**
-     * Container for customized Android
-     * specific Test Assertions.
-     */
-    object AndroidAssertions {
-        infix fun KClass<out AppCompatActivity>.shouldNavigateTo(
-            nextActivity: KClass<out AppCompatActivity>
-        ): () -> Unit = {
-
-            val originActivity = Robolectric.buildActivity(this.java).get()
-            val shadowActivity = Shadows.shadowOf(originActivity)
-            val nextIntent = shadowActivity.peekNextStartedActivity()
-
-            nextIntent.component?.className shouldBeEqualIgnoringCase nextActivity.java.canonicalName!!
-        }
-    }
 }

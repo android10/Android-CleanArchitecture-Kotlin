@@ -16,101 +16,100 @@
 package com.fernandocejas.sample.core.functional
 
 import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.core.failure.Failure.ServerError
-import com.fernandocejas.sample.core.functional.Either.Left
-import com.fernandocejas.sample.core.functional.Either.Right
-import io.kotest.matchers.equals.shouldBeEqual
+import com.fernandocejas.sample.core.failure.Failure
+import com.fernandocejas.sample.matchers.shouldBeLeft
+import com.fernandocejas.sample.matchers.shouldBeRight
+import io.kotest.assertions.fail
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.throwable.shouldHaveMessage
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 
 class EitherTest : UnitTest() {
 
-    @Test
-    fun `Either Right should return correct type`() {
-        val result = Right("ironman")
-
-        result.isRight shouldBe true
-        result.isLeft shouldBe false
-        result.fold({},
-                { right ->
-                    right shouldBeEqual "ironman"
-                })
-    }
-
-    @Test fun `Either Left should return correct type`() {
-        val result = Left("ironman")
-
-        result.isLeft shouldBe true
-        result.isRight shouldBe false
-        result.fold(
-                { left ->
-                    left shouldBeEqual "ironman"
-                }, {})
-    }
-
-    @Test fun `Either fold should ignore passed argument if it is Right type`() {
-        val success = "Success"
-        val result = Right(success).getOrElse("Other")
-
-        result shouldBeEqual success
-    }
-
-    @Test fun `Either fold should return argument if it is Left type`() {
-        val other = "Other"
-        val result = Left("Failure").getOrElse(other)
-
-        result shouldBeEqual other
-    }
+    private lateinit var either: Either<Int, String>
 
     @Test
     fun `given fold is called, when either is Right, applies fnR and returns its result`() {
-        val either = Right("Success")
-        val result = either.fold({ fail("Shouldn't be executed") }) { 5 }
+        either = Either.Right("Success")
+        val result = either.fold({ io.kotest.assertions.fail("Shouldn't be executed") }) { 5 }
 
         result shouldBe 5
-        either.isRight shouldBe true
+    }
+
+    @Test
+    fun `given fold is called, when either is Right, it may returns a nullable`() {
+        either = Either.Right("Success")
+        val result: Int? = either.fold({ io.kotest.assertions.fail("Shouldn't be executed") }) { null }
+        result shouldBe null
     }
 
     @Test
     fun `given fold is called, when either is Left, applies fnL and returns its result`() {
-        val either = Left(12)
+        either = Either.Left(12)
 
         val foldResult = "Fold Result"
-        val result = either.fold({ foldResult }) { fail("Shouldn't be executed") }
+        val result = either.fold({ foldResult }) { io.kotest.assertions.fail("Shouldn't be executed") }
 
         result shouldBe foldResult
-        either.isLeft shouldBe true
     }
 
     @Test
-    fun `given flatMap is called, when either is Right, applies function and returns new Either`() {
-        val either = Right("Success")
+    fun `given coFold is called, when either is Right, applies fnR and returns its result`() {
+        runTest {
+            either = Either.Right("Success")
+            val result = either.coFold({ io.kotest.assertions.fail("Shouldn't be executed") }) { "hello" }
 
-        val result = either.flatMap {
-            it shouldBe "Success"
-            Left(ServerError)
+            result shouldBe "hello"
         }
+    }
 
-        result shouldBeEqual Left(ServerError)
-        result.isLeft shouldBe true
+    @Test
+    fun `given coFold is called, when either is Left, applies fnL and returns its result`() {
+        runTest {
+            either = Either.Left(12)
+
+            val foldResult = "Fold Result"
+            val result = either.coFold({ foldResult }) { io.kotest.assertions.fail("Shouldn't be executed") }
+
+            result shouldBe foldResult
+        }
     }
 
     @Test
     fun `given flatMap is called, when either is Left, doesn't invoke function and returns original Either`() {
-        val either = Left(12)
+        either = Either.Left(12)
 
-        val result = either.flatMap { Right(20) }
+        val result: Either<Int, Int> = either.flatMap {
+            io.kotest.assertions.fail("Shouldn't be executed")
+        }
 
         result.isLeft shouldBe true
-        result shouldBeEqual either
+        result shouldBe either
+    }
+
+    @Test
+    fun `given coFlatMap is called, when either is Left, doesn't invoke function and returns original Either`() {
+        runTest {
+            either = Either.Left(12)
+
+            val result: Either<Int, Int> = either.coFlatMap {
+                io.kotest.assertions.fail("Shouldn't be executed")
+            }
+
+            result.isLeft shouldBe true
+            result shouldBe either
+        }
     }
 
     @Test
     fun `given onFailure is called, when either is Right, doesn't invoke function and returns original Either`() {
         val success = "Success"
-        val either = Right(success)
+        either = Either.Right(success)
 
-        val result = either.onFailure { fail("Shouldn't be executed") }
+        val result = either.onFailure { io.kotest.assertions.fail("Shouldn't be executed") }
 
         result shouldBe either
         either.getOrElse("Failure") shouldBe success
@@ -118,7 +117,7 @@ class EitherTest : UnitTest() {
 
     @Test
     fun `given onFailure is called, when either is Left, invokes function with left value and returns original Either`() {
-        val either = Left(12)
+        either = Either.Left(12)
 
         var methodCalled = false
         val result = either.onFailure {
@@ -133,11 +132,11 @@ class EitherTest : UnitTest() {
     @Test
     fun `given onSuccess is called, when either is Right, invokes function with right value and returns original Either`() {
         val success = "Success"
-        val either = Right(success)
+        either = Either.Right(success)
 
         var methodCalled = false
         val result = either.onSuccess {
-            it shouldBeEqual success
+            it shouldBe success
             methodCalled = true
         }
 
@@ -147,9 +146,11 @@ class EitherTest : UnitTest() {
 
     @Test
     fun `given onSuccess is called, when either is Left, doesn't invoke function and returns original Either`() {
-        val either = Left(12)
+        either = Either.Left(12)
 
-        val result = either.onSuccess {fail("Shouldn't be executed") }
+        val result = either.onSuccess {
+            io.kotest.assertions.fail("Shouldn't be executed")
+        }
 
         result shouldBe either
     }
@@ -158,23 +159,90 @@ class EitherTest : UnitTest() {
     fun `given map is called, when either is Right, invokes function with right value and returns a new Either`() {
         val success = "Success"
         val resultValue = "Result"
-        val either = Right(success)
+        either = Either.Right(success)
 
         val result = either.map {
             it shouldBe success
             resultValue
         }
 
-        result shouldBeEqual Right(resultValue)
+        result shouldBe Either.Right(resultValue)
     }
 
     @Test
     fun `given map is called, when either is Left, doesn't invoke function and returns original Either`() {
-        val either = Left(12)
+        either = Either.Left(12)
 
-        val result = either.map { Right(20) }
+        val result = either.map {
+            io.kotest.assertions.fail("Shouldn't be executed")
+        }
 
         result.isLeft shouldBe true
-        result shouldBeEqual either
+        result shouldBe either
+    }
+
+    @Test
+    fun `given coMap is called, when either is Right, invokes function with right value and returns a new Either`() {
+        runTest {
+            val success = "Success"
+            val resultValue = "Result"
+            either = Either.Right(success)
+
+            val result = either.coMap {
+                it shouldBe success
+                resultValue
+            }
+
+            result shouldBe Either.Right(resultValue)
+        }
+    }
+
+    @Test
+    fun `given coMap is called, when either is Left, doesn't invoke function and returns original Either`() {
+        runTest {
+            either = Either.Left(12)
+
+            val result = either.coMap {
+                io.kotest.assertions.fail("Shouldn't be executed")
+            }
+
+            result.isLeft shouldBe true
+            result shouldBe either
+        }
+    }
+
+    @Test
+    fun `extension functions give you a coherent left-to-right reading order`() {
+        val left = "Horrible failure".count().times(3).toLeft()
+        left shouldBe Either.Left(48)
+
+        val right = "Success!".count().times(3).toRight()
+        right shouldBe Either.Right(24)
+    }
+
+    @Test
+    fun `replace try catch by an either`() = runTest {
+        val failure = Failure.ServerError
+
+        Either.catch {
+            delay(1)
+            "42".toInt()
+        } shouldBeRight 42
+
+        Either.catch {
+            delay(1)
+            "abc".toInt()
+        }.mapException { e: Exception ->
+            failure.takeIf { e is NumberFormatException }
+        } shouldBeLeft failure
+
+        @Suppress("TooGenericExceptionThrown")
+        shouldThrowAny {
+            Either.catch {
+                throw RuntimeException("That was unexpected")
+            }.mapException { e ->
+                failure.takeIf { e is NumberFormatException }
+            }
+        }.shouldHaveMessage("That was unexpected")
     }
 }

@@ -13,7 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("DEPRECATION")
+
 package com.fernandocejas.sample.core.functional
+
+import com.fernandocejas.sample.core.functional.Either.Left
+import com.fernandocejas.sample.core.functional.Either.Right
 
 /**
  * Represents a value of one of two possible types (a disjoint union).
@@ -26,10 +31,14 @@ package com.fernandocejas.sample.core.functional
  */
 sealed class Either<out L, out R> {
     /** * Represents the left side of [Either] class which by convention is a "Failure". */
-    data class Left<out L>(val a: L) : Either<L, Nothing>()
+    data class Left<out L>
+    @Deprecated(".toLeft()", ReplaceWith("a.toLeft()"))
+    constructor(val a: L) : Either<L, Nothing>()
 
     /** * Represents the right side of [Either] class which by convention is a "Success". */
-    data class Right<out R>(val b: R) : Either<Nothing, R>()
+    data class Right<out R>
+    @Deprecated(".toRight()", ReplaceWith("b.toRight()"))
+    constructor(val b: R) : Either<Nothing, R>()
 
     /**
      * Returns true if this is a Right, false otherwise.
@@ -44,29 +53,62 @@ sealed class Either<out L, out R> {
     val isLeft get() = this is Left<L>
 
     /**
-     * Creates a Left type.
-     * @see Left
-     */
-    fun <L> left(a: L) = Either.Left(a)
-
-
-    /**
-     * Creates a Left type.
-     * @see Right
-     */
-    fun <R> right(b: R) = Either.Right(b)
-
-    /**
      * Applies fnL if this is a Left or fnR if this is a Right.
      * @see Left
      * @see Right
      */
-    fun fold(fnL: (L) -> Any, fnR: (R) -> Any): Any =
+    fun <T> fold(fnL: (L) -> T, fnR: (R) -> T): T =
         when (this) {
             is Left -> fnL(a)
             is Right -> fnR(b)
         }
+
+    /**
+     * Applies fnL if this is a Left or fnR if this is a Right.
+     *
+     * Kotlin Coroutines Support.
+     * @see Left
+     * @see Right
+     */
+    suspend fun <T> coFold(fnL: suspend (L) -> T, fnR: suspend (R) -> T): T =
+        when (this) {
+            is Left -> fnL(a)
+            is Right -> fnR(b)
+        }
+
+    companion object {
+        /**
+         * Transforms a try/catch in an Either<Exception, Right>
+         * See [mapException]
+         * **/
+        @Suppress("TooGenericExceptionCaught")
+        suspend fun <Right> catch(
+            operation: suspend () -> Right
+        ): Either<Exception, Right> =
+            try {
+                operation().toRight()
+            } catch (e: Exception) {
+                e.toLeft()
+            }
+    }
 }
+
+/** If Left is of type Exception, allows to map it to another type.
+ * Rethrow the exception if [operation] returns null **/
+fun <Left : Any, Right> Either<Exception, Right>.mapException(
+    operation: (Exception) -> Left?
+): Either<Left, Right> = when (this) {
+    is Either.Left -> operation(a)?.toLeft() ?: throw a
+    is Either.Right -> this
+}
+
+/** Represents the right side of [Either] class which by convention is a "Success". **/
+fun <T> T.toRight(): Right<T> =
+    Right(this)
+
+/** Represents the left side of [Either] class which by convention is a "Failure". */
+fun <T> T.toLeft(): Left<T> =
+    Left(this)
 
 /**
  * Composes 2 functions
@@ -82,23 +124,19 @@ fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
  */
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
     when (this) {
-        is Either.Left -> Either.Left(a)
-        is Either.Right -> fn(b)
+        is Left -> Left(a)
+        is Right -> fn(b)
     }
 
 /**
- * Right-biased map() FP convention which means that Right is assumed to be the default case
+ * Right-biased flatMap() FP convention which means that Right is assumed to be the default case
  * to operate on. If it is Left, operations like map, flatMap, ... return the Left value unchanged.
+ * It works with Kotlin Coroutines (suspension functions).
  */
-fun <T, L, R> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> = this.flatMap(fn.c(::right))
-
-/** Returns the value from this `Right` or the given argument if this is a `Left`.
- *  Right(12).getOrElse(17) RETURNS 12 and Left(12).getOrElse(17) RETURNS 17
- */
-fun <L, R> Either<L, R>.getOrElse(value: R): R =
+suspend fun <T, L, R> Either<L, R>.coFlatMap(fn: suspend (R) -> Either<L, T>): Either<L, T> =
     when (this) {
-        is Either.Left -> value
-        is Either.Right -> b
+        is Left -> Left(a)
+        is Right -> fn(b)
     }
 
 /**
@@ -106,13 +144,44 @@ fun <L, R> Either<L, R>.getOrElse(value: R): R =
  * the onFailure functionality passed as a parameter, but, overall will still return an either
  * object so you chain calls.
  */
-fun <L, R> Either<L, R>.onFailure(fn: (failure: L) -> Unit): Either<L, R> =
-    this.apply { if (this is Either.Left) fn(a) }
+infix fun <L, R> Either<L, R>.onFailure(fn: (failure: L) -> Unit): Either<L, R> =
+    this.apply { if (this is Left) fn(a) }
 
 /**
  * Right-biased onSuccess() FP convention dictates that when this class is Right, it'll perform
  * the onSuccess functionality passed as a parameter, but, overall will still return an either
  * object so you chain calls.
  */
-fun <L, R> Either<L, R>.onSuccess(fn: (success: R) -> Unit): Either<L, R> =
-    this.apply { if (this is Either.Right) fn(b) }
+infix fun <L, R> Either<L, R>.onSuccess(fn: (success: R) -> Unit): Either<L, R> =
+    this.apply { if (this is Right) fn(b) }
+
+/**
+ * Right-biased map() FP convention which means that Right is assumed to be the default case
+ * to operate on. If it is Left, operations like map, flatMap, ... return the Left value unchanged.
+ */
+fun <L, R, T> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> =
+    when (this) {
+        is Left -> Left(a)
+        is Right -> Right(fn(b))
+    }
+
+/**
+ * Right-biased map() FP convention which means that Right is assumed to be the default case
+ * to operate on. If it is Left, operations like map, flatMap, ... return the Left value unchanged.
+ * It works with Kotlin Coroutines (suspension functions).
+ */
+suspend fun <L, R, T> Either<L, R>.coMap(fn: suspend (R) -> (T)): Either<L, T> =
+    when (this) {
+        is Left -> Left(a)
+        is Right -> Right(fn(b))
+    }
+
+/**
+ * Returns the value from this `Right` or the given argument if this is a `Left`.
+ * Right(12).getOrElse(17) RETURNS 12 and Left(12).getOrElse(17) RETURNS 17
+ */
+fun <L, R> Either<L, R>.getOrElse(value: R): R =
+    when (this) {
+        is Left -> value
+        is Right -> b
+    }
