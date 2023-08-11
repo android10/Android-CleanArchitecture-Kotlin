@@ -30,15 +30,22 @@ import com.fernandocejas.sample.core.functional.Either.Right
  * @see Right
  */
 sealed class Either<out L, out R> {
-    /** * Represents the left side of [Either] class which by convention is a "Failure". */
+
+    /**
+     * Represents the left side of [Either] class which by convention
+     * is a "Failure".
+     */
     data class Left<out L>
     @Deprecated(".toLeft()", ReplaceWith("a.toLeft()"))
-    constructor(val a: L) : Either<L, Nothing>()
+    constructor(val left: L) : Either<L, Nothing>()
 
-    /** * Represents the right side of [Either] class which by convention is a "Success". */
+    /**
+     * Represents the right side of [Either] class which by convention
+     * is a "Success".
+     */
     data class Right<out R>
     @Deprecated(".toRight()", ReplaceWith("b.toRight()"))
-    constructor(val b: R) : Either<Nothing, R>()
+    constructor(val right: R) : Either<Nothing, R>()
 
     /**
      * Returns true if this is a Right, false otherwise.
@@ -59,8 +66,8 @@ sealed class Either<out L, out R> {
      */
     fun <T> fold(fnL: (L) -> T, fnR: (R) -> T): T =
         when (this) {
-            is Left -> fnL(a)
-            is Right -> fnR(b)
+            is Left -> fnL(left)
+            is Right -> fnR(right)
         }
 
     /**
@@ -72,8 +79,8 @@ sealed class Either<out L, out R> {
      */
     suspend fun <T> coFold(fnL: suspend (L) -> T, fnR: suspend (R) -> T): T =
         when (this) {
-            is Left -> fnL(a)
-            is Right -> fnR(b)
+            is Left -> fnL(left)
+            is Right -> fnR(right)
         }
 
     companion object {
@@ -98,7 +105,7 @@ sealed class Either<out L, out R> {
 fun <Left : Any, Right> Either<Exception, Right>.mapException(
     operation: (Exception) -> Left?
 ): Either<Left, Right> = when (this) {
-    is Either.Left -> operation(a)?.toLeft() ?: throw a
+    is Either.Left -> operation(left)?.toLeft() ?: throw left
     is Either.Right -> this
 }
 
@@ -124,8 +131,8 @@ fun <A, B, C> ((A) -> B).c(f: (B) -> C): (A) -> C = {
  */
 fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
     when (this) {
-        is Left -> Left(a)
-        is Right -> fn(b)
+        is Left -> Left(left)
+        is Right -> fn(right)
     }
 
 /**
@@ -135,8 +142,8 @@ fun <T, L, R> Either<L, R>.flatMap(fn: (R) -> Either<L, T>): Either<L, T> =
  */
 suspend fun <T, L, R> Either<L, R>.coFlatMap(fn: suspend (R) -> Either<L, T>): Either<L, T> =
     when (this) {
-        is Left -> Left(a)
-        is Right -> fn(b)
+        is Left -> Left(left)
+        is Right -> fn(right)
     }
 
 /**
@@ -145,7 +152,7 @@ suspend fun <T, L, R> Either<L, R>.coFlatMap(fn: suspend (R) -> Either<L, T>): E
  * object so you chain calls.
  */
 infix fun <L, R> Either<L, R>.onFailure(fn: (failure: L) -> Unit): Either<L, R> =
-    this.apply { if (this is Left) fn(a) }
+    this.apply { if (this is Left) fn(left) }
 
 /**
  * Right-biased onSuccess() FP convention dictates that when this class is Right, it'll perform
@@ -153,7 +160,7 @@ infix fun <L, R> Either<L, R>.onFailure(fn: (failure: L) -> Unit): Either<L, R> 
  * object so you chain calls.
  */
 infix fun <L, R> Either<L, R>.onSuccess(fn: (success: R) -> Unit): Either<L, R> =
-    this.apply { if (this is Right) fn(b) }
+    this.apply { if (this is Right) fn(right) }
 
 /**
  * Right-biased map() FP convention which means that Right is assumed to be the default case
@@ -161,8 +168,8 @@ infix fun <L, R> Either<L, R>.onSuccess(fn: (success: R) -> Unit): Either<L, R> 
  */
 fun <L, R, T> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> =
     when (this) {
-        is Left -> Left(a)
-        is Right -> Right(fn(b))
+        is Left -> Left(left)
+        is Right -> Right(fn(right))
     }
 
 /**
@@ -172,8 +179,8 @@ fun <L, R, T> Either<L, R>.map(fn: (R) -> (T)): Either<L, T> =
  */
 suspend fun <L, R, T> Either<L, R>.coMap(fn: suspend (R) -> (T)): Either<L, T> =
     when (this) {
-        is Left -> Left(a)
-        is Right -> Right(fn(b))
+        is Left -> Left(left)
+        is Right -> Right(fn(right))
     }
 
 /**
@@ -183,5 +190,5 @@ suspend fun <L, R, T> Either<L, R>.coMap(fn: suspend (R) -> (T)): Either<L, T> =
 fun <L, R> Either<L, R>.getOrElse(value: R): R =
     when (this) {
         is Left -> value
-        is Right -> b
+        is Right -> right
     }
