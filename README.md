@@ -5,7 +5,7 @@ The purpose of this repo is to follow up Clean Architecture principles by bringi
 
 ## Project Status
 
- - **Last Update 2024.08**
+ - **Last Update: 2024.08**
    - Migrated to Kotlin 2.0.
    - Migrated to Jetpack Compose.
    - Bug Fixes.
@@ -69,7 +69,7 @@ Refer to the issues section: https://github.com/android10/Android-CleanArchitect
  
 ## License
 
-    Copyright 2022 Fernando Cejas
+    Copyright 2024 Fernando Cejas
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

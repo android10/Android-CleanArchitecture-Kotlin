@@ -7,19 +7,13 @@ targetSdk = "34"
 kotlin = "2.0.10"
 kotlinCoroutines = "1.7.3"
 # android --------
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.10-1.0.24"
 appCompat = "1.7.0"
-materialDesign = "1.2.1"
-composeBom = "2024.06.00"
-activityCompose = "1.9.1"
 liveData = "1.6.8"
 lifecycleCompiler = "2.8.4"
 constraintlayout = "2.1.4"
 lifecycleExtensions = "2.2.0"
 koinAndroid = "3.4.3"
-recyclerview = "1.3.2"
-cardview = "1.0.0"
-materialDesignLegacy = "1.12.0"
 annotation = "1.8.2"
 glide = "4.15.1"
 converterGson = "2.9.0"
@@ -49,10 +43,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
-androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
-androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
-material = { module = "com.google.android.material:material", version.ref = "materialDesignLegacy" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
@@ -78,6 +69,6 @@ leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", ve
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kasp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

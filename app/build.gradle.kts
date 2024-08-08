@@ -1,17 +1,18 @@
 @file:Suppress("UnstableApiUsage")
 
-import org.jetbrains.kotlin.config.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 
 class AppConfig {
     val id = "com.fernandocejas.sample"
-    val versionCode = 1
-    val versionName = "1.0"
+    val versionCode = 2
+    val versionName = "2.0"
 
     val compileSdk = libs.versions.compileSdk.get().toInt()
     val minSdk = libs.versions.minSdk.get().toInt()
     val targetSdk = libs.versions.targetSdk.get().toInt()
 
+    val jvmTarget = JvmTarget.JVM_17
     val javaVersion = JavaVersion.VERSION_17
     val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
@@ -20,14 +21,13 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 //    alias(libs.plugins.kotlin.compose.compiler)
-    alias(libs.plugins.kotlin.kasp)
+    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.parcelize)
 }
 
 val appConfig = AppConfig()
 
 android {
-
     namespace = appConfig.id
     compileSdk = appConfig.compileSdk
 
@@ -61,11 +61,9 @@ android {
     }
 }
 
-// https://kotlinlang.org/docs/gradle-configure-project.html#gradle-java-toolchains-support
 kotlin {
-//    jvmToolchain(appConfig.javaVersion.toString().toInt())
     compilerOptions {
-//        jvmTarget.set(JvmTarget.JVM_17)
+        jvmTarget.set(appConfig.jvmTarget)
     }
 }
 
@@ -80,8 +78,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.android)
     implementation(libs.android.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.annotation)
 //    implementation(libs.glide)
     implementation(libs.converter.gson)
 
