@@ -3,20 +3,17 @@
 compileSdk = "34"
 minSdk = "30"
 targetSdk = "34"
+
 # kotlin ---------
 kotlin = "2.0.10"
 kotlinCoroutines = "1.7.3"
+
 # android --------
 ksp = "2.0.10-1.0.24"
 appCompat = "1.7.0"
-liveData = "1.6.8"
-lifecycleCompiler = "2.8.4"
-constraintlayout = "2.1.4"
-lifecycleExtensions = "2.2.0"
-koinAndroid = "3.4.3"
-annotation = "1.8.2"
-glide = "4.15.1"
+koinAndroid = "3.5.6"
 converterGson = "2.9.0"
+
 # testing
 kotest = "5.6.2"
 junit = "4.13.2"
@@ -26,8 +23,10 @@ runner = "1.6.1"
 espressoCore = "3.6.1"
 junitVersion = "1.2.1"
 rules = "1.6.1"
+
 # tooling -------
-leakcanaryAndroid = "2.12"
+leakcanaryAndroid = "2.14"
+
 # plugings -------
 androidGradlePlugin = "8.5.1"
 
@@ -38,15 +37,13 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 kotlin-compose-compiler-plugin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable", version.ref = "kotlin" }
 kotlin-compose-compiler-plugin = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+
 # main module dependencies: android related ---
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
-androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+
 # main module unit/integration test dependencies ---
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -54,21 +51,21 @@ kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+
 # main module ui test dependencies ---
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
 androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espressoCore" }
 androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
 androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+
 # main module tooling dependencies --------
-androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
-androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
