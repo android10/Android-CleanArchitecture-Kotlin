@@ -1,8 +1,8 @@
 [versions]
 # sdk -----------
-compileSdk = "33"
-minSdk = "27"
-targetSdk = "33"
+compileSdk = "34"
+minSdk = "30"
+targetSdk = "34"
 # kotlin ---------
 kotlin = "1.9.20"
 kotlinCoroutines = "1.7.3"
