@@ -4,7 +4,7 @@ compileSdk = "34"
 minSdk = "30"
 targetSdk = "34"
 # kotlin ---------
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 kotlinCoroutines = "1.7.3"
 # android --------
 ksp = "2.0.0-1.0.21"
@@ -40,7 +40,7 @@ androidGradlePlugin = "8.5.1"
 
 [libraries]
 # kotlin dependencies ---
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-compose-compiler-plugin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable", version.ref = "kotlin" }
 kotlin-compose-compiler-plugin = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }

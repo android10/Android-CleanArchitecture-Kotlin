@@ -75,7 +75,7 @@ dependencies {
 //    implementation(libs.kotlin.compose.compiler.plugin)
 
     // Application dependencies
-    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.android)
