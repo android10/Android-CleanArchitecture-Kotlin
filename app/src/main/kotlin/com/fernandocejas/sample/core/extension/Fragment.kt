@@ -19,14 +19,14 @@ import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
-import com.fernandocejas.sample.core.platform.DeprecatedBaseFragment
+import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.platform.BaseFragment
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) =
     beginTransaction().func().commit()
 
-fun DeprecatedBaseFragment.close() = fragmentManager?.popBackStack()
+fun BaseFragment.close() = fragmentManager?.popBackStack()
 
-val DeprecatedBaseFragment.viewContainer: View get() = (activity as DeprecatedBaseActivity).fragmentContainer()
+//val BaseFragment.viewContainer: View get() = (activity as BaseActivity).fragmentContainer()
 
-val DeprecatedBaseFragment.appContext: Context get() = activity?.applicationContext!!
+val BaseFragment.appContext: Context get() = activity?.applicationContext!!

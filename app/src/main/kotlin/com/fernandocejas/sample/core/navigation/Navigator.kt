@@ -20,38 +20,36 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import android.widget.ImageView
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.FragmentActivity
 import com.fernandocejas.sample.core.extension.emptyString
 import com.fernandocejas.sample.features.auth.credentials.Authenticator
-import com.fernandocejas.sample.features.login.ui.LoginActivity
-import com.fernandocejas.sample.features.movies.ui.MovieDetailsActivity
 import com.fernandocejas.sample.features.movies.ui.MovieView
 import com.fernandocejas.sample.features.movies.ui.MoviesActivity
 
 
 class Navigator(private val authenticator: Authenticator) {
 
-    private fun showLogin(context: Context) =
-        context.startActivity(LoginActivity.callingIntent(context))
+//    private fun showLogin(context: Context) =
+//        context.startActivity(LoginActivity.callingIntent(context))
 
     fun showMain(context: Context) {
-        when (authenticator.userLoggedIn()) {
-            true -> showMovies(context)
-            false -> showLogin(context)
-        }
+//        TODO()
+        showMovies(context)
+//        when (authenticator.userLoggedIn()) {
+//            true -> showMovies(context)
+//            false -> showLogin(context)
+//        }
     }
 
     private fun showMovies(context: Context) =
         context.startActivity(MoviesActivity.callingIntent(context))
 
     fun showMovieDetails(activity: FragmentActivity, movie: MovieView, navigationExtras: Extras) {
-        val intent = MovieDetailsActivity.callingIntent(activity, movie)
-        val sharedView = navigationExtras.transitionSharedElement as ImageView
-        val activityOptions = ActivityOptionsCompat
-            .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
-        activity.startActivity(intent, activityOptions.toBundle())
+//        val intent = MovieDetailsActivity.callingIntent(activity, movie)
+//        val sharedView = navigationExtras.transitionSharedElement as ImageView
+//        val activityOptions = ActivityOptionsCompat
+//            .makeSceneTransitionAnimation(activity, sharedView, sharedView.transitionName)
+//        activity.startActivity(intent, activityOptions.toBundle())
     }
 
     private val videoUrlHttp = "http://www.youtube.com/watch?v="

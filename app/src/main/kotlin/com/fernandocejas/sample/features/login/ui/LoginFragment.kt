@@ -15,6 +15,6 @@
  */
 package com.fernandocejas.sample.features.login.ui
 
-import com.fernandocejas.sample.core.platform.DeprecatedBaseFragment
+import com.fernandocejas.sample.core.platform.BaseFragment
 
-class LoginFragment : DeprecatedBaseFragment()
+class LoginFragment : BaseFragment()

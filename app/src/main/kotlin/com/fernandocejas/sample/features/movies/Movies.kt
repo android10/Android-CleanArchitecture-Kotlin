@@ -6,9 +6,7 @@ import com.fernandocejas.sample.features.movies.data.MoviesService
 import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails
 import com.fernandocejas.sample.features.movies.interactor.GetMovies
 import com.fernandocejas.sample.features.movies.interactor.PlayMovie
-import com.fernandocejas.sample.features.movies.ui.MovieDetailsAnimator
 import com.fernandocejas.sample.features.movies.ui.MovieDetailsViewModel
-import com.fernandocejas.sample.features.movies.ui.MoviesAdapter
 import com.fernandocejas.sample.features.movies.ui.MoviesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
@@ -26,11 +24,9 @@ fun moviesFeature() = object : Feature {
         // Movies
         viewModelOf(::MoviesViewModel)
         factoryOf(::GetMovies)
-        factoryOf(::MoviesAdapter)
         // Movie Details
         viewModelOf(::MovieDetailsViewModel)
         factoryOf(::GetMovieDetails)
         factoryOf(::PlayMovie)
-        factoryOf(::MovieDetailsAnimator)
     }
 }

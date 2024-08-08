@@ -17,12 +17,12 @@ package com.fernandocejas.sample.features.login.ui
 
 import android.content.Context
 import android.content.Intent
-import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
+import com.fernandocejas.sample.core.platform.BaseActivity
 
-class LoginActivity : DeprecatedBaseActivity() {
-    companion object {
-        fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
-    }
-
-    override fun fragment() = LoginFragment()
+class LoginActivity : BaseActivity() {
+//    companion object {
+//        fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
+//    }
+//
+//    override fun fragment() = LoginFragment()
 }

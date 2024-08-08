@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+import org.jetbrains.kotlin.config.JvmTarget
+
+
 class AppConfig {
     val id = "com.fernandocejas.sample"
     val versionCode = 1
@@ -16,7 +19,8 @@ class AppConfig {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
+//    alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.kotlin.kasp)
     alias(libs.plugins.kotlin.parcelize)
 }
 
@@ -43,13 +47,9 @@ android {
         targetCompatibility = appConfig.javaVersion
     }
 
-    kotlinOptions {
-        jvmTarget = appConfig.javaVersion.toString()
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
+//    composeCompiler {
+//        enableStrongSkippingMode = true
+//    }
 
     buildTypes {
         getByName("debug") {
@@ -63,16 +63,16 @@ android {
 
 // https://kotlinlang.org/docs/gradle-configure-project.html#gradle-java-toolchains-support
 kotlin {
-    jvmToolchain(appConfig.javaVersion.toString().toInt())
-}
-
-kapt {
-    correctErrorTypes = true
+//    jvmToolchain(appConfig.javaVersion.toString().toInt())
+    compilerOptions {
+//        jvmTarget.set(JvmTarget.JVM_17)
+    }
 }
 
 dependencies {
     //Compile time dependencies
-    kapt(libs.androidx.lifecycle.compiler)
+//    implementation(libs.kotlin.compose.compiler.plugin.embeddable)
+//    implementation(libs.kotlin.compose.compiler.plugin)
 
     // Application dependencies
     implementation(libs.kotlin.stdlib.jdk8)
@@ -80,17 +80,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.android)
     implementation(libs.android.appcompat)
-    implementation(libs.android.core.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.extensions)
-    implementation(libs.androidx.cardview)
-    implementation(libs.androidx.recyclerview)
     implementation(libs.material)
     implementation(libs.androidx.annotation)
-    implementation(libs.glide)
+//    implementation(libs.glide)
     implementation(libs.converter.gson)
 
     // Unit/Integration tests dependencies

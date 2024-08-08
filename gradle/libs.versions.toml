@@ -4,10 +4,10 @@ compileSdk = "34"
 minSdk = "30"
 targetSdk = "34"
 # kotlin ---------
-kotlin = "1.9.20"
+kotlin = "2.0.0"
 kotlinCoroutines = "1.7.3"
 # android --------
-ktx = "1.13.1"
+ksp = "2.0.0-1.0.21"
 appCompat = "1.7.0"
 materialDesign = "1.2.1"
 composeBom = "2024.06.00"
@@ -15,8 +15,6 @@ activityCompose = "1.9.1"
 liveData = "1.6.8"
 lifecycleCompiler = "2.8.4"
 constraintlayout = "2.1.4"
-lifecycleViewmodelKtx = "2.8.4"
-lifecycleLivedataKtx = "2.8.4"
 lifecycleExtensions = "2.2.0"
 koinAndroid = "3.4.3"
 recyclerview = "1.3.2"
@@ -25,7 +23,6 @@ materialDesignLegacy = "1.12.0"
 annotation = "1.8.2"
 glide = "4.15.1"
 converterGson = "2.9.0"
-fragmentKtx = "1.8.2"
 # testing
 kotest = "5.6.2"
 junit = "4.13.2"
@@ -42,21 +39,15 @@ androidGradlePlugin = "8.5.1"
 
 
 [libraries]
-# main module dependencies ---
+# kotlin dependencies ---
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-compose-compiler-plugin-embeddable = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin-embeddable", version.ref = "kotlin" }
+kotlin-compose-compiler-plugin = { module = "org.jetbrains.kotlin:kotlin-compose-compiler-plugin", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
+# main module dependencies: android related ---
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
-android-core-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
-androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "liveData" }
-androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "materialDesign" }
-androidx-compose-material3-window-size = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "materialDesign" }
-androidx-activty-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-androidx-lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycleCompiler" }
-androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 androidx-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtensions" }
 androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
@@ -65,7 +56,6 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
-androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 # main module unit/integration test dependencies ---
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
@@ -88,5 +78,6 @@ leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", ve
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-kasp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
