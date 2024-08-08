@@ -30,12 +30,12 @@ import com.fernandocejas.sample.core.extension.invisible
 import com.fernandocejas.sample.core.extension.observe
 import com.fernandocejas.sample.core.extension.visible
 import com.fernandocejas.sample.core.navigation.Navigator
-import com.fernandocejas.sample.core.platform.BaseFragment
+import com.fernandocejas.sample.core.platform.DeprecatedBaseFragment
 import com.fernandocejas.sample.databinding.FragmentMoviesBinding
 import com.fernandocejas.sample.features.movies.failure.MovieFailure.ListNotAvailable
 import org.koin.android.ext.android.inject
 
-class MoviesFragment : BaseFragment() {
+class MoviesFragment : DeprecatedBaseFragment() {
 
     private val navigator: Navigator by inject()
     private val moviesAdapter: MoviesAdapter by inject()

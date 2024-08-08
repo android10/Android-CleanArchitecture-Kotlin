@@ -17,9 +17,9 @@ package com.fernandocejas.sample.features.movies.ui
 
 import android.content.Context
 import android.content.Intent
-import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
 
-class MoviesActivity : BaseActivity() {
+class MoviesActivity : DeprecatedBaseActivity() {
 
     companion object {
         fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)

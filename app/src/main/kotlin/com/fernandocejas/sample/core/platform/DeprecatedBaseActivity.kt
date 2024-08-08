@@ -26,7 +26,7 @@ import com.fernandocejas.sample.databinding.ActivityLayoutBinding
  *
  * @see AppCompatActivity
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class DeprecatedBaseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLayoutBinding
 
@@ -42,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        (supportFragmentManager.findFragmentById(binding.fragmentContainer.id) as BaseFragment).onBackPressed()
+        (supportFragmentManager.findFragmentById(binding.fragmentContainer.id) as DeprecatedBaseFragment).onBackPressed()
         super.onBackPressed()
     }
 
@@ -56,5 +56,5 @@ abstract class BaseActivity : AppCompatActivity() {
             add(binding.fragmentContainer.id, fragment())
         }
 
-    abstract fun fragment(): BaseFragment
+    abstract fun fragment(): DeprecatedBaseFragment
 }

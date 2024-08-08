@@ -30,13 +30,13 @@ import com.fernandocejas.sample.core.extension.isVisible
 import com.fernandocejas.sample.core.extension.loadFromUrl
 import com.fernandocejas.sample.core.extension.loadUrlAndPostponeEnterTransition
 import com.fernandocejas.sample.core.extension.observe
-import com.fernandocejas.sample.core.platform.BaseActivity
-import com.fernandocejas.sample.core.platform.BaseFragment
+import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
+import com.fernandocejas.sample.core.platform.DeprecatedBaseFragment
 import com.fernandocejas.sample.databinding.FragmentMovieDetailsBinding
 import com.fernandocejas.sample.features.movies.failure.MovieFailure.NonExistentMovie
 import org.koin.android.ext.android.inject
 
-class MovieDetailsFragment : BaseFragment() {
+class MovieDetailsFragment : DeprecatedBaseFragment() {
 
     companion object {
         private const val PARAM_MOVIE = "param_movie"
@@ -101,7 +101,7 @@ class MovieDetailsFragment : BaseFragment() {
             with(movie) {
                 activity?.let {
                     binding.moviePoster.loadUrlAndPostponeEnterTransition(poster, it)
-                    (it as BaseActivity).toolbar().title = title
+                    (it as DeprecatedBaseActivity).toolbar().title = title
                 }
                 with(binding) {
                     movieSummary.text = summary

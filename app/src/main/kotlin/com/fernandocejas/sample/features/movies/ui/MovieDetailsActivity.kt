@@ -17,9 +17,9 @@ package com.fernandocejas.sample.features.movies.ui
 
 import android.content.Context
 import android.content.Intent
-import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
 
-class MovieDetailsActivity : BaseActivity() {
+class MovieDetailsActivity : DeprecatedBaseActivity() {
 
     companion object {
         private const val INTENT_EXTRA_PARAM_MOVIE = "com.fernandocejas.INTENT_PARAM_MOVIE"

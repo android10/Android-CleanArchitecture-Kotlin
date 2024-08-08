@@ -17,9 +17,9 @@ package com.fernandocejas.sample.features.login.ui
 
 import android.content.Context
 import android.content.Intent
-import com.fernandocejas.sample.core.platform.BaseActivity
+import com.fernandocejas.sample.core.platform.DeprecatedBaseActivity
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : DeprecatedBaseActivity() {
     companion object {
         fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)
     }

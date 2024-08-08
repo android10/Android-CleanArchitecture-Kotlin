@@ -30,7 +30,7 @@ import com.google.android.material.snackbar.Snackbar
  *
  * @see Fragment
  */
-abstract class BaseFragment : Fragment() {
+abstract class DeprecatedBaseFragment : Fragment() {
 
     open fun onBackPressed() {}
 
@@ -41,7 +41,7 @@ abstract class BaseFragment : Fragment() {
     internal fun hideProgress() = progressStatus(View.GONE)
 
     private fun progressStatus(viewStatus: Int) =
-        with(activity) { if (this is BaseActivity) this.progressBar().visibility = viewStatus }
+        with(activity) { if (this is DeprecatedBaseActivity) this.progressBar().visibility = viewStatus }
 
     internal fun notify(@StringRes message: Int) =
         Snackbar.make(viewContainer, message, Snackbar.LENGTH_SHORT).show()
