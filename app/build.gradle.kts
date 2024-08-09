@@ -20,7 +20,7 @@ class AppConfig {
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    alias(libs.plugins.kotlin.compose.compiler)
+    alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.parcelize)
 }
@@ -47,9 +47,9 @@ android {
         targetCompatibility = appConfig.javaVersion
     }
 
-//    composeCompiler {
-//        enableStrongSkippingMode = true
-//    }
+    buildFeatures {
+        compose = true
+    }
 
     buildTypes {
         getByName("debug") {
@@ -68,18 +68,16 @@ kotlin {
 }
 
 dependencies {
-    //Compile time dependencies
-//    implementation(libs.kotlin.compose.compiler.plugin.embeddable)
-//    implementation(libs.kotlin.compose.compiler.plugin)
-
     // Application dependencies
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.koin.android)
     implementation(libs.android.appcompat)
-//    implementation(libs.glide)
     implementation(libs.converter.gson)
+
+    // jetpack compose dependencies
+//    https://developer.android.google.cn/develop/ui/compose/setup?hl=en#kotlin_1
 
     // Unit/Integration tests dependencies
     testImplementation(libs.kotest.runner.junit5)

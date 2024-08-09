@@ -18,10 +18,11 @@ package com.fernandocejas.sample.features.movies.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import com.fernandocejas.sample.R
 
-class MoviesActivity : AppCompatActivity() {
+class MoviesActivity : ComponentActivity() {
 
     companion object {
         fun callingIntent(context: Context) = Intent(context, MoviesActivity::class.java)
@@ -31,16 +32,9 @@ class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_layout)
-    }
-
-    private fun testKotlinTwo() {
-
+//        @see: https://github.com/android/compose-samples
+//        setContent {
+//
+//        }
     }
 }
-
-fun <T> List<T>.secondOrNull(): T? = if (this.size > 1) this[1] else null
-
-val numbers = listOf(1, 2, 3)
-val secondNumber = numbers.secondOrNull()  // Type inferred as Int?
-

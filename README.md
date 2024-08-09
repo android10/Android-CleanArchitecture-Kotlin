@@ -1,14 +1,18 @@
 ![banner](https://user-images.githubusercontent.com/37318022/40349145-3e0c8d8a-5dd8-11e8-8654-5784f9ab7554.png)
 
+# STATUS: Refactoring! Please check the TODOs below in the **project status section**.
+
 # Android - Clean Architecture - Kotlin [![Build Status](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin.svg?branch=main)](https://travis-ci.org/android10/Android-CleanArchitecture-Kotlin) [![codecov](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin/branch/main/graph/badge.svg?token=x1AtDcNuDv)](https://codecov.io/gh/android10/Android-CleanArchitecture-Kotlin)
 The purpose of this repo is to follow up Clean Architecture principles by bringing them to Android. It is worth saying that the idea is to take advantage of the Kotlin Programming Language features plus also pull in lessons learned and ideas from other interesting approaches like Functional Programming.
 
 ## Project Status
 
  - **Last Update: 2024.08**
-   - Migrated to Kotlin 2.0.
-   - Migrated to Jetpack Compose.
-   - Bug Fixes.
+   - TODO: Migrate to Kotlin 2.0.
+   - TODO: Migrate to Jetpack Compose.
+   - TODO: Bug Fixes.
+   - TODO: Reorganize and cleanup tests.
+   - TODO: Reorganize dependencies and build system. 
 
 ## Blog post with implementation details explanation:
 [Architecting Android… Reloaded](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)
