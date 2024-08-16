@@ -19,7 +19,7 @@ kotest = "5.6.2"
 junit = "4.13.2"
 mockk = "1.13.5"
 robolectric = "4.10.3"
-runner = "1.6.1"
+runner = "1.6.2"
 espressoCore = "3.6.1"
 junitVersion = "1.2.1"
 rules = "1.6.1"
@@ -28,7 +28,7 @@ rules = "1.6.1"
 leakcanaryAndroid = "2.14"
 
 # plugings -------
-androidGradlePlugin = "8.5.1"
+androidGradlePlugin = "8.5.2"
 
 
 [libraries]
