@@ -8,8 +8,8 @@ The purpose of this repo is to follow up Clean Architecture principles by bringi
 ## Project Status
 
  - **Last Update: 2024.08**
-   - TODO: Migrate to Kotlin 2.0.
-   - TODO: Migrate to Jetpack Compose.
+   - WIP: Migrate to Kotlin 2.0.
+   - WIP: Migrate to Jetpack Compose.
    - TODO: Bug Fixes.
    - TODO: Reorganize and cleanup tests.
    - TODO: Reorganize dependencies and build system. 
