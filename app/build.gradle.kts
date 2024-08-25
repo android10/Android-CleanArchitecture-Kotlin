@@ -13,6 +13,7 @@ class AppConfig {
     val targetSdk = libs.versions.targetSdk.get().toInt()
 
     val jvmTarget = JvmTarget.JVM_17
+    val jvmToolChain = 17
     val javaVersion = JavaVersion.VERSION_17
     val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
@@ -52,6 +53,7 @@ android {
         // @see: https://developer.android.com/develop/ui/compose/tooling#bom
         // @see: https://developer.android.com/develop/ui/compose/bom
         compose = true
+        buildConfig = true
     }
 
     buildTypes {
@@ -65,9 +67,14 @@ android {
 }
 
 kotlin {
+    jvmToolchain(appConfig.jvmToolChain)
     compilerOptions {
         jvmTarget.set(appConfig.jvmTarget)
     }
+}
+
+composeCompiler {
+    enableStrongSkippingMode = true
 }
 
 dependencies {
@@ -79,10 +86,32 @@ dependencies {
     implementation(libs.android.appcompat)
     implementation(libs.converter.gson)
 
-    // jetpack compose dependencies
-//    https://developer.android.google.cn/develop/ui/compose/setup?hl=en#kotlin_1
+    // Jetpack compose dependencies
+    // @see: https://developer.android.google.cn/develop/ui/compose/setup?hl=en#kotlin_1
+    // Specify the Compose BOM with a version definition
+    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+    implementation(composeBom)
+
+
+    // Specify Compose library dependencies without a version definition
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-core")
+    // Integration with activities
+    implementation("androidx.activity:activity-compose:1.9.0")
+    // Integration with ViewModels
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    // Integration with LiveData
+    implementation("androidx.compose.runtime:runtime-livedata")
+    // ..
+    // ..
+
+    // Android Studio Preview support
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
 
     // Unit/Integration tests dependencies
+    testImplementation(composeBom)
     testImplementation(libs.kotest.runner.junit5)
     testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.property)
@@ -91,6 +120,9 @@ dependencies {
     testImplementation(libs.robolectric)
 
     // UI tests dependencies
+    androidTestImplementation(composeBom)
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

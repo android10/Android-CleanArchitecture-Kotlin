@@ -36,11 +36,14 @@ androidGradlePlugin = "8.5.2"
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
 
-# main module dependencies: android related ---
+# main module dependencies: android application related ---
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+
+# main module dependencies: android application related ---
+
 
 # main module unit/integration test dependencies ---
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
