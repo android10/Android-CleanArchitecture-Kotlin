@@ -48,6 +48,9 @@ android {
     }
 
     buildFeatures {
+        // Enables Compose functionality in Android Studio.
+        // @see: https://developer.android.com/develop/ui/compose/tooling#bom
+        // @see: https://developer.android.com/develop/ui/compose/bom
         compose = true
     }
 
