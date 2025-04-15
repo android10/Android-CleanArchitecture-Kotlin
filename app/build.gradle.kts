@@ -22,6 +22,7 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 val appConfig = AppConfig()
@@ -99,7 +100,6 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.converter.gson)
 
     // Compose
     // @see: https://developer.android.google.cn/develop/ui/compose/setup?hl=en#kotlin_1
@@ -130,6 +130,7 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.robolectric)
+    testImplementation(libs.ktor.client.mock)
 
     // UI tests dependencies
     androidTestImplementation(composeBom)

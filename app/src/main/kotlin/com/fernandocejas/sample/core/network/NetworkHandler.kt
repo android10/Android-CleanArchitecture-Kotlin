@@ -17,7 +17,6 @@ package com.fernandocejas.sample.core.network
 
 import android.content.Context
 import android.net.NetworkCapabilities
-import android.os.Build
 import com.fernandocejas.sample.core.extension.connectivityManager
 
 /**

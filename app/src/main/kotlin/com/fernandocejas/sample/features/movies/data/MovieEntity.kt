@@ -16,7 +16,10 @@
 package com.fernandocejas.sample.features.movies.data
 
 import com.fernandocejas.sample.features.movies.interactor.Movie
+import kotlinx.serialization.Serializable
 
-data class MovieEntity(private val id: Int, private val poster: String) {
-    fun toMovie() = Movie(id, poster)
-}
+@Serializable
+data class MovieEntity(val id: Int, val poster: String)
+
+
+fun MovieEntity.toMovie() = Movie(id, poster)

@@ -1,5 +1,6 @@
 package com.fernandocejas.sample.matchers
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import io.kotest.matchers.string.shouldBeEqualIgnoringCase
 import org.robolectric.Robolectric
@@ -8,7 +9,7 @@ import kotlin.reflect.KClass
 
 
 infix fun KClass<out AppCompatActivity>.shouldNavigateTo(
-    nextActivity: KClass<out AppCompatActivity>
+    nextActivity: KClass<out Activity>
 ): () -> Unit = {
 
     val originActivity = Robolectric.buildActivity(this.java).get()

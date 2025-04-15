@@ -1,9 +1,5 @@
-package com.fernandocejas.sample.core
+package com.fernandocejas.sample.core.di
 
-import com.fernandocejas.sample.core.di.coreModule
-import com.fernandocejas.sample.features.auth.authFeature
-import com.fernandocejas.sample.features.login.loginFeature
-import com.fernandocejas.sample.features.movies.moviesFeature
 import org.koin.core.module.Module
 
 /**
@@ -45,15 +41,3 @@ interface Feature {
      */
     // fun databaseTables(): List<Table> = emptyList()
 }
-
-private fun coreFeature() = object : Feature {
-    override fun name() = "core"
-    override fun diModule() = coreModule
-}
-
-fun allFeatures() = listOf(
-    coreFeature(),
-    authFeature(),
-    loginFeature(),
-    moviesFeature(),
-)

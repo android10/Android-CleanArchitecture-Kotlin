@@ -19,57 +19,59 @@ import com.fernandocejas.sample.core.failure.Failure
 import com.fernandocejas.sample.core.failure.Failure.NetworkConnection
 import com.fernandocejas.sample.core.failure.Failure.ServerError
 import com.fernandocejas.sample.core.functional.Either
-import com.fernandocejas.sample.core.functional.Either.Left
-import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.functional.toLeft
+import com.fernandocejas.sample.core.network.ApiResponse
 import com.fernandocejas.sample.core.network.NetworkHandler
+import com.fernandocejas.sample.core.network.toEither
 import com.fernandocejas.sample.features.movies.interactor.Movie
 import com.fernandocejas.sample.features.movies.interactor.MovieDetails
-import retrofit2.Call
 
 interface MoviesRepository {
-    fun movies(): Either<Failure, List<Movie>>
-    fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
+    suspend fun movies(): Either<Failure, List<Movie>>
+    suspend fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
 
     class Network(
         private val networkHandler: NetworkHandler,
         private val service: MoviesService
     ) : MoviesRepository {
 
-        override fun movies(): Either<Failure, List<Movie>> {
+        override suspend fun movies(): Either<Failure, List<Movie>> {
             return when (networkHandler.isNetworkAvailable()) {
-                true -> request(
-                    service.movies(),
-                    { it.map { movieEntity -> movieEntity.toMovie() } },
-                    emptyList()
-                )
-                false -> Left(NetworkConnection)
-            }
-        }
-
-        override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
-            return when (networkHandler.isNetworkAvailable()) {
-                true -> request(
-                    service.movieDetails(movieId),
-                    { it.toMovieDetails() },
-                    MovieDetailsEntity.empty
-                )
-                false -> Left(NetworkConnection)
-            }
-        }
-
-        private fun <T, R> request(
-            call: Call<T>,
-            transform: (T) -> R,
-            default: T
-        ): Either<Failure, R> {
-            return try {
-                val response = call.execute()
-                when (response.isSuccessful) {
-                    true -> Right(transform((response.body() ?: default)))
-                    false -> Left(ServerError)
+                true -> {
+                    service.movies()
+                        .toEither(
+                            successTransform = { it.map { movieEntity -> movieEntity.toMovie() } },
+                            errorTransform = {
+                                when (it) {
+                                    is ApiResponse.Error.HttpError<*> -> ServerError
+                                    is ApiResponse.Error.NetworkError -> NetworkConnection
+                                    is ApiResponse.Error.SerializationError -> ServerError
+                                }
+                            },
+                        )
                 }
-            } catch (exception: Throwable) {
-                Left(ServerError)
+
+                false -> NetworkConnection.toLeft()
+            }
+        }
+
+        override suspend fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
+            return when (networkHandler.isNetworkAvailable()) {
+                true -> {
+                    return service.movieDetails(movieId)
+                        .toEither(
+                            successTransform = { it.toMovieDetails() },
+                            errorTransform = {
+                                when (it) {
+                                    is ApiResponse.Error.HttpError<*> -> ServerError
+                                    is ApiResponse.Error.NetworkError -> NetworkConnection
+                                    is ApiResponse.Error.SerializationError -> ServerError
+                                }
+                            },
+                        )
+                }
+
+                false -> NetworkConnection.toLeft()
             }
         }
     }

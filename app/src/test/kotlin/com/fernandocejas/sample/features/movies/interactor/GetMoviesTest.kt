@@ -15,35 +15,26 @@
  */
 package com.fernandocejas.sample.features.movies.interactor
 
-import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.functional.toRight
 import com.fernandocejas.sample.core.interactor.UseCase
 import com.fernandocejas.sample.features.movies.data.MoviesRepository
-import com.fernandocejas.sample.features.movies.interactor.GetMovies
-import com.fernandocejas.sample.features.movies.interactor.Movie
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
-import io.mockk.verify
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-class GetMoviesTest : UnitTest() {
-
-    private lateinit var getMovies: GetMovies
+class GetMoviesTest {
 
     private val moviesRepository: MoviesRepository = mockk()
-
-    @Before
-    fun setUp() {
-        getMovies = GetMovies(moviesRepository)
-        every { moviesRepository.movies() } returns Right(listOf(Movie.empty))
-    }
+    private val getMovies = GetMovies(moviesRepository)
 
     @Test
-    fun `should get data from repository`() {
-        runBlocking { getMovies.run(UseCase.None()) }
+    fun `should get data from repository`() = runTest {
+        coEvery { moviesRepository.movies() } returns listOf(Movie.empty).toRight()
 
-        verify(exactly = 1) { moviesRepository.movies() }
+        getMovies.run(UseCase.None())
+
+        coVerify(exactly = 1) { moviesRepository.movies() }
     }
 }
