@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 
@@ -57,11 +55,11 @@ android {
     }
 
     buildTypes {
-        getByName("debug") {
+        debug {
             isMinifyEnabled = false
         }
-        getByName("release") {
-            isMinifyEnabled = false
+        release {
+            isMinifyEnabled = true
         }
     }
 }
@@ -78,37 +76,51 @@ composeCompiler {
 }
 
 dependencies {
-    // Application dependencies
+    // Kotlin
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.koin.android)
+
+    // Android
     implementation(libs.android.appcompat)
+
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose.navigation)
+
+    // Logging
+    implementation(libs.kermit)
+    implementation(libs.ktor.client.logging)
+
+    // Networking & Image loading
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.converter.gson)
 
-    // Jetpack compose dependencies
+    // Compose
     // @see: https://developer.android.google.cn/develop/ui/compose/setup?hl=en#kotlin_1
-    // Specify the Compose BOM with a version definition
-    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+    val composeBom = platform("androidx.compose:compose-bom:2025.02.00")
     implementation(composeBom)
 
-
     // Specify Compose library dependencies without a version definition
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material-icons-core")
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.core)
     // Integration with activities
-    implementation("androidx.activity:activity-compose:1.9.0")
+    implementation(libs.androidx.activity.compose)
     // Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Integration with LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
-    // ..
-    // ..
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.navigation.compose)
 
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.androidx.ui.tooling.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 
     // Unit/Integration tests dependencies
     testImplementation(composeBom)
@@ -121,8 +133,8 @@ dependencies {
 
     // UI tests dependencies
     androidTestImplementation(composeBom)
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
