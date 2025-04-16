@@ -21,10 +21,14 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import com.fernandocejas.sample.core.di.Feature
 import com.fernandocejas.sample.core.extension.emptyString
 import com.fernandocejas.sample.features.auth.credentials.Authenticator
 import com.fernandocejas.sample.features.movies.ui.MovieView
 import com.fernandocejas.sample.features.movies.ui.MoviesActivity
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.module
 
 
 class Navigator(private val authenticator: Authenticator) {
@@ -83,4 +87,10 @@ class Navigator(private val authenticator: Authenticator) {
     class Extras(val transitionSharedElement: View)
 }
 
-
+// temporary solution to compile till Navigator is deleted
+fun navigationFeature() = object : Feature {
+    override fun name() = "navigation"
+    override fun diModule() = module  {
+        singleOf(::Navigator)
+    }
+}

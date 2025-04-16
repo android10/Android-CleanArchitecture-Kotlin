@@ -15,11 +15,32 @@
  */
 package com.fernandocejas.sample.features.movies.data
 
-import retrofit2.Retrofit
+import com.fernandocejas.sample.core.network.ApiResponse
+import com.fernandocejas.sample.core.network.safeRequest
+import io.ktor.client.HttpClient
+import io.ktor.client.request.url
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 
-class MoviesService(retrofit: Retrofit) : MoviesApi {
-    private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
+class MoviesService(
+    private val httpClient: HttpClient,
+) {
 
-    override fun movies() = moviesApi.movies()
-    override fun movieDetails(movieId: Int) = moviesApi.movieDetails(movieId)
+    suspend fun movies(): ApiResponse<List<MovieEntity>, Unit> =
+        httpClient.safeRequest<List<MovieEntity>, Unit> {
+            url(BASE_URL + MOVIES)
+            contentType(ContentType.Text.Plain)
+        }
+
+    suspend fun movieDetails(movieId: Int): ApiResponse<MovieDetailsEntity, Unit> =
+        httpClient.safeRequest<MovieDetailsEntity, Unit> {
+            url(BASE_URL + "movie_0${movieId}.json")
+            contentType(ContentType.Text.Plain)
+        }
+
+    companion object {
+        private const val MOVIES = "movies.json"
+        private const val BASE_URL =
+            "https://raw.githubusercontent.com/android10/Sample-Data/master/Android-CleanArchitecture-Kotlin/"
+    }
 }

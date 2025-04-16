@@ -1,6 +1,6 @@
-package com.fernandocejas.sample.features.movies
+package com.fernandocejas.sample.features.movies.di
 
-import com.fernandocejas.sample.core.Feature
+import com.fernandocejas.sample.core.di.Feature
 import com.fernandocejas.sample.features.movies.data.MoviesRepository
 import com.fernandocejas.sample.features.movies.data.MoviesService
 import com.fernandocejas.sample.features.movies.interactor.GetMovieDetails

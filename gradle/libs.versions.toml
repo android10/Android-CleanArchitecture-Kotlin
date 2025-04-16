@@ -14,7 +14,6 @@ appCompat = "1.7.0"
 activityCompose = "1.10.1"
 lifecycleViewmodelCompose = "2.8.7"
 koinAndroid = "3.5.6"
-converterGson = "2.9.0"
 coil = "3.1.0"
 kermit = "2.0.4"
 kotlinxSerializationJson = "1.8.1"
@@ -57,7 +56,6 @@ androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
 koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koinAndroid" }
@@ -80,6 +78,7 @@ kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"
 junit = { module = "junit:junit", version.ref = "junit" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+ktor-client-mock ={ module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 # main module ui test dependencies ---
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }

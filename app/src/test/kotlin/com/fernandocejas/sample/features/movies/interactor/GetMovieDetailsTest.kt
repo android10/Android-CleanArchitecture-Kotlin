@@ -15,33 +15,26 @@
  */
 package com.fernandocejas.sample.features.movies.interactor
 
-import com.fernandocejas.sample.UnitTest
-import com.fernandocejas.sample.core.functional.Either.Right
+import com.fernandocejas.sample.core.functional.toRight
 import com.fernandocejas.sample.features.movies.data.MoviesRepository
-import io.mockk.every
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
-import io.mockk.verify
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
+import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-class GetMovieDetailsTest : UnitTest() {
-
-    private lateinit var getMovieDetails: GetMovieDetails
+class GetMovieDetailsTest {
 
     private val moviesRepository: MoviesRepository = mockk()
-
-    @Before
-    fun setUp() {
-        getMovieDetails = GetMovieDetails(moviesRepository)
-        every { moviesRepository.movieDetails(MOVIE_ID) } returns Right(MovieDetails.empty)
-    }
+    private val getMovieDetails = GetMovieDetails(moviesRepository)
 
     @Test
-    fun `should get data from repository`() {
-        runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
+    fun `should get data from repository`() = runTest {
+        coEvery { moviesRepository.movieDetails(MOVIE_ID) } returns MovieDetails.empty.toRight()
 
-        verify(exactly = 1) { moviesRepository.movieDetails(MOVIE_ID) }
+        getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID))
+
+        coVerify(exactly = 1) { moviesRepository.movieDetails(MOVIE_ID) }
     }
 
     companion object {
