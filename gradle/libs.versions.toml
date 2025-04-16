@@ -1,8 +1,8 @@
 [versions]
 # sdk -----------
-compileSdk = "34"
+compileSdk = "35"
 minSdk = "30"
-targetSdk = "34"
+targetSdk = "35"
 
 # kotlin ---------
 kotlin = "2.0.10"
@@ -11,8 +11,15 @@ kotlinCoroutines = "1.7.3"
 # android --------
 ksp = "2.0.10-1.0.24"
 appCompat = "1.7.0"
+activityCompose = "1.10.1"
+lifecycleViewmodelCompose = "2.8.7"
 koinAndroid = "3.5.6"
 converterGson = "2.9.0"
+coil = "3.1.0"
+kermit = "2.0.4"
+kotlinxSerializationJson = "1.8.1"
+ktor = "3.1.2"
+navigationCompose = "2.8.9"
 
 # testing
 kotest = "5.6.2"
@@ -28,7 +35,7 @@ rules = "1.6.1"
 leakcanaryAndroid = "2.14"
 
 # plugings -------
-androidGradlePlugin = "8.5.2"
+androidGradlePlugin = "8.9.1"
 
 
 [libraries]
@@ -39,11 +46,32 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 # main module dependencies: android application related ---
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinCoroutines" }
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompat" }
-koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
+androidx-material3 = { module = "androidx.compose.material3:material3" }
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 
-# main module dependencies: android application related ---
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinAndroid" }
+koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koinAndroid" }
 
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 
 # main module unit/integration test dependencies ---
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
@@ -70,3 +98,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
